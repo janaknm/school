@@ -2,11 +2,12 @@
 #define WORLD_H
 
 #include <iostream>
-#include <ios>
+
+using namespace std;
 
 class World {
     
-    friend istream& operator>> (istream& input, World& world);
+    //friend istream& operator>> (istream& input, World& world);
 
     private:
 	int **board,

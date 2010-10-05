@@ -1,5 +1,8 @@
 #include "world.h"
 #include <iostream>
+#include <cstring>
+
+using namespace std;
 
 World::World() {
     board = NULL;
@@ -20,14 +23,18 @@ void World::initialize(istream& input) {
     board = new int*[rows];
     for( i=0; i<rows; i++ ) {
 	board[i] = new int[cols];
-	memcpy( board[i], 0, sizeof(int) * cols );
     }
 
     j = x;
     i = y;
 
-    while( j<cols && i<rows ) {
-	input >> c;
+    cout << input.get() << "-" << cin.fail() << endl;
+    cout << input.get() << "-" << cin.fail() << endl;
+    cout << input.get() << "-" << cin.fail() << endl;
+
+
+    while( j<cols-1 && i<rows-1 ) {
+	c = input.get();
 	c = (c == '*') ? 1 : 0;
 	board[i][j] = c;
 
