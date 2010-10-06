@@ -28,34 +28,30 @@ void World::initialize(istream& input) {
     j = x;
     i = y;
 
-    cout << input.get() << "-" << cin.fail() << endl;
-    cout << input.get() << "-" << cin.fail() << endl;
-    cout << input.get() << "-" << cin.fail() << endl;
-
-
-    while( j<cols-1 && i<rows-1 ) {
+    do {
 	c = input.get();
-	c = (c == '*') ? 1 : 0;
-	board[i][j] = c;
-
-	if( ++j == cols) {
-	    j = 0;
+	if (c == '\n') {
+	    j = x;
 	    i++;
 	}
-    }
+	board[i][j++] = (c == '*') ? 1 : 0;
+    } while (!input.eof());
 }
 
 void World::print_state(ostream& output) {
     int i, j;
     char c;
-    
-    for( i=0; j<rows; i++ ) {
+
+    for( i=0; i<rows; i++) {
+	cout << i;
 	for( j=0; j<cols; j++) {
-	   c = (board[i][j]) ? '*' : ' ';
-	   output << c;
+	    c = (board[i][j]) ? '*' : ' ';
+	    cout << c;
 	}
-	output << endl;
+	cout << j;
+	cout << endl;
     }
+
 }
 
 void generate(int n, bool ask=true) {
