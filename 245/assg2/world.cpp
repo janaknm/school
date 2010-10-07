@@ -20,9 +20,9 @@ void World::initialize(istream& input) {
     x--; y--;
 
     // initialize board to 0 (all dead)
-    board = new int*[rows];
+    board = new Cell* [rows];
     for( i=0; i<rows; i++ ) {
-	board[i] = new int[cols];
+	board[i] = new Cell [cols];
     }
 
     j = x;
@@ -34,7 +34,7 @@ void World::initialize(istream& input) {
 	    j = x;
 	    i++;
 	}
-	board[i][j++] = (c == '*') ? 1 : 0;
+	(board[i][j++]).current = (c == '*') ? 1 : 0;
     } while (!input.eof());
 }
 
@@ -43,17 +43,21 @@ void World::print_state(ostream& output) {
     char c;
 
     for( i=0; i<rows; i++) {
-	cout << i;
 	for( j=0; j<cols; j++) {
-	    c = (board[i][j]) ? '*' : ' ';
+	    c = (board[i][j].current) ? '*' : ' ';
 	    cout << c;
 	}
-	cout << j;
 	cout << endl;
     }
 
 }
 
-void generate(int n, bool ask=true) {
+void World::generate(int n, bool ask=true) {
     
+}
+
+int World::check_cell(int row, int col) {
+    Cell c = board[row][col];
+    
+
 }
