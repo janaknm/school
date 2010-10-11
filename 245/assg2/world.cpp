@@ -1,3 +1,7 @@
+// Matt Forbes
+// October 2010
+// CS245 Assignment 2
+
 #include "world.h"
 #include <iostream>
 #include <cstring>

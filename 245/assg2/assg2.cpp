@@ -1,3 +1,8 @@
+// Matt Forbes
+// October 2010
+// CS245 Assignment 2
+// "Game of Life" Simulation
+
 #include <fstream>
 #include <iostream>
 #include <cctype>
