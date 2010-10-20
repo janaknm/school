@@ -1,0 +1,74 @@
+%        File: assg1.tex
+%     Created: Wed Oct 06 08:00 PM 2010 P
+% Last Change: Wed Oct 06 08:00 PM 2010 P
+%
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\begin{document}
+\title{Homework 2}
+\author{Matt Forbes}
+\date{October 21, 2010}
+\maketitle
+
+\newenvironment{indentpar}[1]%
+{\begin{list}{}%
+         {\setlength{\leftmargin}{#1}}%
+         \item[]%
+}
+{\end{list}}
+
+\section{Problem One}
+\subsection*{a\()\)}
+{\bf found} is true. For this case to occur, we had to be within some iteration of the loop. In order to be in
+an interation, the expression \(\text{(low < high) AND !found}\) must be true. Therefore, low does not equal
+high, because low must be less than high. The first if statement within the loop body checks if\\
+\(A[low] + a[high] ==  x\) is true, and will set found to true if that is the case. Therefore, if found is true,
+then low and high are indices of A whose elements' sum is x.
+\subsection*{b\()\)}
+{\bf low \(\ge\) high}. I will prove the loop invariant provided to show that if low \(\ge\) high, 
+there does not exist two disting elements in {\bf A} that sum to x.\\\\
+\underline{Basis}
+\begin{indentpar}{1cm}
+  At the start of the first iteration,\\
+  \(low = 0, high = n-1,\\ 
+  S = \{A[0]\dots A[-1]\} \cup \{A[n] \dots A[n-1]\} = \{\}\)\\
+  So there are no distinct pairs in S sum to x. The L.I. holds before we enter the loop.
+\end{indentpar}
+\underline{Maintenance}
+\begin{indentpar}{1cm}
+  Assuming the L.I. held for all iterations up to this iteration j, then:
+  \begin{itemize}
+    \item Right before this loop started, there was no distinct pair of elements in the set 
+      \(S = \{A[0] \dots A[low-1]\} \cup \{A[high+1] \dots A[n-1]\}\) whose sum = x.
+    \item During this iteration, \(A[low] + a[high]\) could be:\\
+      {\bf equal to x}: We found a distinct pair that sums x, done.\\\\
+      {\bf less than x}: low is incremented, and thus \(A[low]\) is 'added' to S in the next iteration, in which
+      case the L.I. would still hold for these reasons: \(A[low] + A[i], i= 0 \dots low-1\) will always be less than
+      x, and \(A[low] + a[j], j = high+1 \dots n-1\) will always be greater than x. Therefore there will be no pair in S
+      whose sum is exactly x.\\\\
+      {\bf greater than x}: high is decremented, and this \(A[high]\) is 'added' to S in the next iteration, in 
+      which case the L.I. would still hold for these reasons: \(A[high] + A[j], j = high+1 \dots n-1\) will always
+      be greater than x, and \(A[i] + A[high], i = 0 \dots low\) will always be less than x. Therefore there will be
+      no pair in S whose sum is exactly x.
+    \item The L.I. will always hold after this iteration, granted that it held up to this point for the reasons listed
+      above.
+  \end{itemize}
+\underline{Termination}
+\begin{indentpar}{1cm}
+  \begin{itemize}
+    \item After each iteration, either low is incremented or high is decremented, so they have to converge at one
+      point as long as {\bf found} is never set to true, so the loop is guaranteed to terminate.
+    \item According to the L.I. at the end of the last iteration, there is no distinct pair of elements in 
+      \(S = \{A[0] \dots A[low-1] \} \cup \{A[high+1] \dots A[n-1]\}\) whose sum is x. Well at the end of the loop,
+      S is equal to all of the elements in {\bf A}. Therefore, there is no distinct pair of elements in {\bf A} whose
+      sum is equal to x.
+  \end{itemize}
+\end{indentpar}
+\end{indentpar}
+\section{Problem One}
+
+
+\end{document}
+
+
