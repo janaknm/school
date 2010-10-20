@@ -55,6 +55,7 @@ there does not exist two disting elements in {\bf A} that sum to x.\\\\
       above.
   \end{itemize}
 \underline{Termination}
+\end{indentpar}
 \begin{indentpar}{1cm}
   \begin{itemize}
     \item After each iteration, either low is incremented or high is decremented, so they have to converge at one
@@ -65,9 +66,20 @@ there does not exist two disting elements in {\bf A} that sum to x.\\\\
       sum is equal to x.
   \end{itemize}
 \end{indentpar}
+\section{Problem Three}
+\subsection*{Algorithm}
+median(L, R, n):
+\begin{indentpar}{0.5cm}
+  return median-helper(L, R, 0, 0, 0, n)
 \end{indentpar}
-\section{Problem One}
-
+median-helper(L, R, lbound, rbound, cuts, n):
+\begin{indentpar}{0.5cm}
+  if L is empty or R is empty:
+\end{indentpar}
+\begin{indentpar}{0.6cm}
+  'remove' (n-cuts-1) cards from the \underline{non-empty} hand\\
+  return first remaining card in the non-empty hand {\bf (+1) \}\\
+\end{indentpar}
 
 \end{document}
 

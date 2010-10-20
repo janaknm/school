@@ -1,0 +1,15 @@
+median(L, R, n):
+    return median_helper(L, R, 0, 0, 0, n)
+
+median_helper(L, R, lbound, rbound, cuts, n):
+    if L is empty or R is empty:
+        'remove' (n-cuts-1) cards from the non-empty hand
+        return first remaining card in the non-empty hand    # (+1)
+    if both L and R have exactly one card:
+        ask for both remaining cards    # (+2)
+        if cuts = n-1:
+            return minimum of the remaining cards
+        else:
+            return maximum of the remaining cards
+
+    ask for median card from the 'remaining' set of
