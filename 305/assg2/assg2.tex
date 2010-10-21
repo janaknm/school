@@ -5,6 +5,27 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage{amsmath}
 \usepackage{fullpage}
+\usepackage{color}
+\usepackage{listings}
+\lstset{ %
+language=C++,                % choose the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+numbers=left,                   % where to put the line-numbers
+numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+stepnumber=1,                   % the step between two line-numbers. If it is 1 each line will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,                   % adds a frame around the code
+tabsize=2,              % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,        % sets automatic line breaking
+breakatwhitespace=false,    % sets if automatic breaks should only happen at whitespace
+escapeinside={\%}{)}          % if you want to add a comment within your code
+}
+
 \begin{document}
 \title{Homework 2}
 \author{Matt Forbes}
@@ -21,8 +42,8 @@
 \section{Problem One}
 \subsection*{a\()\)}
 {\bf found} is true. For this case to occur, we had to be within some iteration of the loop. In order to be in
-an interation, the expression \(\text{(low < high) AND !found}\) must be true. Therefore, low does not equal
-high, because low must be less than high. The first if statement within the loop body checks if\\
+an interation, the expression \(\text{(low} < \text{high) AND !found}\) must be true. Therefore, low does not equal
+high, because low must be less than high. The first if statement within the loop body checks if
 \(A[low] + a[high] ==  x\) is true, and will set found to true if that is the case. Therefore, if found is true,
 then low and high are indices of A whose elements' sum is x.
 \subsection*{b\()\)}
@@ -68,20 +89,65 @@ there does not exist two disting elements in {\bf A} that sum to x.\\\\
 \end{indentpar}
 
 \section{Problem Two}
-\subsection{\(\mathbf a)\)}
+\subsection*{\(\mathbf a)\)}
 (1,5) (2,5) (3,4) (3,5) (4,5)
-\subsection{\(\mathbf b)\)}
+\subsection*{\(\mathbf b)\)}
 The array [n \dots 1] has the most inversions.\\
 A[1] is greater than n-1 elements on its right, so it has n-1 inverions.\\
 A[2] is greater than n-2 elements on its right, so it has n-2 inversion.\\
 \dots\\
 A[n-1] is grater than n element on its right so it has 1 inversion.\\
 So, the number of inversions: \(\sum_{i=1}^{n-1} = \dfrac{n(n-1)}{2} \) 
-\subsection{\(\mathbf c)\)}
+\subsection*{\(\mathbf c)\)}
 The number of writes insertion sort performs is equal to the number of inversions there were in the intial
 form of array. Each inversion in the array implies a shift of an element to the left.
-\subsection{\(\mathbf d)\)}
+\subsection*{\(\mathbf d)\)}
+\begin{lstlisting}
+// 'merge' function from text modified to not use infinity
+// and keep track of inversions by counting the number of positions
+// each element 'jumps' over (i.e. number of inversions)
+merge_and_count(A, p, q, r):
+    let L = new Array(q - p + 1),
+        R = new Array(r-q),
+        inversions = 0,
+        i = 1, j = 1
+    L = A[1..q]    //copy first half into L
+    R = A[q+1..r]    //copy last half into R
+    for k = p to r:
+        if j > r:
+            switch_left = true
+        else if i > q:
+            switch_left = false
+        else:
+            switch_left = L[i] < R[j]
 
+        if switch_left:
+            A[k] = R[j]
+            i++
+        else:
+            A[k] = R[j]
+            j++
+            // (q - i + 1) number of positions this element jumps left 
+            inversions += (q - i + 1)
+    return inversions
+
+count_inversions(A, p, r):
+    inversions = 0
+    if p < r:
+        q = (p+r) / 2
+        inversions += count_inversions(A, p, q)
+        inversions += count_inversions(A, q+1, r)
+        inversions += merge_and_count(A, p, q, r)
+    return inversions
+\end{lstlisting}
+{\bf Explanation}\\
+So say we are using the above code, and are at some level of recursion. We have an array that has
+two 'sorted subarrays' L and R, within it, where L is the first half and R is the last half. When
+we 'merge' these arrays, we comapre the smallest element of each subarray and place the minimum of the
+two in the next slot of the whole array. If the minimum element comes from R, then it is essentially
+'jumping' over all of the elements still currently in L. Each 'jump' is essentially an inversion
+because the elements that were jumped were all greater than it. So if we count the number of jumps
+we are actually the number of inversions.
 \section{Problem Three}
 \subsection*{Algorithm Description}
 The algorithm's correctness stems from the following point being true: If we take the median card from both friends'
@@ -98,7 +164,49 @@ than {\bf a}. Therefore, {\bf a} must be greater than or equal to the absolute m
 \noindent In the algorithm, {\bf L} and {\bf R} represent the two hands of cards. {\bf lbound} and {\bf rbound}
 are the minimum and maximum values of the absolute median that we know up to that point. {\bf cuts} is the number of cards that we have ruled out and know are less than the absolute median.\\
 
-\noindent The pseudo code for my algorithm is on the last page.
+\subsection*{Pseudo Code}
+\begin{lstlisting}
+median(L, R, n):
+    return median_helper(L, R, 0, 0, 0, n)
+
+median_helper(L, R, lbound, rbound, cuts, n):
+    if L is 'empty' or R is 'empty':
+        'remove' (n-cuts-1) cards from the non-empty hand
+        return first 'remaining' card in the non-empty hand    # (+1)
+    if both L and R have exactly one card:
+        ask for both remaining cards    # (+2)
+        if cuts = n-1:
+            return minimum of the 'remaining' cards
+        else:
+            return maximum of the 'remaining' cards
+
+    ask for median card from the 'remaining' set of both L and R    # (+2)
+    set min = smaller of the two cards that were just asked for,
+        max = greater of the two cards that were just asked for,
+        min-hand = the hand that holds min
+        max-hand = the hand that holds max
+    if lbound < min < rbound:
+        'remove' all cards in min-hand that are less than min
+        set lbound = min,
+            cuts = cuts + number of cards just 'removed'
+    else:
+        if min < lbound:
+            'remove' min and all cards in min-hand lower than min from min-hand
+            cuts = cuts + number of cards just 'removed'
+        else:
+            'remove' min and all cards in min-hand greater than min
+    if lbound < max < rbound:
+        'remove' all cards in max-hand that are greater than max
+    else:
+        if max < lbound:
+            'remove' max and all cards in max-hand that are less than max
+            cuts = cuts + number of cards 'removed'
+        else:
+            'remove' max and all cards in max-hand that are greatre than max
+
+    median_helper(L, R, lbound, rbound, cuts, n)
+
+\end{lstlisting}
 
 \subsection*{Running time of algorithm}
 Let T(n) be the running time of this algorithm, where n is the total number of cards we are searching through.\\
