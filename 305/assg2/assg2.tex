@@ -66,20 +66,57 @@ there does not exist two disting elements in {\bf A} that sum to x.\\\\
       sum is equal to x.
   \end{itemize}
 \end{indentpar}
+
+\section{Problem Two}
+\subsection{\(\mathbf a)\)}
+(1,5) (2,5) (3,4) (3,5) (4,5)
+\subsection{\(\mathbf b)\)}
+The array [n \dots 1] has the most inversions.\\
+A[1] is greater than n-1 elements on its right, so it has n-1 inverions.\\
+A[2] is greater than n-2 elements on its right, so it has n-2 inversion.\\
+\dots\\
+A[n-1] is grater than n element on its right so it has 1 inversion.\\
+So, the number of inversions: \(\sum_{i=1}^{n-1} = \dfrac{n(n-1)}{2} \) 
+\subsection{\(\mathbf c)\)}
+The number of writes insertion sort performs is equal to the number of inversions there were in the intial
+form of array. Each inversion in the array implies a shift of an element to the left.
+\subsection{\(\mathbf d)\)}
+
 \section{Problem Three}
-\subsection*{Algorithm}
-median(L, R, n):
-\begin{indentpar}{0.5cm}
-  return median-helper(L, R, 0, 0, 0, n)
-\end{indentpar}
-median-helper(L, R, lbound, rbound, cuts, n):
-\begin{indentpar}{0.5cm}
-  if L is empty or R is empty:
-\end{indentpar}
-\begin{indentpar}{0.6cm}
-  'remove' (n-cuts-1) cards from the \underline{non-empty} hand\\
-  return first remaining card in the non-empty hand {\bf (+1) \}\\
-\end{indentpar}
+\subsection*{Algorithm Description}
+The algorithm's correctness stems from the following point being true: If we take the median card from both friends'
+hand, then the absolute median's value \underline{must} be within the value of these two cards.\\
+
+\noindent If we take the median card from both hands, and call card {\bf a} the smaller of the two, and {\bf b} the 
+greater. There are \underline{at most} \(n - \frac{n}{2}\) cards greater than {\bf a} in its own hand. In {\bf b}'s 
+hand, there are at most \(n - \frac{n}{2} - 1\) cards greater than {\bf a}, because {\bf a} \(>\) {\bf b}. In total,
+there are \underline{at most} \( n - \frac{n}{2} + n - \frac{n}{2} - 1 = 2n - n - 1 = n - 1\) cards greater
+than {\bf a}. Therefore, {\bf a} must be greater than or equal to the absolute median of the 2n cards.\\
+
+\noindent Likewise for {\bf b}.\\
+
+\noindent In the algorithm, {\bf L} and {\bf R} represent the two hands of cards. {\bf lbound} and {\bf rbound}
+are the minimum and maximum values of the absolute median that we know up to that point. {\bf cuts} is the number of cards that we have ruled out and know are less than the absolute median.\\
+
+\noindent The pseudo code for my algorithm is on the last page.
+
+\subsection*{Running time of algorithm}
+Let T(n) be the running time of this algorithm, where n is the total number of cards we are searching through.\\
+
+\[T(n) = \left\{
+\begin{tabular}{c c}
+    \(T(\frac{n}{2}) + O(1)\),& for n \(>\) 2 \\
+    O(1),& for n \(\le\) 2\\
+\end{tabular}
+\right\}\]\\
+
+An upper bound guess for T is \(T(n) \le c\log_2 (n) + O(1) \)
+\begin{alignat*}{2}
+  T(n)& \le c\log_2 (\frac{n}{2}) + O(1) \\
+  {}& \le c\log_2 (n) - \log_2 (2) + O(1)\\
+  {}& = c\log_2(n) + O(1)
+\end{alignat*}
+So, \(T(n) \text{ is } O(\log_2 (n))\).
 
 \end{document}
 

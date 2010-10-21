@@ -2,14 +2,39 @@ median(L, R, n):
     return median_helper(L, R, 0, 0, 0, n)
 
 median_helper(L, R, lbound, rbound, cuts, n):
-    if L is empty or R is empty:
+    if L is 'empty' or R is 'empty':
         'remove' (n-cuts-1) cards from the non-empty hand
-        return first remaining card in the non-empty hand    # (+1)
+        return first 'remaining' card in the non-empty hand    # (+1)
     if both L and R have exactly one card:
         ask for both remaining cards    # (+2)
         if cuts = n-1:
-            return minimum of the remaining cards
+            return minimum of the 'remaining' cards
         else:
-            return maximum of the remaining cards
+            return maximum of the 'remaining' cards
 
-    ask for median card from the 'remaining' set of
+    ask for median card from the 'remaining' set of both L and R    # (+2)
+    set min = smaller of the two cards that were just asked for,
+        max = greater of the two cards that were just asked for,
+        min-hand = the hand that holds min
+        max-hand = the hand that holds max
+    if lbound < min < rbound:
+        'remove' all cards in min-hand that are less than min
+        set lbound = min,
+            cuts = cuts + number of cards just 'removed'
+    else:
+        if min < lbound:
+            'remove' min and all cards in min-hand lower than min from min-hand
+            cuts = cuts + number of cards just 'removed'
+        else:
+            'remove' min and all cards in min-hand greater than min
+    if lbound < max < rbound:
+        'remove' all cards in max-hand that are greater than max
+    else:
+        if max < lbound:
+            'remove' max and all cards in max-hand that are less than max
+            cuts = cuts + number of cards 'removed'
+        else:
+            'remove' max and all cards in max-hand that are greatre than max
+
+    median_helper(L, R, lbound, rbound, cuts, n)
+
