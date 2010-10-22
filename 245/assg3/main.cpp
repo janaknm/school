@@ -32,8 +32,9 @@ void run_tests() {
 
 int main(int argc, char **argv) {
     //run_tests();
-    big_int a = -11221383023123;
-    cout << a << endl;
+    big_int a = 50;
+    big_int b = 50;
+    cout << "a < b ? " << (a < b) << endl;
 
     return 0;
 }

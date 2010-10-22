@@ -21,7 +21,7 @@ big_int::big_int() {
     _digits = 0;
     _value = NULL;
     _positive = false;
-    add_digit(0);
+    edit_digit(0, 0);
 }
 
 // Int constructor, type casting for ints. i.e. big_int a = 5;
@@ -41,11 +41,11 @@ big_int::big_int(long long n) {
     _value = NULL;
     grow();
     
-    i = _size - 1;
+    i = 0;
     while(n > 0) {
         c = n % 10;
-        push_digit(c);
-        i--;
+        edit_digit(i, c);
+        i++;
         n /= 10;
     }
 }
@@ -69,11 +69,21 @@ big_int& big_int::operator=(const big_int& rhs) {
     return *this;
 }
 
-bool big_int::operator<(const big_int& lhs) {
-    return true;
+bool big_int::operator<(const big_int& rhs) const {
+    int c = compare(rhs, false);
+    return c == -1;
 }
-bool big_int::operator>(const big_int& lhs) {
-    return false;
+bool big_int::operator<=(const big_int& rhs) const {
+    int c = compare(rhs, false);
+    return c < 1;
+}
+bool big_int::operator>(const big_int& rhs) const {
+    int c = compare(rhs, false);
+    return c == 1;
+}
+bool big_int::operator>=(const big_int& rhs) const {
+    int c = compare(rhs, false);
+    return c > -1;
 }
 
 // + defined in terms or +=
@@ -130,17 +140,24 @@ big_int big_int::factorial(const big_int& val) {
 // PRIVATE
 // Safe way to add a digit to this number, adds to FRONT of the current number
 // Allocates memory as necessary
-void big_int::push_digit(char d) {
-    int i;
-    
+void big_int::edit_digit(int i, char d) {
     //grow if we've filled up the _value array
-    if(_digits == _size) {
+    if(i >= _size) {
         grow();
     }
+    if(i >= _digits) {
+        _digits = i+1;
+    }
 
-    i = _size - _digits - 1;
-    _value[i] = d;
-    _digits++;
+    _value[_size - i - 1] = d;
+}
+
+// Safe way to get a digit in this number, will return 0 if it's out of bounds
+char big_int::get_digit(int i) const {
+    if(i >= _size) {
+        return 0;
+    }
+    else return _value[_size - i - 1];
 }
 
 // Memory management for internal char* representation. If we need more space, we
@@ -170,6 +187,54 @@ void big_int::duplicate(const big_int& rhs) {
     _positive = rhs._positive;
     _value = new char[_size];
     memcpy(_value, rhs._value, _size);
+}
+
+// -1 if smaller than arg, 0 if equal, 1 if greater
+int big_int::compare(const big_int& rhs, bool ignore_sign) const {
+    int i;
+    char l, r;
+    // case: this is positive and rhs is negative, this is bigger if we care about sign
+    if (!ignore_sign && _positive && !rhs._positive) {
+        return 1;
+    // case: this is negative, and rhs is positive, this is smaller if we care about sign
+    } else if (!ignore_sign && !_positive && rhs._positive) {
+        return -1;
+    // case: this has less digits than rhs, if both are negative, then this is greater
+    } else if (_digits < rhs._digits) {
+        if (!ignore_sign && !_positive) {
+            return 1;
+        }
+        return -1;
+    // case: this has more digits than rhs, if both are negative, then this is smaller
+    } else if (_digits > rhs._digits) {
+        if (!ignore_sign && !_positive) {
+            return -1;
+        }
+        return 1;
+    // case: same sign, same number of digits, compare each digit starting on the most significant
+    } else {
+        i = _digits - 1;
+        while (i > 0 && get_digit(i) == rhs.get_digit(i)) {
+            i--;
+        }
+        // i now holds the index of the first digit from the left that is different
+        l = get_digit(i);
+        r = rhs.get_digit(i);
+        if (l == r) {
+            return 0; // we hit i=0, all digits are equal
+        } else if (l < r) {
+            if (!ignore_sign && !_positive) {
+                return 1; // smaller negative
+            }
+            return -1; // smaller positive
+        } else {
+            if (!ignore_sign && !_positive) {
+                return -1; // greater negative
+            } 
+            return 1; // greater positive
+        }
+    }
+
 }
 
 //print that shit.
