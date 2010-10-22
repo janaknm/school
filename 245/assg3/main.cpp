@@ -31,7 +31,9 @@ void run_tests() {
 }
 
 int main(int argc, char **argv) {
-    run_tests();
+    //run_tests();
+    big_int a = -11221383023123;
+    cout << a << endl;
 
     return 0;
 }
