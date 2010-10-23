@@ -8,6 +8,25 @@ void run_tests() {
             b = 3,
             c = 500.5;
 
+    a = 5;
+    cout << "5 < 3? " << (a < b) << endl;
+    cout << "5 > 3? " << (a > b) << endl;
+    a = 3;
+    cout << "3 < 3? " << (a < b) << endl;
+    cout << "3 <= 3? " << (a <= b) << endl;
+    cout << "3 > 3? " << (a > b) << endl;
+    cout << "3 >= 3? " << (a >= b) << endl;
+
+    a = -1234;
+    cout << "-1234 < 3? " << (a < b) << endl;
+    cout << "-1234 <= 3? " << (a <= b) << endl;
+    cout << "-1234 > 3? " << (a > b) << endl;
+    cout << "-1234 >= 3? " << (a >= b) << endl;
+
+    b = -500;
+    cout << "-1234 < -500? " << (a < b) << endl;
+    cout << "-1234 > -500? " << (a > b) << endl;
+
     a = 100;
     a += b;
     a += 5;
@@ -31,10 +50,7 @@ void run_tests() {
 }
 
 int main(int argc, char **argv) {
-    //run_tests();
-    big_int a = 50;
-    big_int b = 50;
-    cout << "a < b ? " << (a < b) << endl;
+    run_tests();
 
     return 0;
 }
