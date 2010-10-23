@@ -20,7 +20,7 @@ big_int::big_int() {
     _size = 0;
     _digits = 0;
     _value = NULL;
-    _positive = false;
+    _positive = true;
     edit_digit(0, 0);
 }
 
@@ -29,7 +29,7 @@ big_int::big_int(long long n) {
     int i;
     char c;
 
-    if (n <= 0) {
+    if (n < 0) {
         _positive = false;
         n = -n;
     } else {
@@ -39,8 +39,11 @@ big_int::big_int(long long n) {
     _digits = 0;
     _size = 0;
     _value = NULL;
-    grow();
     
+    if(n == 0) {
+        edit_digit(0, 0);
+    }
+
     i = 0;
     while(n > 0) {
         c = n % 10;
@@ -52,6 +55,7 @@ big_int::big_int(long long n) {
 
 // Copy constructor, calls the same function assignment operator does
 big_int::big_int(const big_int& rhs) {
+    _value = NULL;
     duplicate(rhs);
 }
 
@@ -65,6 +69,7 @@ big_int::~big_int() {
 
 // Assignment operator
 big_int& big_int::operator=(const big_int& rhs) {
+    _value = NULL;
     duplicate(rhs);
     return *this;
 }
@@ -86,55 +91,167 @@ bool big_int::operator>=(const big_int& rhs) const {
     return c > -1;
 }
 
+bool big_int::operator==(const big_int& rhs) const {
+    return compare(rhs, false) == 0;
+}
+
+bool big_int::operator!=(const big_int& rhs) const {
+    return compare(rhs, false) != 0;
+}
+
 // + defined in terms or +=
-const big_int big_int::operator+(const big_int& rhs) {
-    big_int a = *this;
-    a += rhs;
-    return a;
+const big_int big_int::operator+(const big_int& rhs) const {
+    big_int sum = *this;
+    sum += rhs;
+    return sum;
 }
 
 // - defined in terms of -=
-const big_int big_int::operator-(const big_int& rhs) {
-    big_int a = *this;
-    a -= rhs;
-    return a;
+const big_int big_int::operator-(const big_int& rhs) const {
+    big_int s = *this;
+    s -= rhs;
+    return s;
 }
 
 // * defined in terms of *=
-const big_int big_int::operator*(const big_int& rhs) {
-    big_int a = *this;
-    a *= rhs;
-    return a;
+const big_int big_int::operator*(const big_int& rhs) const {
+    big_int p = *this;
+    p *= rhs;
+    return p;
 }
 
-big_int& big_int::operator+=(const big_int&) {
+big_int& big_int::operator+=(const big_int& rhs) {
+    if ( (_positive && rhs._positive) || (!_positive && !rhs._positive) ) {
+        abs_add(rhs);
+        return *this;
+    }
+
+    switch( compare(rhs, true) ) {
+        case 1: // |this| > |rhs|
+            abs_sub(rhs);
+            break;
+        case -1: // |this| < |rhs|
+            {
+                big_int tmp = *this;
+                *this = rhs;
+                abs_sub(tmp);
+                _positive = !_positive; 
+            }
+            break;
+        default: // |this| = |rhs|
+            *this = 0;
+            break;
+    }
+
     return *this;
 }
 
-big_int& big_int::operator-=(const big_int&) {
+big_int& big_int::operator-=(const big_int& rhs) {
+    if ( (!_positive && rhs._positive) || (_positive && !rhs._positive) ) {
+        abs_add(rhs);
+        return *this;
+    }
+
+    switch( compare(rhs, true) ) {
+        case 1: // |this| > |rhs|
+            abs_sub(rhs);
+            break;
+        case -1: // |this| < |rhs|
+            {
+                big_int tmp = *this;
+                *this = rhs;
+                abs_sub(tmp);
+                _positive = !_positive;
+            }
+            break;
+        default:
+            *this = 0;
+            break;
+    }
+
     return *this;
 }
 
-big_int& big_int::operator*=(const big_int&) {
+big_int& big_int::operator*=(const big_int& rhs) {
+    
+    big_int tmp = *this,
+            accum = 0;
+    char carry = 0,
+         offset = 0,
+         value = 0,
+         current = 0,
+         ix = 0,
+         jx = 0,
+         kx = 0;
+
+    *this = 0;
+    if (tmp == 0 || rhs == 0) {
+        return *this;
+    }
+
+    while( ix < tmp._digits) {
+        //add offset 0's
+        jx = 0;
+        accum = 0;
+        while (jx < offset) {
+            accum.edit_digit(jx, 0);
+            jx++;
+        }
+
+        current = tmp.get_digit(ix);
+        kx = 0;
+        carry = 0;
+        while (kx < rhs._digits) {
+            value = carry + current * rhs.get_digit(kx);
+            carry = value / 10;
+            value =  value % 10;
+            accum.edit_digit(jx, value);
+            jx++;
+            kx++;
+        }
+
+        if (carry) {
+            accum.edit_digit(jx, carry);
+        }   
+        
+        cout << accum << endl;
+        *this += accum;
+        offset++;
+        ix++;
+    }
+
+    _positive = (tmp._positive == rhs._positive);
+
+    cout << endl << endl;
     return *this;
 }
+
+
 
 // PUBLIC
 
 // Print this big_int to an output stream (used in overloading <<)
 void big_int::print(ostream& out) const {
-    int i = _size - _digits;
+    int i = _digits - 1;
     if(!_positive) out << '-';
-    while (i < _size) {
-        out << (int)_value[i];
-        i++;
+    while (i >= 0) {
+        out << (int)get_digit(i);
+        i--;
     }
 }
 
 // STATIC
 big_int big_int::factorial(const big_int& val) {
-    big_int a;
-    return a;
+    big_int i = val-1,
+            ret = val;
+
+    while (i > 1) {
+        cout << ret << " * " << i << endl;
+        ret *= i;
+        i -= 1;
+    }
+    
+    return ret;
 }
 
 // PRIVATE
@@ -149,12 +266,13 @@ void big_int::edit_digit(int i, char d) {
         _digits = i+1;
     }
 
+
     _value[_size - i - 1] = d;
 }
 
 // Safe way to get a digit in this number, will return 0 if it's out of bounds
 char big_int::get_digit(int i) const {
-    if(i >= _size) {
+    if(i >= _digits) {
         return 0;
     }
     else return _value[_size - i - 1];
@@ -164,9 +282,12 @@ char big_int::get_digit(int i) const {
 // make a new array of 2x the size, then copy the old data in to it. Swap this new
 // array for the old, and free up the old memory.
 void big_int::grow() {
+    static int c = 0;
+    c++;
     char *new_value;
     int i = 0,
         n = (_size > 0) ? 2*_size : 20; // default 20 digits (enough for 64bit integer)
+
     
     new_value = new char[n];
 
@@ -182,11 +303,14 @@ void big_int::grow() {
 
 // Deep copy
 void big_int::duplicate(const big_int& rhs) {
-    _size = rhs._size;
-    _digits = rhs._digits;
+    int ix = 0;
+    _size = 0;
+    _digits = 0;
     _positive = rhs._positive;
-    _value = new char[_size];
-    memcpy(_value, rhs._value, _size);
+    while (ix < rhs._digits) {
+        edit_digit(ix, rhs.get_digit(ix));
+        ix++;
+    }
 }
 
 // -1 if smaller than arg, 0 if equal, 1 if greater
@@ -234,11 +358,59 @@ int big_int::compare(const big_int& rhs, bool ignore_sign) const {
             return 1; // greater positive
         }
     }
+}
+
+void big_int::abs_add(const big_int& rhs) {
+    int max_size = (_digits > rhs._digits) ? _digits : rhs._digits;
+    char carry = 0,
+         value = 0,
+         ix = 0;
+
+    while(ix < max_size) {
+        value = carry + get_digit(ix) + rhs.get_digit(ix);
+        carry = (value > 10);
+        value = value % 10;
+        edit_digit(ix, value);
+        ix++;
+    }
+    
+    // don't add the last digit unless necessary
+    if (carry) {
+        edit_digit(ix, carry);
+    }
+}
+
+void big_int::abs_sub(const big_int& rhs) {
+    int max_size = _digits;
+    char carry = 0,
+         value = 0,
+         bottom = 0,
+         ix = 0;
+    
+    while (ix < max_size) {
+        value = carry + get_digit(ix);
+        bottom = rhs.get_digit(ix);
+        if (value < bottom) {
+            carry = -1;
+            value += 10;
+        } else {
+            carry = 0;
+        }
+        value = value - bottom;
+        edit_digit(ix, value);
+        ix++;
+    }
+
+    ix--;
+    while( get_digit(ix) == 0) {
+        _digits--;
+        ix--;
+    }
 
 }
 
 //print that shit.
-ostream& operator<< (ostream& out, big_int& n) {
+ostream& operator<< (ostream& out, const big_int& n) {
     n.print(out);
     return out;
 }
