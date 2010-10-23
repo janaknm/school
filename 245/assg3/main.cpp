@@ -5,8 +5,7 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-    //run_tests();
-    cout << "500! = " << big_int::factorial(9) << endl;
-
+    run_tests();
+   
     return 0;
 }

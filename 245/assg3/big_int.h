@@ -45,6 +45,8 @@ class big_int {
         bool _positive; //sign of this int
 
         //private methods
+        void initialize();
+        void dispose();
         void edit_digit(int i, char d); // push a digit on to the front of the number
         char get_digit(int i) const;
         void grow(); //get more memmory! if n=0, double existing memory

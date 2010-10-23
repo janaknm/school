@@ -64,6 +64,12 @@ void run_tests() {
     correct += test_pass(a+b, -470);
     possible++;
 
+    a = 9;
+    b = 1;
+    cout << "9 + 1 = " << a+b;
+    correct += test_pass(a+b, 10);
+    possible++;
+
     a = 35;
     b = 0;
     cout << "35 + 0 = " << a+b;
@@ -112,6 +118,13 @@ void run_tests() {
     correct += test_pass(a - b, 500);
     possible++;
 
+    a = 10;
+    b = 1;
+    a -= b;
+    cout << "10 - 1 = " << a;
+    correct += test_pass(a, 9);
+    possible++;
+
     a = 20;
     b = 30;
     cout << "20 * 30 = " << (a * b);
@@ -136,9 +149,40 @@ void run_tests() {
     correct += test_pass(a * b, 0);
     possible++;
 
-    a = big_int::factorial(5);
+    a = 1345;
+    b = 221;
+    cout << "1345 * 221 = " << (a * b);
+    correct += test_pass(a * b, 297245);
+    possible++;
+
+    a = 553;
+    b = 2323;
+    cout << "553  * 2323 = " << (a * b);
+    correct += test_pass(a * b, 1284619);
+    possible++;
+
+    a = 534123;
+    b = -35;
+    cout << "534123  * -35 = " << (a * b);
+    correct += test_pass(a * b, -18694305);
+    possible++;
+
+    a = 5345;
+    b = 1232;
+    a *= b;
+    cout << "5345 * 1232 = " << a ;
+    correct += test_pass(a, 6585040);
+    possible++;
+
+    a = 2222;
+    b = 999;
+    cout << "2222  * 999 = " << (a * b);
+    correct += test_pass(a * b, 2219778);
+    possible++;
+
+    a = big_int::factorial(500);
     cout << "5! = " << a;
-    correct += test_pass(a, 120);
+    correct += test_pass(a, 3628800);
     possible++;
 
     cout << "Tests: " << correct << " / " << possible << " passed." << endl;
