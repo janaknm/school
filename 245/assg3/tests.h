@@ -1,3 +1,8 @@
+//Test suite for the big_int class
+
+#ifndef BIG_INT_TESTS_H
+#define BIG_INT_TESTS_H
+
 string to_bool(int b) {
     return b? "true" : "false";
 }
@@ -180,12 +185,9 @@ void run_tests() {
     correct += test_pass(a * b, 2219778);
     possible++;
 
-    a = big_int::factorial(500);
-    cout << "5! = " << a;
-    correct += test_pass(a, 3628800);
-    possible++;
-
     cout << "Tests: " << correct << " / " << possible << " passed." << endl;
 }
 
+
+#endif
 

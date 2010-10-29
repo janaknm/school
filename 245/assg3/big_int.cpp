@@ -1,17 +1,12 @@
+// Matt Forbes
+// November 1, 2010
+// big_int class for integers of arbitrary length
+
 #include "big_int.h"
 #include <cstring>
 #include <iostream>
 
 using namespace std;
-
-// NOTES
-// Representation of the number 32334 would be in an array of chars,
-// with the number shifted to the right as far as possible. so
-// 32334 = [0, 0, 0, 0, 0, ... , 0, 3, 2, 3, 3, 4]. Use add_digit to add a digit 
-// to the front of the number, so say you want 32334 to become 432334, you'd call
-// add_digit(4), etc. add_digit will check to make sure the current array is large
-// enough to hold a new number with one greater digit, and if it doesn't we will
-// create a larger array first (of 2x the length).
 
 // CONSTRUCTORS
 
@@ -190,6 +185,7 @@ big_int& big_int::operator-=(const big_int& rhs) {
     return *this;
 }
 
+//main multiplication method. not 100% efficient, but gets the job done.
 big_int& big_int::operator*=(const big_int& rhs) {
     
     big_int tmp = *this,
@@ -295,41 +291,41 @@ void big_int::abs_sub(const big_int& rhs) {
 
 // PUBLIC
 
-// Print this big_int to an output stream (used in overloading <<)
+// Print this big_int to an output stream 
 void big_int::print(ostream& out) const {
-    int i = _digits - 1;
+    int i = _digits - 1,
+        col = 1;
     if(!_positive) out << '-';
     while (i >= 0) {
+        if(col >= 69) {
+            out << "\\\n";
+            col = 1;
+        }
         out << (int)get_digit(i);
+        col++;
         i--;
     }
 }
 
-// STATIC
-big_int big_int::factorial(const big_int& val) {
-    if (val > 1) {
-        return val * big_int::factorial(val -1);
-    }
-    return val;
-}
-
 // PRIVATE
-// Safe way to add a digit to this number, adds to FRONT of the current number
+// Safe way to change digit index (FROM RIGHT)
 // Allocates memory as necessary
 void big_int::edit_digit(int i, char d) {
-    //grow if we've filled up the _value array
     if (d < 0) {
-        throw d;
+        throw d; // DON'T STORE NEGATIVES AHHHHHH
     }
 
+    //grow if we've filled up the _value array
     if(i >= _size) {
         grow();
     }
+
+    //if we're changing digits past what we have so far
     if(i >= _digits) {
         _digits = i+1;
     }
 
-
+    //make the change
     _value[_size - i - 1] = d;
 }
 
@@ -345,22 +341,31 @@ char big_int::get_digit(int i) const {
 // make a new array of 2x the size, then copy the old data in to it. Swap this new
 // array for the old, and free up the old memory.
 void big_int::grow() {
-    static int c = 0;
-    c++;
     char *new_value;
     int i = 0,
         n = (_size > 0) ? 2*_size : 20; // default 20 digits (enough for 64bit integer)
 
     new_value = new char[n];
 
+    //copy old number in
     while (i < _digits) {
         new_value[n - i - 1] = _value[_size - i - 1]; 
         i++;
     }
+    
+    //zero out rest of digits
+    while(i < n) {
+        new_value[n-i-1] = 0;
+        i++;
+    }
 
+    //set new size
     _size = n;
 
+    //delete old array if necessary
     if (_value != NULL) delete[] _value;
+
+    //replace pointer
     _value = new_value;
 }
 

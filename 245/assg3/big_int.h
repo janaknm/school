@@ -1,3 +1,7 @@
+// Matt Forbes
+// November 10
+// big_int class for integers of arbitrary length
+
 #ifndef BIG_INT_H
 #define BIG_INT_H
 
