@@ -3,6 +3,13 @@
 #ifndef BIG_INT_TESTS_H
 #define BIG_INT_TESTS_H
 
+#include <iostream>
+#include "big_int.h"
+
+using std::string;
+using std::cout;
+using std::endl;
+
 string to_bool(int b) {
     return b? "true" : "false";
 }
