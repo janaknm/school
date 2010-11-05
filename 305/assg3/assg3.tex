@@ -212,9 +212,9 @@ it to be\\ O(log n).
         
   \end{verbatim}
 
-  To make analyzing this procedure easier, I have calculated the running time 
-  parameterized by the value of j (index of the first 'empty' array). The main 
-  loop of the procedure has \(2^j\) iterations, and it's inner loop has \(j-1\) 
+  To make analyzing this procedure easier, I have calculated the running time of a
+  single insert parameterized by the value of j (index of the first 'empty' array). 
+  The main loop of the procedure has \(2^j\) iterations, and it's inner loop has \(j-1\) 
   iterations. So the running time is roughly \(j2^j - 2^j\).
   
   \subsection*{Worst Case analysis}
@@ -244,7 +244,7 @@ it to be\\ O(log n).
 
   Running time of n insertions T(n):
 
-  let k = \(\lfloor \log_2 n \rfloor\)
+  let k = \(\lceil \log_2 n \rceil\)
   \begin{align*}
     T(n)& = \sum_{i=1}^k (\dfrac{n}{2^i})(i2^i - 2^i)\\
     &= \sum_{i=1}^k ni - n\\
@@ -261,6 +261,29 @@ it to be\\ O(log n).
     &= \dfrac{\log^2 n + \log n}{2} - \log n\\
     &= O(\log^2 n)\\
   \end{align*}
+
+  \item Deletion - The element being deleted could be anywhere in the structure. Once that element
+      is removed, the properties of the structure are no longer maintained because the subarray
+      that contained that element is no longer full. So the goal now is to juggle these subarrays
+      and get them in to the correct form.
+
+      \noindent A potential algorithm for deleting an element would be to basically do the reverse
+      of the insertion procedure, except we have to refill the subarray that had an element deleted
+      before doing the 'decrement.' 
+
+      \noindent First, we would find the first bit set to 1 starting from the LSB in N, and save that index
+      as j. This subarray is going to be emptied and will be used to fill the preceding empty subarrays
+      behind it. It has one too many elements to fill these subarrays, so we use the first or last
+      element to plug the hole that we created by removing an element. Remembering that all the 
+      subarrays need to be sorted, we would want to find a quick way of refilling that subarray 
+      while keeping it sorted.
+
+      \noindent Now the \(j^th\) subarray has just enough elements to fill the preceding subarrays and it
+      is in sorted order, so we can just split it up and use consecutive slices to fill them.
+
+      \noindent The running time of this delete would be probably depend on how efficient moving that one
+      extra element to fill the whole takes, because the refilling of the preceding subarrays is really
+      quick, because there is no merging or sorting.
 
 \end{enumerate}
 
