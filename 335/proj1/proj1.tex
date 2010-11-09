@@ -1,0 +1,105 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{enumerate}
+
+\begin{document}
+\title{Project 1}
+\author{Matt Forbes}
+\date{November 8, 2010}
+\maketitle
+
+\begin{enumerate}[a)]
+    \item L.P. Model for obtaining tablecloths at a minimum cost:
+
+      \begin{itemize}
+        \item
+          There are three variables in the model. {\bf b}, which is how many
+          new tablecloths are bought each day, where \(b_i\) denotes the number of tablecloths
+          bought on day i. {\bf o} denotes how many cloths are sent to Bud's 'one-day'
+          cleaning service, again \(o_i\) was how many are sent on day i. Finally,
+          {\bf t} denotes the cloths sent to Mac's 'two-day' service.
+
+        \item
+          The objective function is pretty straightforward, each \(b_i\) costs \$8, \$10 to
+          buy it and -\$2 when sold at the end of the period. Each towel sent to Bud, \(o_i\), costs \$3 and
+          Mac, \(t_i\) costs \$1. 
+
+        \item
+          Each day has its own constraint that balances the available towels with how many are dirty, in
+          cleaning, and in demand. 
+
+        \item
+          The next set of constraints are those that dictate the number of towels that can be sent to
+          the cleaner each day, there are less of these than there are days.
+
+        \item
+          Finally, the last constraint is only applicable for 7+ day periods. It is responsible for not
+          allowing use of Mac's service on specific days.
+
+      \end{itemize}
+
+      I'm not going to type out the actual LP problem because it is huge, but the above should give a rough
+      outline of it. The result of solving this model for a 7day period was as follows:
+
+      \begin{tabular}{r l}
+        {\bf b}& = (110, 100, 160, 10, 0, 0, 0)\\
+        {\bf o}& = (0, 0, 80, 120, 120)\\
+        {\bf t}& = (110, 100, 80, 0)
+      \end{tabular}
+
+      This solution doesn't seem to fit any obvious pattern. The program buys a lot of towels at the beginning of
+      the week and just cycles through them with around equal amounts of both services. 
+
+    \item Model for the same problem with 30-day time period rather than one week:
+
+      \begin{itemize}
+        \item
+          This is the exact same problem as a) just with more variables, and the constraint that Mac's cleaning
+          service does not accept cloths on the weekends. The problem statement does not specify that we can not
+          pick up cloths on the weekend, so this assumes that we can. 
+
+        \item
+          In the variable descriptions above, it was noted that the last constraint in the constraint matrix
+          is what controls whether or not we can send cloths to Mac on certain days. All the variables are restricted
+          to being non-negative, so the last constraint says \(0 = o_i + \dots + o_j\) for some i's, j's, and indices
+          between. Weekend \(o_i\)s are those which are indexed at a multiple of 6 or 7 
+          relative to the first monday. The \(o_i\)s that correspond to weekend days are set to 1, 
+          so that the only way that constraint is met is if all of those \(o_i\)s are equal to 0. \(o_i\)s that are
+          set to 0 mean that no cloths were sent to Mac that day, which was the goal of the constraint.
+
+      \end{itemize}
+
+      The solution to this new problem is as follows:
+
+      \begin{tabular}{r l}
+        {\bf b}& = (110, 100, 160, 120, 0, 10, 0, 0, \dots , 0)\\
+        {\bf o}& = (0, 0, \dots , 0)\\
+        {\bf t}& = (0, 180, 190, 120, 110, 100, 160, 120, 180, 200, 120, 110, 100, 160, \\ 
+        {}& \quad 120, 180, 200, 120, 110, 100, 160, 120, 180, 200, 120, 110, 100)
+      \end{tabular}
+
+      This solution makes a lot of sense, the program just stocks up on towels to start with and only uses the
+      two-day service. Only using the two-day service meant the program had to buy more towels to start with, but
+      after that was able to time the cleanings perfectly such that it never had to buy more towels or use the
+      expensive one-day service.
+
+    \item 30-day period with one-day service only \$1.50:
+
+      Solution:
+
+      \begin{tabular}{r l}
+        {\bf b}& = (110, 100, 160, 60, 0, 0, \dots , 0)\\
+        {\bf o}& = (0, 0, 30, 70, 70, 0, 0, 0, 0, 30, 70, 70, 0, 0, 0, 0, 30, 70, 70, \\
+        {}& \quad 0, 0, 0, 0, 30, 70, 70, 0, 0)\\
+        {\bf t}& = (60, 150, 130, 50, 110, 100, 160, 120, 120, 150, 130, 50, 110, 100, \\
+        {}& \quad 160, 120, 150, 130, 50, 110, 100, 160, 120, 150, 130, 50, 110, 100)\\
+      \end{tabular}
+
+      In this solution, we actually take advantage of the expedient one-day service now that the
+      price is reasonable. The major tactic is still to use the cheaper two-day service, but in this
+      case it is cheaper to use some one-day cleanings before really crazy days.
+
+\end{enumerate}
+
+\end{document}

@@ -57,7 +57,7 @@ class big_int {
         void duplicate(const big_int& rhs); //copy from another int
         int compare(const big_int&, bool ignore_sign) const; // 1 if smaller than arg, 0 if equal, -1 if less
 
-	    void abs_add(const big_int&); //add two values igoring sign
+	void abs_add(const big_int&); //add two values igoring sign
         void abs_sub(const big_int&); //subtract first arg from second igoring sign
 
 };

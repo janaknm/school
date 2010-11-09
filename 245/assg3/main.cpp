@@ -2,7 +2,10 @@
 //November 1, 2010
 //Assignment 3, big_ints
 
-//#include "tests.h"
+#ifdef DEBUG
+#include "tests.h"
+#endif
+
 #include "big_int.h"
 #include <iostream>
 
@@ -47,6 +50,10 @@ big_int pow(const big_int& base, big_int power) {
 int main(int argc, char **argv) {
     big_int i = factorial(500) - pow(2, 500) + fibonacci(1000);
     cout << "500! - 2^500 + fib(1000):" << endl << i << endl;
+
+#ifdef DEBUG
+    run_tests();
+#endif
    
     return 0;
 }
