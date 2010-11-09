@@ -1,7 +1,7 @@
-f = Function[{days, bprice, mprice},
+In[160]:= f = Function[{days, bprice, mprice},
 (* Initialize sizes *)
-rows = 2*days;
-cols = 5*days; (* redundant variables, oh well, way easier to index *)
+rows = 2*days+1; (* one extra to disable use of macs on weekends *)
+cols = 4*days; (* redundant variables, oh well, way easier to index *)
 A = Table[0, {i,1,rows}, {j,1,cols}];
 b = Table[{0,0}, {i, 1, rows}];
 c = Table[0, {i, 1, cols}];
@@ -14,65 +14,84 @@ u = {110, 100, 160, 120, 180, 200, 120};
 (* t_i @ [row, (3*days) + i] 'two-day started on' *)
 For[i=1, i<= days, i++,
 ix = (i-1)*2 +1;
-weekend = Mod[i,6] == 0 ||Mod[i,7]==0;
+weekend = Mod[i,7] == 0 ||Mod[i+1,7]==0;
 needed = u[[Mod[i-1,7]+1]];
 
 A[[ix, i]] = 1; (* b_i *)
-A[[ix, days+i]] = -1; (* c_i *)
-A[[ix, days+i-1]] = If[i >1,1,0]; (* c_ (i-1) *)
-A[[ix, (3*days)+i]] = If[i>=3,1,0];  (* o_i *)
-A[[ix, (4*days)+i]] = If[i>=4,1,0]; (* t_i *)
+jx = (2*days)+i-2;
+A[[ix, jx]] = If[i>=3,1,A[[ix,jx]]];  (* o_ (i-2) *)
+jx=(3*days)+i-3;
+A[[ix, jx]] = If[i>=4 ,1,A[[ix,jx]]]; (* t_ (i-3) *)
 
-A[[ix+1, i]] = 1; (* b_i *)
-A[[ix+1, (2*days)+i]] = -1; (* d_i *)
-A[[ix+1, (2*days)+i-1]] = If[i>1,1,0]; (* d_ (i-1) *)
-A[[ix+1, (3*days)+i]] = If[i<=days-2,-1,0]; (* o_i *)
-A[[ix+1, (4*days) +i]] = If[i<=days-3 && !weekend,-1,0]; (* t_i *)
+A[[ix+1, days+i]] = 1; (* l_i *)
+jx = days+i-1;
+A[[ix+1, jx]]= If[i>1,-1,A[[ix+1,jx]]]; (* l_ (i-1) *)
+A[[ix+1, (2*days)+i]] = 1; (* o_i *)
+A[[ix+1, (3*days)+i]] = 1; (* t_i *)
 
-b[[ix]] = {needed, 0};
-b[[ix+1]] = {0,0};
+A[[rows, (2*days)+i]] = If[weekend, 1, 0];
+A[[rows, (3*days)+i]] = If[weekend, 1, 0];
 
+(* Build b *)
+b[[ix]] = {needed, 1};
+b[[ix+1]] = {needed,-1};
+
+(* Build c *)
 c[[i]] = 8;
-c[[3*days+i]] = bprice;
-c[[4*days+i]] = mprice;
+c[[2*days+i]] = 3;
+c[[3*days+i]] = 1;
 ];
+
+b[[rows]] = {0,0}; (* magic constraint to disable macs on weekends *)
+
 
 xsol= LinearProgramming[c, A, b];
+
+
 Print["total cost: ", c.xsol];
 For[i=1, i<=days, i++,
-Print["day ", i, 
-	" - buy: ", xsol[[i]], 
-	", send to bud: ", xsol[[3*days+i]],
-	", send to mac: ", xsol[[4*days+i]]];
+needed = u[[Mod[i-1,7]+1]];
+Print["day ", i, " --- ",
+		" need: ", needed,
+	  ", buy: ", xsol[[i]], 
+	 ", send to bud: ", xsol[[2*days+i]],
+	", send to mac: ", xsol[[3*days+i]]];
 ];
-Print[xsol];
-A // MatrixForm
+
+xsol.c
 ];
 
-f[7,3,1]
+f[30,3,1]
 
-During evaluation of In[90]:= total cost: 2955
-During evaluation of In[90]:= day 1 - buy: 110, send to bud: 0, send to mac: 0
-During evaluation of In[90]:= day 2 - buy: 135, send to bud: 0, send to mac: 0
-During evaluation of In[90]:= day 3 - buy: 0, send to bud: 125, send to mac: 0
-During evaluation of In[90]:= day 4 - buy: 0, send to bud: 0, send to mac: 120
-During evaluation of In[90]:= day 5 - buy: 0, send to bud: 0, send to mac: 500
-During evaluation of In[90]:= day 6 - buy: 0, send to bud: 0, send to mac: 0
-During evaluation of In[90]:= day 7 - buy: 0, send to bud: 0, send to mac: 0
-During evaluation of In[90]:= {110,135,0,0,0,0,0,0,35,0,0,320,120,0,110,245,120,0,0,0,0,0,0,125,0,0,0,0,0,0,0,120,500,0,0}
-Out[91]//MatrixForm= (1	0	0	0	0	0	0	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-1	0	0	0	0	0	0	0	0	0	0	0	0	0	-1	0	0	0	0	0	0	-1	0	0	0	0	0	0	-1	0	0	0	0	0	0
-0	1	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-0	1	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	0	0	0	-1	0	0	0	0	0	0	-1	0	0	0	0	0
-0	0	1	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0
-0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	0	0	0	-1	0	0	0	0	0	0	-1	0	0	0	0
-0	0	0	1	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0	0
-0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	0	0	0	-1	0	0	0	0	0	0	-1	0	0	0
-0	0	0	0	1	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0
-0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	0	0	0	-1	0	0	0	0	0	0	0	0	0
-0	0	0	0	0	1	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0
-0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-0	0	0	0	0	0	1	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1
-0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-
-)
+During evaluation of In[160]:= total cost: 11280
+During evaluation of In[160]:= day 1 ---  need: 110, buy: 110, send to bud: 0, send to mac: 110
+During evaluation of In[160]:= day 2 ---  need: 100, buy: 100, send to bud: 0, send to mac: 100
+During evaluation of In[160]:= day 3 ---  need: 160, buy: 160, send to bud: 30, send to mac: 130
+During evaluation of In[160]:= day 4 ---  need: 120, buy: 10, send to bud: 70, send to mac: 50
+During evaluation of In[160]:= day 5 ---  need: 180, buy: 50, send to bud: 70, send to mac: 110
+During evaluation of In[160]:= day 6 ---  need: 200, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[160]:= day 7 ---  need: 120, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[160]:= day 8 ---  need: 110, buy: 0, send to bud: 160, send to mac: 120
+During evaluation of In[160]:= day 9 ---  need: 100, buy: 100, send to bud: 0, send to mac: 180
+During evaluation of In[160]:= day 10 ---  need: 160, buy: 0, send to bud: 0, send to mac: 200
+During evaluation of In[160]:= day 11 ---  need: 120, buy: 0, send to bud: 0, send to mac: 120
+During evaluation of In[160]:= day 12 ---  need: 180, buy: 0, send to bud: 0, send to mac: 110
+During evaluation of In[160]:= day 13 ---  need: 200, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[160]:= day 14 ---  need: 120, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[160]:= day 15 ---  need: 110, buy: 0, send to bud: 160, send to mac: 120
+During evaluation of In[160]:= day 16 ---  need: 100, buy: 100, send to bud: 0, send to mac: 180
+During evaluation of In[160]:= day 17 ---  need: 160, buy: 0, send to bud: 0, send to mac: 200
+During evaluation of In[160]:= day 18 ---  need: 120, buy: 0, send to bud: 0, send to mac: 120
+During evaluation of In[160]:= day 19 ---  need: 180, buy: 0, send to bud: 0, send to mac: 110
+During evaluation of In[160]:= day 20 ---  need: 200, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[160]:= day 21 ---  need: 120, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[160]:= day 22 ---  need: 110, buy: 0, send to bud: 160, send to mac: 120
+During evaluation of In[160]:= day 23 ---  need: 100, buy: 100, send to bud: 0, send to mac: 180
+During evaluation of In[160]:= day 24 ---  need: 160, buy: 0, send to bud: 0, send to mac: 200
+During evaluation of In[160]:= day 25 ---  need: 120, buy: 0, send to bud: 0, send to mac: 120
+During evaluation of In[160]:= day 26 ---  need: 180, buy: 0, send to bud: 0, send to mac: 110
+During evaluation of In[160]:= day 27 ---  need: 200, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[160]:= day 28 ---  need: 120, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[160]:= day 29 ---  need: 110, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[160]:= day 30 ---  need: 100, buy: 100, send to bud: 0, send to mac: 0
+Out[161]= 11280

@@ -1,4 +1,4 @@
-In[160]:= f = Function[{days, bprice, mprice},
+In[171]:= f = Function[{days, bprice, mprice},
 (* Initialize sizes *)
 rows = 2*days+1; (* one extra to disable use of macs on weekends *)
 cols = 4*days; (* redundant variables, oh well, way easier to index *)
@@ -29,7 +29,7 @@ A[[ix+1, jx]]= If[i>1,-1,A[[ix+1,jx]]]; (* l_ (i-1) *)
 A[[ix+1, (2*days)+i]] = 1; (* o_i *)
 A[[ix+1, (3*days)+i]] = 1; (* t_i *)
 
-A[[rows, (2*days)+i]] = If[weekend, 1, 0];
+(* disable macs on weekends *)
 A[[rows, (3*days)+i]] = If[weekend, 1, 0];
 
 (* Build b *)
@@ -38,15 +38,13 @@ b[[ix+1]] = {needed,-1};
 
 (* Build c *)
 c[[i]] = 8;
-c[[2*days+i]] = 3;
-c[[3*days+i]] = 1;
+c[[2*days+i]] = bprice;
+c[[3*days+i]] = mprice;
 ];
 
 b[[rows]] = {0,0}; (* magic constraint to disable macs on weekends *)
 
-
 xsol= LinearProgramming[c, A, b];
-
 
 Print["total cost: ", c.xsol];
 For[i=1, i<=days, i++,
@@ -60,38 +58,82 @@ Print["day ", i, " --- ",
 
 xsol.c
 ];
-
-f[30,3,1]
-
-During evaluation of In[160]:= total cost: 11280
-During evaluation of In[160]:= day 1 ---  need: 110, buy: 110, send to bud: 0, send to mac: 110
-During evaluation of In[160]:= day 2 ---  need: 100, buy: 100, send to bud: 0, send to mac: 100
-During evaluation of In[160]:= day 3 ---  need: 160, buy: 160, send to bud: 30, send to mac: 130
-During evaluation of In[160]:= day 4 ---  need: 120, buy: 10, send to bud: 70, send to mac: 50
-During evaluation of In[160]:= day 5 ---  need: 180, buy: 50, send to bud: 70, send to mac: 110
-During evaluation of In[160]:= day 6 ---  need: 200, buy: 0, send to bud: 0, send to mac: 0
-During evaluation of In[160]:= day 7 ---  need: 120, buy: 0, send to bud: 0, send to mac: 0
-During evaluation of In[160]:= day 8 ---  need: 110, buy: 0, send to bud: 160, send to mac: 120
-During evaluation of In[160]:= day 9 ---  need: 100, buy: 100, send to bud: 0, send to mac: 180
-During evaluation of In[160]:= day 10 ---  need: 160, buy: 0, send to bud: 0, send to mac: 200
-During evaluation of In[160]:= day 11 ---  need: 120, buy: 0, send to bud: 0, send to mac: 120
-During evaluation of In[160]:= day 12 ---  need: 180, buy: 0, send to bud: 0, send to mac: 110
-During evaluation of In[160]:= day 13 ---  need: 200, buy: 0, send to bud: 0, send to mac: 0
-During evaluation of In[160]:= day 14 ---  need: 120, buy: 0, send to bud: 0, send to mac: 0
-During evaluation of In[160]:= day 15 ---  need: 110, buy: 0, send to bud: 160, send to mac: 120
-During evaluation of In[160]:= day 16 ---  need: 100, buy: 100, send to bud: 0, send to mac: 180
-During evaluation of In[160]:= day 17 ---  need: 160, buy: 0, send to bud: 0, send to mac: 200
-During evaluation of In[160]:= day 18 ---  need: 120, buy: 0, send to bud: 0, send to mac: 120
-During evaluation of In[160]:= day 19 ---  need: 180, buy: 0, send to bud: 0, send to mac: 110
-During evaluation of In[160]:= day 20 ---  need: 200, buy: 0, send to bud: 0, send to mac: 0
-During evaluation of In[160]:= day 21 ---  need: 120, buy: 0, send to bud: 0, send to mac: 0
-During evaluation of In[160]:= day 22 ---  need: 110, buy: 0, send to bud: 160, send to mac: 120
-During evaluation of In[160]:= day 23 ---  need: 100, buy: 100, send to bud: 0, send to mac: 180
-During evaluation of In[160]:= day 24 ---  need: 160, buy: 0, send to bud: 0, send to mac: 200
-During evaluation of In[160]:= day 25 ---  need: 120, buy: 0, send to bud: 0, send to mac: 120
-During evaluation of In[160]:= day 26 ---  need: 180, buy: 0, send to bud: 0, send to mac: 110
-During evaluation of In[160]:= day 27 ---  need: 200, buy: 0, send to bud: 0, send to mac: 0
-During evaluation of In[160]:= day 28 ---  need: 120, buy: 0, send to bud: 0, send to mac: 0
-During evaluation of In[160]:= day 29 ---  need: 110, buy: 0, send to bud: 0, send to mac: 0
-During evaluation of In[160]:= day 30 ---  need: 100, buy: 100, send to bud: 0, send to mac: 0
-Out[161]= 11280
+In[172]:= (* 7 days, normal pricing *)
+f[7,3,1]
+During evaluation of In[172]:= total cost: 4290
+During evaluation of In[172]:= day 1 ---  need: 110, buy: 110, send to bud: 0, send to mac: 110
+During evaluation of In[172]:= day 2 ---  need: 100, buy: 100, send to bud: 0, send to mac: 100
+During evaluation of In[172]:= day 3 ---  need: 160, buy: 160, send to bud: 80, send to mac: 80
+During evaluation of In[172]:= day 4 ---  need: 120, buy: 10, send to bud: 120, send to mac: 0
+During evaluation of In[172]:= day 5 ---  need: 180, buy: 0, send to bud: 120, send to mac: 0
+During evaluation of In[172]:= day 6 ---  need: 200, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[172]:= day 7 ---  need: 120, buy: 0, send to bud: 0, send to mac: 0
+Out[172]= 4290
+In[173]:= (* 30 days, normal pricing *)
+f[30, 3, 1]
+During evaluation of In[173]:= total cost: 9430
+During evaluation of In[173]:= day 1 ---  need: 110, buy: 110, send to bud: 0, send to mac: 110
+During evaluation of In[173]:= day 2 ---  need: 100, buy: 100, send to bud: 0, send to mac: 100
+During evaluation of In[173]:= day 3 ---  need: 160, buy: 160, send to bud: 0, send to mac: 160
+During evaluation of In[173]:= day 4 ---  need: 120, buy: 10, send to bud: 0, send to mac: 120
+During evaluation of In[173]:= day 5 ---  need: 180, buy: 80, send to bud: 0, send to mac: 110
+During evaluation of In[173]:= day 6 ---  need: 200, buy: 40, send to bud: 0, send to mac: 0
+During evaluation of In[173]:= day 7 ---  need: 120, buy: 0, send to bud: 100, send to mac: 0
+During evaluation of In[173]:= day 8 ---  need: 110, buy: 0, send to bud: 160, send to mac: 120
+During evaluation of In[173]:= day 9 ---  need: 100, buy: 0, send to bud: 0, send to mac: 180
+During evaluation of In[173]:= day 10 ---  need: 160, buy: 0, send to bud: 0, send to mac: 200
+During evaluation of In[173]:= day 11 ---  need: 120, buy: 0, send to bud: 0, send to mac: 120
+During evaluation of In[173]:= day 12 ---  need: 180, buy: 0, send to bud: 0, send to mac: 110
+During evaluation of In[173]:= day 13 ---  need: 200, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[173]:= day 14 ---  need: 120, buy: 0, send to bud: 100, send to mac: 0
+During evaluation of In[173]:= day 15 ---  need: 110, buy: 0, send to bud: 160, send to mac: 120
+During evaluation of In[173]:= day 16 ---  need: 100, buy: 0, send to bud: 0, send to mac: 180
+During evaluation of In[173]:= day 17 ---  need: 160, buy: 0, send to bud: 0, send to mac: 200
+During evaluation of In[173]:= day 18 ---  need: 120, buy: 0, send to bud: 0, send to mac: 120
+During evaluation of In[173]:= day 19 ---  need: 180, buy: 0, send to bud: 0, send to mac: 110
+During evaluation of In[173]:= day 20 ---  need: 200, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[173]:= day 21 ---  need: 120, buy: 0, send to bud: 100, send to mac: 0
+During evaluation of In[173]:= day 22 ---  need: 110, buy: 0, send to bud: 160, send to mac: 120
+During evaluation of In[173]:= day 23 ---  need: 100, buy: 0, send to bud: 0, send to mac: 180
+During evaluation of In[173]:= day 24 ---  need: 160, buy: 0, send to bud: 0, send to mac: 200
+During evaluation of In[173]:= day 25 ---  need: 120, buy: 0, send to bud: 0, send to mac: 120
+During evaluation of In[173]:= day 26 ---  need: 180, buy: 0, send to bud: 0, send to mac: 110
+During evaluation of In[173]:= day 27 ---  need: 200, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[173]:= day 28 ---  need: 120, buy: 0, send to bud: 100, send to mac: 0
+During evaluation of In[173]:= day 29 ---  need: 110, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[173]:= day 30 ---  need: 100, buy: 0, send to bud: 0, send to mac: 0
+Out[173]= 9430
+In[174]:= (* 30 days different pricing *)
+f[30, 3/2, 1]
+During evaluation of In[174]:= total cost: 7960
+During evaluation of In[174]:= day 1 ---  need: 110, buy: 110, send to bud: 0, send to mac: 110
+During evaluation of In[174]:= day 2 ---  need: 100, buy: 100, send to bud: 0, send to mac: 100
+During evaluation of In[174]:= day 3 ---  need: 160, buy: 160, send to bud: 30, send to mac: 130
+During evaluation of In[174]:= day 4 ---  need: 120, buy: 10, send to bud: 70, send to mac: 50
+During evaluation of In[174]:= day 5 ---  need: 180, buy: 50, send to bud: 70, send to mac: 110
+During evaluation of In[174]:= day 6 ---  need: 200, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[174]:= day 7 ---  need: 120, buy: 0, send to bud: 100, send to mac: 0
+During evaluation of In[174]:= day 8 ---  need: 110, buy: 0, send to bud: 160, send to mac: 120
+During evaluation of In[174]:= day 9 ---  need: 100, buy: 0, send to bud: 0, send to mac: 150
+During evaluation of In[174]:= day 10 ---  need: 160, buy: 0, send to bud: 30, send to mac: 130
+During evaluation of In[174]:= day 11 ---  need: 120, buy: 0, send to bud: 70, send to mac: 50
+During evaluation of In[174]:= day 12 ---  need: 180, buy: 0, send to bud: 70, send to mac: 110
+During evaluation of In[174]:= day 13 ---  need: 200, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[174]:= day 14 ---  need: 120, buy: 0, send to bud: 100, send to mac: 0
+During evaluation of In[174]:= day 15 ---  need: 110, buy: 0, send to bud: 160, send to mac: 120
+During evaluation of In[174]:= day 16 ---  need: 100, buy: 0, send to bud: 0, send to mac: 150
+During evaluation of In[174]:= day 17 ---  need: 160, buy: 0, send to bud: 30, send to mac: 130
+During evaluation of In[174]:= day 18 ---  need: 120, buy: 0, send to bud: 70, send to mac: 50
+During evaluation of In[174]:= day 19 ---  need: 180, buy: 0, send to bud: 70, send to mac: 110
+During evaluation of In[174]:= day 20 ---  need: 200, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[174]:= day 21 ---  need: 120, buy: 0, send to bud: 100, send to mac: 0
+During evaluation of In[174]:= day 22 ---  need: 110, buy: 0, send to bud: 160, send to mac: 120
+During evaluation of In[174]:= day 23 ---  need: 100, buy: 0, send to bud: 0, send to mac: 150
+During evaluation of In[174]:= day 24 ---  need: 160, buy: 0, send to bud: 30, send to mac: 130
+During evaluation of In[174]:= day 25 ---  need: 120, buy: 0, send to bud: 70, send to mac: 50
+During evaluation of In[174]:= day 26 ---  need: 180, buy: 0, send to bud: 70, send to mac: 110
+During evaluation of In[174]:= day 27 ---  need: 200, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[174]:= day 28 ---  need: 120, buy: 0, send to bud: 100, send to mac: 0
+During evaluation of In[174]:= day 29 ---  need: 110, buy: 0, send to bud: 0, send to mac: 0
+During evaluation of In[174]:= day 30 ---  need: 100, buy: 0, send to bud: 0, send to mac: 0
+Out[174]= 7960
