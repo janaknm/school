@@ -1,0 +1,109 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{enumerate}
+
+\pagestyle{empty} \setlength{\parindent}{0mm}
+\addtolength{\topmargin}{-0.5in} \setlength{\textheight}{9in}
+\addtolength{\textwidth}{1in} \addtolength{\oddsidemargin}{-0.5in}
+
+
+\begin{document}
+\title{Homework 4}
+\author{Matt Forbes}
+\date{November 16, 2010}
+\maketitle
+
+\subsection*{Problem 1}
+
+
+\begin{enumerate}[a)]
+  \item 
+
+    Using a linked list is probably the most straight-forward way to
+    simulate eeny meeny miny mo. To build the list, we would start
+    with the first kid as the head of the list. Then we append each
+    kid to the list in a row, going around the circle to the right.
+
+    \noindent Once, we have the list built, simulating the game would
+    just be moving forward in the list for each word in the song, and
+    removing the element we hit when the song is finished. So,
+    starting with the head of the list, visit the next node w times
+    (wrapping around to the head when we hit the end of the
+    list). After w visits, we remove the current element we 
+    visiting from the list.
+
+    \noindent We do this while the number of elements in the list is
+    greater than 1. When there is only one kid left in the list, he is
+    'it.'
+
+    \noindent This way, we are doing w visits for each iteration of
+    the song (definition of the game). And we have to remove p-1 kids
+    from the list (p-1 iterations), so in total, we are visiting
+    about \(pw\) nodes in the list.
+    
+    \noindent So in total, we did p insertions to the list, and pw
+    visits on the list. Therefore, the running time of the algorithm
+    is \(O(p + pw)\) or just \(O(pw)\).
+
+
+  \item
+    
+\subsection*{Assumptions}
+
+    This code assumes that we have the augmented data structure
+    OS\_Tree that we described and used in class, with methods
+    OS\_Insert(T, obj) and OS\_Select(T, r) which selects the node
+    within tree T with rank r. This OS\_Tree holds kid datatypes that
+    hold a pointer to the kid and also their original index in the
+    circle, labeled kid and index respectively. The tree sorts on
+    index.
+    
+\pagebreak
+
+\subsection*{Pseduo Code}
+
+    \begin{verbatim}
+      (* emmm_select performs eeny-meeny-miny-mo selection on the 
+      array of p kids (kid_arr), using a song with w words *)
+
+      def emmm_select(kid_arr, p, w):
+          OS_Tree T = new OS_Tree
+          
+          (* insert kids in original order *)
+          for i in 1...p:
+              OS_Insert(T, { kid_arr[i], i } )
+
+          (* simulate p-1 iterations of the song *)
+          for i in 1...(p-1):
+              rank = w % (p-i+1) (* rank of kid to be removed *)
+              kid = OS_Select(T, rank)
+              remove(T, kid)
+
+          (* return last kid left in T *)
+          return OS_Select(T, 1).kid
+
+    \end{verbatim}
+
+\subsection*{Justification}
+
+This algorithm works by first creating an order-statistic balanced
+binary tree (the one from class), and filling it with the kids playing
+the game. The ranks of the kids are determined by their distance from
+the current song-singer (whose rank is 1). So the singer's rank is 1,
+the kid to his right is rank 2, all the way around the circle. The kid
+who is going to be removed from the circle is the one who is w kids to
+the right of the singer (with wrapping). This rank is just w \(\%\) number
+of kids left in the circle. Determing this rank and retrieving the kid
+from the tree is \(O(\log_2(p))\) using OS\_Select. We need to remove
+\(p-1\) kids, so the algorithm's running time is \(O(p\log_2(p))\).
+     
+    
+
+
+    
+\end{enumerate}
+
+
+
+
+\end{document}

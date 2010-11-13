@@ -1,0 +1,291 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage{enumerate}
+
+\begin{document}
+\title{Homework 3}
+\author{Matt Forbes}
+\date{November 5, 2010}
+\maketitle
+
+\newenvironment{indentpar}[1]%
+{\begin{list}{}%
+         {\setlength{\leftmargin}{#1}}%
+         \item[]%
+}
+{\end{list}}
+
+\section{Problem One}
+
+In an array of numbers with the property given in this problem (each element is at most 1 greater or less than 
+it's neighbors), then the following is true:\\
+
+\noindent Given two indices in the array A, say i and n such that A[i] = a, and A[n] = b, then\\ A[k] = x
+for some k in i \dots n and x between a and b.\\
+
+\noindent This is true because the array A is 'continous' in the sense that because each element can
+only differ from the preceding by at most 1, then to get from A[i] = a, to A[n] = b, you must hit each
+value between on the way, in an unknown order.
+
+\subsection*{Psuedo Code}
+\begin{verbatim}
+def find_z(A, n, z):
+    if A[1] == z: return i
+    if A[n] == z: return n
+
+    if z is not in A[1] \dots A[n]:
+        raise 'bad input!'
+
+    i = 1
+    j = i + (n - i)/2   
+    while A[j] != z :
+        min = A[i]
+        max = A[n]
+        mid = A[j]
+
+        if min < z < mid:  
+            max = mid
+            n = j
+        else:
+            min = mid
+            i = j
+        
+        j = i + (n - i) / 2   
+    end while
+    
+    return j
+
+\end{verbatim}
+
+\subsection*{Loop Invariant}
+A[k] = z for some k in i \dots n.
+
+\subsection*{Proof}
+
+\underline{Basis}:
+
+\begin{indentpar}{1cm}
+  At the start of the first iteration, the L.I. holds by the problems definition: \( x \le z \le y \)
+  where x=A[i] and y=A[n]. 
+\end{indentpar}
+
+\noindent \underline{Maintenance}:
+
+\begin{indentpar}{1cm}
+  Suppose we are in an iteration of the loop, and the L.I. has held up to this point. Then, at the beginning of
+  this loop, A[k] = z for some k in i \dots n. Let j = middle index between i and n. Now, if z is 
+  between A[i] and A[j], then there exists an index k between i and j such that A[k] = z. In this case, the
+  algorithm sets n = j, and continues. Because z is in this subarray, the L.I. holds after the iteration. Similarly
+  with the case that z is between A[j] \dots A[n]. One of these cases must occur because the loop invariant says
+  that A[k] = z for some k in i \dots n.
+\end{indentpar}
+
+\noindent \underline{Termination}
+
+\begin{indentpar}{1cm}
+    In each iteration, A[k] = z for a k in i \dots j, but the gap between i and j is halved, so the loop is 
+    guaranteed to complete eventually (even if only one element remains in the subarray). The loop terminates
+    when A[j] == z, so we have found our j.
+\end{indentpar}
+
+\subsection*{Analysis}
+
+There are two comparisons done each iteration of this loop. So the number of
+comparisons (denoted C, and number of elements n) is:
+
+\[C(n) = \left\{
+\begin{tabular}{c c}
+    \( 2 + C(n/2) \),& for n \(>\) 2 \\
+    1,& for n \(\le\) 2\\
+\end{tabular}
+\right\}\]\\
+
+\noindent This is the same recurrence relation from the last homework, and I found
+it to be\\ O(log n).
+
+\section{Problem Two}
+
+\begin{enumerate}[a)]
+  \item 
+    \begin{align*}
+      \text{let } & \text{\(x_i\) be an IRA denoting that the \(i^\text{th}\) guess was correct.}\\
+      & \text{X be a random variable denoting the total number of correct guesses}\\
+      & \text{E[x] be the expectation of X}\\
+      & \text{c be the number of cards in the deck}\\
+      & \text{n be the number of guesses}, n \le c\\
+    \end{align*}
+    \begin{align*}
+      Pr\{x_i\}& = \frac{1}{c}\\
+      X& = \sum_{i=1}^n x_i\\
+      E[X]& = E\left[\sum_{i=1}^n x_i\right]\\
+      & = \sum_{i=1}^n E[x_i]\\
+      & = \sum_{i=1}^n Pr\{x_i\}\\
+      & = \sum_{i=1}^n \frac{1}{c}\\
+      & = \frac{n}{c}\\
+    \end{align*}
+
+  \item
+    In this scenario, the probability of each guess is dependant on how many cards have
+    already been flipped over. The probability of guessing the \(i^{th}\) card correctly
+    is going to be \(\frac{1}{c-i}\) where c is the number of cards in the deck. 
+    Besides that note, the calculation of the expectation of X is the same as
+    in part a. So we'll jump ahead a bit.
+    \begin{align*}
+      E[X]& = \sum_{i=1}^n Pr\{x_i\}\\
+      & = \sum_{i=1}^n \frac{1}{c-i}\\
+      & \le \sum_{i=1}^n \frac{1}{n-i}\\
+      & \le \sum_{i=1}^n \frac{1}{i}\\
+      & = O(\log n)\\
+    \end{align*}
+\end{enumerate}
+
+\section*{Problem 3}
+
+\begin{enumerate}[a)]
+
+  \item
+    The search algorithm for this data structure may need to search each individual array
+    \(A_i\) to find an element.The elements of each array are only sorted in terms 
+    themselves, and are not related to the elements in the other arrays. There are always
+    \(\log n\) arrays in the structure, so we would do a binary search on each array 
+    until we found the element (or didn't) we were looking for.
+
+    \noindent Each array \(A_i\) has \(2^i\) elements, so a binary search on that
+    array would have a running time of \(\log_2(2^i) = i \). The total running time t 
+    of the search procedure would be:
+
+    \begin{align*}
+      \text{let k}& = \lceil log n \rceil\\
+        t& = \sum_{i=0}^k \log_2 2^i\\
+        & = \sum_{i=0}^k i\\
+        & = \frac{k(k+1)}{2}\\
+        & = \frac{1}{2}\left(\log^2 n + \log n\right) \\
+        & = O(\log^2 n)
+    \end{align*}
+
+  \item Insertion - The basic idea of inserting in to this structure is to start from
+    the left and move all of the elements in the 'filled' arrays in to the first
+    'empty' array. We keep the sorted order of these elements by doing a sort of 
+    merge similar to what merge\_sort performs. By moving the left-most filled elements
+    and the element to insert in to the first empty array preserves the properties
+    that are defined for this structure.
+
+  \subsection*{Psuedo Code}
+
+  \begin{verbatim}
+    // A is the sorted structure 
+    // e is element to insert
+    // size(A) is number of elements in A
+    def insert(A, e):
+        n = size(A)
+        N = binary representation of n, LSB is N[0]
+        j = the index of the first occurence of 0 in N
+        ixs = new array sized j-1 elements all set to 0 
+        inserted = false
+        insert_ix = 0 
+
+        // merge subarrays 
+        for i = 1 ... 2^j:
+            if not inserted:
+               min = e
+           
+            for ii = 1 ... (j-1):
+                ix = ixs[ii] 
+                if ix <= 2^(ii)  and  A[ii][ix] < min:
+                    min = A[ii][ix]
+                    insert_ix = ii
+            endfor
+
+            A[j][i] = min
+
+            if min == e:
+                inserted = true
+            else:
+                ixs[insert_ix]++
+        endfor
+        
+        size(A)++
+    
+    end
+        
+  \end{verbatim}
+
+  To make analyzing this procedure easier, I have calculated the running time of a
+  single insert parameterized by the value of j (index of the first 'empty' array). 
+  The main loop of the procedure has \(2^j\) iterations, and it's inner loop has \(j-1\) 
+  iterations. So the running time is roughly \(j2^j - 2^j\).
+  
+  \subsection*{Worst Case analysis}
+
+  Using the above calculation, the worst case would be when the first empty array
+  is indexed at \(\log n\), which is the largest possible value of j. The running 
+  time (T) of that insert would be:
+  \begin{align*}
+    T& = (\log_2 n)2^{log_2 n} - 2^{log_2 n}\\
+    & = n\log n - n \\
+    & = O(n\log n)
+  \end{align*}
+
+  \subsection*{Amortized Analysis}
+
+  The worst case analysis is a horrible upper bound of what the running time would
+  actually be. In this amortized analysis, we will find the running time of performing
+  n insertions, and then divide by n to find the average running time of a single
+  insertion.
+
+  \noindent The book provides a handy observation that when doing n increments of a
+  binary number, the bit \(b_i\) is flipped exactly \(\dfrac{n}{2^i} \)
+  times. Well we know what the running time of an insertion based on which bit is 
+  flipped, so we can calculate the running time of all n of these insertions. For
+  each bit index, we know the running time of an insertion in that state, and how
+  many times that happens.
+
+  Running time of n insertions T(n):
+
+  let k = \(\lceil \log_2 n \rceil\)
+  \begin{align*}
+    T(n)& = \sum_{i=1}^k (\dfrac{n}{2^i})(i2^i - 2^i)\\
+    &= \sum_{i=1}^k ni - n\\
+    &= \sum_{i=1}^k n(i - 1)\\
+    &= n\sum_{i=1}^k i - 1\\
+    &= n\left(\sum_{i=1}^k i - \sum_{i=1}^k 1\right)\\
+    &= n\left( \dfrac{k^2 + k}{2} - k \right)\\
+    &= n\left( \dfrac{\log^2 n + \log n}{2} - \log n \right)\\
+  \end{align*}
+
+  Average running time of a single insertion T(1):
+  \begin{align*}
+    T(1)& = \dfrac{T(n)}{n}\\
+    &= \dfrac{\log^2 n + \log n}{2} - \log n\\
+    &= O(\log^2 n)\\
+  \end{align*}
+
+  \item Deletion - The element being deleted could be anywhere in the structure. Once that element
+      is removed, the properties of the structure are no longer maintained because the subarray
+      that contained that element is no longer full. So the goal now is to juggle these subarrays
+      and get them in to the correct form.
+
+      \noindent A potential algorithm for deleting an element would be to basically do the reverse
+      of the insertion procedure, except we have to refill the subarray that had an element deleted
+      before doing the 'decrement.' 
+
+      \noindent First, we would find the first bit set to 1 starting from the LSB in N, and save that index
+      as j. This subarray is going to be emptied and will be used to fill the preceding empty subarrays
+      behind it. It has one too many elements to fill these subarrays, so we use the first or last
+      element to plug the hole that we created by removing an element. Remembering that all the 
+      subarrays need to be sorted, we would want to find a quick way of refilling that subarray 
+      while keeping it sorted.
+
+      \noindent Now the \(j^th\) subarray has just enough elements to fill the preceding subarrays and it
+      is in sorted order, so we can just split it up and use consecutive slices to fill them.
+
+      \noindent The running time of this delete would be probably depend on how efficient moving that one
+      extra element to fill the whole takes, because the refilling of the preceding subarrays is really
+      quick, because there is no merging or sorting.
+
+\end{enumerate}
+
+\end{document}
+
