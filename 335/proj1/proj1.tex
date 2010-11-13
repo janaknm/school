@@ -14,9 +14,10 @@
 
       \begin{itemize}
         \item
-          There are three variables in the model. {\bf b}, which is how many
+          There are four variables in the model. {\bf b}, which is how many
           new tablecloths are bought each day, where \(b_i\) denotes the number of tablecloths
-          bought on day i. {\bf o} denotes how many cloths are sent to Bud's 'one-day'
+          bought on day i. {\bf l} is the number of leftover (dirty) towels
+          at the end of the day. {\bf o} denotes how many cloths are sent to Bud's 'one-day'
           cleaning service, again \(o_i\) was how many are sent on day i. Finally,
           {\bf t} denotes the cloths sent to Mac's 'two-day' service.
 
@@ -26,12 +27,10 @@
           Mac, \(t_i\) costs \$1. 
 
         \item
-          Each day has its own constraint that balances the available towels with how many are dirty, in
-          cleaning, and in demand. 
-
-        \item
-          The next set of constraints are those that dictate the number of towels that can be sent to
-          the cleaner each day, there are less of these than there are days.
+          For each day in the period there are two constraints. One is the relationship of how many towels need
+          to be bought for that day, which is the number needed minus the clean towels coming in. Second, a
+          constraint needs to be placed on how many towels can be washed (which can't be greater than how many
+          are dirty).
 
         \item
           Finally, the last constraint is only applicable for 7+ day periods. It is responsible for not
@@ -39,17 +38,8 @@
 
       \end{itemize}
 
-      I'm not going to type out the actual LP problem because it is huge, but the above should give a rough
-      outline of it. The result of solving this model for a 7day period was as follows:
-
-      \begin{tabular}{r l}
-        {\bf b}& = (110, 100, 160, 10, 0, 0, 0)\\
-        {\bf o}& = (0, 0, 80, 120, 120)\\
-        {\bf t}& = (110, 100, 80, 0)
-      \end{tabular}
-
-      This solution doesn't seem to fit any obvious pattern. The program buys a lot of towels at the beginning of
-      the week and just cycles through them with around equal amounts of both services. 
+      The solution is at the end of the Mathematica code, labeled as '7 days, normal pricing.' There isn't a
+      really obvious pattern to this program which didn't favor Mac or Bud's service over the other.
 
     \item Model for the same problem with 30-day time period rather than one week:
 
@@ -70,31 +60,11 @@
 
       \end{itemize}
 
-      The solution to this new problem is as follows:
-
-      \begin{tabular}{r l}
-        {\bf b}& = (110, 100, 160, 120, 0, 10, 0, 0, \dots , 0)\\
-        {\bf o}& = (0, 0, \dots , 0)\\
-        {\bf t}& = (0, 180, 190, 120, 110, 100, 160, 120, 180, 200, 120, 110, 100, 160, \\ 
-        {}& \quad 120, 180, 200, 120, 110, 100, 160, 120, 180, 200, 120, 110, 100)
-      \end{tabular}
-
-      This solution makes a lot of sense, the program just stocks up on towels to start with and only uses the
-      two-day service. Only using the two-day service meant the program had to buy more towels to start with, but
-      after that was able to time the cleanings perfectly such that it never had to buy more towels or use the
-      expensive one-day service.
+        There is a very visible pattern to this solution. Towel purchases were high to start with and then only Mac's
+        cheaper service was used except for on the weekends where it wasn't open. It isn't too much of a stretch to 
+        see that a good solution would prioritize the cheaper service, and that is what this does.
 
     \item 30-day period with one-day service only \$1.50:
-
-      Solution:
-
-      \begin{tabular}{r l}
-        {\bf b}& = (110, 100, 160, 60, 0, 0, \dots , 0)\\
-        {\bf o}& = (0, 0, 30, 70, 70, 0, 0, 0, 0, 30, 70, 70, 0, 0, 0, 0, 30, 70, 70, \\
-        {}& \quad 0, 0, 0, 0, 30, 70, 70, 0, 0)\\
-        {\bf t}& = (60, 150, 130, 50, 110, 100, 160, 120, 120, 150, 130, 50, 110, 100, \\
-        {}& \quad 160, 120, 150, 130, 50, 110, 100, 160, 120, 150, 130, 50, 110, 100)\\
-      \end{tabular}
 
       In this solution, we actually take advantage of the expedient one-day service now that the
       price is reasonable. The major tactic is still to use the cheaper two-day service, but in this
