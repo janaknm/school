@@ -1,0 +1,13 @@
+#ifndef ANIMATE_H
+#define ANIMATE_H
+
+class animate {
+
+ public:
+  animate();
+  virtual ~animate();
+
+};
+
+
+#endif

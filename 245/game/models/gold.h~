@@ -1,0 +1,17 @@
+#ifndef GOLD_H
+#define GOLD_H
+
+#include "player.h"
+#include "inanimate"
+
+class gold : public inanimate {
+  
+public:
+  gold();
+
+  void be_obtained(player *p);
+  
+};
+
+
+#endif

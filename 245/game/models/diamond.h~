@@ -1,0 +1,17 @@
+#ifndef DIAMOND_H
+#define DIAMOND_H
+
+#include "inanimate.h"
+#include "player.h"
+
+class diamond : public inanimate {
+
+public:
+  diamond();
+
+  void be_obtained(player *p);
+  
+};
+
+
+#endif

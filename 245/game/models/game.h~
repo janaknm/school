@@ -1,0 +1,26 @@
+#ifndef GAME_H
+#define GAME_H
+
+#include "level.h"
+#include "player.h"
+#include "enum.h"
+#include <vector>
+
+class game {
+ public:
+  game();
+  ~game();
+  
+ private:
+  level* _levels;          //all levels in this game
+  player* _current_player;  //current player pointer
+  level* _current_level;    //current level pointer
+
+ public:
+  level* get_level();      //accessor for level
+  player* get_player();    //accessor for player
+  
+  void use_stairs(stair_direction dir); //go up/down stairs
+};
+
+#endif GAME_H

@@ -1,0 +1,21 @@
+#ifndef LIGHT_GROUP_H
+#define LIGHT_GROUP_H
+
+#include <vector>
+#include "level_piece.h"
+
+class light_group {
+
+public:
+  light_group();
+
+private:
+  vector<light_piece> _pieces;
+
+public:
+  void illuminate();   //make all pieces in this group visible
+  
+};
+
+
+#endif

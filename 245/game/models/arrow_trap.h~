@@ -1,0 +1,14 @@
+#ifndef ARROW_TRAP_H
+#define ARROW_TRAP_H
+
+//booby trap
+class arrow_trap : public floor {
+
+public:
+  arrow_trap();
+
+  void step_on(animate *obj); //if obj is player, do one dmg
+
+};
+
+#endif

@@ -1,0 +1,25 @@
+#ifndef FLOOR_H
+#define FLOOR_H
+
+#include "level_piece.h"
+#include "animate.h"
+#include "player.h"
+#include "inanimate.h"
+
+class floor : public level_piece {
+
+public:
+  floor();
+
+private:
+  animate *occupied_animate;
+  inanimate *occupied_inanimate;
+  
+  virtual void step_on(player *p);    //handle special action if player
+
+public:
+  void interact(animate *obj);   //called when a player/monster tries to move here
+};
+
+
+#endif

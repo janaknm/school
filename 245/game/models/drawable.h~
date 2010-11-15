@@ -1,0 +1,24 @@
+#ifndef DRAWABLE_H
+#define DRAWABLE_H
+
+#include "point.h"
+#include "enum.h"
+
+class drawable {
+
+ public:
+  drawable();
+  virtual ~drawable() = 0;
+
+ private:
+  sprite graphic;
+
+ public:
+  void draw();
+  point position;
+  bool visible;
+  
+};
+
+
+#endif

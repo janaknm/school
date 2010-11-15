@@ -1,0 +1,17 @@
+#ifndef MONSTER_H
+#define MONSTER_H
+
+#include "animate.h"
+
+class monster : public animate {
+
+ public:
+  monster();
+  ~monster();
+
+  void move();
+
+  
+};
+
+#endif
