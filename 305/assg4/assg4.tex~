@@ -1,0 +1,12 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage{enumerate}
+
+\begin{document}
+
+\subsection*{hey}
+
+
+\end{document}
