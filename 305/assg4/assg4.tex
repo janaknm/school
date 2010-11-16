@@ -13,7 +13,7 @@
 \date{November 16, 2010}
 \maketitle
 
-\subsection*{Problem 1}
+\section*{Problem 1}
 
 
 \begin{enumerate}[a)]
@@ -97,12 +97,93 @@ of kids left in the circle. Determing this rank and retrieving the kid
 from the tree is \(O(\log_2(p))\) using OS\_Select. We need to remove
 \(p-1\) kids, so the algorithm's running time is \(O(p\log_2(p))\).
      
-    
 
-
-    
 \end{enumerate}
 
+\pagebreak
+
+\section*{Problem 2}
+
+\subsection*{Insert Pseudocode}
+
+
+\begin{verbatim}
+
+  (* assumed definitions: *)
+  (* add_to_end - create p-heap node at end of H with given items and return it *)
+  (* get_parent - return parent of given node *)
+  (* get_elem - get ith element out of a node *)
+  (* swap(node,i,node2,j)  - swap ith element of node with jth element of node2 *)
+
+
+  (* insert elems (array length p) in to p-heap H *)
+  def insert(H, p, elems):
+      node = add_to_end(H, elems)
+      for i in 1...p:
+          bubble_up(node, i, p)
+
+  def bubble_up(node, i, p):
+      parent = get_parent(node)
+      elem = get_elem(node, i)
+      best = infinity
+      best_ix = nil
+      for j in 1...p:
+          parent_elem = get_elem(parent, j)
+          if elem > parent_elem and parent_elem < best:
+              best = parent_elem
+              best_ix = j
+      if best_ix is not nil:
+          swap(node, i, parent, best_ix)
+          bubble_up(parent, best_ix, p)
+          
+\end{verbatim}
+
+\pagebreak
+
+\subsection*{Extract Max Pseudocode}
+
+\begin{verbatim}
+
+  (* assumed definitions: *)
+  (* get_elem - get ith element out of a node *)
+  (* swap(node,i,node2,j)  - swap ith element of node with jth element of node2 *)
+  (* left/right - get left or right subtree of a node *)
+  (* detach_root - remove root node from heap and return it *)
+  (* attach_root - set root of the tree to given node *)
+  (* detach_last - remove last node from heap and return it *)
+  (* items - return items on a node *)
+
+  (* remove p greatest elements in heap *)
+  def extract_max(H, p):
+      top = detach_root(H)
+      last = detach_last(H)
+      attach_root(H, last)
+      for i in 1...p:
+          bubble_down(last, i)
+      return items(top)
+
+  def bubble_down(node, i, p):
+      best = get_element(node, i)
+      best_ix = nil
+      best_node = nil
+      for j in 1...p:
+          check = get_element(left(node), j)
+          if check > best:
+              best = check
+              best_ix = j
+              best_node = left(node)
+          check = get_element(right(node), j)
+          if check > best:
+              best = check
+              best_ix = j
+              best_node = right(node)
+      if best_ix is not nil:
+          swap(node, i, best_node, best_ix)
+          bubble_down(best_node, best_ix, p)
+
+      
+
+\end{verbatim}
 
 
 
