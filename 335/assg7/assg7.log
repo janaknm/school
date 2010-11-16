@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2010.10.5)  15 NOV 2010 01:30
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2010.10.5)  15 NOV 2010 17:17
 entering extended mode
  %&-line parsing enabled.
 **/home/matt/school/335/assg7/assg7.tex
@@ -142,42 +142,46 @@ Overfull \hbox (8.33093pt too wide) in paragraph at lines 24--25
  []
 
 [7 <./image/fiveten.jpg>]
-<image/fivesixteen.jpg, id=35, 1541.76pt x 2055.68pt>
+<image/fivethirteen.jpg, id=35, 1541.76pt x 2055.68pt>
+File: image/fivethirteen.jpg Graphic file (type jpg)
+
+<use image/fivethirteen.jpg> [8 <./image/fivetwelve.jpg>]
+<image/fivesixteen.jpg, id=39, 1541.76pt x 2055.68pt>
 File: image/fivesixteen.jpg Graphic file (type jpg)
 
-<use image/fivesixteen.jpg> [8 <./image/fivetwelve.jpg>]
-<image/fiveseventeen.jpg, id=39, 2055.68pt x 1541.76pt>
+<use image/fivesixteen.jpg> [9 <./image/fivethirteen.jpg>]
+<image/fiveseventeen.jpg, id=43, 2055.68pt x 1541.76pt>
 File: image/fiveseventeen.jpg Graphic file (type jpg)
 
 <use image/fiveseventeen.jpg>
-Overfull \hbox (8.33093pt too wide) in paragraph at lines 28--29
-[] 
- []
-
-[9 <./image/fivesixteen.jpg>]
-<image/fiveeighteen.jpg, id=43, 2055.68pt x 1541.76pt>
-File: image/fiveeighteen.jpg Graphic file (type jpg)
-
-<use image/fiveeighteen.jpg>
 Overfull \hbox (8.33093pt too wide) in paragraph at lines 30--31
 [] 
  []
 
-[10 <./image/fiveseventeen.jpg>] [11 <./image/fiveeighteen.jpg>] (./assg7.aux) 
+[10 <./image/fivesixteen.jpg>]
+<image/fiveeighteen.jpg, id=47, 2055.68pt x 1541.76pt>
+File: image/fiveeighteen.jpg Graphic file (type jpg)
+
+<use image/fiveeighteen.jpg>
+Overfull \hbox (8.33093pt too wide) in paragraph at lines 32--33
+[] 
+ []
+
+[11 <./image/fiveseventeen.jpg>] [12 <./image/fiveeighteen.jpg>] (./assg7.aux) 
 ) 
 Here is how much of TeX's memory you used:
- 625 strings out of 256216
- 7992 string characters out of 1917072
+ 630 strings out of 256216
+ 8115 string characters out of 1917072
  54497 words of memory out of 1500000
- 3956 multiletter control sequences out of 10000+200000
+ 3960 multiletter control sequences out of 10000+200000
  6063 words of font info for 22 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  25i,6n,19p,226b,189s stack positions out of 5000i,500n,6000p,200000b,15000s
 </usr/share/texmf/fonts/type1/bluesky/cm/cmbx12.pfb></usr/share/texmf/fonts/ty
 pe1/bluesky/cm/cmr12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr17.pfb>
-Output written on assg7.pdf (11 pages, 12411795 bytes).
+Output written on assg7.pdf (12 pages, 8004269 bytes).
 PDF statistics:
- 61 PDF objects out of 1000 (max. 8388607)
+ 65 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 
