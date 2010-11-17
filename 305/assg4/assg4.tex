@@ -17,34 +17,31 @@
 
 
 \begin{enumerate}[a)]
-  \item 
+  \item
 
-    Using a linked list is probably the most straight-forward way to
-    simulate eeny meeny miny mo. To build the list, we would start
-    with the first kid as the head of the list. Then we append each
-    kid to the list in a row, going around the circle to the right.
+    A linked list provides a very good representation of the mechanics
+    of the game. The list is the 'circle' that the kids are lined up
+    in, and simulating the game is as easy as iterating through the
+    list and removing every $w^{th}$ kid.
 
-    \noindent Once, we have the list built, simulating the game would
-    just be moving forward in the list for each word in the song, and
-    removing the element we hit when the song is finished. So,
-    starting with the head of the list, visit the next node w times
-    (wrapping around to the head when we hit the end of the
-    list). After w visits, we remove the current element we 
-    visiting from the list.
+    To start with, we would need to build the list. Each kid gets his
+    own node in the list, and they are inserted in order (where order
+    is determined by the circle, original caller is 1, his right is 2,
+    etc.). This would take $O(p)$ time as there are p kids.
 
-    \noindent We do this while the number of elements in the list is
-    greater than 1. When there is only one kid left in the list, he is
-    'it.'
+    Simulating the selection requires $p-1$ deletions from the
+    list. One for each kid that is eliminated. Starting from the head
+    of the list, follow $w-1$ links in the list. Then delete the next
+    link. Now, follow $w-1$ links again, and then delete the
+    next. Whenever you reach the end of the list, wrap around to the
+    first element (counting that as one visit). Continue doing this
+    until there is only one link left in the list. That last element
+    remaining is the kid who is ``it.'' In this step, we followed
+    $w-1$ pointers exactly $p-1$ times, which is $O(pw)$.
 
-    \noindent This way, we are doing w visits for each iteration of
-    the song (definition of the game). And we have to remove p-1 kids
-    from the list (p-1 iterations), so in total, we are visiting
-    about \(pw\) nodes in the list.
-    
-    \noindent So in total, we did p insertions to the list, and pw
-    visits on the list. Therefore, the running time of the algorithm
-    is \(O(p + pw)\) or just \(O(pw)\).
-
+    Adding the running times of both the creation of the list and
+    elimination phase gives $O(p + pw)$ which is more simply just
+    $O(pw)$. 
 
   \item
     
