@@ -327,12 +327,36 @@ $\left[
             
   \end{verbatim}
 
-\item Worst case analysis: The worst case of this sort would be if all
-  m strings were identical up until the very last character. In this
-  scenario, each string would be of length $\frac{n}{m}$. If we let
-  that length be represented by the $l$, then we know for the first
-  $l-1$ calls to this function, we aren't making the problem any
-  smaller. 
+\item There are a couple of cases that could be considered for the
+  worst case analysis. One of which is when we have one really long
+  word, and a bunch of really small ones, say just one character
+  each. Another case could be if all the strings are equally long. In
+  this scenario, we would sort on each index of the strings all the
+  way to the last before we make any progress.
+
+\item Well, having one very large string in the array is actually a
+  best case for this algorithm. After sorting on the first key, all
+  strings are in their final order except for the very long string and
+  those that start with the same letter as it (the string-group). Now
+  we only need to sort the string-group that the long string is a part
+  of. Sorting this group is also very easy, because if all strings
+  besides the larger one only have one character, they are padded with
+  the nul character for this radix sort. So when this is finished, the
+  long string will be at the end of the group and all the others will
+  be before it, which is sorted order. So in total, this case took
+  $O(m)$ for the first radix sort, and $O(m)$ for the second, so
+  $O(m)$ in total. $m \le n$ so $O(m) \le O(n)$.
+
+\item Now the worst case is if all the strings are equally long. This
+  algorithm is of the divide and conquer flavor, but when the strings
+  are all the same up until the last character, we are not splitting
+  up the problem at all. Well, the length of each string $l$, must be
+  $\frac{n}{m}$ because they are of equal length. The algorithm will
+  run a radix sort on $l-1$ keys before changing any ordering. The
+  final step is where the real work is done, and that is just one more
+  radix sort. Each sort runs in $O(m)$ time, and we need to sort $l$
+  times. Well we said that $l$ is just $\frac{n}{m}$, so the total
+  running time is $O(n)$ which was our target. 
 
   
 \end{enumerate}
