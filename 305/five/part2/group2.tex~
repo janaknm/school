@@ -1,0 +1,73 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage{enumerate}
+
+\begin{document}
+\title{Five or More Group Analysis\\{\normalsize Part Two}}
+\date{October 21, 2010}
+\author{Matt Forbes \\ Nick Fitzgerald \\ KC Faulkner \\ Chris LOL}
+\maketitle
+
+\section*{Definitions}
+\begin{tabular}{r l}
+    Queue:& List of marbles dropping on the board in the next turn. \\
+    Group:& A set of same-color marbles on the board that are in a row. \\
+    Attach:& Moving a marble to a group's edge.\\
+    Completed:& When a group gets five marbles in a row and is taken off the board.\\
+    Connected:& Two marbles are connected if there is a non-blocked path on the board.
+\end{tabular}
+
+\section*{Group Selection}
+
+Ranked in order of highest priority. When multiple color groups match a rule, the use
+the list of tie breaking rules, or continue to the next rule if no rules break the tie.
+
+\begin{enumerate}[1)]
+
+    \item Choose a group that has the possibility of being completed with one available move.
+
+    \item Group with the most marbles in a row. Break ties by:
+        \begin{enumerate}[a)]
+            \item Has the most same-colored connected marbles on the board.
+            \item Has the most same-colored marbles in the queue. 
+        \end{enumerate}
+
+    \item If no groups have conected marbles, then we should start a new group, rules for which
+        color and where to start it are discussed below.
+
+\end{enumerate}
+
+\section*{Actual Marble Selection}
+
+After deciding which group to move, these are the rules on how to pick which marble should be moved to the group
+if there are multiple options. These rules also discuss which side of the group the marble should be attached to.
+
+\begin{enumerate}[1)]
+    
+    \item Pick the marble that would open up the most paths on the board when moved. 
+    \item Prioritize marbles that open up paths to other large groups.
+    \item When attaching marbles to the group, attach to the side that is more blocked off, unless that move will
+        impede access to the group. The reason for this is because after your move it will be harder to move marbles
+        to that group, so you sould take advantage of the crowded areas before they are blocked.
+
+\end{enumerate}
+
+\subsection*{Starting a group}
+
+These are guidelines about when no groups are ideal or available, so we need to start a new one.
+
+\begin{enumerate}[1)]
+    
+    \item Pick the color that has the most same-color connected marbles on the board.
+    \item Pick a base marble which has the connected marbles of the same color. Then pick the most blocked-off
+        marble (and thus more likely to be locked next round) to attach to the base marble.
+    \item Avoid starting diagonal groups if possible because they can be more likely to block paths on the board.
+        Starting groups close to the edges of the board tend to keep the most paths open because they don't run in
+        to the middle of the board.
+
+
+\end{enumerate}
+
+\end{document}
