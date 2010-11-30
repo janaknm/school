@@ -1,0 +1,21 @@
+/* XPM */
+static char *path[]={
+"15 15 3 1",
+"a c #854a13",
+"# c #c2a489",
+". c #ffffff",
+"...............",
+"...............",
+"....#aaaaa#....",
+"...aaaaaaaaa...",
+"..#aaaaaaaaa#..",
+"..aaaaaaaaaaa..",
+"..aaaaaaaaaaa..",
+"..aaaaaaaaaaa..",
+"..aaaaaaaaaaa..",
+"..aaaaaaaaaaa..",
+"..#aaaaaaaaa#..",
+"...aaaaaaaaa...",
+"....#aaaaa#....",
+"...............",
+"..............."};

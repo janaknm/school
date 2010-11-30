@@ -1,0 +1,9 @@
+#include "../gui.h"
+
+#include "monster.h"
+
+monster::monster(int health) : animate(health) {}
+
+void monster::move(player *p) {
+  if (debug) printf("monster moving to player");
+}
