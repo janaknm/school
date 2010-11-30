@@ -4,11 +4,16 @@
 #include "animate.h"
 #include "player.h"
 
+#include "../PlayArea.h"
+
 //all monsters on the board
 class monster : public animate {
 
  public:
-  monster();
+  monster(int health, graphic sprite) : animate(health) {
+    set_sprite(sprite);
+  }
+  ~monster() {}
   
   void move(player *p);   //change monsters position based on where player is
   

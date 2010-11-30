@@ -2,20 +2,23 @@
 #define ANIMATE_H
 
 #include "drawable.h"
-#include "animate.h"
+#include <string>
+
+using std::string;
 
 //abstract class describing objects that move/interact with the board
 class animate : public drawable {
 
 public:
-  animate();
-  virtual ~animate() = 0;
-
+  animate(int max_health);
+  ~animate() {}
+  
 private:
   int _health;
+  int _max_health;
 
 public:
-  int get_health();                      //health accessor
+  string get_health_string();                      //health accessor
   void attacked_by(animate *opponent);   //this object is being attacked by *opponent*
   
 };

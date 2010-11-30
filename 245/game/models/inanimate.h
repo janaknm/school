@@ -1,14 +1,19 @@
 #ifndef INANIMATE_H
 #define INANIMATE_H
 
-#include "player.h"
+#include "drawable.h"
+#include "../PlayArea.h"
 
-// abstract class to represent non-moving objects
+class player;
+
 class inanimate : public drawable {
 public:
-  inanimate();
+  inanimate(graphic sprite) {
+    set_sprite(sprite);
+  }
+  ~inanimate() {}
 
-  virtual void be_obtained(player *p) = 0;   //pure virtual. what happens when player picks this up
+  virtual bool be_obtained(player *p) { return true; };   //pure virtual. what happens when player picks this up
   
 };
 

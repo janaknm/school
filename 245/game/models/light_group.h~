@@ -1,16 +1,19 @@
 #ifndef LIGHT_GROUP_H
 #define LIGHT_GROUP_H
 
-#include <vector>
-#include "level_piece.h"
+#include "level.h"
 
+class level_piece;
+
+//groups level pieces together that start invisible, but can be illuminated
 class light_group {
 
 public:
-  light_group();
+  light_group(level *owner) : _owner(owner) {}
 
 private:
-  vector<light_piece> _pieces;
+  level *_owner;
+  int _topx, _topy, _w, _h;
 
 public:
   void illuminate();   //make all pieces in this group visible

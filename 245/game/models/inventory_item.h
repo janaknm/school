@@ -4,15 +4,22 @@
 #include "inanimate.h"
 #include "player.h"
 
-//abstract class to group objects that can be placed in the inventory
+#include "../PlayArea.h"
+
 class inventory_item : public inanimate {
 
 public:
-  inventory_item();
-
-  void be_obtained(player *p);   //add this item to player's inventory.
+  inventory_item(graphic sprite) : inanimate(sprite)  {}
+    
+  bool be_obtained(player *p) { return p->add_item(this); }   //add this item to player's inventory.
   
-  virtual void use(player *p) = 0;   //pure virtual. what happens when player uses this item
+  virtual void use(player *p) {
+    switch(what_am_i()) {
+    default:
+      printf("being used\n");
+    }
+
+  }; 
   
 };
 

@@ -4,19 +4,21 @@
 #include <vector>
 #include "inventory_item.h"
 
+//holds player's inventory items
 class inventory {
-
+  
 public:
-  inventory();
+  inventory(player *owner) : _owner(owner), _capacity(10) { }
 
 private:
   vector<inventory_item> _items;
-  int _num_items;
+  player *_owner;
   int _capacity;
 
 public:
   bool add_item(inventory_item *item);   //try adding item, return true on success (not full)
   bool remove_item(int index);           //try removing an item by index, return true if success (item exists)
+  bool use_item(int index);              //try using an item by index
 };
 
 #endif

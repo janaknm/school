@@ -2,15 +2,19 @@
 #define GOLD_H
 
 #include "player.h"
-#include "inanimate"
+#include "inanimate.h"
+
+#include "../PlayArea.h"
 
 //gold piece found on floor
 class gold : public inanimate {
   
 public:
-  gold();
+  gold() {
+    set_sprite(GOLD);
+  }
 
-  void be_obtained(player *p);   //virtual definition. Add gold to player.
+  bool be_obtained(player *p) { return true; }   //virtual definition. Add gold to player.
   
 };
 

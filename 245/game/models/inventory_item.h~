@@ -8,11 +8,11 @@
 class inventory_item : public inanimate {
 
 public:
-  inventory_item();
+  inventory_item() {}
 
-  void be_obtained(player *p);
+  bool be_obtained(player *p);   //add this item to player's inventory.
   
-  virtual void use(player *p) = 0;
+  virtual void use(player *p) = 0;   //pure virtual. what happens when player uses this item
   
 };
 

@@ -1,23 +1,27 @@
 #ifndef DRAWABLE_H
 #define DRAWABLE_H
 
-#include "point.h"
-#include "enum.h"
+#include "../PlayArea.h"
 
 //abstract base class for all objects that can be drawn on the screen
 class drawable {
 
  public:
-  drawable();
-  virtual ~drawable() = 0;
-
+  drawable() { visible = true; }
+  virtual ~drawable() {}
+  
  private:
-  sprite _graphic;
+  graphic _sprite;
 
  public:
-  void draw();      //draw graphic at position (if visible)
-  point position;   //x,y coordinate on the level
   bool visible;     //should we draw this object
+  int row, col;     //position
+
+  virtual void draw();      //draw graphic at position (if visible)
+  graphic what_am_i() { return _sprite; }
+
+protected:
+  void set_sprite(graphic g);
   
 };
 
