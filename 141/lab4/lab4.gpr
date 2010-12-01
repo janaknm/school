@@ -1,0 +1,6 @@
+project Lab4 is
+
+   for Object_Dir use "../Lab4";
+
+end Lab4;
+

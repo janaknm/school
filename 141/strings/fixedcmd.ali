@@ -1,0 +1,89 @@
+V "GNAT Lib v4.3"
+M P W=b
+P SS ZX
+R nnnnnnnnnnnnnnnnnnnnnnvnnnnnnnnnnnnnnvnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U fixedcmd%b		fixedcmd.adb		1ddb74d4 NE SU IL
+W ada%s			ada.ads			ada.ali
+W ada.command_line%s	a-comlin.adb		a-comlin.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.fixed%s	a-strfix.adb		a-strfix.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-charac.ads		20070912115821 506ce725
+D a-chlat1.ads		20070912115821 e9ee6d0a
+D a-comlin.ads		20051115140645 3b71d99c
+D a-except.ads		20070606104609 ba3e26e2
+D a-finali.ads		20070606101851 9eaacebd
+D a-filico.ads		20051115140645 9299732a
+D a-inteio.ads		20070406091342 03bc737c
+D a-ioexce.ads		20070406091342 be0900a0
+D a-stream.ads		20061031174905 34aca5be
+D a-string.ads		20070406091342 87b4230b
+D a-strfix.ads		20070406091342 253a46ca
+D a-strmap.ads		20061031174905 5253a637
+D a-tags.ads		20071213102130 e10285b3
+D a-textio.ads		20071213102052 bc6e78fe
+D a-tiinio.ads		20060215092843 949a7272
+D a-unccon.ads		20070406091342 51e09df2
+D fixedcmd.adb		20091007154700 bc42e000
+D interfac.ads		20051209172227 a69cad5c
+D i-cstrea.ads		20070406092312 e1e064a9
+D system.ads		20090219101008 28071540
+D s-crtl.ads		20070406092312 ef997abb
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-ficobl.ads		20070814084926 8bb681e5
+D s-finimp.ads		20070606101344 9449f4cb
+D s-finroo.ads		20070814084926 1408f9d1
+D s-parame.ads		20070814084525 f32e56e9
+D s-secsta.ads		20070912115821 7bae3621
+D s-soflin.ads		20071213103411 2b67bae6
+D s-stache.ads		20070912115821 257b3be8
+D s-stalib.ads		20070912115821 9ac44ca2
+D s-stoele.ads		20070912115821 1104c881
+D s-stoele.adb		20071213103502 e9998c78
+D s-stratt.ads		20070406092920 b4bf338e
+D s-traent.ads		20070912115821 bd5f2753
+D s-unstyp.ads		20070912115821 c0f9fae5
+D s-wchcon.ads		20071213102052 ab028799
+X 1 ada.ads
+16K9*Ada 19e8 18|1r6 2r6 3r6 4r6 8r26 9r26 10r24 11r23 12r24
+X 4 a-comlin.ads
+38K13*Command_Line 136e21 18|2w10 10r28
+48V13*Argument{string} 18|14r21 20r25 24r22 31r22 33r25
+X 8 a-inteio.ads
+18K13*Integer_Text_IO[16|47] 18|4w10 9r30
+X 11 a-string.ads
+16K13*Strings 35e16 18|3r10 11r27 12r28
+19e4*Space{character} 18|28r18
+29n24*Left{29E9} 18|27r22
+30n30*Right{30E9} 18|26r19
+X 12 a-strfix.ads
+18K21*Fixed 242e22 18|3w18 12r36
+25U14*Move 18|23r8
+26s7 Source{string} 18|24r9
+27s7 Target{string} 18|25r9
+28e7 Drop{11|30E9} 18|26r9
+29e7 Justify{11|29E9} 18|27r9
+30e7 Pad{character} 18|28r9
+X 15 a-textio.ads
+50K13*Text_IO 482e16 18|1w10 8r30
+75I12*Field{integer}
+168U14*New_Line 18|21r10 34r10
+244U14*Put 18|17r10 18r10 19r10 30r10 31r10 32r10
+X 16 a-tiinio.ads
+67U14*Put 18|20r10[8|18] 33r10[8|18]
+68i7 Item{integer} 18|20r14[8|18] 33r14[8|18]
+69i7 Width{15|75I12} 18|20r43[8|18] 33r43[8|18]
+X 18 fixedcmd.adb
+6U11*fixedcmd 6b11 37l5 37t13
+8K13 t_io=8:30 17r5 18r5 19r5 21r5 30r5 31r5 32r5 34r5
+9K13 i_io=9:30 20r5 33r5
+10K13 cl=10:28 14r18 20r22 24r19 31r19 33r22
+11K13 s=11:27 26r17 27r20 28r16
+12K13 sf=12:36 23r5
+14a5 x{string} 18r14 25r19 31r14
+

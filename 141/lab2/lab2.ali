@@ -1,0 +1,98 @@
+V "GNAT Lib v4.3"
+M P W=b
+P SS ZX
+R nnnnnnnnnnnnvnnvnnvnvnvnnnnnvnnnnnnnnnnvnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnnnn
+
+U lab2%b		lab2.adb		32079671 NE SU
+W ada%s			ada.ads			ada.ali
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W ada.text_io.enumeration_aux%s  a-tienau.adb	a-tienau.ali
+W system%s		system.ads		system.ali
+W system.exn_lli%s	s-exnlli.adb		s-exnlli.ali
+W system.img_enum_new%s	s-imenne.adb		s-imenne.ali
+W system.img_int%s	s-imgint.adb		s-imgint.ali
+W system.img_real%s	s-imgrea.adb		s-imgrea.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.val_enum%s	s-valenu.adb		s-valenu.ali
+W system.val_int%s	s-valint.adb		s-valint.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-except.ads		20070606104609 ba3e26e2
+D a-finali.ads		20070606101851 9eaacebd
+D a-filico.ads		20051115140645 9299732a
+D a-inteio.ads		20070406091342 03bc737c
+D a-ioexce.ads		20070406091342 be0900a0
+D a-stream.ads		20061031174905 34aca5be
+D a-tags.ads		20071213102130 e10285b3
+D a-textio.ads		20071213102052 bc6e78fe
+D a-tienau.ads		20060215092843 671c7a9a
+D a-tienio.ads		20060215092843 213fedba
+D a-tienio.adb		20070606102111 ba330dab
+D a-tiinio.ads		20060215092843 949a7272
+D a-unccon.ads		20070406091342 51e09df2
+D interfac.ads		20051209172227 a69cad5c
+D i-cstrea.ads		20070406092312 e1e064a9
+D lab2.adb		20091003000609 8dd59df3
+D system.ads		20090219101008 28071540
+D s-crtl.ads		20070406092312 ef997abb
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-exnlli.ads		20050905075125 8d6d8b4b
+D s-ficobl.ads		20070814084926 8bb681e5
+D s-finimp.ads		20070606101344 9449f4cb
+D s-finroo.ads		20070814084926 1408f9d1
+D s-imenne.ads		20071213103004 97a402ea
+D s-imgint.ads		20071213103004 f77d133c
+D s-imgrea.ads		20071213103004 da88b2ff
+D s-parame.ads		20070814084525 f32e56e9
+D s-secsta.ads		20070912115821 7bae3621
+D s-soflin.ads		20071213103411 2b67bae6
+D s-stache.ads		20070912115821 257b3be8
+D s-stalib.ads		20070912115821 9ac44ca2
+D s-stoele.ads		20070912115821 1104c881
+D s-stoele.adb		20071213103502 e9998c78
+D s-stratt.ads		20070406092920 b4bf338e
+D s-traent.ads		20070912115821 bd5f2753
+D s-unstyp.ads		20070912115821 c0f9fae5
+D s-valenu.ads		20050905075125 9e547a01
+D s-valint.ads		20070406091342 d23209d2
+D s-wchcon.ads		20071213102052 ab028799
+X 1 ada.ads
+16K9*Ada 19e8 17|5r6 6r6 14r30 15r30
+X 5 a-inteio.ads
+18K13*Integer_Text_IO[13|47] 17|6w10 15r34
+X 9 a-textio.ads
+50K13*Text_IO 482e16 17|5w10 14r34
+244U14*Put 17|28r30 40r14
+X 11 a-tienio.ads
+48k21*Enumeration_IO 77e31 17|16r38
+54U14 Get 17|29r34[16]
+54e19 Item{17|11E14} 17|29r38[16]
+X 17 lab2.adb
+8U11*Lab2 8b11 43l5 43t9
+11E14 color 11e92 16r54 25r29 30r51
+11n24 black{11E14}
+11n31 brown{11E14}
+11n38 red{11E14}
+11n43 orange{11E14}
+11n51 yellow{11E14}
+11n59 green{11E14}
+11n66 blue{11E14}
+11n72 violet{11E14}
+11n80 grey{11E14}
+11n86 white{11E14}
+12O14 huge 21r13 38r18 40r18
+14K17 T_IO=14:34 16r33 28r25 40r9
+15K17 I_IO=15:34
+16K17 COLOR_IO[11|48] 29r25
+19i9 x{integer} 36m9 38r14
+20i9 n{integer} 37m9 38r29
+21o9 r{12O14} 38m9 40r29
+23V18 getNumbersFromColors{integer} 23b18 23>39 33l13 33t33 36r14 37r14
+23i39 numColors{integer} 24r35 27r29 32r47
+24a17 inStr{string} 30m25 32r38
+25e17 tempColor{11E14} 29m46 30r61
+27i21 i{integer} 30r31
+

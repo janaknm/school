@@ -1,0 +1,102 @@
+V "GNAT Lib v4.3"
+M P W=b
+P SS ZX
+R nnnnnnnvnnnnvnnvnnvnnnvnnnnnvnnnnnnnnnnvnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnnnn
+
+U main%b		main.adb		fc8b6377 NE SU
+W ada%s			ada.ads			ada.ali
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W ada.text_io.enumeration_aux%s  a-tienau.adb	a-tienau.ali
+W system%s		system.ads		system.ali
+W system.img_enum_new%s	s-imenne.adb		s-imenne.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.val_enum%s	s-valenu.adb		s-valenu.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-except.ads		20070606104609 ba3e26e2
+D a-finali.ads		20070606101851 9eaacebd
+D a-filico.ads		20051115140645 9299732a
+D a-inteio.ads		20070406091342 03bc737c
+D a-ioexce.ads		20070406091342 be0900a0
+D a-stream.ads		20061031174905 34aca5be
+D a-tags.ads		20071213102130 e10285b3
+D a-textio.ads		20071213102052 bc6e78fe
+D a-tienau.ads		20060215092843 671c7a9a
+D a-tienio.ads		20060215092843 213fedba
+D a-tienio.adb		20070606102111 ba330dab
+D a-tiinio.ads		20060215092843 949a7272
+D a-unccon.ads		20070406091342 51e09df2
+D interfac.ads		20051209172227 a69cad5c
+D i-cstrea.ads		20070406092312 e1e064a9
+D main.adb		20091002011054 435968f5
+D system.ads		20090219101008 28071540
+D s-crtl.ads		20070406092312 ef997abb
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-ficobl.ads		20070814084926 8bb681e5
+D s-finimp.ads		20070606101344 9449f4cb
+D s-finroo.ads		20070814084926 1408f9d1
+D s-imenne.ads		20071213103004 97a402ea
+D s-parame.ads		20070814084525 f32e56e9
+D s-secsta.ads		20070912115821 7bae3621
+D s-soflin.ads		20071213103411 2b67bae6
+D s-stache.ads		20070912115821 257b3be8
+D s-stalib.ads		20070912115821 9ac44ca2
+D s-stoele.ads		20070912115821 1104c881
+D s-stoele.adb		20071213103502 e9998c78
+D s-stratt.ads		20070406092920 b4bf338e
+D s-traent.ads		20070912115821 bd5f2753
+D s-unstyp.ads		20070912115821 c0f9fae5
+D s-valenu.ads		20050905075125 9e547a01
+D s-wchcon.ads		20071213102052 ab028799
+X 1 ada.ads
+16K9*Ada 19e8 17|5r6 6r6 18r25 19r25
+X 5 a-inteio.ads
+18K13*Integer_Text_IO[13|47] 17|6w10 19r29
+X 9 a-textio.ads
+50K13*Text_IO 482e16 17|5w10 18r29
+75I12*Field{integer}
+82n22*Lower_Case{82E9} 17|87r50
+244U14*Put 17|35r9 37r9 39r9 80r12 82r12 84r12 86r12 88r12 90r12
+244s19 Item{string} 17|35r13 37r13 39r13 90r16
+X 11 a-tienio.ads
+48k21*Enumeration_IO 77e31 17|20r31
+62U14 Put 17|87r14[20]
+63e7 Item{17|10E9} 17|87r18[20]
+65e7 Set{9|82E9} 17|87r38[20]
+X 13 a-tiinio.ads
+57U14*Get 17|36r9[5|18] 38r9[5|18] 40r9[5|18]
+58i7 Item{integer} 17|36r13[5|18] 38r13[5|18] 40r13[5|18]
+67U14*Put 17|81r12[5|18] 83r12[5|18] 85r12[5|18]
+68i7 Item{integer} 17|81r16[5|18] 83r16[5|18] 85r16[5|18]
+69i7 Width{9|75I12} 17|81r30[5|18] 83r31[5|18] 85r30[5|18]
+X 17 main.adb
+8U11*Main 8b11 94l5 94t9
+10E9 day 10e80 20r47 87r26
+10n17 Sunday{10E9}
+10n25 Monday{10E9}
+10n33 Tuesday{10E9}
+10n42 Wednesday{10E9}
+10n53 Thursday{10E9}
+10n63 Friday{10E9}
+10n71 Saturday{10E9}
+14I12 int_year{integer} 24r11
+15I12 int_month{integer} 25r12
+16I12 int_date{integer} 26r11
+18K12 T_IO=18:29 20r26 35r4 37r4 39r4 80r7 82r7 84r7 86r7 87r45 88r7 90r7
+19K12 I_IO=19:29 36r4 38r4 40r4 81r7 83r7 85r7
+20K12 Day_IO[11|48] 87r7
+24i4 year{14I12} 36m21 47r13 47r31 47r51 71r12 72r12 73r14 74r20 78r13 85r24
+25i4 month{15I12} 38m21 45r7 46r10 56r13 62r10 75r19 76r18 83r24
+26i4 date{16I12} 40m21 48r16 52r16 57r13 63r13 78r28 81r24
+27i4 c{integer} 71m7 72r28
+27i7 l{integer} 72m7 74r15 78r20
+27i10 c1{integer} 73m7 74r41
+27i14 leap{integer} 74m7 77r17
+27i20 adj{integer} 75m7 76r35 77r29
+27i25 m{integer} 76m7 77m7 77r12 78r24
+27i28 d{integer} 78m7 87r34
+28b4 valid{boolean} 44m4 49m13 53m16 58m12 64m13 70r7
+

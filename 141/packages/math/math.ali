@@ -1,0 +1,95 @@
+V "GNAT Lib v4.3"
+P SS ZX
+R nnnvnnnnnnnnnnnvnnvnnvvnnnnnvnnnnnnnnnnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U math%b		math.adb		5ca1696e NE PK IL
+W ada%s			ada.ads			ada.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+
+U math%s		math.ads		4caffb61 EE NE PK IL
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-except.ads		20070606104609 ba3e26e2
+D a-finali.ads		20070606101851 9eaacebd
+D a-filico.ads		20051115140645 9299732a
+D a-flteio.ads		20070406091342 3407344a
+D a-ioexce.ads		20070406091342 be0900a0
+D a-stream.ads		20061031174905 34aca5be
+D a-tags.ads		20071213102130 e10285b3
+D a-textio.ads		20071213102052 bc6e78fe
+D a-tiflio.ads		20060215092843 5d91823c
+D a-unccon.ads		20070406091342 51e09df2
+D interfac.ads		20051209172227 a69cad5c
+D i-cstrea.ads		20070406092312 e1e064a9
+D math.ads		20091006012549 4caffb61
+D math.adb		20091006013417 9867debb
+D system.ads		20090219101008 28071540
+D s-crtl.ads		20070406092312 ef997abb
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-ficobl.ads		20070814084926 8bb681e5
+D s-finimp.ads		20070606101344 9449f4cb
+D s-finroo.ads		20070814084926 1408f9d1
+D s-parame.ads		20070814084525 f32e56e9
+D s-secsta.ads		20070912115821 7bae3621
+D s-soflin.ads		20071213103411 2b67bae6
+D s-stache.ads		20070912115821 257b3be8
+D s-stalib.ads		20070912115821 9ac44ca2
+D s-stoele.ads		20070912115821 1104c881
+D s-stoele.adb		20071213103502 e9998c78
+D s-stratt.ads		20070406092920 b4bf338e
+D s-traent.ads		20070912115821 bd5f2753
+D s-unstyp.ads		20070912115821 c0f9fae5
+D s-wchcon.ads		20071213102052 ab028799
+X 1 ada.ads
+16K9*Ada 19e8 15|1r6 2r6 9r26 10r26
+X 5 a-flteio.ads
+20K13*Float_Text_IO[10|47] 15|2w10 10r30
+X 9 a-textio.ads
+50K13*Text_IO 482e16 15|1w10 9r30
+75I12*Field{integer}
+168U14*New_Line 15|27r26 30r26 32r26
+171U14*Skip_Line 15|28r26 33r26
+244U14*Put 15|21r22 29r26 34r26
+300X4*Data_Error 15|26r27
+X 10 a-tiflio.ads
+58U14*Get 15|22r22[5|20]
+59f7 Item{float} 15|22r26[5|20]
+69U14*Put 15|49r14[5|20] 63r14[5|20] 75r14[5|20] 87r14[5|20]
+70f7 Item{float} 15|49r18[5|20]
+71i7 Fore{9|75I12} 15|49r31[5|20]
+72i7 Aft{9|75I12} 15|49r42[5|20]
+73i7 Exp{9|75I12} 15|49r52[5|20]
+X 14 math.ads
+1K9*math 13l5 13e9 15|4b14 89l5 89t9
+3A10*numArray(float)<integer> 4r32 15|16r28
+4P10*numArrayPtr(3A10) 6r54 15|12r55 13r23 42r19 54r19 67r19 79r19
+6V14*getNumArray{4P10} 6>26 15|12b14 38l9 38t20 45r20 56r20 70r20 82r20
+6i26 needed{integer} 15|12b27 16r40
+8U15*add 8>19 15|40b15 50l9 50t12
+8i19 needed{integer} 15|40b20 45r32
+9U15*subtract 9>24 15|52b15 64l9 64t17
+9i24 needed{integer} 15|52b25 56r32
+10U15*multiply 10>24 15|66b15 76l9 76t17
+10i24 needed{integer} 15|66b25 70r32
+11U15*divide 11>22 15|78b15 88l9 88t15
+11i22 needed{integer} 15|78b23 82r32
+X 15 math.adb
+9K13 t_io=9:30 21r17 26r22 27r21 28r21 29r21 30r21 32r21 33r21 34r21
+10K13 f_io=10:30 22r17 49r9 63r9 75r9 87r9
+13p9 returnArray{14|4P10} 16m9 20r35 22r34 37r16
+14i9 index{integer} 17m9 20r27 22r46 24m17 24r26
+41f9 sum{float} 44m9 47m13 47r20 49r26
+42p9 numbers{14|4P10} 45m9 46r18 47r26
+46i13 i{integer} 47r34
+53f9 remainder{float} 57m9 60m17 60r30 63r18
+54p9 numbers{14|4P10} 56m9 57r22 57r30 58r18 59r21 60r42
+58i13 i{integer} 59r16 60r50
+67p9 numbers{14|4P10} 70m9 72r18 73r34
+68f9 product{float} 71m9 73m13 73r24 75r18
+72i13 i{integer} 73r42
+79p9 numbers{14|4P10} 82m9 83r21 83r29 84r18 85r36
+80f9 quotient{float} 83m9 85m13 85r25 87r18
+84i13 i{integer} 85r44
+

@@ -1,0 +1,84 @@
+V "GNAT Lib v4.3"
+M P W=b
+P SS ZX
+R nnnnnnnnnnnnnnnnnnnnnnvnnnnnnnvnnnnnnvnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U fixedtest%b		fixedtest.adb		e66782b9 NE SU IL
+W ada%s			ada.ads			ada.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.fixed%s	a-strfix.adb		a-strfix.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W ada.text_io.unbounded_io%s  a-tiunio.ads	a-tiunio.ali
+W system.finalization_implementation%s  s-finimp.adb  s-finimp.ali
+W system.finalization_root%s  s-finroo.adb	s-finroo.ali
+W system.parameters%s	s-parame.adb		s-parame.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.standard_library%s  s-stalib.adb	s-stalib.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-charac.ads		20070912115821 506ce725
+D a-chlat1.ads		20070912115821 e9ee6d0a
+D a-except.ads		20070606104609 ba3e26e2
+D a-finali.ads		20070606101851 9eaacebd
+D a-filico.ads		20051115140645 9299732a
+D a-ioexce.ads		20070406091342 be0900a0
+D a-stream.ads		20061031174905 34aca5be
+D a-string.ads		20070406091342 87b4230b
+D a-strfix.ads		20070406091342 253a46ca
+D a-strmap.ads		20061031174905 5253a637
+D a-strunb.ads		20061031174905 f0549c04
+D a-suteio.ads		20051115140645 d857a771
+D a-tags.ads		20071213102130 e10285b3
+D a-textio.ads		20071213102052 bc6e78fe
+D a-tiunio.ads		20070406091342 d721fe49
+D a-unccon.ads		20070406091342 51e09df2
+D fixedtest.adb		20091007234005 dff2fdcb
+D interfac.ads		20051209172227 a69cad5c
+D i-cstrea.ads		20070406092312 e1e064a9
+D system.ads		20090219101008 28071540
+D s-crtl.ads		20070406092312 ef997abb
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-ficobl.ads		20070814084926 8bb681e5
+D s-finimp.ads		20070606101344 9449f4cb
+D s-finroo.ads		20070814084926 1408f9d1
+D s-parame.ads		20070814084525 f32e56e9
+D s-secsta.ads		20070912115821 7bae3621
+D s-soflin.ads		20071213103411 2b67bae6
+D s-stache.ads		20070912115821 257b3be8
+D s-stalib.ads		20070912115821 9ac44ca2
+D s-stoele.ads		20070912115821 1104c881
+D s-stoele.adb		20071213103502 e9998c78
+D s-stratt.ads		20070406092920 b4bf338e
+D s-traent.ads		20070912115821 bd5f2753
+D s-unstyp.ads		20070912115821 c0f9fae5
+D s-wchcon.ads		20071213102052 ab028799
+X 1 ada.ads
+16K9*Ada 19e8 18|1r6 2r6 3r6 4r6 5r6 9r26 10r26 11r23 12r24 13r24
+X 9 a-string.ads
+16K13*Strings 35e16 18|3w10 4r10 5r10 11r27 12r28 13r28
+X 10 a-strfix.ads
+18K21*Fixed 242e22 18|4w18 12r36
+X 12 a-strunb.ads
+41K21*Unbounded 430e26 18|5w18 13r36
+44R9*Unbounded_String 397e14 18|15r23
+65V13*To_String{string} 18|22r19
+X 15 a-textio.ads
+50K13*Text_IO 482e16 18|1w10 2r10 9r30 10r30
+244U14*Put 18|23r10
+X 16 a-tiunio.ads
+25K21*Unbounded_IO 61e29 18|2w18 10r38
+57U14*Get_Line=59:42 18|21r10
+58r7 Item{12|44R9} 18|21r19
+X 18 fixedtest.adb
+7U11*fixedtest 7b11 27l5 27t14
+9K13 t_io=9:30 23r5
+10K13 u_io=10:38 21r5
+11K13 s=11:27
+12K13 sf=12:36
+13K13 su=13:36 15r20 22r16
+15r5 stringBuffer{12|44R9} 21m27 22r29
+16a5 string1{string} 22m5 23r14
+17i5 size{integer}
+

@@ -1,0 +1,101 @@
+V "GNAT Lib v4.3"
+M P W=b
+P SS ZX
+R nnnnnnnnnnnnnnnvnnvnnvvnnnnnnnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U testinput%b		testinput.adb		e525bcd9 NE SU IL
+W ada%s			ada.ads			ada.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W ada.text_io.unbounded_io%s  a-tiunio.ads	a-tiunio.ali
+W system.finalization_implementation%s  s-finimp.adb  s-finimp.ali
+W system.finalization_root%s  s-finroo.adb	s-finroo.ali
+W system.parameters%s	s-parame.adb		s-parame.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.standard_library%s  s-stalib.adb	s-stalib.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-charac.ads		20070912115821 506ce725
+D a-chlat1.ads		20070912115821 e9ee6d0a
+D a-except.ads		20070606104609 ba3e26e2
+D a-finali.ads		20070606101851 9eaacebd
+D a-filico.ads		20051115140645 9299732a
+D a-flteio.ads		20070406091342 3407344a
+D a-ioexce.ads		20070406091342 be0900a0
+D a-stream.ads		20061031174905 34aca5be
+D a-string.ads		20070406091342 87b4230b
+D a-strmap.ads		20061031174905 5253a637
+D a-strunb.ads		20061031174905 f0549c04
+D a-suteio.ads		20051115140645 d857a771
+D a-tags.ads		20071213102130 e10285b3
+D a-textio.ads		20071213102052 bc6e78fe
+D a-tiflio.ads		20060215092843 5d91823c
+D a-tiunio.ads		20070406091342 d721fe49
+D a-unccon.ads		20070406091342 51e09df2
+D interfac.ads		20051209172227 a69cad5c
+D i-cstrea.ads		20070406092312 e1e064a9
+D system.ads		20090219101008 28071540
+D s-crtl.ads		20070406092312 ef997abb
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-ficobl.ads		20070814084926 8bb681e5
+D s-finimp.ads		20070606101344 9449f4cb
+D s-finroo.ads		20070814084926 1408f9d1
+D s-parame.ads		20070814084525 f32e56e9
+D s-secsta.ads		20070912115821 7bae3621
+D s-soflin.ads		20071213103411 2b67bae6
+D s-stache.ads		20070912115821 257b3be8
+D s-stalib.ads		20070912115821 9ac44ca2
+D s-stoele.ads		20070912115821 1104c881
+D s-stoele.adb		20071213103502 e9998c78
+D s-stratt.ads		20070406092920 b4bf338e
+D s-traent.ads		20070912115821 bd5f2753
+D s-unstyp.ads		20070912115821 c0f9fae5
+D s-wchcon.ads		20071213102052 ab028799
+D testinput.adb		20091009232408 4a399220
+X 1 ada.ads
+16K9*Ada 19e8 38|3r6 4r6 5r6 6r6 10r26 11r26 12r26 13r24
+X 7 a-flteio.ads
+20K13*Float_Text_IO[16|47] 38|5w10 11r30
+X 10 a-string.ads
+16K13*Strings 35e16 38|6r10 13r28
+X 12 a-strunb.ads
+41K21*Unbounded 430e26 38|6w18 13r36
+44R9*Unbounded_String 397e14 38|24r23
+X 15 a-textio.ads
+50K13*Text_IO 482e16 38|3w10 4r10 10r30 12r30
+168U14*New_Line 38|39r18 41r18 48r22
+171U14*Skip_Line 38|38r18
+208U14*Get 38|35r22
+210U14*Put 38|42r18
+244U14*Put 38|32r18
+300X4*Data_Error 38|44r23
+X 16 a-tiflio.ads
+58U14*Get 38|33r18[7|20]
+69U14*Put 38|40r18[7|20]
+X 17 a-tiunio.ads
+25K21*Unbounded_IO 61e29 38|4w18 12r38
+32U14*Put=34:42 38|46r22
+57U14*Get_Line=59:42 38|45r22
+X 38 testinput.adb
+8U11*testinput 8b11 52l5 52t14
+10K13 t_io=10:30 32r13 35r17 38r13 39r13 41r13 42r13 44r18 48r17
+11K13 f_io=11:30 33r13 40r13
+12K13 u_io=12:38 45r17 46r17
+13K13 su=13:36 24r20
+15E13 alphabet{character} 34r28
+16E10 measurements 16e56 17r25
+16n27 'p'{16E10} 20r39
+16n32 'y'{16E10} 20r53
+16n37 'f'{16E10}
+16n42 'k'{16E10}
+16n47 'm'{16E10}
+16n52 'c'{16E10}
+17A10 rates(float)<16E10> 20r29
+20a5 converstions{17A10}
+22f5 a{float} 29m13 33m22 40r22
+23e5 b{character} 30m13 34r23 35m26 42r22
+24r5 checkCommand{12|44R9} 45m31 46r26
+

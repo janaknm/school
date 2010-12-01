@@ -1,0 +1,101 @@
+V "GNAT Lib v4.3"
+M P W=b
+P SS ZX
+R nnnnnnnvnnnnnnnnnnnnnnvnnnnnnnvnnnnnnvnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U assg2%b		assg2.adb		6f2a3a6d NE SU IL
+W ada%s			ada.ads			ada.ali
+W ada.characters%s	a-charac.ads		a-charac.ali
+W ada.characters.handling%s  a-chahan.adb	a-chahan.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W ada.text_io.unbounded_io%s  a-tiunio.ads	a-tiunio.ali
+W pizzapackage%s	pizzapackage.adb	pizzapackage.ali
+W system%s		system.ads		system.ali
+W system.finalization_implementation%s  s-finimp.adb  s-finimp.ali
+W system.finalization_root%s  s-finroo.adb	s-finroo.ali
+W system.parameters%s	s-parame.adb		s-parame.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.standard_library%s  s-stalib.adb	s-stalib.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-charac.ads		20070912115821 506ce725
+D a-chahan.ads		20070606101728 dcb15e96
+D a-chlat1.ads		20070912115821 e9ee6d0a
+D a-except.ads		20070606104609 ba3e26e2
+D a-finali.ads		20070606101851 9eaacebd
+D a-filico.ads		20051115140645 9299732a
+D a-ioexce.ads		20070406091342 be0900a0
+D a-stream.ads		20061031174905 34aca5be
+D a-string.ads		20070406091342 87b4230b
+D a-strmap.ads		20061031174905 5253a637
+D a-strunb.ads		20061031174905 f0549c04
+D a-suteio.ads		20051115140645 d857a771
+D a-tags.ads		20071213102130 e10285b3
+D a-textio.ads		20071213102052 bc6e78fe
+D a-tiunio.ads		20070406091342 d721fe49
+D a-unccon.ads		20070406091342 51e09df2
+D assg2.adb		20091012061345 392f4874
+D interfac.ads		20051209172227 a69cad5c
+D i-cstrea.ads		20070406092312 e1e064a9
+D pizzapackage.ads	20091012063948 11af363c
+D system.ads		20090219091504 e2b32c27
+D s-crtl.ads		20070406092312 ef997abb
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-ficobl.ads		20070814084926 8bb681e5
+D s-finimp.ads		20070606101344 9449f4cb
+D s-finroo.ads		20070814084926 1408f9d1
+D s-parame.ads		20070814084525 f32e56e9
+D s-secsta.ads		20070912115821 7bae3621
+D s-soflin.ads		20071213103411 2b67bae6
+D s-stache.ads		20070912115821 257b3be8
+D s-stalib.ads		20070912115821 9ac44ca2
+D s-stoele.ads		20070912115821 1104c881
+D s-stoele.adb		20071213103502 e9998c78
+D s-stratt.ads		20070406092920 b4bf338e
+D s-traent.ads		20070912115821 bd5f2753
+D s-unstyp.ads		20070912115821 c0f9fae5
+D s-wchcon.ads		20071213102052 ab028799
+X 1 ada.ads
+16K9*Ada 19e8 18|5r6 6r6 7r6 8r6 14r24 15r26 16r26 17r24
+X 2 a-charac.ads
+16K13*Characters 18e19 18|8r10 17r28
+X 3 a-chahan.ads
+38K24*Handling 146e28 18|8w21 17r39
+68V13*To_Lower{string} 18|35r50
+X 10 a-string.ads
+16K13*Strings 35e16 18|7r10 14r28
+X 12 a-strunb.ads
+41K21*Unbounded 430e26 18|7w18 14r36
+44R9*Unbounded_String 397e14 18|20r18
+59V13*To_Unbounded_String{44R9} 18|23r19 35r27
+65V13*To_String{string} 18|25r14 35r62 36r26 36r59
+X 15 a-textio.ads
+50K13*Text_IO 482e16 18|5w10 6r10 15r30 16r30
+168U14*New_Line 18|38r18
+171U14*Skip_Line 18|30r15
+244U14*Put 18|33r18
+265U14*Put_Line 18|37r18
+X 16 a-tiunio.ads
+25K21*Unbounded_IO 61e29 18|6w18 16r38
+57U14*Get_Line=59:42 18|34r18
+X 18 assg2.adb
+11U11*assg2 11b11 43l5 43t10
+13K13 pp=13:24 19r14 27r10 28r10
+14K13 su=14:36 20r15 23r16 25r11 35r24 35r59 36r23 36r56
+15K13 t_io=15:30 30r10 33r13 37r13 38r13
+16K13 u_io=16:38 34r13
+17K13 ch=17:39 35r47
+19p5 pizzas{21|24P10} 27m38 28r32
+20r5 command{12|44R9} 23m5 25r24 34m27 35m13 35r72 36r36 36r69
+X 21 pizzapackage.ads
+7K9*Pizzapackage 18|9w6 13r24 21|34e17
+23A10*PizzaStack(13R10)<integer>
+24P10*PizzaStackPtr(23A10) 18|19r17
+28U15*startPizzaStack 18|27r13
+28p32 stack{24P10} 18|27r29
+31U15*bestPizza 18|28r13
+31p26 stack{24P10} 18|28r23
+

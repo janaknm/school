@@ -1,0 +1,67 @@
+V "GNAT Lib v4.3"
+M P W=b
+P SS ZX
+R nnnnnnnnnnnnnnnnnnnnnvnnnnnnnnvnnnnnnvnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U testit%b		testit.adb		69c82638 NE SU IL
+W ada%s			ada.ads			ada.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+W m_io%s		m_io.adb		m_io.ali
+W system%s		system.ads		system.ali
+W system.finalization_implementation%s  s-finimp.adb  s-finimp.ali
+W system.finalization_root%s  s-finroo.adb	s-finroo.ali
+W system.parameters%s	s-parame.adb		s-parame.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.standard_library%s  s-stalib.adb	s-stalib.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-charac.ads		20070912115821 506ce725
+D a-chlat1.ads		20070912115821 e9ee6d0a
+D a-except.ads		20070606104609 ba3e26e2
+D a-finali.ads		20070606101851 9eaacebd
+D a-stream.ads		20061031174905 34aca5be
+D a-string.ads		20070406091342 87b4230b
+D a-strmap.ads		20061031174905 5253a637
+D a-strunb.ads		20061031174905 f0549c04
+D a-tags.ads		20071213102130 e10285b3
+D a-unccon.ads		20070406091342 51e09df2
+D m_io.ads		20091007234822 e826a664
+D system.ads		20090219101008 28071540
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-finimp.ads		20070606101344 9449f4cb
+D s-finroo.ads		20070814084926 1408f9d1
+D s-parame.ads		20070814084525 f32e56e9
+D s-secsta.ads		20070912115821 7bae3621
+D s-soflin.ads		20071213103411 2b67bae6
+D s-stache.ads		20070912115821 257b3be8
+D s-stalib.ads		20070912115821 9ac44ca2
+D s-stoele.ads		20070912115821 1104c881
+D s-stoele.adb		20071213103502 e9998c78
+D s-stratt.ads		20070406092920 b4bf338e
+D s-traent.ads		20070912115821 bd5f2753
+D s-unstyp.ads		20070912115821 c0f9fae5
+D testit.adb		20091008001647 71ba1c58
+X 1 ada.ads
+16K9*Ada 19e8 27|2r6 6r24
+X 7 a-string.ads
+16K13*Strings 35e16 27|2r10 6r28
+X 9 a-strunb.ads
+41K21*Unbounded 430e26 27|2w18 6r36
+44R9*Unbounded_String 397e14 27|11r28
+X 12 m_io.ads
+5K9*m_io 14e9 27|1w6 15r14 16r16 17r17 18r26
+7P10*StringPtr(string)
+9V14*getInt{integer} 27|15r19
+10V14*getFloat{float} 27|16r21
+11V14*getString{7P10} 27|17r22
+12V14*getUnboundedString{9|44R9} 27|18r31
+X 27 testit.adb
+4U11*testit 4b11 20l5 20t11
+6K13 su=6:36 11r25
+8i5 myInt{integer} 15m5
+9f5 myFloat{float} 16m5
+10a5 myString{string} 17m5
+11r5 myUnboundedString{9|44R9} 18m5
+

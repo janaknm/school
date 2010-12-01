@@ -1,0 +1,80 @@
+V "GNAT Lib v4.3"
+M P W=b
+P SS ZX
+R nnnnnnnnnnnnnnnnnnnnnnvnnnnnnnvnnnnnnvnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U unboundedcmd%b	unboundedcmd.adb	5735d301 NE SU IL
+W ada%s			ada.ads			ada.ali
+W ada.command_line%s	a-comlin.adb		a-comlin.ali
+W ada.finalization.list_controller%s  a-filico.adb  a-filico.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W system%s		system.ads		system.ali
+W system.finalization_implementation%s  s-finimp.adb  s-finimp.ali
+W system.finalization_root%s  s-finroo.adb	s-finroo.ali
+W system.img_int%s	s-imgint.adb		s-imgint.ali
+W system.parameters%s	s-parame.adb		s-parame.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.standard_library%s  s-stalib.adb	s-stalib.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-charac.ads		20070912115821 506ce725
+D a-chlat1.ads		20070912115821 e9ee6d0a
+D a-comlin.ads		20051115140645 3b71d99c
+D a-except.ads		20070606104609 ba3e26e2
+D a-finali.ads		20070606101851 9eaacebd
+D a-filico.ads		20051115140645 9299732a
+D a-ioexce.ads		20070406091342 be0900a0
+D a-stream.ads		20061031174905 34aca5be
+D a-string.ads		20070406091342 87b4230b
+D a-strmap.ads		20061031174905 5253a637
+D a-strunb.ads		20061031174905 f0549c04
+D a-tags.ads		20071213102130 e10285b3
+D a-textio.ads		20071213102052 bc6e78fe
+D a-unccon.ads		20070406091342 51e09df2
+D interfac.ads		20051209172227 a69cad5c
+D i-cstrea.ads		20070406092312 e1e064a9
+D system.ads		20090219101008 28071540
+D s-crtl.ads		20070406092312 ef997abb
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-ficobl.ads		20070814084926 8bb681e5
+D s-finimp.ads		20070606101344 9449f4cb
+D s-finroo.ads		20070814084926 1408f9d1
+D s-imgint.ads		20071213103004 f77d133c
+D s-parame.ads		20070814084525 f32e56e9
+D s-secsta.ads		20070912115821 7bae3621
+D s-soflin.ads		20071213103411 2b67bae6
+D s-stache.ads		20070912115821 257b3be8
+D s-stalib.ads		20070912115821 9ac44ca2
+D s-stoele.ads		20070912115821 1104c881
+D s-stoele.adb		20071213103502 e9998c78
+D s-stratt.ads		20070406092920 b4bf338e
+D s-traent.ads		20070912115821 bd5f2753
+D s-unstyp.ads		20070912115821 c0f9fae5
+D s-wchcon.ads		20071213102052 ab028799
+D unboundedcmd.adb	20091007155618 207eee67
+X 1 ada.ads
+16K9*Ada 19e8 36|1r6 2r6 3r6 7r26 8r24 9r24
+X 4 a-comlin.ads
+38K13*Command_Line 136e21 36|2w10 8r28
+48V13*Argument{string} 36|11r58 21r36
+X 10 a-string.ads
+16K13*Strings 35e16 36|3r10 9r28
+X 12 a-strunb.ads
+41K21*Unbounded 430e26 36|3w18 9r36
+44R9*Unbounded_String 397e14 36|11r12
+59V13*To_Unbounded_String{44R9} 36|11r35 21r13
+65V13*To_String{string} 36|16r17 18r31 24r17 26r31
+X 14 a-textio.ads
+50K13*Text_IO 482e16 36|1w10 7r30
+168U14*New_Line 36|19r10
+244U14*Put 36|15r10 16r10 17r10 18r10 23r10 24r10 25r10 26r10
+X 36 unboundedcmd.adb
+5U11*unboundedcmd 5b11 28l5 28t17
+7K13 t_io=7:30 15r5 16r5 17r5 18r5 19r5 23r5 24r5 25r5 26r5
+8K13 cl=8:28 11r55 21r33
+9K13 su=9:36 11r9 11r32 16r14 18r28 21r10 24r14 26r28
+11r5 x{12|44R9} 16r27 18r41 21m5 24r27 26r41
+
