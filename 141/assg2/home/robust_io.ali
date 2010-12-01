@@ -1,0 +1,91 @@
+V "GNAT Lib v4.3"
+P SS ZX
+R nnnnnnnnnnnnnnnvnnvnnvvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U robust_io%b		robust_io.adb		bd62285d NE PK IL
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+
+U robust_io%s		robust_io.ads		e63178b8 EE NE PK IL
+W ada%s			ada.ads			ada.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-charac.ads		20070912115821 506ce725
+D a-chlat1.ads		20070912115821 e9ee6d0a
+D a-except.ads		20070606104609 ba3e26e2
+D a-finali.ads		20070606101851 9eaacebd
+D a-filico.ads		20051115140645 9299732a
+D a-flteio.ads		20070406091342 3407344a
+D a-inteio.ads		20070406091342 03bc737c
+D a-ioexce.ads		20070406091342 be0900a0
+D a-stream.ads		20061031174905 34aca5be
+D a-string.ads		20070406091342 87b4230b
+D a-strmap.ads		20061031174905 5253a637
+D a-strunb.ads		20061031174905 f0549c04
+D a-tags.ads		20071213102130 e10285b3
+D a-textio.ads		20071213102052 bc6e78fe
+D a-tiflio.ads		20060215092843 5d91823c
+D a-tiinio.ads		20060215092843 949a7272
+D a-unccon.ads		20070406091342 51e09df2
+D interfac.ads		20051209172227 a69cad5c
+D i-cstrea.ads		20070406092312 e1e064a9
+D robust_io.ads		20091012063505 9db0db74
+D robust_io.adb		20091012063702 20d2f329
+D system.ads		20090219091504 e2b32c27
+D s-crtl.ads		20070406092312 ef997abb
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-ficobl.ads		20070814084926 8bb681e5
+D s-finimp.ads		20070606101344 9449f4cb
+D s-finroo.ads		20070814084926 1408f9d1
+D s-parame.ads		20070814084525 f32e56e9
+D s-secsta.ads		20070912115821 7bae3621
+D s-soflin.ads		20071213103411 2b67bae6
+D s-stache.ads		20070912115821 257b3be8
+D s-stalib.ads		20070912115821 9ac44ca2
+D s-stoele.ads		20070912115821 1104c881
+D s-stoele.adb		20071213103502 e9998c78
+D s-stratt.ads		20070406092920 b4bf338e
+D s-traent.ads		20070912115821 bd5f2753
+D s-unstyp.ads		20070912115821 c0f9fae5
+D s-wchcon.ads		20071213102052 ab028799
+X 1 ada.ads
+16K9*Ada 19e8 21|1r6 2r6 3r6 4r6 8r26 9r26 10r26 11r24
+X 7 a-flteio.ads
+20K13*Float_Text_IO[16|47] 21|2w10 10r30
+X 8 a-inteio.ads
+18K13*Integer_Text_IO[17|47] 21|3w10 9r30
+X 11 a-string.ads
+16K13*Strings 35e16 21|4r10 11r28
+X 13 a-strunb.ads
+41K21*Unbounded 430e26 21|4w18 11r36
+X 15 a-textio.ads
+50K13*Text_IO 482e16 21|1w10 8r30
+168U14*New_Line 22|10r14
+171U14*Skip_Line 22|8r14
+244U14*Put 22|18r22 36r22
+265U14*Put_Line 22|9r14
+300X4*Data_Error 22|22r27 40r27
+X 16 a-tiflio.ads
+58U14*Get 22|37r22[7|20]
+X 17 a-tiinio.ads
+57U14*Get 22|19r22[8|18]
+X 21 robust_io.ads
+6K9*robust_io 18l5 18e14 22|4b14 49l5 49t14
+8K13*t_io=8:30 22|8r9 9r9 10r9 18r17 22r22 36r17 40r22
+9K13*i_io=9:30 22|19r17
+10K13*f_io=10:30 22|37r17
+11K13*su=11:36
+13U15*handleError 13>27 22|6b15 11l9 11t20 23r21 25r21 41r21 43r21
+13s27 message{string} 22|6b28 9r23
+15V14*getInt{integer} 15>21 22|13b14 29l9 29t15
+15s21 message{string} 22|13b22 18r26
+16V14*getFloat{float} 16>23 22|31b14 47l9 47t17
+16s23 message{string} 22|31b24 36r26
+X 22 robust_io.adb
+14i9 retVal{integer} 19m26 28r16
+32f9 retVal{float} 37m26 46r16
+

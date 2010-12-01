@@ -1,0 +1,56 @@
+V "GNAT Lib v4.3"
+P ZX
+R nnnvnnnnnnnnnnnnnnvnnnnnnnnnvnnnnnnnnnnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U generic_queue%b	generic_queue.adb	54aaec45 NE PK GE
+
+U generic_queue%s	generic_queue.ads	a44a172f BN EE NE PK GE KM
+W ada%s			ada.ads			ada.ali
+W ada.unchecked_deallocation%s
+W generic_linked_list%s	generic_linked_list.adb	generic_linked_list.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-uncdea.ads		20070406091342 dc667e6d
+D generic_linked_list.ads  20100204191035 768545de
+D generic_linked_list.adb  20100204192658 863cee04
+D generic_queue.ads	20100204192532 d2cf52f1
+D generic_queue.adb	20100204192657 8665beb4
+D system.ads		20090825132209 28071540
+X 3 generic_linked_list.ads
+7k9*Generic_Linked_List 45e24 5|4w6 40r40
+9R10 list
+10P10 listPtr(9R10[5|40]) 5|41r49[40]
+18V14 value{5|7+10} 6|41r17[5|40] 51r16[5|40]
+27V14 insert_after{10P10[5|40]} 6|28r26[5|40]
+30U15 remove 6|42r9[5|40]
+36U15 clear 6|65r9[5|40]
+X 5 generic_queue.ads
+7+10 Element_t 21r55 24r51 27r49 40r60 6|25r55 34r51 35r16 46r49
+8k9*Generic_Queue 7z10 50l5 50e18 6|5b14 68l5 68t18
+11R10*Queue 12r29 43c10 48e19 6|13r23
+12P10*QueuePtr(11R10) 18r31 21r35 24r34 27r32 30r32 33r31 36r33 6|10r31 11r18
+. 20r28 25r35 34r34 46r32 54r32 62r33
+15X5*Queue_Underflow 6|38r19 49r19
+18V14*new_queue{12P10} 6|10b14 18l9 18t18
+21U15*enqueue 21>23 21>45 6|25b15 32l9 32t16
+21p23 aQueue{12P10} 6|25b23 27m9 27r24 28m9 28r39 29r12 30m13 30r27
+21*45 Item{7+10} 6|25b45 28r54
+24V14*dequeue{7+10} 24>22 6|34b14 44l9 44t16
+24p22 aQueue{12P10} 6|34b22 37r18 40m9 40r24 41r23 42m16 42m28
+27V14*front{7+10} 27>20 6|46b14 52l9 52t14
+27p20 aQueue{12P10} 6|46b20 48r18 51r22
+30V14*empty{boolean} 30>20 6|37r12 48r12 54b14 60l9 60t14
+30p20 aQueue{12P10} 6|54b20 56r12
+33V14*size{natural} 33>19 6|20b14 23l9 23t13
+33p19 aQueue{12P10} 6|20b19 22r16
+36U15*clear 36>21 6|62b15 66l9 66t14
+36p21 aQueue{12P10} 6|62b21 64m9 65m15
+40K13 Element_Linked_List[3|7] 41r29 6|8r9
+41P13 Element_List{3|10P10[40]} 45r19 46r22
+45p13 top{41P13} 6|15m16 29r19 30m20 41r30 42m23 42m35 51r29 65m22
+46p13 bottom{41P13} 6|16m16 28m16 28r46 30r34
+47i13 size{natural} 6|14m16 22r23 27m16 27r31 40m16 40r31 56r19 64m16
+X 6 generic_queue.adb
+11p9 nQueue{5|12P10} 13m9 14m9 15m9 16m9 17r16
+35*9 rVal{5|7+10} 41m9 43r16
+

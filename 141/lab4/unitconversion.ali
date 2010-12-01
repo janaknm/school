@@ -1,0 +1,112 @@
+V "GNAT Lib v4.3"
+P SS ZX
+R nnnvnnnnvnnnnnnnnnnnnvvvnnvnvnvnnnnnnvnvnnnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnn
+
+U unitconversion%b	unitconversion.adb	3449e019 NE PK IL
+
+U unitconversion%s	unitconversion.ads	431ed5e1 EE PK IL
+W ada%s			ada.ads			ada.ali
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.finalization.list_controller%s  a-filico.adb  a-filico.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W ada.streams%s		a-stream.ads		a-stream.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W system%s		system.ads		system.ali
+W system.finalization_implementation%s  s-finimp.adb  s-finimp.ali
+W system.finalization_root%s  s-finroo.adb	s-finroo.ali
+W system.parameters%s	s-parame.adb		s-parame.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.standard_library%s  s-stalib.adb	s-stalib.ali
+W system.storage_elements%s  s-stoele.adb	s-stoele.ali
+W system.stream_attributes%s  s-stratt.adb	s-stratt.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-charac.ads		20070912115821 506ce725
+D a-chlat1.ads		20070912115821 e9ee6d0a
+D a-except.ads		20070606104609 ba3e26e2
+D a-finali.ads		20070606101851 9eaacebd
+D a-filico.ads		20051115140645 9299732a
+D a-flteio.ads		20070406091342 3407344a
+D a-ioexce.ads		20070406091342 be0900a0
+D a-stream.ads		20061031174905 34aca5be
+D a-string.ads		20070406091342 87b4230b
+D a-strmap.ads		20061031174905 5253a637
+D a-strunb.ads		20061031174905 f0549c04
+D a-tags.ads		20071213102130 e10285b3
+D a-textio.ads		20071213102052 bc6e78fe
+D a-tiflio.ads		20060215092843 5d91823c
+D a-unccon.ads		20070406091342 51e09df2
+D interfac.ads		20051209172227 a69cad5c
+D i-cstrea.ads		20070406092312 e1e064a9
+D system.ads		20090219091504 e2b32c27
+D s-crtl.ads		20070406092312 ef997abb
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-ficobl.ads		20070814084926 8bb681e5
+D s-finimp.ads		20070606101344 9449f4cb
+D s-finroo.ads		20070814084926 1408f9d1
+D s-parame.ads		20070814084525 f32e56e9
+D s-secsta.ads		20070912115821 7bae3621
+D s-soflin.ads		20071213103411 2b67bae6
+D s-stache.ads		20070912115821 257b3be8
+D s-stalib.ads		20070912115821 9ac44ca2
+D s-stoele.ads		20070912115821 1104c881
+D s-stoele.adb		20071213103502 e9998c78
+D s-stratt.ads		20070406092920 b4bf338e
+D s-traent.ads		20070912115821 bd5f2753
+D s-unstyp.ads		20070912115821 c0f9fae5
+D s-wchcon.ads		20071213102052 ab028799
+D unitconversion.ads	20091018200943 3b230551
+D unitconversion.adb	20091018200943 0f6ae548
+X 1 ada.ads
+16K9*Ada 19e8 36|6r6 7r6 8r6 12r25 13r25 14r23
+X 7 a-flteio.ads
+20K13*Float_Text_IO[15|47] 36|7w10 13r29
+X 10 a-string.ads
+16K13*Strings 35e16 36|8r10 14r27
+X 12 a-strunb.ads
+41K21*Unbounded 430e26 36|8w18 14r35
+44R9*Unbounded_String 397e14 36|21r22 22r23
+65V13*To_String{string} 37|18r19 22r19
+X 14 a-textio.ads
+50K13*Text_IO 482e16 36|6w10 12r29
+75I12*Field{integer}
+244U14*Put 37|17r12 18r12 19r12 21r12 22r12
+265U14*Put_Line 37|23r12
+X 15 a-tiflio.ads
+69U14*Put 37|11r12[7|20]
+70f7 Item{float} 37|11r16[7|20]
+71i7 Fore{14|75I12} 37|11r30[7|20]
+72i7 Aft{14|75I12} 37|11r41[7|20]
+73i7 Exp{14|75I12} 37|11r51[7|20]
+X 36 unitconversion.ads
+10K9*UnitConversion 56l5 56e19 37|8b14 46l5 46t19
+12K12*t_io=12:29 37|17r7 18r7 19r7 21r7 22r7 23r7
+13K12*f_io=13:29 37|11r7
+14K12*su=14:35 21r19 22r20 37|18r16 22r16
+17R9*Unit 24e17 27p14 27r37 30r25 39r24 43r27 47r31 53r33 37|14r33 26r37
+20f10*Magnitude{float} 37|16r21 33r33 38r34 43r34
+21r10*InUnit{12|44R9} 37|18r34
+22r10*OutUnit{12|44R9} 37|22r34
+23f10*NewMagnitude{float} 37|20r21 33m12 38m12 43m12
+27U14*convert 27=23 37|26b14 29l8 29t15
+27r23 Item{17R9} 37|26b23
+30R9*EasyUnit<17R9> 33e17 36P14 36r37 37|31r37
+32f10*Rate{float} 37|33r50
+36U14*convert<27p14> 36=23 37|31b14 34l8 34t15
+36r23 Item{30R9} 37|31b23 33m7 33r28 33r45
+39R9*Celcius<17R9> 39e45 40P14 40r37 37|36r37
+40U14*convert<27p14> 40=23 37|36b14 39l8 39t15
+40r23 Item{39R9} 37|36b23 38m7 38r29
+43R9*Fahrenheit<17R9> 43e48 44P14 44r37 37|41r37
+44U14*convert<27p14> 44=23 37|41b14 44l8 44t15
+44r23 Item{43R9} 37|41b23 43m7 43r29
+47P9*UnitPtr(17R9)
+50U14*putFloat 50>24 37|9b14 12l8 12t16 16r7 20r7
+50f24 Item{float} 37|9b23 11r24
+53U14*putUnit 53>23 37|14b14 24l8 24t15
+53c23 Item<17R9> 37|14b23 16r16 18r29 20r16 22r29
+

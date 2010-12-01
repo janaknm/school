@@ -1,0 +1,73 @@
+V "GNAT Lib v4.3"
+M P W=b
+P SS ZX
+R nnnnnnnnnnnnnnnvnnvnnvvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U assg2%b		assg2.adb		41e076af NE SU IL
+W ada%s			ada.ads			ada.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W expressions%s		expressions.adb		expressions.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-except.ads		20070606104609 ba3e26e2
+D a-finali.ads		20070606101851 9eaacebd
+D a-filico.ads		20051115140645 9299732a
+D a-flteio.ads		20070406091342 3407344a
+D a-ioexce.ads		20070406091342 be0900a0
+D a-stream.ads		20061031174905 34aca5be
+D a-tags.ads		20071213102130 e10285b3
+D a-textio.ads		20071213102052 bc6e78fe
+D a-tiflio.ads		20060215092843 5d91823c
+D a-unccon.ads		20070406091342 51e09df2
+D assg2.adb		20100203233727 4eaee7c0
+D expressions.ads	20100204193627 8727dddb
+D generic_linked_list.ads  20100204191035 768545de
+D generic_queue.ads	20100204192532 d2cf52f1
+D generic_stack.ads	20100204165815 5e3d00e6
+D interfac.ads		20051209172227 a69cad5c
+D i-cstrea.ads		20070406092312 e1e064a9
+D system.ads		20090825132209 28071540
+D s-crtl.ads		20070406092312 ef997abb
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-ficobl.ads		20070814084926 8bb681e5
+D s-finimp.ads		20070606101344 9449f4cb
+D s-finroo.ads		20070814084926 1408f9d1
+D s-parame.ads		20070814084525 f32e56e9
+D s-secsta.ads		20070912115821 7bae3621
+D s-soflin.ads		20071213103411 2b67bae6
+D s-stache.ads		20070912115821 257b3be8
+D s-stalib.ads		20070912115821 9ac44ca2
+D s-stoele.ads		20070912115821 1104c881
+D s-stoele.adb		20071213103502 e9998c78
+D s-stratt.ads		20070406092920 b4bf338e
+D s-traent.ads		20070912115821 bd5f2753
+D s-unstyp.ads		20070912115821 c0f9fae5
+D s-wchcon.ads		20071213102052 ab028799
+X 1 ada.ads
+16K9*Ada 19e8 12|1r6 2r5 3r6 4r5
+X 5 a-flteio.ads
+20K13*Float_Text_IO[10|47] 12|3w10 4r9
+X 9 a-textio.ads
+50K13*Text_IO 482e16 12|1w10 2r9
+168U14*New_Line 12|24r13
+244U14*Put 12|17r5 29r9
+251U14*Get_Line 12|18r5 30r9
+252s7 Item{string} 12|18r14 30r18
+253i7 Last{natural} 12|18r27 30r31
+265U14*Put_Line 12|16r5 27r17
+X 10 a-tiflio.ads
+69U14*Put 12|23r13[5|20]
+X 12 assg2.adb
+8U11*assg2 8b11 32l5 32t10
+10i5 BufferSize{natural} 12r21
+12a5 cmd{string} 18m22 19r11 22r37 30m26
+13i5 last{natural} 18m35 19r18 22r44 30m39
+14f5 result{float} 22m13 23r17
+20q9 Catch_Invalid_Expression 28l13 28e37
+X 13 expressions.ads
+7K9*Expressions 12|5w6 6r5 13|42e18
+8X5*Invalid_Expression 12|26r18
+17V14*evalInfixExpr{float} 12|22r23
+

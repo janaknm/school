@@ -1,0 +1,122 @@
+V "GNAT Lib v4.3"
+M P W=b
+P SS ZX
+R nnnvnnnnnvnnnnnvnnvnnvvnnnnnvnvnnnnnnvnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U lab4%b		lab4.adb		beb84a99 NE SU
+W ada%s			ada.ads			ada.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W ada.text_io.unbounded_io%s  a-tiunio.ads	a-tiunio.ali
+W system%s		system.ads		system.ali
+W system.finalization_implementation%s  s-finimp.adb  s-finimp.ali
+W system.finalization_root%s  s-finroo.adb	s-finroo.ali
+W system.img_int%s	s-imgint.adb		s-imgint.ali
+W system.parameters%s	s-parame.adb		s-parame.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.standard_library%s  s-stalib.adb	s-stalib.ali
+W unitconversion%s	unitconversion.adb	unitconversion.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-charac.ads		20070912115821 506ce725
+D a-chlat1.ads		20070912115821 e9ee6d0a
+D a-except.ads		20070606104609 ba3e26e2
+D a-finali.ads		20070606101851 9eaacebd
+D a-filico.ads		20051115140645 9299732a
+D a-flteio.ads		20070406091342 3407344a
+D a-ioexce.ads		20070406091342 be0900a0
+D a-stream.ads		20061031174905 34aca5be
+D a-string.ads		20070406091342 87b4230b
+D a-strmap.ads		20061031174905 5253a637
+D a-strunb.ads		20061031174905 f0549c04
+D a-suteio.ads		20051115140645 d857a771
+D a-tags.ads		20071213102130 e10285b3
+D a-textio.ads		20071213102052 bc6e78fe
+D a-tiflio.ads		20060215092843 5d91823c
+D a-tiunio.ads		20070406091342 d721fe49
+D a-unccon.ads		20070406091342 51e09df2
+D interfac.ads		20051209172227 a69cad5c
+D i-cstrea.ads		20070406092312 e1e064a9
+D lab4.adb		20091018200942 2a876131
+D system.ads		20090219091504 e2b32c27
+D s-crtl.ads		20070406092312 ef997abb
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-ficobl.ads		20070814084926 8bb681e5
+D s-finimp.ads		20070606101344 9449f4cb
+D s-finroo.ads		20070814084926 1408f9d1
+D s-imgint.ads		20071213103004 f77d133c
+D s-parame.ads		20070814084525 f32e56e9
+D s-secsta.ads		20070912115821 7bae3621
+D s-soflin.ads		20071213103411 2b67bae6
+D s-stache.ads		20070912115821 257b3be8
+D s-stalib.ads		20070912115821 9ac44ca2
+D s-stoele.ads		20070912115821 1104c881
+D s-stoele.adb		20071213103502 e9998c78
+D s-stratt.ads		20070406092920 b4bf338e
+D s-traent.ads		20070912115821 bd5f2753
+D s-unstyp.ads		20070912115821 c0f9fae5
+D s-wchcon.ads		20071213102052 ab028799
+D unitconversion.ads	20091018200943 3b230551
+X 1 ada.ads
+16K9*Ada 19e8 21|1r6 2r6 3r6 4r6 10r25 11r25 12r25 13r23
+X 7 a-flteio.ads
+20K13*Float_Text_IO[16|47] 21|2w10 11r29
+X 10 a-string.ads
+16K13*Strings 35e16 21|4r10 13r27
+X 12 a-strunb.ads
+41K21*Unbounded 430e26 21|4w18 13r35
+44R9*Unbounded_String 397e14 21|75r17
+59V13*To_Unbounded_String{44R9} 21|28r31 29r32 35r31 36r32 42r31 43r32 49r31
+. 50r32 56r31 57r32 62r31 63r32
+65V13*To_String{string} 21|121r23
+X 15 a-textio.ads
+50K13*Text_IO 482e16 21|1w10 3r10 10r29 12r29
+168U14*New_Line 21|82r18 132r10
+171U14*Skip_Line 21|111r22 125r26
+208U14*Get 21|92r22
+244U14*Put 21|84r18 133r10 134r10 135r28 136r15
+265U14*Put_Line 21|83r18 112r22 126r26
+300X4*Data_Error 21|115r23
+X 16 a-tiflio.ads
+58U14*Get 21|87r18[7|20]
+X 17 a-tiunio.ads
+25K21*Unbounded_IO 61e29 21|3w18 12r37
+57U14*Get_Line=59:42 21|118r22
+X 21 lab4.adb
+8U11*Lab4 8b11 138l5 138t9
+10K12 t_io=10:29 82r13 83r13 84r13 92r17 111r17 112r17 115r18 125r21 126r21
+. 132r5 133r5 134r5 135r23 136r10
+11K12 f_io=11:29 87r13
+12K12 u_io=12:37 118r17
+13K12 su=13:35 28r28 29r29 35r28 36r29 42r28 43r29 49r28 50r29 56r28 57r29
+. 62r28 63r29 75r14 121r20
+14K12 uc=14:23 20r74 21r16 25r27 32r27 39r27 46r27 53r27 59r27 73r24 102r17
+. 105r17
+20V13 makeUnit{40|47P9} 20b13 20>23 20>44 68l8 68t16 96r35
+20e23 char{character} 23r12 96r44
+20f44 magnitude{float} 26r31 33r31 40r31 47r31 54r31 60r31 96r58
+21p7 retVal{40|47P9} 25m13 32m13 39m13 46m13 53m13 59m13 64m24 67r14
+71f4 magnitude{float} 87m22 96r71
+72e4 char{character} 90m13 91r19 92m26 96r52
+73p4 currentConversion{40|47P9} 96m13 99r16 102r28 105r28
+74i4 count{integer} 108m17 108r26 133r28 135r8
+75r4 command{12|44R9} 118m31 121r33
+76a4 quitCommand{string} 121r44
+X 40 unitconversion.ads
+10K9*UnitConversion 21|5w6 6r9 14r23 40|56e19
+20f10*Magnitude{float} 21|26r18 33r18 40r18 47r18 54r18 60r18
+21r10*InUnit{12|44R9} 21|28r18 35r18 42r18 49r18 56r18 62r18
+22r10*OutUnit{12|44R9} 21|29r18 36r18 43r18 50r18 57r18 63r18
+23f10*NewMagnitude{float} 21|27r18 34r18 41r18 48r18 55r18 61r18
+27U14*convert 21|102R20
+30R9*EasyUnit<17R9> 21|25r30 32r30 39r30 46r30 40|33e17
+32f10*Rate{float} 21|30r18 37r18 44r18 51r18
+39R9*Celcius<17R9> 21|53r30 40|39e45
+43R9*Fahrenheit<17R9> 21|59r30 40|43e48
+47P9*UnitPtr(17R9) 21|20r77 21r19 73r27
+53U14*putUnit 21|105r20
+

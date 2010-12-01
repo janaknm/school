@@ -1,0 +1,71 @@
+V "GNAT Lib v4.3"
+P NO SS ZX
+R nnnnnnnnvnnnnnnvnnvnnvnvnnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnn
+
+U oo%s			oo.ads			42e693cd EE PK IL
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.streams%s		a-stream.ads		a-stream.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W system%s		system.ads		system.ali
+W system.finalization_root%s  s-finroo.adb	s-finroo.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.storage_elements%s  s-stoele.adb	s-stoele.ali
+W system.stream_attributes%s  s-stratt.adb	s-stratt.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-except.ads		20070606104609 ba3e26e2
+D a-stream.ads		20061031174905 34aca5be
+D a-tags.ads		20071213102130 e10285b3
+D a-unccon.ads		20070406091342 51e09df2
+D oo.ads		20091014231609 42e693cd
+D system.ads		20090219101008 28071540
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-finroo.ads		20070814084926 1408f9d1
+D s-parame.ads		20070814084525 f32e56e9
+D s-secsta.ads		20070912115821 7bae3621
+D s-soflin.ads		20071213103411 2b67bae6
+D s-stache.ads		20070912115821 257b3be8
+D s-stalib.ads		20070912115821 9ac44ca2
+D s-stoele.ads		20070912115821 1104c881
+D s-stoele.adb		20071213103502 e9998c78
+D s-stratt.ads		20070406092920 b4bf338e
+D s-traent.ads		20070912115821 bd5f2753
+D s-unstyp.ads		20070912115821 c0f9fae5
+X 6 oo.ads
+1K9*oo 38l5 38e7
+3R10*Point 5e15 9r19
+4i9*x{integer}
+4i12*y{integer}
+7R10*shape 10e19 11p14 11r26 12p14 12r31 13p15 13r27 15r26 24r27 35r32
+9r13*pos{3R10}
+11V14*area{float} 11>19
+11r19 s{7R10}
+12V14*perimeter{float} 12>24
+12r24 s{7R10}
+13U15*draw 13>20
+13r20 s{7R10}
+15R10*triangle<7R10> 19e19 20P14 20r26 21P14 21r31 22P15 22r27
+17f13*base{float}
+18f13*height{float}
+20V14*area{float}<11p14> 20>19
+20r19 t{15R10}
+21V14*perimeter{float}<12p14> 21>24
+21r24 t{15R10}
+22U15*draw<13p15> 22>20
+22r20 t{15R10}
+24R10*rectangle<7R10> 28e19 29P14 29r26 30P14 30r31 31P15 31r27 33r24 36r27
+26f13*width{float}
+27f13*height{float}
+29V14*area{float}<11p14> 29>19
+29r19 r{24R10}
+30V14*perimeter{float}<12p14> 30>24
+30r24 r{24R10}
+31U15*draw<13p15> 31>20
+31r20 r{24R10}
+33R10*square<24R10> 29P14 30P14 31P15 33e50
+35U15*calculate 35>25
+35c25 s<7R10>
+36U15*boxy 36>20
+36c20 b<24R10>
+

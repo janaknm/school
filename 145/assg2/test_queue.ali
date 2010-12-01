@@ -1,0 +1,73 @@
+V "GNAT Lib v4.3"
+M P W=b
+P SS ZX
+R nnnvnnnnnnnnnnnnnnvnnnvvnnnnvnnnnnnnnnnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U test_queue%b		test_queue.adb		224061ab NE SU IL
+W ada%s			ada.ads			ada.ali
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W ada.unchecked_deallocation%s
+W generic_linked_list%s	generic_linked_list.adb	generic_linked_list.ali
+W generic_queue%s	generic_queue.adb	generic_queue.ali
+W system%s		system.ads		system.ali
+W system.exception_table%s  s-exctab.adb	s-exctab.ali
+W system.img_int%s	s-imgint.adb		s-imgint.ali
+W system.standard_library%s  s-stalib.adb	s-stalib.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-except.ads		20070606104609 ba3e26e2
+D a-finali.ads		20070606101851 9eaacebd
+D a-filico.ads		20051115140645 9299732a
+D a-ioexce.ads		20070406091342 be0900a0
+D a-stream.ads		20061031174905 34aca5be
+D a-tags.ads		20071213102130 e10285b3
+D a-textio.ads		20071213102052 bc6e78fe
+D a-unccon.ads		20070406091342 51e09df2
+D a-uncdea.ads		20070406091342 dc667e6d
+D generic_linked_list.ads  20100204191035 768545de
+D generic_linked_list.adb  20100204191158 863cee04
+D generic_queue.ads	20100204192532 d2cf52f1
+D generic_queue.adb	20100204192554 8665beb4
+D interfac.ads		20051209172227 a69cad5c
+D i-cstrea.ads		20070406092312 e1e064a9
+D system.ads		20090825132209 28071540
+D s-crtl.ads		20070406092312 ef997abb
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-ficobl.ads		20070814084926 8bb681e5
+D s-finimp.ads		20070606101344 9449f4cb
+D s-finroo.ads		20070814084926 1408f9d1
+D s-imgint.ads		20071213103004 f77d133c
+D s-parame.ads		20070814084525 f32e56e9
+D s-secsta.ads		20070912115821 7bae3621
+D s-soflin.ads		20071213103411 2b67bae6
+D s-stache.ads		20070912115821 257b3be8
+D s-stalib.ads		20070912115821 9ac44ca2
+D s-stoele.ads		20070912115821 1104c881
+D s-stoele.adb		20071213103502 e9998c78
+D s-stratt.ads		20070406092920 b4bf338e
+D s-traent.ads		20070912115821 bd5f2753
+D s-unstyp.ads		20070912115821 c0f9fae5
+D s-wchcon.ads		20071213102052 ab028799
+D test_queue.adb	20100204192643 3a640e7a
+X 1 ada.ads
+16K9*Ada 19e8 35|3r6 4r5
+X 8 a-textio.ads
+50K13*Text_IO 482e16 35|3w10 4r9
+265U14*Put_Line 35|20r9
+X 11 generic_linked_list.ads
+7k9*Generic_Linked_List 45e24 35|1w6
+X 13 generic_queue.ads
+8k9*Generic_Queue 50e18 35|2w6 7r28
+11R10 Queue
+12P10 QueuePtr(11R10[35|7]) 35|10r17[7]
+18V14 new_queue{12P10[35|7]} 35|12r10[7]
+21U15 enqueue 35|13r5[7] 14r5[7] 15r5[7] 16r5[7] 17r5[7] 18r5[7]
+24V14 dequeue{integer} 35|20r32[7]
+30V14 empty{boolean} 35|19r15[7]
+X 35 test_queue.adb
+6U11*test_queue 6b11 22l5 22t15
+7K13 i_queue[13|8] 8r9 10r9
+10p5 q{13|12P10[7]} 12m5 13r13 14r13 15r13 16r13 17r13 18r13 19r21 20r40
+

@@ -3,11 +3,12 @@
 \usepackage{fullpage}
 \usepackage{color}
 \usepackage{enumerate}
+\usepackage{graphicx}
 
 \begin{document}
 \title{Five or More Group Analysis\\ Part Two}
-\date{October 21, 2010}
-\author{Matt Forbes \\ Nick Fitzgerald \\ KC Faulkner \\ Chris LOL}
+\date{November 30, 2010}
+\author{Matt Forbes \\ Nick Fitzgerald \\ KC Faulkner \\ Chris Erickson}
 \maketitle
 
 \section*{Definitions}
@@ -23,10 +24,31 @@
     
 \end{tabular}
 
+
+\section*{Goals}
+
+To be clear, we are optimizing for average longevity and points per
+game. This contrasts with the approach of taking high risks and
+attempting to get an incredible amount of points while failing
+frequently; betting on the high risk and high reward route. We are
+taking the safe route, so to speak.
+
+We recognize that you do get more points for removing lines of length
+greater than the minimum 5, however you shouldnt prioritize this
+technique. The problem is that it sets you up to lose access to that
+group when a new marble is spawned in a place that you had reserved
+for one of your final marbles. Now, not only can you not get the 6 or
+more marbles you were stacking up, but it is possible you cannot even
+get the original 5. This is too much of a risk, and will not pay out
+in the long term.
+
+
 \section*{Group Selection}
 
-Ranked in order of highest priority. When multiple color groups match a rule, the use
-the list of tie breaking rules, or continue to the next rule if no rules break the tie.
+Ranked in order of highest priority. When multiple color groups match
+a rule, the use the list of tie breaking rules, or continue to the
+next rule if no rules break the tie, similar to the way which Bucket
+Sort operates.
 
 \begin{enumerate}[1)]
 
@@ -42,6 +64,12 @@ the list of tie breaking rules, or continue to the next rule if no rules break t
         color and where to start it are discussed below.
 
 \end{enumerate}
+
+Because we are not going out of our way to to get groups of 6 or more,
+the obvious choice is to complete a group as soon as possible. We
+should always try and complete one specific group so that we can clear
+its marbles and open the board up because that increases the longevity
+of our game, and thus the amount of points we can gain.
 
 \section*{Actual Marble Selection}
 
@@ -68,6 +96,13 @@ if there are multiple options. These rules also discuss which side of the group 
       
 \end{enumerate}
 
+Our primary goals of marble selection are to aid in the completion of
+the largest groups and to keep the board open and clear. The reason
+for attaching marbles to the side that is more blocked off is that
+after your turn it will be harder to move marbles to that group, so
+you sould take advantage of the crowded areas before they are blocked
+off and inaccessible.
+
 \section*{Starting a group}
 
 These are guidelines about when no groups are ideal or available, so we need to start a new one.
@@ -86,6 +121,77 @@ These are guidelines about when no groups are ideal or available, so we need to 
       horizontal and vertical groups. While a vertical or horizontal
       group occupies at most 5 squares, a diagonal group occupies 25.
 
+\end{enumerate}
+
+This also ties in to our technique of completing groups as fast as
+possible. We are only picking groups that have a high potential of
+being completed in as few turns as possible. We are estimating
+potential by whether there are enough marbles on the board or in the
+queue, and if they are even currently connected.
+
+\pagebreak
+
+\section*{Special Cases}
+
+\begin{enumerate}[1)]
+
+  \item
+
+    Our heuristic would notice that there's more greens on the board
+    than any other color, and therefore pick that as the group to work
+    with. The best place to move a green to would be the space labeled
+    with a 1. Our choice would be to move the light blue marble to
+    position 2. It accomplishes more than simply moving a green. There
+    are three light blues in the queue that are very unlikely to be
+    blocked from the group when they are dropped. It also frees up the
+    already started yellow group which can now build in to the center.
+    
+    \vspace{1in}
+    
+    \begin{center}
+      \includegraphics[width=4.5in, height=4.5in, keepaspectratio=true]{image/case1.png}
+    \end{center}
+
+\pagebreak
+    
+  \item
+
+    According to our heuristic, we should move a green marble to the
+    position marked with a 1. It has fewer paths to it, and is more
+    likely to become blocked from a queue-drop. It would be more
+    logical in the long run to move to position 2, which leaves more
+    possibilities for the group to be completed.
+
+    If we were to move the marble to position 2, there are less
+    combinations of queue drops that could block the reminaing green
+    marbles from the group than if we moved to position 1. In the case
+    of position 1, the group could be blocked with just one dropped
+    marble, while position 2 depends on where two of the three queued
+    drop.
+
+    \vspace{1in}
+    
+    \begin{center}
+      \includegraphics[width=4.5in, height=4.5in, keepaspectratio=true]{image/case2.png}
+    \end{center}
+
+\pagebreak
+
+  \item
+
+    The heuristic would not suggest moving the marble to the position
+    marked 1, but that is the more logical place to move. It divides a
+    region on the right side of the board, but there will be many more
+    paths that will complete the red group on the next turn. If we
+    were to move to position 2, we couldn't finish the group without
+    moving other marbles.
+
+    \vspace{1in}
+
+    \begin{center}
+      \includegraphics[width=4.5in, height=4.5in, keepaspectratio=true]{image/case3.png}
+    \end{center}
+  
 \end{enumerate}
 
 \end{document}

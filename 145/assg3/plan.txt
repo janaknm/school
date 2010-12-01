@@ -1,0 +1,4 @@
+type sort_array is array(Integer range <>) of Element_T;
+type sort_func is access procedure (unsorted : sort_array);
+
+function time_sort ( func : sort_func; data : sort_array) return Float;
