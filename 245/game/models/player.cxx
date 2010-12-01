@@ -2,27 +2,67 @@
 #include "inventory_item.h"
 #include "inventory.h"
 #include "util.h"				
-					       
 
-string player::get_hunger_str() {
-  return to_string(_hunger) + "/" + to_string(_max_hunger);
-}
+#include "../gui.h"
 
-string player::get_gold_str() {
-  return to_string(_gold);
-}
-
-void player::add_gold(int n) { _gold += n; }
-
-bool player::obtain(inanimate *obj) {
-  return obj->be_obtained(this);
-}
-
-bool player::add_item(inventory_item *item) {
-  return _inv->add_item(item);
-}
-
-bool player::use_item(int index) {
-  return _inv->use_item(index);
+player::player() : animate(10),
+		   _hunger(200),
+		   _max_hunger(200),
+		   _gold(0)
+{
+  inv = new inventory(this);
+  set_sprite(PLAYER);
 }
   
+player::~player() { delete inv; }
+
+
+void player::add_gold(int n) {
+  _gold += n;
+  gui_message("You found %d gold.", n);
+  report();
+}
+
+void player::report() {
+  char msg[20];
+
+  sprintf(msg, "%d/%d", _health, _max_health);
+  gui_health->value(msg);
+
+  sprintf(msg, "%d", _gold);
+  gui_gold->value(msg);
+}
+
+void player::sub_hunger(int n) {
+  _hunger -= n;
+  if (_hunger == 0) {
+    gui_message("You are hungry.");
+  } else if (_hunger == -25) {
+    gui_message("You are very hungry.");
+  }
+
+  if (_hunger < 0 && _hunger % 5 == 0) {
+    sub_health(1);
+  }
+  
+  report();
+}
+
+void player::eat() {
+  _hunger = _max_hunger;
+  report();
+}
+
+void player::heal() {
+  _health = _max_health;
+  report();
+}
+
+void player::level_up() {
+  _max_health++;
+  report();
+}
+
+bool player::has_diamond() {
+  return inv->has_diamond();
+}

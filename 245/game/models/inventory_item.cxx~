@@ -1,6 +1,3 @@
 #include "inventory_item.h"
 #include "player.h"
 
-bool inventory_item::be_obtained(player *p) {
-  return p->add_item(this);
-}

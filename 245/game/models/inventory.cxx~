@@ -1,0 +1,69 @@
+#include "inventory.h"
+#include "inventory_item.h"
+
+bool inventory::add_item(inventory_item *item) {
+  if (_items.size() == _capacity) {
+    return false;
+  }
+  
+  switch(item->what_am_i()) {
+  case FOOD:
+    gui_message("You found some food.");
+    break;
+  case DRINK:
+    gui_message("You found an unknown drink.");
+    break;
+  case DIAMOND:
+    gui_message("You found the diamond.");
+    break;
+  default:
+    gui_message("Where the hell did you get that?");
+    break;
+  }
+  
+  _items.push_back(item);
+  return true;
+}
+
+bool inventory::remove_item(int index) {
+  if (_items.size() <= index) {
+    return false;
+  }
+
+  _items.erase(_items.begin() + index);
+  return true;
+}
+
+bool inventory::use_item(int index) {
+  if (_items.size() <= index) {
+    return false;
+  }
+
+  (*(_items.begin() + index))->use(_owner);
+  return true;
+}
+
+void inventory::report() {
+  int i=0;
+vector<inventory_item *>::iterator it;
+  for(it = _items.begin(); it != _items.end(); it++) {
+    i++;
+    switch( (*it)->what_am_i() ) {
+    case DRINK:
+      gui_message("%d: An unknown drink.", i);
+      break;
+
+    case FOOD:
+      gui_message("%d: Some food.", i);
+      break;
+
+    case DIAMOND:
+      gui_message("%d: The diamond.", i);
+      break;
+
+    default:
+      gui_message("%d: Some whacky item", i);
+      break;
+    }
+  }
+}

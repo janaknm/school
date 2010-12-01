@@ -12,8 +12,6 @@ public:
     set_sprite(sprite);
   }
   ~inanimate() {}
-
-  virtual bool be_obtained(player *p) { return true; };   //pure virtual. what happens when player picks this up
   
 };
 

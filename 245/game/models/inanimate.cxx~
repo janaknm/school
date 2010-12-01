@@ -2,14 +2,14 @@
 #include "inventory_item.h"
 
 bool inventory::add_item(inventory_item *item) {
-  if (_items.size() < capacity) {
+  if (_items.size() < _capacity) {
     _items.push_back(item);
     return true;
   }
   return false;
 }
 
-bool inventory::remove_item(int index) {
+bool inventory::remove_item(unsigned int index) {
   if (_items.size() >= index) {
     _items.erase(_items.begin()+index);
     return true;
@@ -17,7 +17,7 @@ bool inventory::remove_item(int index) {
   return false;
 }
 
-bool inventory::use_item(int_index) {
+bool inventory::use_item(unsigned int index) {
   if (_items.size() >= index) {
     _items.at(index)->use(_owner);
     remove_item(index);

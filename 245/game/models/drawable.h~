@@ -17,12 +17,11 @@ class drawable {
   bool visible;     //should we draw this object
   int row, col;     //position
 
-  void draw();      //draw graphic at position (if visible)
+  virtual void draw();      //draw graphic at position (if visible)
+  void draw(graphic sprite);
   graphic what_am_i() { return _sprite; }
-
-protected:
   void set_sprite(graphic g);
-  
+
 };
 
 

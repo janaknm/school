@@ -1,0 +1,104 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{enumerate}
+
+\pagestyle{empty} \setlength{\parindent}{0mm}
+\addtolength{\topmargin}{-0.5in} \setlength{\textheight}{9in}
+\addtolength{\textwidth}{1in} \addtolength{\oddsidemargin}{-0.5in}
+
+
+\begin{document}
+\title{245 - Homework 6}
+\author{Matt Forbes}
+\date{December 4, 2010}
+\maketitle
+
+\pagebreak
+
+\section*{Timesheet}
+
+\begin{tabular}{r l}
+
+  Nov 14 & 3:30pm to 1:00am\\
+
+  Nov 20 & 5pm to 1:30am \\
+
+  Nov 21 & 9:30am to 11:30am \\
+
+  Nov 21 & 7:00pm to 2:00am \\
+
+  Nov 23 & 7:00pm to 11:00pm \\
+
+  Nov 24 & 9:00pm to 11:00pm \\
+
+  Nov 25 & 9:00am to 12:00pm and 9:00pm to 11:00pm \\
+
+  Nov 26 & 9:00am to 1:00pm and 3:00pm to 5:00pm and 8:00pm to 10:00pm \\
+
+  Nov 27 & 11:00am to 2:00pm \\
+
+  Nov 30 & 7:00pm to 12:00am
+  
+\end{tabular}
+
+\section*{Summary}
+
+All features outlined in the game specification are implemented.
+
+\begin{enumerate} [a)]
+
+  \item Level construction.
+
+  \item Player's hunger is recorded and is responded to at the various
+    levels. Including healing every 10 steps at positive hunger and
+    subtracting one health every 5 steps at negative hunger.
+
+  \item Both drinks of health/sickness are available in the
+    game. Before drinking a drink, any drinks found are reported as
+    unknown. Upon drinking one of any kind, the type of drink is
+    revealed for the rest of the game. The effects of the drinks are
+    implemented as wel.
+
+  \item Traps are invisible until stepped on, and can be activated
+    again when visible. Both types of traps work as specified.
+
+  \item Movement order is player then monsters.
+
+  \item Player can obtain gold by walking on to a space which has gold
+    on it. The amount of gold is a random (between 5 and 100.)
+
+  \item Monsters' health is determined by which level they are (and a
+    random factor). They can heal themselves by one health point for
+    every 15 steps the player makes (regardless of hunger/health/etc.)
+
+  \item The movement of monsters is different depending on whether the
+    player is in the same room. The monster has a high chance of
+    moving towards the player if he is in the room, and is completely
+    random if he is not.
+
+  \item Combat occurs when either the player moves to a space occupied
+    by a monster or the reverse. The attacker has the upper hand but
+    it is still randomly decided (based on specification.) There can
+    only be one combat event between the player and a monster per
+    turn, but multiple monsters can attack the player in the same
+    turn.
+
+  \item The player's inventory can hold up to 10 items. He can drop
+    and item anywhere he is standing. Only food can be eaten, and
+    drinks can be drunk.
+
+  \item Visibility rules are defined based on line of sight. These
+    rules are just how the specification describes them and how they
+    work in the example game.
+
+  \item The game is over when the player's health drops below zero or
+    he exits through the up-stairs on the first level. If he leaves
+    with the diamond in his inventory he wins, any other termination
+    case means he lost.
+
+  \item All game rules are implemented even if not specifically
+    outlined here!
+    
+\end{enumerate}
+
+\end{document}

@@ -7,7 +7,7 @@
 class drawable {
 
  public:
-  drawable() { visible = true; }
+  drawable() { visible = false; }
   virtual ~drawable() {}
   
  private:
@@ -18,11 +18,10 @@ class drawable {
   int row, col;     //position
 
   virtual void draw();      //draw graphic at position (if visible)
+  void draw(graphic sprite);
   graphic what_am_i() { return _sprite; }
-
-protected:
   void set_sprite(graphic g);
-  
+
 };
 
 

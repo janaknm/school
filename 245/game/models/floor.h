@@ -6,6 +6,7 @@
 #include "player.h"
 #include "inanimate.h"
 #include "light_group.h"
+#include "inventory_item.h"
 
 #include "../PlayArea.h"
 
@@ -15,7 +16,8 @@ class floor : public level_piece {
 public:
   floor(light_group *group, graphic sprite=WHITE) : level_piece(group),
 						    _occupied_animate(NULL),
-						    _occupied_inanimate(NULL) {
+						    _occupied_inanimate(NULL),
+                                                    _seen(true) {
     set_sprite(sprite);
   };
   ~floor() {}
@@ -23,11 +25,16 @@ public:
 private:
   animate *_occupied_animate;       //points to animate obj standing on this piece or null
   inanimate *_occupied_inanimate;   //points to inanimate obj standing on this piece or null
+  bool _seen;  // only for traps
   
 public:
-  void interact(animate *obj);   //called when any animate tries to move here
+  void interact(player *p);   //called when any animate tries to move here
+  void fight(animate *obj);
   void set_occupied(animate *obj);
   void set_occupied(inanimate *obj);
+  void set_visible();
+  bool has_animate() { return _occupied_animate != NULL; }
+  bool set_seen(bool seen) { return _seen = seen; }
   void draw();
 };
 

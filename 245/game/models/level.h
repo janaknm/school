@@ -12,6 +12,7 @@ using std::list;
 
 enum direction {WEST, NORTH, SOUTH, EAST, DOWN, UP};
 class player;
+class light_group;
 
 //representation of a level in the dungeon
 class level {
@@ -25,8 +26,19 @@ class level {
   list<light_group *> _light_groups;
   level_piece *_pieces[50][40];    
   int _srow, _scol;
- public:
+
+  
+  void check_right(int, int);
+  void check_left(int, int);
+  void check_down(int, int);
+  void check_up(int, int);
+
+  
+public:
   void draw();
+  void heal_monsters();
+  void add_monster(monster *m);
+  void remove_monster(monster *m);
   void next_state(player *p);    //make monsters move, etc.
   bool move_me(animate *obj, int row, int col);
   bool move_me(animate *obj, direction dir);

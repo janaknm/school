@@ -11,8 +11,8 @@ class animate : public drawable {
 
 public:
   animate(int max_health);
-  virtual ~animate() = 0;
-
+  ~animate() {}
+  
 private:
   int _health;
   int _max_health;

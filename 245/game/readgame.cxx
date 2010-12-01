@@ -2,8 +2,6 @@
 
 #include <iostream>
 #include <string>
-#include <cstring>
-#include <cstdlib>
 #include "lexfile.h"
 
 #ifdef TESTREAD

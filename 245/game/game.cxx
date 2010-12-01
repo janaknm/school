@@ -8,6 +8,7 @@
 #include "models/floor.h"
 #include "models/inventory_item.h"
 #include "models/inanimate.h"
+#include "models/inventory.h"
 
 #include <FL/fl_ask.h>
 #include <cstdio>
@@ -40,7 +41,8 @@ void Game::SetBuildLevel (int newlevel)
   if (_levels.size() <= newlevel) {
     _current_level = new level();
     _levels.push_back(_current_level);
-
+    _level_depth = newlevel;
+    
     if (debug) printf ("added new level, _levels.size() = %d\n", _levels.size());
     
   } else {
@@ -61,7 +63,8 @@ void Game::NewRoom (int row, int col, int width, int height)
 				 row,
 				 col,
 				 width,
-				 height);
+				 height,
+				 ROOM);
   for(int i=row; i<row+width; i++) {
 
     for(int j=col; j<col+height; j++) {
@@ -70,7 +73,6 @@ void Game::NewRoom (int row, int col, int width, int height)
 	? new level_piece(_build_group, WALL)
 	: new floor(_build_group);
 
-      piece->visible = true;
       _current_level->set_piece(i, j, piece);
 	  
     }
@@ -91,13 +93,18 @@ void Game::NewPath (int row1, int col1, int row2, int col2)
     height = abs(col2 - col1) + 1;
 
   level_piece *piece;
+
+  group_type gtype = (width == 1) ? VERTICAL : HORIZONTAL;
   
   
   _build_group = new light_group(_current_level,
 				 minx,
 				 miny,
 				 width,
-				 height);
+				 height,
+				 gtype);
+
+  _current_level->add_group(_build_group);
 				 
 				 
   for(int i=minx; i < minx + width; i++) {
@@ -105,7 +112,6 @@ void Game::NewPath (int row1, int col1, int row2, int col2)
     for(int j=miny; j < miny + height; j++) {
 
       piece = new floor(_build_group, PATH);
-      piece->visible = true;
       _current_level->set_piece(i, j, piece);
       
     }
@@ -139,16 +145,12 @@ void Game::PlaceAt (token what, int row, int col)
 
   switch(what) {
     
-  case t_up: {
-    level_piece *piece = new level_piece(_build_group, GOUP);
-    _current_level->set_piece(row, col, piece);
-  }
+  case t_up: 
+    f->set_sprite(GOUP);
     break;
 
-  case t_down: {
-    level_piece *piece = new level_piece(_build_group, GODOWN);
-    _current_level->set_piece(row, col, piece);
-  }
+  case t_down: 
+    f->set_sprite(GODOWN);
     break;
 
   case t_diamond: {
@@ -164,27 +166,21 @@ void Game::PlaceAt (token what, int row, int col)
     break;
 
   case t_rat: {
-    // RANDOM HEALTH
-    
-    monster *m = new monster(10, RAT);
+    int health = 7 + (1 + rand() % (_level_depth + 1));
+    monster *m = new monster(health, RAT);
 
     f->set_occupied(m);
-      
+    _current_level->add_monster(m);
    }
-    
-   break;
+    break;
    
   case t_snake: {
-    // RANDOM HEALTH
-    
-    monster *m = new monster(10, SNAKE);
-
+    int health = 7 + (1 + rand() % (_level_depth + 1));
+    monster *m = new monster(health, SNAKE);
     f->set_occupied(m);
-      
+    _current_level->add_monster(m);
   }
-    
     break;
-
     
   case t_food: {
     inventory_item *item = new inventory_item(FOOD);
@@ -193,15 +189,17 @@ void Game::PlaceAt (token what, int row, int col)
     break;
 
   case t_arrow:
-    //printf("ARROW TRAP");
+    f->set_sprite(ATRAP);
+    f->set_seen(false);
     break;
 
   case t_transport:
-    // printf("TRANSPORT TRAP");
+    f->set_sprite(TTRAP);
+    f->set_seen(false);
     break;
 
   case t_sickness: {
-    inventory_item *item = new inventory_item(DRINK);
+    inventory_item *item = new inventory_item(DRINK, true);
     f->set_occupied(item);
   }
     break;
@@ -219,20 +217,50 @@ void Game::PlaceAt (token what, int row, int col)
 }
 
 void Game::_change_level(direction dir) {
+  floor *f = dynamic_cast<floor *>(_current_level->get_piece(_player->row, _player->col));
   if(dir == UP) {
-    _change_level(_level_depth-1);
+    if(f != NULL && f->what_am_i() == GOUP) {
+      _change_level(_level_depth-1);
+    } else {
+      gui_message("You aren't standing on up-stairs");
+    }
   } else if(dir == DOWN) {
-    _change_level(_level_depth+1);
+    if (f != NULL && f->what_am_i() == GODOWN) {
+      _change_level(_level_depth+1);
+    } else {
+      gui_message("You aren't standing on down-stairs");
+    }
   }
 }
 
 void Game::_change_level(int depth) {
+  char msg[10];
   if (depth >= 0 && depth < _levels.size()) {
+    
     _level_depth = depth;
+    _clear();
     _current_level = _levels[depth];
+    _current_level->move_start(_player);
     _current_level->draw();
+    sprintf(msg, "%d", depth+1);
+    gui_level->value(msg);
   } else {
-    printf("Cant go to level %d", depth);
+    // going out of the dungeon
+    if (depth == -1) {
+      if (_player->has_diamond()) {
+	game.over(true);
+      } else {
+	game.over(false);
+      }
+    }
+  }
+}
+
+void Game::_clear() {
+  for(int i=0; i < 50; i++) {
+    for( int j=0; j < 40; j++) {
+      play_area->SetSquare(i, j, BLACK);
+    }
   }
 }
 
@@ -240,49 +268,14 @@ void Game::_change_level(int depth) {
 
 void Game::start(void)
 {
-  playing = true;
+  if (!played) {
+    playing = true;
 
-  _change_level(0);
-    
-  _player = new player();
-  _current_level->move_start(_player);
-  
-  
-  /*
-  // The following shows you how to set some elements of the gui.
-  // YOU NEED TO REPLACE THIS WITH YOUR REAL START CODE ...
+    _player = new player();
+    _player->report();
 
-  gui_level->value("1");
-  gui_health->value("10/10");
-  gui_gold->value("0");
-
-  gui_message("Welcome to the game!");
-
-  int x, y;
-
-  for (x = 0; x<50; x++) play_area->SetSquare(x,2,WHITE);
-  for (x = 0; x<50; x++) play_area->SetSquare(x,4,WALL);
-  for (x = 0; x<50; x++) play_area->SetSquare(x,6,PATH);
-  for (x = 0; x<50; x++) play_area->SetSquare(x,8,DIAMOND);
-  for (x = 0; x<50; x++) play_area->SetSquare(x,10,GOLD);
-  for (x = 0; x<50; x++) play_area->SetSquare(x,12,FOOD);
-  for (x = 0; x<50; x++) play_area->SetSquare(x,13,ATRAP);
-  for (x = 0; x<50; x++) play_area->SetSquare(x,14,DRINK);
-  for (x = 0; x<50; x++) play_area->SetSquare(x,15,TTRAP);
-  for (x = 0; x<50; x++) play_area->SetSquare(x,16,SNAKE);
-  for (x = 0; x<50; x++) play_area->SetSquare(x,17,RAT);
-
-  for (x=10; x<30; x++)
-    for ( y=20; y<27; y++)
-      play_area->SetSquare(x, y,
-			   (x==10 || x== 29 || y==20 || y==26 ? WALL
-			    : WHITE));
-  play_area->SetSquare(15, 22, GOUP);
-  play_area->SetSquare(25, 24, GODOWN);
-  play_area->SetSquare(20, 23, PLAYER);
-
-  // End of code you need to replace ....
-  */
+    _change_level(0);
+  }
 }
 
 void Game::quit(void)
@@ -294,39 +287,64 @@ void Game::quit(void)
 void Game::inventory(void)
 {
   CHECK_PLAYING;
-  gui_message("You are carrying nothing!");
+  _player->inv->report();
 }
 
 void Game::drop(void)
 {
   CHECK_PLAYING;
+  int index = atoi( gui_in->value() ) - 1,
+      row, col;
+  inventory_item *item = _player->inv->drop(index);
+  floor *f;
 
-  gui_message("drop -> %s", gui_in->value());
-  // clear the gui_in element
+  if (item == NULL) {
+    gui_message("You don't have an item in that slot.");
+  } else {
+    //get piece player's standing on
+    row = _player->row;
+    col = _player->col;
+    f = dynamic_cast<floor *>(_current_level-> get_piece(row, col));
+
+    //if it's a real spot, drop it there
+    if (f != NULL) {
+      f->set_occupied(item);
+      
+    //invalid location?
+    } else {
+      gui_message("wtf, where are you standing?");
+    }
+  }
+  
   gui_in->value("");
 }
 
 void Game::eat(void)
 {
   CHECK_PLAYING;
+  int index = atoi( gui_in->value() ) - 1;
 
-  gui_message ("eat -> %s", gui_in->value());
-  // clear the gui_in element
+  _player->inv->eat(index);
+  
   gui_in->value("");
 }
 
 void Game::drink(void)
 {
   CHECK_PLAYING;
+  int index = atoi( gui_in->value() ) - 1;
 
-  gui_message("drink -> %s", gui_in->value());
-  // clear the gui_in element
+  _player->inv->drink(index);
+  
   gui_in->value("");
 }
 
 void Game::move (direction dir)
 {
   CHECK_PLAYING;
+
+  bool moved = false;
+  
   if (debug)
     printf ("Move %d\n", dir);
   
@@ -334,11 +352,65 @@ void Game::move (direction dir)
   case UP:
   case DOWN:
     _change_level(dir);
+    return;
     break;
 
   default:
-    _current_level->move_me(_player, dir);
+    moved = _current_level->move_me(_player, dir);
+    if(!moved) {
+      gui_message("You can't move there!");
+    } 
     break;
+  }
+
+  if(moved) {
+
+    // always do this
+    _player_moves++;
+    _player->sub_hunger(1);
+    _player->group()->illuminate();
+    _current_level->next_state(_player);
+    
+    // if health is positive, keep track of steps
+    if(_player->hunger() > 0) {
+      _player_pos_moves++;
+    } else {
+      _player_pos_moves = 0;
+    }
+
+    // if we've been positive for 10 steps, heal
+    if (_player_pos_moves == 10) {
+      _player_pos_moves = 0;
+      _player->sub_health(-1); //add 1
+    }
+
+    // heal monsters after 15 moves regardless of hunger
+    if (_player_moves % 15 == 0) {
+      _current_level->heal_monsters();
+    }
+
+  }
+}
+
+void Game::teleport_player() {
+  bool moved = false;
+  int row, col;
+
+  while(!moved) {
+    row = rand() % 50;
+    col = rand() % 40;
+    moved = _current_level->move_me(_player, row, col);
+  }
+  
+}
+
+void Game::over(bool won) {
+  playing = false;
+  played = true;
+  if (won) {
+    fl_alert("Congratulations, you beat the game.");
+  } else {
+    fl_alert("Gameover: You lost.");
   }
 }
 

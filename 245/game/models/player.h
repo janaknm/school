@@ -2,45 +2,38 @@
 #define PLAYER_H
 
 #include "animate.h"
-#include "inventory.h"
-
 #include "../PlayArea.h"
 
 #include <string>
 using std::string;
 
 class inanimate;
-class inventory;
 class inventory_item;
+class inventory;
 
 //main player class
 class player : public animate {
 
 public:
-  player() : animate(10),
-	     _hunger(200),
-             _max_hunger(200),
-	     _gold(0)
-  {
-    _inv = new inventory(this);
-    set_sprite(PLAYER);
-  }
-  
-  ~player() { delete _inv; }
+  player();
+  ~player();
   
 private:
   int _hunger;
   int _max_hunger;
   int _gold;
-  inventory *_inv;
-
+  
 public:
-  string get_hunger_str();          
-  string get_gold_str();                   
+  inventory *inv;
+
   void add_gold(int n);              //give player some gold
-  bool obtain(inanimate *obj);       //pick up object, return if it was successful
-  bool use_item(int index);          //use item, return if it was successful
-  bool add_item(inventory_item *item); //add to inventory
+  void report();
+  void sub_hunger(int n);
+  void eat();
+  void heal();
+  void level_up();
+  int hunger() { return _hunger; }
+  bool has_diamond();
 };
 
 #endif

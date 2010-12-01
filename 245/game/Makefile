@@ -1,11 +1,9 @@
-PATH=/home/phil/cs245sw/bin:/bin:/usr/bin
 PROG=game
 
 MODELS=animate.cxx \
 drawable.cxx \
 floor.cxx \
-inanimate.cxx \
-inventory_item.cxx \
+inventory.cxx \
 level.cxx \
 level_piece.cxx \
 light_group.cxx \
@@ -18,7 +16,7 @@ SRCS=gui.cxx PlayArea.cxx game.cxx lexfile.cxx readgame.cxx $(MODELS:%.cxx=model
 OBJ1=$(SRCS:.cxx=.o)
 OBJS=$(OBJ1:.cpp=.o)
 
-CLEAN=$(OBJS) $(PROG) gui.h gui.cxx *~ testread .depend
+CLEAN=$(OBJS) $(PROG) gui.h gui.cxx *~ testread
 
 #local fltk installations ....
 FLTK=/usr
@@ -52,7 +50,7 @@ LIBS=-lX11 -lfltk
 
 # make the program
 
-$(PROG): $(OBJS)
+$(PROG):  $(OBJS)
 	$(CXX) -o $(PROG) $(LDFLAGS) $(OBJS) $(LIBS)
 
 clean:
@@ -64,4 +62,3 @@ testread: lexfile.h lexfile.cxx readgame.cxx
 	$(CXX) -o testread -DTESTREAD readgame.cxx lexfile.cxx
 
 # making dependencies
-

@@ -12,9 +12,11 @@ class monster : public animate {
  public:
   monster(int health, graphic sprite) : animate(health) {
     set_sprite(sprite);
+    has_fought = false;
   }
   ~monster() {}
   
+  bool has_fought;
   void move(player *p);   //change monsters position based on where player is
   
 };

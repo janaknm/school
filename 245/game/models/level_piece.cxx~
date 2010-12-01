@@ -1,23 +1,5 @@
 #include "level_piece.h"
 
-void level_piece::_interact(animate *obj) {
+void level_piece::interact(animate *obj) {
 
 }
-
-void level_piece::set_occupied(animate *obj) {
-  if (_occupied_animate != NULL) {
-    _occupied_animate = obj;
-  } else {
-    printf("ERRRORRRRORROROROROORORRRRR");
-  }
-}
-
-void level_piece::set_occupied(inanimate *obj) {
-  if (_occupied_inanimate != NULL) {
-    _occupied_inanimate = obj;
-  } else {
-    printf("ERRRORRRRORROROROROORORRRRR");
-  }
-}
-
-

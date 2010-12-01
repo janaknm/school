@@ -3,7 +3,7 @@
 
 animate::animate(int max_health) {
   _max_health = max_health;
-  health = _max_health;
+  _health = _max_health;
 }
 
 string animate::get_health_string() {
@@ -11,6 +11,6 @@ string animate::get_health_string() {
 }
 
 void attacked_by(animate *opponent) {
-  if (debug) printf "attacking";
+  if (debug) printf("attacking");
 
 }
