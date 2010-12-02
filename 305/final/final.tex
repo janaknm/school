@@ -58,14 +58,65 @@ for i = 2...n:
   nodes. So starting with the root, and growing $n$ times, the total
   number of nodes will always be of the form $1 + 2n$, which is odd.
 
-\item \[B_n = \left\{
-      \begin{tabular}{l r}
-        1 & $n=1, n=3$\\
-        apples & $n > 3$
-      \end{tabular}
-      \right\}\]
+\item
+
+  \[B_n = \left\{
+    \begin{tabular}{l r}
+      1 & $n \le 3$\\
+      2 & $n=5$\\
+      5 & $n=7$\\
+      $2(B_{n-1} + B_{n-2})$ &  $n > 7$\\
+    \end{tabular}
+  \right\}\]
 
 \end{enumerate}
 
+
+\section*{Problem 3}
+
+
+\begin{verbatim}
+  structure weirdqueue {
+     pushstack (stack pointer)
+     popstack (stack pointer)
+  }
+
+  def enqueue(Q, elt):
+     Q.pushstack.push(elt)
+
+  def dequeue(Q):
+     if Q.pushstack and Q.popstack are empty:
+        error underflow
+     if Q.popstack is empty:
+        while Q.pushstack is not empty:
+           Q.popstack.push( Q.pushstack.pop() )
+        swap Q.popstack pointer with Q.pushstack
+     return Q.popstack.pop()
+
+\end{verbatim}
+
+
+\begin{enumerate}[a)]
+
+\item Under the assumption that the 'popstack' is empty, we would have
+  to pop each element off the 'pushstack' and then push that on to the
+  'popstack.' By doing this we are reversing the order, guaranteeing
+  that we get the first queued item, but means we are also doing work
+  proportional to the size of the structure, $O(n)$.
+
+\item In practice, we could not possibly have to do this mass popping
+  and pushing to reorient the structure every dequeue. This means that
+  we will have a much faster amortized analysis of the running
+  time. If we follow the lifetime of one element in the structure,
+  there are only about 4 operations associated with it. We initially
+  push it on to the 'pushstack' and then at some later time we will
+  transfer it to the 'popstack' and finally pop it one more time when
+  it is removed. So there can never be more than 4 operations per
+  element lifecycle. Using amortized analysis, we can see that $n$
+  insertions could never be worse than about $4n$ stack
+  operations. Therefore, the average cost per enqueue/dequeue
+  operation is $\frac{4n}{n} = 4$, which is $O(1)$.
+  
+\end{enumerate}
 
 \end{document}
