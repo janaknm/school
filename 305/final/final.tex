@@ -60,6 +60,33 @@ for i = 2...n:
 
 \item
 
+  \begin{enumerate}[]
+    
+  \item Before determining an upper bound for the number of full
+    binary trees of some size, it is necessary to know how many leaves
+    such a tree has. All full binary trees of size $n$ can be built by
+    simply adding two nodes as the left and right child to any leaf
+    node on a tree of size $n-2$. For this reason, all full trees with
+    the same number of nodes have the same number of leaves.
+
+  \item Considering the full tree with three nodes, it can be seen
+    that when nodes are added as the children of a leaf, the new tree
+    of size five has one more leaf. This will always be the case,
+    because to increase the size of a full tree, it is always
+    necessary to add two nodes to a leaf. So the number of leaves on a
+    full tree of size $k$ is just the number of times two leaves were
+    added to the tree of three nodes plus the original two on that
+    tree. So as a function of $k$, the number of leaves of a full tree
+    of size $k$, $L_k$, is $L_k = 2 + \frac{k-3}{2}$. The first term is the original
+    two leaves on the base tree, and $\frac{k-3}{2}$ is the number of
+    times two nodes were added to the base tree.
+
+
+  \item 
+    
+
+  \end{enumerate}
+
   \[B_n = \left\{
     \begin{tabular}{l r}
       1 & $n \le 3$\\
