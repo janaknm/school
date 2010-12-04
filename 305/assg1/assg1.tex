@@ -12,12 +12,14 @@ Homework 1 \\
 
 \section{Problem One}
 \subsection{}
-The minimum number of socks that need to be drawn to guarantee a pair of any color is 4.
-You could possibly have 3 socks that do not make a pair, but on the next draw, one of the 
-socks will become a match.
+The minimum number of socks that need to be drawn to guarantee a pair
+of any color is 4.  You could possibly have 3 socks that do not make a
+pair, but on the next draw, one of the socks will become a match.
 \subsection{}
-Likewise, the minimum number of socks from a drawer of n different color socks (assuming there is at least 2 of each color)
-is n+1. For the same reason that you can have no match on the nth draw, but on the n+1th draw, one sock will match.
+Likewise, the minimum number of socks from a drawer of n different
+color socks (assuming there is at least 2 of each color) is n+1. For
+the same reason that you can have no match on the nth draw, but on the
+n+1th draw, one sock will match.
 
 \section{Problem Two}
 Prove by induction that \(F_{n+k} = F_kF_{n+1} + F_{k-1}F_n\)
@@ -84,15 +86,18 @@ the greatest \(d\) of the group.
 \end{enumerate}
 
 \noindent {\bf Why this works} \\
-This will always work because the soldier with the largest initial \(d\) will end crossing the path
-of all the other soldiers at one point because he will be going the furthest in both directions. The
-other soldiers are also moving, and will hopefully group up faster rather than just waiting to be
-picked up by the furthest mover.
+This will always work because the soldier with the largest initial
+\(d\) will end crossing the path of all the other soldiers at one
+point because he will be going the furthest in both directions. The
+other soldiers are also moving, and will hopefully group up faster
+rather than just waiting to be picked up by the furthest mover.
 
 \subsection{Measure 2: Fastest Rendezvous of Team}
-The obvious optimization is the time it takes to get the whole group together in the shortest
-amount of time. This plan is quite a bit more complex, but it should speed up the grouping by quite
-a bit. It uses a similar algorithm as the first plan, but handles the collision of two soldiers quite a 
+The obvious optimization is the time it takes to get the whole group
+together in the shortest amount of time. This plan is quite a bit more
+complex, but it should speed up the grouping by quite a bit. It uses a
+similar algorithm as the first plan, but handles the collision of two
+soldiers quite a
 bit differently. \\
 
 \noindent n = the number of troops in the team.\\
@@ -113,32 +118,40 @@ Your new goal is to find all the soldiers on your side of where you met. Go to c
 \end{enumerate}
 \underline{Case 2 (Grouped with one partner):}
 \begin{enumerate}
-\item You and your "partner" are now responsible for reporting the number of teammates you each find on the
-side of the meeting point until you have found the entire team.
+\item You and your "partner" are now responsible for reporting the
+  number of teammates you each find on the side of the meeting point
+  until you have found the entire team.
 \item Walk \(d\) meters (where -d is to the left).
-\item If you meet another soldier, you have completed a group. And your new job is simply to relay the number
-of teammates currently found on your side of the field. Go to case 3.
-\item If you didn't meet another solder, then walk \(-d\) meters back to where you first collided with
-a member, and meet them there.
-\item Add up the total number of soldiers found on both sides, and if all members are found then go to case 4.
+\item If you meet another soldier, you have completed a group. And
+  your new job is simply to relay the number of teammates currently
+  found on your side of the field. Go to case 3.
+\item If you didn't meet another solder, then walk \(-d\) meters back
+  to where you first collided with a member, and meet them there.
+\item Add up the total number of soldiers found on both sides, and if
+  all members are found then go to case 4.
 \item Otherwise, your \(d\) is now \(2d\), go to case 2.2.
 \end{enumerate}
 \underline{Case 3 (Grouped on both sides):}
 \begin{enumerate}
-\item Walk \(-d\) meters back where you had your first collision, and meet your "partner" there.
-\item Add up the total number of soldiers on both sides (including soldiers your new teammate found), and if
-all members are accounted for go to case 4.
+\item Walk \(-d\) meters back where you had your first collision, and
+  meet your "partner" there.
+\item Add up the total number of soldiers on both sides (including
+  soldiers your new teammate found), and if all members are accounted
+  for go to case 4.
 \item Otherwise, your \(d\) is now \(2d\).
 \item Walk \(d\) meters.
 \item go to case 3.
 \end{enumerate}
 \underline{Case 4 (Final):}
 \begin{enumerate}
-\item If there are no teammates in the positive direction, then stop and wait for the group to come to you.
-\item Otherwise, if there are no teammates in the negative direction, just walk in the positive direction
-until you meet up with the rest of the team.
-\item Otherwise, walk \(d\) meters and tell them that everyone is accounted for, then walk in the positve
-direction until you meet up with the rest of the team.
+\item If there are no teammates in the positive direction, then stop
+  and wait for the group to come to you.
+\item Otherwise, if there are no teammates in the negative direction,
+  just walk in the positive direction until you meet up with the rest
+  of the team.
+\item Otherwise, walk \(d\) meters and tell them that everyone is
+  accounted for, then walk in the positve direction until you meet up
+  with the rest of the team.
 \end{enumerate}
 
 \noindent {\bf Why this works} \\

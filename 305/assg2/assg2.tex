@@ -40,15 +40,20 @@ escapeinside={\%}{)}          % if you want to add a comment within your code
 {\end{list}}
 
 \section{Problem One}
-\subsection*{a\()\)}
-{\bf found} is true. For this case to occur, we had to be within some iteration of the loop. In order to be in
-an interation, the expression \(\text{(low} < \text{high) AND !found}\) must be true. Therefore, low does not equal
-high, because low must be less than high. The first if statement within the loop body checks if
-\(A[low] + a[high] ==  x\) is true, and will set found to true if that is the case. Therefore, if found is true,
-then low and high are indices of A whose elements' sum is x.
+\subsection*{a\()\)} {\bf found} is true. For this case to occur, we
+had to be within some iteration of the loop. In order to be in an
+interation, the expression \(\text{(low} < \text{high) AND !found}\)
+must be true. Therefore, low does not equal high, because low must be
+less than high. The first if statement within the loop body checks if
+\(A[low] + a[high] == x\) is true, and will set found to true if that
+is the case. Therefore, if found is true, then low and high are
+indices of A whose elements' sum is x.
 \subsection*{b\()\)}
-{\bf low \(\ge\) high}. I will prove the loop invariant provided to show that if low \(\ge\) high, 
-there does not exist two disting elements in {\bf A} that sum to x.\\\\
+
+{\bf low \(\ge\) high}. I will prove the loop invariant provided to
+show that if low \(\ge\) high,
+there does not exist two disting elements in {\bf A} that sum to x.\\
+
 \underline{Basis}
 \begin{indentpar}{1cm}
   At the start of the first iteration,\\
@@ -139,29 +144,37 @@ count_inversions(A, p, r):
         inversions += count_inversions(A, q+1, r)
         inversions += merge_and_count(A, p, q, r)
     return inversions
-\end{lstlisting}
-{\bf Explanation}\\
-So say we are using the above code, and are at some level of recursion. We have an array that has
-two 'sorted subarrays' L and R, within it, where L is the first half and R is the last half. When
-we 'merge' these arrays, we comapre the smallest element of each subarray and place the minimum of the
-two in the next slot of the whole array. If the minimum element comes from R, then it is essentially
-'jumping' over all of the elements still currently in L. Each 'jump' is essentially an inversion
-because the elements that were jumped were all greater than it. So if we count the number of jumps
-we are actually the number of inversions.
+  \end{lstlisting}
+  {\bf Explanation}\\
+  So say we are using the above code, and are at some level of
+  recursion. We have an array that has two 'sorted subarrays' L and R,
+  within it, where L is the first half and R is the last half. When we
+  'merge' these arrays, we comapre the smallest element of each
+  subarray and place the minimum of the two in the next slot of the
+  whole array. If the minimum element comes from R, then it is
+  essentially 'jumping' over all of the elements still currently in
+  L. Each 'jump' is essentially an inversion because the elements that
+  were jumped were all greater than it. So if we count the number of
+  jumps we are actually the number of inversions.
 \section{Problem Three}
 \subsection*{Algorithm Description}
-The algorithm's correctness stems from the following point being true: If we take the median card from both friends'
+The algorithm's correctness stems from the following point being true:
+If we take the median card from both friends'
 hand, then the absolute median's value \underline{must} be within the value of these two cards.\\
 
-\noindent If we take the median card from both hands, and call card {\bf a} the smaller of the two, and {\bf b} the 
-greater. There are \underline{at most} \(n - \frac{n}{2}\) cards greater than {\bf a} in its own hand. In {\bf b}'s 
-hand, there are at most \(n - \frac{n}{2} - 1\) cards greater than {\bf a}, because {\bf a} \(>\) {\bf b}. In total,
-there are \underline{at most} \( n - \frac{n}{2} + n - \frac{n}{2} - 1 = 2n - n - 1 = n - 1\) cards greater
+\noindent If we take the median card from both hands, and call card
+{\bf a} the smaller of the two, and {\bf b} the greater. There are
+\underline{at most} \(n - \frac{n}{2}\) cards greater than {\bf a} in
+its own hand. In {\bf b}'s hand, there are at most \(n - \frac{n}{2} -
+1\) cards greater than {\bf a}, because {\bf a} \(>\) {\bf b}. In
+total, there are \underline{at most} \( n - \frac{n}{2} + n -
+\frac{n}{2} - 1 = 2n - n - 1 = n - 1\) cards greater
 than {\bf a}. Therefore, {\bf a} must be greater than or equal to the absolute median of the 2n cards.\\
 
 \noindent Likewise for {\bf b}.\\
 
-\noindent In the algorithm, {\bf L} and {\bf R} represent the two hands of cards. {\bf lbound} and {\bf rbound}
+\noindent In the algorithm, {\bf L} and {\bf R} represent the two
+hands of cards. {\bf lbound} and {\bf rbound}
 are the minimum and maximum values of the absolute median that we know up to that point. {\bf cuts} is the number of cards that we have ruled out and know are less than the absolute median.\\
 
 \subsection*{Pseudo Code}
@@ -209,7 +222,8 @@ median_helper(L, R, lbound, rbound, cuts, n):
 \end{lstlisting}
 
 \subsection*{Running time of algorithm}
-Let T(n) be the running time of this algorithm, where n is the total number of cards we are searching through.\\
+Let T(n) be the running time of this algorithm, where n is the total
+number of cards we are searching through.
 
 \[T(n) = \left\{
 \begin{tabular}{c c}

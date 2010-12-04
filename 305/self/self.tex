@@ -7,6 +7,14 @@
 \addtolength{\textwidth}{1in} \addtolength{\oddsidemargin}{-0.5in}
 
 
+\newenvironment{indentpar}[1]%
+{\begin{list}{}%
+    {\setlength{\leftmargin}{#1}}%
+  \item[]%
+  }
+  {\end{list}}
+
+
 \begin{document}
 \title{Self Assessment}
 \author{Matt Forbes}
@@ -43,9 +51,26 @@ toolset and way of thinking that makes them much more managable.
   split the problem in half relied on an extra piece of information
   that I provided.
 
+\item Context (from homework 2):
+  \begin{indentpar}{0.5in}
+    
+    If we take the median card from both hands, and call
+    card {\bf a} the smaller of the two, and {\bf b} the
+    greater. There are \underline{at most} \(n - \frac{n}{2}\) cards
+    greater than {\bf a} in its own hand. In {\bf b}'s hand, there are
+    at most \(n - \frac{n}{2} - 1\) cards greater than {\bf a},
+    because {\bf a} \(>\) {\bf b}. In total, there are \underline{at
+      most} \( n - \frac{n}{2} + n - \frac{n}{2} - 1 = 2n - n - 1 = n
+    - 1\) cards greater than {\bf a}. Therefore, {\bf a} must be
+    greater than or equal to the absolute median of the 2n cards.
+
+    Likewise for {\bf b}.
+
+  \end{indentpar}
+
 \end{enumerate}
 
-\section*{Asymptotic Notation}
+\section*{Asymptotic Analysis}
 
 \begin{enumerate}[]
 
@@ -55,8 +80,77 @@ toolset and way of thinking that makes them much more managable.
   appreciate Big-O when analyzing more complicated forms like
   recursion.
 
-\item Worst case running time has become pretty much second nature
+\item Also from the card problem in homework 2, I used Big-O analysis
+  to determine the runtime of my recursive algorithm. To bound the
+  running time of my algorithm, I used a recurrence, and then bounded
+  that recurrence from above with a 'Big-O value.' Demonstrating
+  asympotic analysis with a recurrence:
 
+  \begin{indentpar}{0.5in}
+
+    Let T(n) be the running time of this algorithm, where n is the total
+    number of cards we are searching through.
+
+    \[T(n) = \left\{
+      \begin{tabular}{c c}
+        \(T(\frac{n}{2}) + O(1)\),& for n \(>\) 2 \\
+        O(1),& for n \(\le\) 2\\
+      \end{tabular}
+    \right\}\]\\
+
+    An upper bound guess for T is \(T(n) \le c\log_2 (n) + O(1) \)
+    \begin{alignat*}{2}
+      T(n)& \le c\log_2 (\frac{n}{2}) + O(1) \\
+      {}& \le c\log_2 (n) - \log_2 (2) + O(1)\\
+      {}& = c\log_2(n) + O(1)
+    \end{alignat*}
+    So, \(T(n) \text{ is } O(\log_2 (n))\).
+
+  \end{indentpar}
+
+\item Finally an example of setting up a summation to find an upper
+  bound of a running time. From homework 3: problem 3, in the first
+  part I was required to find the running time of searching some kind
+  of array of sorted arrays. So from my writeup:
+
+  \begin{indentpar}{0.5in}
+    Each array \(A_i\) has \(2^i\) elements, so a binary search on
+    that array would have a running time of \(\log_2(2^i) = i \). The
+    total running time t of the search procedure would be:
+    
+    \begin{align*}
+      \text{let k}& = \lceil log n \rceil\\
+        t& = \sum_{i=0}^k \log_2 2^i\\
+        & = \sum_{i=0}^k i\\
+        & = \frac{k(k+1)}{2}\\
+        & = \frac{1}{2}\left(\log^2 n + \log n\right) \\
+        & = O(\log^2 n)
+    \end{align*}
+  \end{indentpar}
+
+\end{enumerate}
+
+\subsection*{Loop Invariants}
+
+\begin{enumerate}[]
+
+\item When I was first introduced to loop invariants, they almost
+  seemed overly verbose and overkill. Their merit didn't seem
+  unwarranted, but they didn't look very fun to me at all. Throughout
+  the quarter we used a few of these to prove some less intuitive
+  algorithms were correct. There was no way to just look at these
+  algorithms we proved and be able to infer their correctness, so
+  having a tool that could strongly state this was appealing.
+
+\item My only attempt at writing a loop invariant didn't go as well as
+  I might have hoped. My problem was ambiguity, it was not immediately
+  obvious why my invariant worked (if it did at all.) The idea was
+  right, but the execution wasn't.
+
+\item Even though my own invariant wasn't perfect, I was able to
+  correctly prove a pre-written one. An example of this would be on
+  homework two problem one.
+  
 \end{enumerate}
 
 
