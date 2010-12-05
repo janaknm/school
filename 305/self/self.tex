@@ -153,5 +153,70 @@ toolset and way of thinking that makes them much more managable.
   
 \end{enumerate}
 
+\section*{Probability and Indicator Random Variables}
+
+\begin{enumerate}[]
+
+\item Having not really worked with probability before, the power of
+  indicator random variables was surprising. Even trying to come up
+  with a rough estimate for the running time of probabilistic
+  algorithms is tough, but using IRAs make things so much more
+  simple. It reminds me of 'divide and conquer' in the sense that it
+  breaks down the complexity of the problem in to manageable parts and
+  then aggregates them.
+
+\end{enumerate}
+
+
+\section*{Analysis of Data Structures}
+
+\begin{enumerate}[]
+
+\item We spent a lot of time in class analyzing the heap
+  data structure. I knew about them, and learned how they worked at
+  least twice but it never stuck with me. Without an analysis of why
+  they are good at what they do, it's not hard to see why. Heaps have
+  one goal which is to be able to return the min/max element in the
+  structure extremely fast, and that's about it (besides
+  inserting). Before the analysis they seemed pointless because in a
+  balanced search tree, the same element can be accessed in $O(\log
+  n)$ time. Now that we've discussed heaps, I notice that they can be
+  very useful and extended to provide more functionality and stay very
+  fast.
+
+\item Amortized analysis is very useful tool, it picks up the slack
+  when the usual worst case analysis falls short. For example, when we
+  looked at hash tables. The tables doubled in capacity when they
+  became half full. Using worst case analysis, you would say that an
+  insert was $O(n)$ because in the worst case it has to rebuild the
+  whole table. Obviously this is wrong, and amortized analysis came to
+  the rescue where we can show that the average running time is still
+  $O(1)$ for insert even though there are a few bad cases sprinkled
+  in.
+
+\item In the final homework, I used amortized analysis to find the
+  average running time of operations on a special queue. Rather than
+  using an internal list or array to store elements, it only has two
+  stacks to work with. I was able to come up with an algorithm that is
+  cheap for nearly all of its operations, but has an expensive one
+  very once in a while. From there I used amortized analysis to show
+  that in general it has a quick running time. Here's an excerpt:
+
+  \begin{indentpar}{0.5in}
+    In practice, we could not possibly have to do this mass popping
+    and pushing to reorient the structure every dequeue. This means
+    that we will have a much faster amortized analysis of the running
+    time. If we follow the lifetime of one element in the structure,
+    there are only about 4 operations associated with it. We initially
+    push it on to the 'pushstack' and then at some later time we will
+    transfer it to the 'popstack' and finally pop it one more time
+    when it is removed. So there can never be more than 4 operations
+    per element lifecycle. Using amortized analysis, we can see that
+    $n$ insertions could never be worse than about $4n$ stack
+    operations. Therefore, the average cost per enqueue/dequeue
+    operation is $\frac{4n}{n} = 4$, which is $O(1)$.  
+  \end{indentpar}
+  
+\end{enumerate}
 
 \end{document}                  
