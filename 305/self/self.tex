@@ -219,4 +219,67 @@ toolset and way of thinking that makes them much more managable.
   
 \end{enumerate}
 
+\subsection*{Augmented Data Structures}
+
+\begin{enumerate}[]
+
+\item Textbook data structures work well for basic applications, but
+  in this class we found cases where they didn't quite cut it. For
+  example, we wanted to store intervals in some sort of binary tree
+  format and easily look for overlaps. An augmented binary search tree
+  lent itself well to this problem. Every node held two keys, one for
+  the start time and one for the end. Now we had all the functionality
+  of a binary search tree, but when we implemented the function for
+  checking the tree for overlapping intervals, it was a piece of cake.
+
+\item A more useful example of an augmented structure we used was an
+  order statistic tree. This tree is similar to the interval tree in
+  that it stores and extra (augmented) field along with each node. In
+  this case it was the number of child nodes in its left subtree. With
+  this augmentation, we were able to add extra functionality to the
+  structure without breaking the running time of its core functions
+  (insert, delete, search, etc.). Given any node in the tree, we could
+  figure out its rank in $O(\log n)$ time, and similarly we could find
+  the node corresponding to any rank (if it exists) in the same amount
+  of time. I used this structure in assignment four.
+
+\end{enumerate}
+
+\section*{Sorting Algorithms}
+
+\begin{enumerate}[]
+
+\item Two of the sorting algorithms we discussed are merge sort and
+  quick sort. Merge sort is a naturally recursive algorithm which has
+  a running time of $O(n\log n)$ but ends up creating and destroying a
+  lot of auxillary data. Analyzing merge sort would be hard if we
+  hadn't used recurrences, which describe the problem in terms of
+  smaller versions of the problem. For example, the recurrence for the
+  running time of merge sort might look like this:
+
+  \begin{indentpar}{0.5in}
+
+    \[
+    M(n) = 
+    \left\{
+    \begin{tabular}{l r}
+      $M(\frac{n}{2}) + M(\frac{n}{2}) + O(1)$ & $n>1$\\
+      $O(1)$ & $n=1$
+    \end{tabular}
+    \right\}
+    \]
+    
+  \end{indentpar}
+
+\item On the other hand, quick sort can be done in place. This has
+  several advantages that didn't necessarily show up in our analysis
+  of it's running time. Because it isn't constantly creating and
+  destroying memory, it runs significantly faster than merge sort,
+  even though its worst case running time is slower ($O(n^2) vs
+  O(n\log n)$). I suppose that is one of the downfalls of using the
+  generic Big-O notation that doesn't differentiate the cost of
+  different basic oeprations.
+
+\end{enumerate}
+
 \end{document}                  
