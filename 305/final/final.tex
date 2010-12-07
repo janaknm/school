@@ -152,4 +152,47 @@ for i = 2...n:
   
 \end{enumerate}
 
+\section*{Problem 4}
+
+\begin{enumerate}[a)]
+
+\item
+  \begin{enumerate}[]
+    
+  \item I'm not quite sure how to go about analyzing this
+    algorithm. There really seems to be a lot of dependencies, and I'm
+    not yet skilled in the art of probability. My best attempt was to
+    try partition the bets in to two groups: the first $\frac{n}{10}$
+    and the rest. If we call the largest bid in the first partition
+    $M$, and let the list of bets, $L$, be all the bets in the second
+    partition that are greater than $M$, we can find the
+    probability. Assuming that we can find this list $L$, or even the
+    number of elements in it then the probability of picking the
+    highest bet is equal to the probability that the highest bet is
+    the first element of $L$.
+
+  \item So, the probabiliy of taking the highest bet is
+    $\dfrac{1}{\text{length}(L)}$, where $L$ is the list described
+    above (number of bets in the partition that are greater than
+    maximum of first).
+
+  \item Now we have some way of determining the probability, albeit
+    one that assumes a lot. I really don't know how to go about
+    determining the length of $L$ formally, but we can analyze the
+    smallest and largest values it can take. First of all, the worst
+    case is that the $\frac{n}{10}$ smallest elements are the first
+    bets in the sequence. In that case {\italics all} the bets in the
+    second partition are greater than the maximum of the
+    first. Therefore, the probability of picking the highest bid would
+    be $\dfrac{1}{\frac{9n}{10}} = \dfrac{10}{9n}$ in this scenario.
+
+  \item On the other hand, if the $2^{nd}$ largest bet was one of the
+    first $\frac{n}{10}$ bets seen, then we are guaranteed to accept
+    the very highest bet. So in this case, the probability is $1$.
+
+  \end{enumerate}
+
+\end{enumerate}
+
+
 \end{document}
