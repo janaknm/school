@@ -1,0 +1,169 @@
+* Chapter 1
+** Virtual Private Networks (VPN)
+Many individual networks at different site joined together to create
+the effect of one large network that includes all of the users in each
+network.
+** Types of Transmission
+*** Point-to-point (unicasting)
+Single sender, single receiver. The packet may be passed along many
+sources before it reaches its destination.
+*** Broadcasting
+When the communication channel is shared by all computers on the
+network. packets are received by every computer, and have a field in
+the packet designating the intended receiver.
+*** Multicasting
+Like broadcasting, but only transmitting to a subset of the machines
+on the network.
+** Internetwork
+The connection of two or more networks. Internet is the best-known
+internetwork.
+** Personal Area Network (PAN)
+Networks that are very short-ranged (within reach usually.) Bluetooth
+is a good example, which creates a very simple master-slave network in
+which all peripheral bluetooth devices connect to the master
+(computer, car, etc.)
+** Wide Area Network (WAN)
+WANs cover large geographic regions (countries even) and work very
+similarly to LANs or MANs, just on a larger scale. In a WAN, there
+will be several hosts (computers running user programs), and the
+communication subnet. The subnet is a collection of transmission lines
+and switches (routers) the move data between the hosts.
+** Protocol
+Agreement between communicating parties on how communcations should
+proceed. 
+** Peers
+Entities that are communicating using some protocol. When a network is
+comprised of multiple layers, peers would be the software or hardware
+on the same layer that communicate using some protocol.
+** Physical Medium
+Peers across different machines will not directly share data. Instead,
+they will pass information to the layer below it until it reaches the
+bottom, the physical medium. Here is where the actual transmission
+occurs.
+** Network Architecture
+Simply the set of layers that comprise a network. A specification
+should include enough information for an implementer to write the
+program/build hardware for each layer so it will follow the specified
+protocol.
+** Protocol Stack
+A list of protocols used by each layer in a certain system, one
+protocol per layer.
+** Statistical Multiplexing
+Networks provide a service to the connected hosts with their available
+resources such as bandwidth. To be efficient, the network must have
+some way to divide the resources in a way that doesn't interfere with
+other hosts. Sharing the resources dynamically is called is
+statistical multiplexing based on demand. 
+** Flow Control
+When fast-sending connections swamp a very slow receiver, flow control
+is used to provide feedback to the origin of the transmission. It is
+like a warning to slow down.
+** Connection-Oriented Services
+Sockets and telephones work in this way. You first open a connection,
+use it for some time, and finally close it when you're done. Data
+transmission is done through a type of pipe, where the sender pushes
+data in to the pipe, and the receiver pulls it out.
+** Connectionless Services
+Rather than having a designated sender/receiver, all messages using
+this type of service have the absolute address of the
+recipient. Messages are routed through connected nodes in the system
+until they reach their destination.
+** Datagram Service
+This service is unreliable because there is no acknowledgement that a
+packet was received. Usually there is a high probability that the
+message will be received but no guarantee. 
+** Acknowledged Datagram
+When an established connection isn't necessary, you can use the
+datagram service but request a "receipt" that reassures the sender
+that message was definitely received.
+** Request-Reply Service
+A client sends a single message to the server, and it responds with a
+single message response.
+** Service vs. Protocol
+Simply put, a service is a set of primitives (operations) that it
+makes available to the layer above it. It is a definition of the
+operation it is prepared to make on behalf of the layer above.
+
+A protocol is a set of rules that govern the format and meaning of the
+messages/packets that are exchanged between peer entities on a layer.
+
+Entities use protocols to implement services. For this reason
+protocols can change to any degree, as long as the primitives the
+service provides do not change.
+** Open Systems Interconnection (OSI)
+This is a standardized model whos structure is important, but the
+actual protocols are no longer used. It has seven layers which were
+designed to separate well-defined functions while keeping the number
+of layers manageable. 
+*** Physical Layer
+Transmits raw bits over a communication channel. Its purpose is to
+make sure each bit sent as a 0 is received as a 0, the implementation
+is in charge of handling the mechanical/electrical aspect of the
+transportation.
+*** Data Link Layer
+This layer is charged with transforming raw transmission of data in to
+an apparently error-free line. It should hide the error-handling
+implementation from the layer above, and only allow correct packets to
+bubble up.
+
+To accomplish this by having the sender break up the input data in to
+data frames (some arbitrary number of bytes) and transmit these frames
+sequentially. When the service needs to be reliable, the receiver must
+confirm by replying with an acknowledgment frame.
+*** Network Layer
+Controlling the operations of the subnet is the responsibility of the
+network layer. A key issue is determining how packets are routed,
+which path they should take from a source to its destination. Routes
+can be hardcoded in a static table, dynamically calculated for each
+connection, or some medium between. 
+
+Congestion can be caused when there are too many packets in the
+subnet, and the network layer's job is to make sure this doesn't
+happen. In general, the Quality of Service (QoS) is an issue of the
+network layer.
+
+Finally, sending packets between multiple networks can also be
+problematic; the receiving network may use a different protocol, have
+packet length limits, etc. The network layer should handle these
+possible errors and correct them seamlessly.
+*** Transport Layer
+The transport layer communicates directly with the connected
+entity. It should take data from the layer above, break it up (if
+needed), and then send it to the network layer. Furthermore, it should
+make sure that all the data was sent/received correctly in a way that
+shouldn't be noticeable to the layers above it. The communication is
+not impeded by routers imbetween like layers below, it should have a
+direct line to the destination machine.
+*** Session Layer
+A session offers various services like dialog control (as in
+conversation, whos turn it is to talk), token management (don't let
+multiple parties attempt the same critical operation at the same
+time), and synchronization (allowing long transmissions to be picked
+up where they left off in the event of a crash or disconnect).
+*** Presentation Layer
+While other layers are concerned with moving bits around, this layer
+dicates the syntax and semantics of that information. This is
+important for computers that have different data represntations. An
+abstract and standard encoding can be used and interpreted by any peer
+that knows the protocol.
+*** Application Layer
+Here is the final layer that contains protocols that are needed and
+used by actual users. For example the HTTP protocol would be
+applicable, as it is the highest-level protocol used in the stack.
+
+
+
+
+* Network Programming
+** netlib
+Simple interface for client/server communication.
+** NET ASCII line
+A series of characters followed by \r\n
+** HTTP Format
+*** Request Line:
+ex: GET path HTTP/1.0
+*** Response Format:
+ex: HTTP/1.0 number message
+    Server: <name>
+    Content-Length: <bytes>
+    Content-Type: <mime-type>
