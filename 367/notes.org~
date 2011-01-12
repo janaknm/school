@@ -2,32 +2,38 @@
 ** Virtual Private Networks (VPN)
 Many individual networks at different site joined together to create
 the effect of one large network that includes all of the users in each
-network.
-** Types of Transmission
-*** Point-to-point (unicasting)
+network
+** Network Hardware
+*** Types of Transmission
+**** Point-to-point
 Single sender, single receiver. The packet may be passed along many
-sources before it reaches its destination.
-*** Broadcasting
+sources before it reaches its destination. Telephone lines.
+**** Broadcasting
 When the communication channel is shared by all computers on the
 network. packets are received by every computer, and have a field in
-the packet designating the intended receiver.
-*** Multicasting
+the packet designating the intended receiver. wifi/ethernet fit in
+this category.
+**** Multicasting
 Like broadcasting, but only transmitting to a subset of the machines
 on the network.
-** Internetwork
-The connection of two or more networks. Internet is the best-known
-internetwork.
-** Personal Area Network (PAN)
+**** Packet
+'short' block of data sent/received by network. Size of the packet is
+hardware-defined.
+*** Types of Networks
+**** Personal Area Network (PAN)
 Networks that are very short-ranged (within reach usually.) Bluetooth
 is a good example, which creates a very simple master-slave network in
 which all peripheral bluetooth devices connect to the master
 (computer, car, etc.)
-** Wide Area Network (WAN)
+**** Wide Area Network (WAN)
 WANs cover large geographic regions (countries even) and work very
 similarly to LANs or MANs, just on a larger scale. In a WAN, there
 will be several hosts (computers running user programs), and the
 communication subnet. The subnet is a collection of transmission lines
 and switches (routers) the move data between the hosts.
+** Internetwork
+The connection of two or more networks. Internet is the best-known
+internetwork.
 ** Protocol
 Agreement between communicating parties on how communcations should
 proceed. 
@@ -67,7 +73,7 @@ data in to the pipe, and the receiver pulls it out.
 Rather than having a designated sender/receiver, all messages using
 this type of service have the absolute address of the
 recipient. Messages are routed through connected nodes in the system
-until they reach their destination. 
+until they reach their destination.
 ** Datagram Service
 This service is unreliable because there is no acknowledgement that a
 packet was received. Usually there is a high probability that the
@@ -152,5 +158,16 @@ used by actual users. For example the HTTP protocol would be
 applicable, as it is the highest-level protocol used in the stack.
 
 
-
-
+* Network Programming
+** netlib
+Simple interface for client/server communication.
+** NET ASCII line
+A series of characters followed by \r\n
+** HTTP Format
+*** Request Line:
+ex: GET path HTTP/1.0
+*** Response Format:
+ex: HTTP/1.0 number message
+    Server: <name>
+    Content-Length: <bytes>
+    Content-Type: <mime-type>
