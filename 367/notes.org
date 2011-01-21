@@ -182,6 +182,93 @@ Signals from 0 to max frequency
 *** Passband
 Signals shifted occupy a higher frequency
 
+** Guided Transmission Media
+*** Twisted Pair
+Usually two thin copper wires twisted to make give them similar
+noise. If they were separated, radiation would create different
+amounts of noise in each wire.
+**** Simplex
+One transmitter sends data across the twisted pair to the
+receiver. Essentially just a one way wire.
+**** Half-Duplex
+One twisted pair, where the transmitter/receiver switch roles, so its
+one way at a time, but the direction can change.
+**** Full-Duplex
+Two pairs, concurrent data in both directions.
+*** Coaxial Cable
+Cable TV wires, used in original ethernet.
+*** Power Lines
+Actually possible to transmit data across power lines, high bandwidth
+but high voltage (dangerous).
+*** Fiber Optics
+Long haul transmission (long distance?) Different modes, single/multi
+where it would be one-way or two-way. In single mode, you can send
+100Gbps over 100km. 
+*** Wireless
+Uses the radio spectrum (10**4Hz to 10**16Hz) of frequencies. 
+** Modulation
+A change in signal to encode information (modulation). Extracting
+information from a signal (demodulation). You can do both analog and
+digital modulation. Modulation takes the carrier wave (medium of
+transmission) and bends it to represent the data that needs to be
+sent.
+*** Amplitude Modulation
+Change the amplitude of the wave to match a sine wave (for analog) or
+for bit data (digital).
+*** Frequency Modulation
+Modifying the frequency to be interpreted as a sine wave or bit
+data. For bit data you could have two frequencies, one to represent 0
+and one for 1.
+
+* Chapter 3
+** Data Link Layer
+"Connecting" computers. Provide a reliable supply of packets to/from
+the network layer. 
+*** Transmission Errors
+Drop bits, add bits, change bits. This layer should effectively hide
+these from the network layer.
+*** Frames
+Chunks that the bitstream is broken down in to. Some arbitrary agreed
+upon size.
+**** Establishing Frames
+***** Character Count
+Breaks the message up in to sequences of bytes, prepending a byte that
+notes the total bytes in the frame (including byte count). An error in
+the byte count throws off the whole frame structure (ie. 5 -> 24).
+***** Start/End Characters
+Uses "byte stuffing". In ASCII, there are special characters DLE (data
+link escape), SOH (start of header), and EOT(end of
+transmission). Each frame has [DLE][SOH] ... [DLE][SOH]. 
+****** Problems
+Binary data can accidentally trigger an end of frame by having a DLE
+bit pattern. To remedy this, "byte stuffing" is used. When
+transmitting binary data, if it sees a DLE bit pattern, it "stuffs" a
+second one next to it. Then when the receiver parses the data, it can
+remove the extras.
+***** Start/End Bit Patterns
+Uses "bit stuffing". 
+*** Types of Service
+**** Unacknowledged, connectionless
+No attempt to detect or correct errors. Can be used effectively over a
+very reliable medium for large data where errors do not matter much.
+**** Acknowledged, connectionless
+Each frame is acknowledged by the receiver. When the receiving data
+link layer reads a layer, it can ask for a retransmit
+**** Connection Service
+Sender, receiver establish a connection. Frames are numbered, and
+transmitted in order.
+*** Error Control
+**** Provide sender with feedback
+Positive/negative acknowledgement after receiving a frame.
+**** Frame never reaches a frame
+Sender has a timeout period, if hit hasn't had an acknowledgement at
+the end of the timeout, it will resend the frame. Can result in
+mutliple copies if the receiver was just too slow to respond.
+**** Detection
+Add redundancy to the data.
+**** Correction
+Upon detecting an error, it can fix the error on its own without a
+retransmission.
 * Network Programming
 ** netlib
 Simple interface for client/server communication.
