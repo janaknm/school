@@ -220,6 +220,71 @@ Modifying the frequency to be interpreted as a sine wave or bit
 data. For bit data you could have two frequencies, one to represent 0
 and one for 1.
 
+*** Figure 2-43
+** Mobile Phones
+*** 1G Analog Voice
+*** 2G Digital Voice
+GSM, SIM cards. Used both FDM (frequency division) and TDM (time division) for multiple channels
+*** 3G Digital Voice & Data
+Uses CDMA (code division multiple access)
+* Chapter 3
+** Data Link Layer
+"Connecting" computers. Provide a reliable supply of packets to/from
+the network layer. 
+*** Transmission Errors
+Drop bits, add bits, change bits. This layer should effectively hide
+these from the network layer.
+*** Frames
+Chunks that the bitstream is broken down in to. Some arbitrary agreed
+upon size.
+**** Establishing Frames
+***** Character Count
+Breaks the message up in to sequences of bytes, prepending a byte that
+notes the total bytes in the frame (including byte count). An error in
+the byte count throws off the whole frame structure (ie. 5 -> 24).
+***** Start/End Characters
+Uses "byte stuffing". In ASCII, there are special characters DLE (data
+link escape), SOH (start of header), and EOT(end of
+transmission). Each frame has [DLE][SOH] ... [DLE][SOH]. 
+****** Problems
+Binary data can accidentally trigger an end of frame by having a DLE
+bit pattern. To remedy this, "byte stuffing" is used. When
+transmitting binary data, if it sees a DLE bit pattern, it "stuffs" a
+second one next to it. Then when the receiver parses the data, it can
+remove the extras.
+***** Start/End Bit Patterns
+Uses "bit stuffing". Frames start with 0x7E, when it sees 5 '1' bits
+in a row, add a '0'.
+*** Types of Service
+**** Unacknowledged, connectionless
+No attempt to detect or correct errors. Can be used effectively over a
+very reliable medium for large data where errors do not matter much.
+**** Acknowledged, connectionless
+Each frame is acknowledged by the receiver. When the receiving data
+link layer reads a layer, it can ask for a retransmit
+**** Connection Service
+Sender, receiver establish a connection. Frames are numbered, and
+transmitted in order.
+*** Error Control
+**** Provide sender with feedback
+Positive/negative acknowledgement after receiving a frame.
+**** Frame never reaches a frame
+Sender has a timeout period, if hit hasn't had an acknowledgement at
+the end of the timeout, it will resend the frame. Can result in
+mutliple copies if the receiver was just too slow to respond.
+**** Detection
+Add redundancy to the data.
+***** Parity
+First bit says whether there are even/odd bits in the byte.
+***** Checksums
+-#- Learn for test.
+**** Correction
+Upon detecting an error, it can fix the error on its own without a
+retransmission.
+*** Protocols
+**** Simple Protocol
+Data --> ... <-- ACK
+No ACK back, assumes that it didn't get there. Retransmit.
 * Network Programming
 ** netlib
 Simple interface for client/server communication.
@@ -233,3 +298,35 @@ ex: HTTP/1.0 number message
     Server: <name>
     Content-Length: <bytes>
     Content-Type: <mime-type>
+    
+
+** Sockets
+*** bind
+Usually on a server, binds a server to an address/port.
+*** listen
+Set queue size.
+*** accept
+Gets or waits for the first connection in the queue. Returns a socket
+of the connected client. Fills in client information in sockaddr if
+given.
+*** connect
+Client version, just connects to a program that is listening on the
+address given.
+*** getpeername
+Given a socket, returns a sockaddr with info about connection.
+*** gethostname
+Gets the current host name (of local machine)
+*** gethostbyname
+Gets ip host information block for some other machine.
+*** gethostbyaddr
+Gets ip host information for some sockaddr. Man page confusing
+(wrong?). The addr needs to be a pointer to in_addr NOT a
+char*. Family is AF_INET.
+*** select
+Sleeps until one of the given sockets is ready to read/write.
+*** htonl, htons
+Converts longs/shorts respectively from host endian to network endian.
+*** ntohl, ntohs
+Converts longs/shorts respectively network endian to host endian.
+*** ntoa
+Network endian ip to ascii.
