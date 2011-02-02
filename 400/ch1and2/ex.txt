@@ -1,0 +1,31 @@
+A* and the Traveling Salesman Problem
+
+A* search tries to direct the would-be headless walk through a search
+space. Rather than exhaustively check every possibility, we can just
+expand nodes that we expect to be good bets. To accomplish this we
+need some notion of "good" when describing a node in the tree; this is
+the heuristic. A heuristic function estimates the path length to the
+destination from it. When combined with the path cost to the node in
+question, we have a good way rank nodes.
+
+A good definition of the TSP is: "Find a path through a weighted graph
+which starts and ends at the same vertex, includes every other vertex
+exactly once, and minimizes the total cost of the edges." Brute
+forcing this problem would be a disaster, so taking a bit more
+directed approach is more appropriate (but still inefficient.) 
+
+Minimum spanning trees connect all the vertices of a graph with a
+minimum total edge weight. This total edge weight will always be less
+than or equal to the final path of a TSP tour. If we take the TS
+problem and drop the constraint that you can only visit each node
+once, it would be solved with a MST. Because of this property of
+always giving an optimistic estimation, the MST would be a good
+heuristic for the TSP.
+
+So that's how I implemented my solution to the TSP. Using A* with MST
+heuristic to direct an informed search through the large search space,
+my non-optimized implementation can solve a graph with about 10 nodes
+and between 2 and 5 edges per node in a couple seconds.
+
+
+

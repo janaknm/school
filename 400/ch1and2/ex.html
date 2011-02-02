@@ -1,0 +1,205 @@
+<p>A* search tries to direct the would-be headless walk through a search
+space. Rather than exhaustively check every possibility, we can just
+expand nodes that we expect to be good bets. To accomplish this we
+need some notion of "good" when describing a node in the tree; this is
+the heuristic. A heuristic function estimates the path length to the
+destination from it. When combined with the path cost to the node in
+question, we have a good way rank nodes.</p>
+
+<p>A good definition of the TSP is: "Find a path through a weighted graph
+which starts and ends at the same vertex, includes every other vertex
+exactly once, and minimizes the total cost of the edges." Brute
+forcing this problem would be a disaster, so taking a bit more
+directed approach is more appropriate (but still inefficient.) </p>
+
+<p>Minimum spanning trees connect all the vertices of a graph with a
+minimum total edge weight. This total edge weight will always be less
+than or equal to the final path of a TSP tour. If we take the TS
+problem and drop the constraint that you can only visit each node
+once, it would be solved with a MST. Because of this property of
+always giving an optimistic estimation, the MST would be a good
+heuristic for the TSP.</p>
+
+<p>So that's how I implemented my solution to the TSP. Using A* with MST
+heuristic to direct an informed search through the large search space,
+my non-optimized implementation can solve a graph with about 10 nodes
+and between 2 and 5 edges per node in a couple seconds.</p>
+
+<p>Here is the code I wrote to solve the problem:
+  <a href='/static/ai/tsp.lisp'>(file)</a>
+</p>
+
+<p class="code">
+  
+<pre class="brush: lisp">
+;;;; Nodes generated will be a part of between 2 and (2+max-branches) edges
+(defparameter *max-branch* 3)
+
+;;;; graph datastructure. composed of nodes (integers ranged 0 to n)
+;;;; and a set of edges (a b) where a and b are connected nodes. 
+(defstruct (graph (:conc-name nil))
+  (nodes nil)
+  (edges nil))
+
+;;;; get the x,y location of a node within a graph
+(defmacro node->pt (node graph)
+  `(elt (nodes ,graph) ,node))
+
+;;;;; successors - given a state and graph, return a list of all
+;;;;; possible states we can get to from here
+(defun successors (state graph) 
+  (destructuring-bind (n path) state
+    (let ((acc nil)
+          (new-path (cons n path))
+          (dest (car (last (cadr state))))
+          (last-p (= (1- (length (nodes graph))) (length (cadr state)))))
+      (mapcar #'(lambda (edge)
+                  (cond ((and (= (car edge) n)
+                              (or (and last-p (= (cadr edge) dest))
+                                  (not (member (cadr edge) path))))
+                         (push (list (cadr edge) new-path) acc))
+                        ((and (= (cadr edge) n)
+                              (or (and last-p (= (car edge) dest))
+                                  (not (member (car edge) path))))
+                         (push (list (car edge) new-path) acc))))
+              (edges graph))
+      acc)))
+                
+
+(defun a* (initial graph)
+  (let ((size (length (nodes graph))))
+    (do* ((state (list initial nil) (car expanded))
+          (expanded (successors state graph) 
+                    (sort (append (cdr expanded) (successors state graph))
+                          #'< :key (rcurry #'eval-state graph))))
+         ((or (null expanded) (= size (length (cadr state))))
+          (unless (null expanded)
+            (nreverse (cons (car state) (cadr state))))))))
+      
+(defun eval-state (state graph)
+  (+ (mst (cadr state) graph)
+     (dist (node->pt (car state) graph)
+           (node->pt (car (cadr state)) graph))))
+
+;;; minimum spanning tree - heuristic for A* search: return the total
+;;; weight of the minimum spanning tree of the graph based off the
+;;; given path
+(defun mst (path graph)
+  (let ((forest nil)
+        (cost 0)
+        (used nil)
+        (added nil))
+    ;; process path
+    (maplist #'(lambda (lst)
+                 (push (car lst) used)
+                 (when (> (length lst) 1)
+                   (incf cost (weight (subseq lst 0 2) graph))))
+             path)
+    (mapcar #'(lambda (node)
+                (push (list node) forest))
+            (filter (complement (rcurry #'member used))
+                    (range (length (nodes graph)))))
+    (when used (push used forest))
+    ;; connect forests
+    (do* ((es (sort-edges (edges graph) (rcurry #'weight graph)) (cdr es))
+          (edge (car es) (car es)))
+         ((or (null es)
+              (eql 1 (length forest)))
+          (if (eql 1 (length forest)) (values cost added)))
+      (let ((t1 (member (car edge) forest :test #'member))
+            (t2 (member (cadr edge) forest :test #'member)))
+        (cond ((equal t1 t2))
+              (t (push (append (car t1) (car t2)) forest)
+                 (setf forest (remove (car t1) forest :test #'equal))
+                 (setf forest (remove (car t2) forest :test #'equal))
+                 (incf cost (weight edge graph))
+                 (push edge added)))))))
+        
+
+;;;;; utilities
+
+;;;; point functions
+(defun pt (x y)
+  (list x y))
+
+(defun x (pt)
+  (first pt))
+
+(defun y (pt)
+  (second pt))
+
+;;;; rnd-pts - generate n random points over unit square
+(defun rnd-pts (n)
+  (let ((acc nil))
+    (dotimes (i n)
+      (push (pt (random 1.0) (random 1.0)) acc))
+    acc))
+
+;;;; gen-graph - build a graph with n nodes conforming to problem
+;;;; constraints (points within unit square, 2 to max-branch edges per
+;;;; node)
+(defun gen-graph (n)
+  (let ((ns (rnd-pts n))
+        (es nil))
+    (dotimes (i n)
+      (dotimes (j (+ 2 (random *max-branch*)))
+        (pushnew (list i (random n)) es :test #'edge-eql)))
+    (make-graph :nodes ns :edges es)))
+    
+    
+;;;; sort-edges - non-destructive sorting function. used for sorting
+;;;; edges
+(defun sort-edges (edges fn)
+  (sort (copy-list edges)
+        #'(lambda (e1 e2)
+            (< (funcall fn e1) (funcall fn e2)))))
+
+;;;; edge-eql - are two edges equal?
+(defun edge-eql (e1 e2)
+  (and (member (car e1) e2)
+       (member (cadr e1) e2)))
+  
+;;;; just a square macro
+(defmacro sq (n)
+  (let ((sym (gensym)))
+    `(let ((,sym ,n))
+       (* ,sym ,sym))))
+        
+;;;; dist - distance between two points
+(defun dist (p1 p2)
+  (sqrt (+ (sq (- (y p2) (y p1)))
+           (sq (- (x p2) (x p1))))))
+
+;;;; weight - get weight of an edge
+(defun weight (edge graph) 
+  (dist (node->pt (car edge) graph)
+        (node->pt (cadr edge) graph)))
+  
+;;;; range - return list of ints 0 ... (n-1)
+(defun range (n)
+  (let ((acc nil))
+    (dotimes (i n)
+      (push i acc))
+    (nreverse acc)))
+
+;;;; filter - return a list with all elements that pass the predicate
+(defun filter (fn lst)
+  (let ((acc nil))
+    (dolist (obj lst)
+      (when (funcall fn obj)
+        (push obj acc)))
+    (nreverse acc)))
+
+;;;; curry - partially apply args to a function
+(defun curry (fn &rest args)
+  #'(lambda (&rest more-args)
+      (apply fn (append args more-args))))
+
+(defun rcurry (fn &rest args)
+  #'(lambda (&rest more-args)
+      (apply fn (append more-args args))))
+</pre>
+</p>
+
+
+
