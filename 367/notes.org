@@ -289,7 +289,6 @@ resend those that it didn't receive. When the ACKs have been received
 it can discard the packets. "ACK n" specifies that they received ALL
 packets up to packet n.
 
-* adf
 ** Types of Links
 *** Point-to-point
 Typically long distance, single connection from machine to machine.
@@ -301,6 +300,48 @@ Standard Ethernet Protocol. Carrier Sense Multiple Access. Exponential
 backoff time when collisions are detected.
 ** CSMA/CA - Collision Avoidance
 *** RTS / CTS - request/clear to send
+** Ethernet
+*** Frame (in bytes)
+preamble - 8
+dest address - 6
+source address - 6
+type - 2
+data - 0 to 1500 
+pad - 0 to 46
+checksum - 4
+*** Minimum Packet (DATA) Size
+46 bytes to ensure entire network is saturated so even computers at
+maximum distance away (300-500m) can detect errors.
+
+data+pad >= 46
+
+*** Max Packet Size
+1500
+*** Switched Ethernet
+**** Early version (hub)
+Indistinquishable from a single wire. Just as many collisions as
+without.
+**** Migration to switch
+Smarter than a hub, computers can just talk to the switch, and it can
+route that to the correct computer. When connections to the hub are
+duplex (two-way) there are no longer collisions because all computers
+are just talking to the switch.
+
+** Wireless "ethernet" WLAN
+*** Access Point (AP) mode vs Ad Hoc (point to point)
+AP mode is more flexible and ad hoc is not
+*** MAC sublayer protocol (CSMA/CA)
+*** Frame (in bytes)
+frame control 2
+duration 2
+dest 6
+source 6
+address3 6 (usually AP address)
+sequence 2
+data 0-2k
+check sequence 2
+** Broadband Wireless (WiMAX)
+Up to 10x further access than 802.11 wifi. 
 * Network Programming
 ** netlib
 Simple interface for client/server communication.
