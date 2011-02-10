@@ -1,0 +1,11 @@
+;;;; Matt Forbes
+;;;; February 2011 CS 400
+
+;;;; Use of naiive bayes' classification to categorize text documents
+;;;; in to 'liked' and 'disliked'
+
+;;;; Incorrect assumptions made to simply calculations:
+;;;; 1. relative position of two words has no effect on probability
+;;;; 2. absolute position of a word in the document has no effect
+;;;; 3. every word has equal probability of occuring in a document
+;;;; 4. english vocabulary consists just words contained in training documents
