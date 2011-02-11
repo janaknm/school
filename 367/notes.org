@@ -226,7 +226,7 @@ and one for 1.
 GSM, SIM cards. Used both FDM (frequency division) and TDM (time division) for multiple channels
 *** 3G Digital Voice & Data
 Uses CDMA (code division multiple access)
-* Link Layer
+* Data Link Layer
 ** Transmission Errors
 Drop bits, add bits, change bits. This layer should effectively hide
 these from the network layer.
@@ -341,7 +341,156 @@ sequence 2
 data 0-2k
 check sequence 2
 ** Broadband Wireless (WiMAX)
-Up to 10x further access than 802.11 wifi. 
+Up to 10x further access than 802.11 wifi.
+** Bluetooth
+*** Transmission
+Time-division duplex on ISM radio bandwidth (2.4Ghz).
+79 separate channels (carrier frequencies) 1Mhz apart.
+Transmission stays on the same frequency until it has completed (but can only 1, 3, or 5
+time slots)
+*** Addresses
+48 bits, the master's address is used to pick a psuedo-random hopping
+standard
+*** Active/Parked slaves
+Only 7 slaves can be active, but up to 256 devices can be "parked" and
+need to be reactivated
+
+** RFID
+radio frequency identification
+** LAN Extension
+*** Why?
+Too many computers, wires too short, appearance of a logical LAN
+across large area
+*** Repeater
+Just connects segments, it's dumb and just retransmits everything it
+receives. Physical Layer
+*** Bridge
+Understands frames, it forwards frames that are not collisions but
+only if it needs to (it knows the recipient is on the other side). It
+keeps track of the hardware addresses, so simultaneous use of both
+segments can be used in parallel. Data Link Layer
+*** Switch
+Like a bridge between LANS. Data Link Layer
+** VLAN (Virtual LAN)
+*** Switch-Based
+Physical connections across multiple switches can be identified as
+part of a "VLAN" so that broadcasts work across them only
+* Network Layer
+** Purpose:
+Get packets from source to destination. Uses hops (machine-to-machine)
+and the data link layer (machine to machine on wire). This layer needs
+to know about the whole network.
+** Store and Forward
+1. receive a packet
+2. find it's destination
+3. send it to the next router that is closer to the destination
+** Goals
+Services should be independent of the routing of packets. Transport
+layer shouldn't have to deal with the network at all.
+** Connectionless Service
+Uses datagrams; no two datagrams are related. 
+*** Packet Switching
+Each switch knows enough about the network to be able to get any
+packet packet closer to its destination.
+*** Failure
+Router failure doesn't affect the packet transmission.
+** Connection-Oriented Service
+*** Virtual Circuit
+Once set up, must be notified by transport layer when to close the
+circuit. Each packet can just use a virtual circuit ID rather than a
+full address. BUT, every switch needs to know about the virtual
+circuit and reserve that slot.
+*** Failuire
+ If a router fails, every single virtual circuit through that router
+dies.
+** Routing
+Used mostly in WANs.
+*** Types of switches
+Interior switches usually don't have computers connected and are just
+used to route packets along. Exterior routers are usually connected to
+a LAN which transports packets to/from its computers.
+*** Default Route
+When a switch doesn't know where to send a packet, it should have a
+backup destination to forward it along
+*** Routing Tables
+Each switch can be assigned an identifier, and the switch "learns"
+what the shortest/fastest route to a certain switch.
+** Congestion Control
+Mostly only cause of lost packets - most hardware is pretty solid, but
+can only handle congestion so well.
+** QoS
+*** Jitter
+Variation in delay. Delay is fine if it's consistent (in certain
+applications: video, audio) If we get a 1ms delay followed by a 1sec
+delay, we can't play video well (without a lot of buffering)
+** Internetworking
+Connecting heterogeneous networks seamlessly to produce a virtual
+network. "Internet" is a nice clean virtual network that envelopes all
+these layer2 connected networks.
+*** IP Addresses
+prefix: network number. suffix: host-ID
+**** Class A
+'0' prefix, followed by 7bit prefix, followed by 24bit suffix.
+0 through 127 (128 nets, 16777216 hosts/net)
+**** Class B
+'10' prefix, followed by 14bit prefix, followed by 16bit suffix.
+128 through 191 (16384 nets, 65536 hosts/net)
+**** Class C
+'110' prefix, followed by 21bit prefix, followed by 8bit suffix.
+192 through 233 (2097152 nets, ...)
+**** Class D
+'1110' multicast address
+
+
+
+*** Class Addressing
+
+** Routers
+Each LAN gets its own "unique" IP address
+*** Mapping hardware address to protocol address
+*** ARP
+Address Resolution Protocol. Broadcast message requesting a hardware
+address for a peer. All listening computers can store the senders
+address. Response is directed, not broadcast. ONLY NEED HWADDR FOR
+LOCAL NETWORKS, just use proto address otherwise.
+** IP Datagrams
+*** Virtual Packets
+Makes packets identical on all technologies, giving a seamless
+interaction between different types of machines. Connectionless
+service, and is a "best-effort deliver" - no guarantees of
+dropped/duplicated/out of order/corrupted packets.
+*** Fragmentation
+Virtual IP packets an be huge (64k) but most data links have much
+smaller MTU (maximum transmission unit). Routers can/have to fragment
+IP packets in to smaller packets. These packets now flow through the
+net as individual packets, only to be reassembled at the final
+destination.
+
+** IPV6
+128bits. 
+*** Extensible Headers
+All headers put in the front of the virtual packet, so that additional
+headers can be created and used (extended..)
+*** IPV6 Datagram
+Just base header, extension headers, and data. No checksum.
+*** Fragmentation
+Routers don't fragment anymore, the sending host is responsible now.
+*** Addressing
+Uses hex; groups of 16bits. 2085:FFFF:0:0 ...
+Double colon denotes all 0 groups between. FF0C::F1 is valid
+*** 6to4 net
+2002:x:y/48   - xy is 32bit ipv4 address
+** UDP and TCP
+Both transport layer protocols that use the network layer to send
+packets. End-to-end protocol.
+*** Multiplexing
+Allows unique process identification using ports numbers
+*** Packets
+TCP headers and data encapsulated by the IP protocol in the network
+layer.
+** NAT (network address translation)
+Allows multiple computers to use one public IP address. To use this we
+need to set up a private IP address space.
 * Network Programming
 ** netlib
 Simple interface for client/server communication.
@@ -356,7 +505,6 @@ ex: HTTP/1.0 number message
     Content-Length: <bytes>
     Content-Type: <mime-type>
     
-
 ** Sockets
 *** bind
 Usually on a server, binds a server to an address/port.
@@ -387,3 +535,5 @@ Converts longs/shorts respectively from host endian to network endian.
 Converts longs/shorts respectively network endian to host endian.
 *** ntoa
 Network endian ip to ascii.
+** Ncat
+port@host:filepath to use it

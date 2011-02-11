@@ -1,0 +1,21 @@
+#! /bin/bash
+
+case "$1" in
+    compress)
+        tar -cf compressed/classify.tar classify/*
+        gzip  compressed/classify.tar
+        rm -rf classify/*
+        
+        tar -cf compressed/training.tar training/*
+        gzip  compressed/training.tar
+        rm -rf training/*
+        
+        ;;
+    decompress)
+        tar xvf compressed/classify.tar.gz
+        tar xvf compressed/training.tar.gz
+        rm compressed/*
+        
+        ;;
+esac
+    

@@ -20,7 +20,7 @@ February 2011 \\
 CS 400 - AI Indep. Study \\
 Chapter 13 Discussion
 
-\section{Uncertainty}
+\section*{Uncertainty}
 \begin{enumerate}[]
   
   \item In real-world systems, decisions can't be made so simply as
@@ -72,6 +72,47 @@ Chapter 13 Discussion
     \end{ind}
 
 \end{enumerate}
+
+\section*{Bayes' Rule}
+
+\begin{enumerate}[]
+
+  \item Bayes' rule is a pretty simple algebraic manipulation of the
+    probability product rule. This is the rule:
+    
+  \item $P(A|B) = \dfrac{P(B|A)P(A)}{P(B)}$
+
+  \item By itself, Bayes' rule is useful when we have three of the
+    four probabilities but want the fourth. We can simplify small
+    examples with this rule alone, but it won't scale well. In fact
+    the information we need to know to compute this is on the order of
+    $2^n$ where $n$ is the number of variables.
+    
+  \item In the first part of this write-up, conditional independence
+    is mentioned. A formal definition that expresses this conditional
+    independence is:
+    
+  \item $P(a \wedge b|C)=P(a|C)P(b|C)$ 
+    
+  \item From this definition and Bayes' rule, many interesting
+    expressions can be derived. One of which that I find interesting
+    is when we have a set of $n$ conditionally independent variables
+    given a cause $C$:
+    
+  \item $P(C, x_1, x_2, \dots , x_n) = P(C) \prod_{i=1}^n P (x_i|C)$
+
+  \item This equation severely breaks down the information we need to
+    know in order to compute this probability. Although in general,
+    not every single one of the variables in our system will be
+    conditionally independent, supposedly making this assumption can
+    yield good results. 
+    
+  \item As noted above, it can be useful to make the false assumption
+    that the variables are conditionally independent so they can be
+    used in this equation, and for that reason the technique is called
+    the Naive Bayes' model.
+    
+\end{enuemrate}
 
 \end{document}
 

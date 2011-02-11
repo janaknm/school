@@ -1,4 +1,4 @@
-#+TITLE:     notes.org
+#+TITLE:     AI Notes
 #+AUTHOR:    Matt Forbes
 #+EMAIL:     ma@ttforbes.com
 #+DATE:      2011-01-15 Sat
@@ -12,7 +12,6 @@
 #+EXPORT_EXCLUDE_TAGS: noexport
 #+LINK_UP:   
 #+LINK_HOME: 
-#+STYLE:    <link rel="stylesheet" type="text/css" href="css/org.css" />
 
 * Introduction - Chapter 1
 ** Summary
@@ -454,3 +453,21 @@ independence (like "have cavity" is independence from "is
 raining"). For a set of symptoms of some cause, when they are
 conditionally independent the representation grows in O(n) rather than
 O(2^n). Huge improvement.
+* Concept Learning
+** Concept
+Single value function that returns positive for an instance that
+satisfies the concept conditions.
+** Instances
+The set of items which a concept is defined are called instances,
+denoted X.
+** Target Concept
+The concept to be learned, denoted c. ie. c : X --> {0,1}
+** Training Examples
+A list of instances for which we know the value of the target concept,
+denoted D. x in D if c(x) is known, and x in X. <x, c(x)>
+** Hypothesis
+The goal of a concept learning is to find a function h, h : X -->
+{0,1} such that h(x) = c(x) for x in X. All we know about the concept
+is the training data, so our hypotheses are defined functions which we
+can test against our known data.
+

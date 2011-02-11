@@ -2,7 +2,7 @@
 ;;;; February 2011 CS 400
 
 ;;;; Use of naiive bayes' classification to categorize text documents
-;;;; in to 'liked' and 'disliked'
+;;;; in to categories
 
 ;;;;; Incorrect assumptions made to simply calculations:
 ;;; 1. relative position of two words has no effect on probability
@@ -11,12 +11,10 @@
 ;;; 4. english vocabulary consists just words contained in training documents
 
 ;;;;; Calculations used
-;;; V = { like, dislike }
+;;; V = Set of possible categories
 ;;; v_map = maximum a posteriori value 
 ;;; w_i = ith word in document
 ;;; v_map = argmax(v_j in V): P(v_j)*P(w_1 | v_j)*P(w_2 | v_j)*...*P(w_n | v_j)
 ;;; P(w_i | v_j) = [occurrences(w_i, v_j) + 1] / [wordcount(v_j) + size(vocabulary)]
 
-(defconstant like-files (directory "training/like/*.doc"))
-(defconstant dislike-files (directory "training/dislike/*.doc"))
-
+(defparameter categories '(like dislike))

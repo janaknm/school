@@ -1,0 +1,13 @@
+#! /bin/bash
+CLASSIFY=classify
+TRAINING=training
+
+case "$1" in
+    compress)
+        echo "compress"
+        ;;
+    decompress)
+        echo "decompress"
+        ;;
+esac
+    
