@@ -30,6 +30,10 @@
   (wordcount 0)
   (freq-table (make-hash-table :test #'equalp)))
 
+(defstruct doc
+  path
+  category)
+
 (defun decompress ()
   (asdf:run-shell-command "./script decompress")
   (setf *compressed* nil))
@@ -41,7 +45,7 @@
               (make-category
                :name (car (last (pathname-directory path)))
                :dir (make-pathname :directory (pathname-directory path) :name :wild :type :wild)))
-          (directory "training/*")))
+          (directory "training/*.*")))
 
 (defun occurrences (word category)
   (or (gethash word (freq-table category))
@@ -50,7 +54,8 @@
 (defun read-word (str)
   (loop for c = (read-char str nil :eof)
      while (member c +non-word+)
-     finally (unread-char c str))
+     finally (unless (eql c :eof)
+               (unread-char c str)))
   (loop for c = (read-char str nil :eof)
      while (and (not (member c +non-word+))
                 (not (eql c :eof)))
@@ -58,27 +63,26 @@
      finally (return (and chars (coerce chars 'string)))))
 
 (defun train-category (cat vocab)
-  "fill freq-table and return # of new words added to vocab" 
-  (let ((words-added 0))
-    (mapc #'(lambda (path)
-              (with-open-file (str path :direction :input) 
-                (loop for w = (read-word str) while w do
-                     (handler-bind
-                         ((sb-int:stream-decoding-error
-                           #'(lambda (e)
-                               (invoke-restart 'sb-int:attempt-resync))))
-                       (when (eql 1 (setf (gethash w vocab)
-                                            (1+ (gethash w vocab 0))))
-                         (incf words-added))))))
-          (directory (dir cat)))
-    words-added))
-
-(let (categories vocab-size)
+  (mapc #'(lambda (path)
+            (with-open-file (str path :direction :input) 
+              (loop for w = (read-word str) while w do
+                   (incf (wordcount cat))
+                   (setf (gethash w (freq-table cat))
+                         (1+ (gethash w (freq-table cat) 0)))
+                   (setf (gethash w vocab) t))))
+        (directory (dir cat))))
+  
+(let (categories 
+      (vocab (make-hash-table :test 'equalp)))
   (defun train ()
-    (let ((vocab (make-hash-table :test 'equalp)))
-      (setf categories (load-categories))
-      (dolist (cat categories)
-        (incf vocab-size
-              (train-category cat vocab)))
-      categories)))
+    (setf categories (load-categories))
+    (dolist (cat categories)
+      (train-category cat vocab)))
+  
+  (defun word-prob (word category)
+    (/ (1+ (occurrences word category))
+       (+ (wordcount category) (hash-table-count vocab)))))
+  
+  
+    
     
