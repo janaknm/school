@@ -1,0 +1,57 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{enumerate}
+
+\pagestyle{empty} \setlength{\parindent}{0mm}
+\addtolength{\topmargin}{-0.5in} \setlength{\textheight}{9in}
+\addtolength{\textwidth}{1in} \addtolength{\oddsidemargin}{-0.5in}
+
+
+\begin{document}
+\title{Assignment 4}
+\author{Matt Forbes}
+\date{February 14, 2011}
+\maketitle
+
+\section*{What's Working}
+\begin{enumerate}[]
+  \item My server passes all the tests executed by the test scripts,
+    so that's a good sign. Security is enforced by matching the
+    hostname of the client to a line in the .rfahosts file. At the
+    initial run of the program, a linked list of strings is made that
+    can be quickly iterated over to find a match. IP addresses are
+    only used in debugging messages, only the hostname is
+    used. Hopefully that is the correct behavior.
+    
+  \item Opening files also seems to be working as expected. I haven't
+    thoroughly tested that the mode passed to open is correct, but
+    it's worked for everything I've tried. All the flags are being
+    OR'd appropriately, and exactly one of 'R' 'W' and 'RW' must be
+    present or an error is returned. Also, file names with spaces are
+    parsed correctly. The simple validation of pathnames is also being
+    performed.
+
+  \item Reading is pretty straightforward, and has worked well as long
+    as open is functioning.
+
+  \item Write also works appropriately.
+    
+  \item Close works.
+\end{enumerate}
+
+\section*{What's Not Working}
+\begin{enumerate}[]
+  \item Nothing seems broken, although there are definitely
+    improvemnts to be made. Initially, I started using strtok() to
+    parse the request strings, but after realizing it wouldn't work
+    for the Open command without some extra work I reverted to simple
+    char-by-char processing. While this is working for now, it's not
+    quite robust enough and could be prone to buffer overflows if
+    name_length is specified incorrectly. 
+    
+  \item Also, I'm not 100\% sure that all the correct error numbers
+    are being returned. I've been counting on the global errno being
+    set appropriately in most cases, which is hopefully enough.
+\end{enumerate}
+
+\end{document}

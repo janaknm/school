@@ -1,0 +1,38 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{enumerate}
+
+\pagestyle{empty} \setlength{\parindent}{0mm}
+\addtolength{\topmargin}{-0.5in} \setlength{\textheight}{9in}
+\addtolength{\textwidth}{1in} \addtolength{\oddsidemargin}{-0.5in}
+
+
+\begin{document}
+\title{Assignment 4}
+\author{Matt Forbes}
+\date{February 14, 2011}
+\maketitle
+
+\section*{What's Working}
+\begin{enumerate}[]
+  \item My server passes all the tests executed by the test scripts,
+    so that's a good sign. Security is enforced by matching the
+    hostname of the client to a line in the .rfahosts file. At the
+    initial run of the program, a linked list of strings is made that
+    can be quickly iterated over to find a match. IP addresses are
+    only used in debugging messages, only the hostname is
+    used. Hopefully that is the correct behavior.
+    
+  \item Opening files also seems to be working as expected. I haven't
+    thoroughly tested that the mode passed to open is correct, but
+    it's worked for everything I've tried. All the flags are being
+    OR'd appropriately, and exactly one of 'R' 'W' and 'RW' must be
+    present or an error is returned. Also, file names with spaces are
+    parsed correctly.
+
+  \item Reading is pretty straightforward, and has worked well as long
+    as open is functioning.
+
+  \item Write also works appropriately.
+    
+\end{enumerate}
