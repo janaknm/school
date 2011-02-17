@@ -491,6 +491,16 @@ layer.
 ** NAT (network address translation)
 Allows multiple computers to use one public IP address. To use this we
 need to set up a private IP address space.
+** ICMP (Internet Control Message Protocol)
+Uses IP Packets; Reports errors, control issues.
+*** Ping - echo/echo reply
+*** Source Quench - tell source to shut up
+*** Time Exceeded - when TTL hits zero
+*** Dest. Unreachable - all links to router down
+*** Redirect - Hints to a host that a different route would be faster
+** DHCP
+Dynamic Host Configuration Protocol Kind of like ARP, but gives some
+more information such as default gateway, nameserver, etc.
 * Network Programming
 ** netlib
 Simple interface for client/server communication.
