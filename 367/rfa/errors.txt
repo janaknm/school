@@ -1,0 +1,4 @@
+unknown:
+  ~145: dns_lookup fails
+  ~150: tcp4_connect fails
+  ~240: can't get host

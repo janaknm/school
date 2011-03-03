@@ -1,0 +1,43 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{enumerate}
+
+\pagestyle{empty} \setlength{\parindent}{0mm}
+\addtolength{\topmargin}{-0.5in} \setlength{\textheight}{9in}
+\addtolength{\textwidth}{1in} \addtolength{\oddsidemargin}{-0.5in}
+
+
+\begin{document}
+\title{Assignment 4}
+\author{Matt Forbes}
+\date{March 4, 2011}
+\maketitle
+
+\section*{Server Documentation}
+My server implements all elements declared in the RFA protocol. It
+passes both my tests and tests written by Dr. Nelson. The server
+relies on the functions defined in netlib.h, which along with
+netlib.c, should be included in the directory. There are a few ways
+that the code could be cleaned up, but I'd rather not break it in the
+process.
+
+\subsection{Overview}
+\begin{enumerate}[]
+  \item The bulk of the program is in the function handle\_client,
+    which is called by a forked process after a client connection is
+    made. In this function, an array of all the open file descriptors
+    is held. Rather than handing back actual file descriptors to the
+    client, indexes to this array are passed. I'm not sure why I did
+    this.
+
+  \item When a client makes a request, an action is performed based
+    on the first character of the message. Currently, the request
+    string is parsed character by character which is something that
+    could be cleaned up. 
+
+\end{enumerate}
+
+\subsection{Structures}
+
+
+\end{document}
