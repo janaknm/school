@@ -1,2 +1,4 @@
 *.out
 *.log
+400/text/training
+400/text/classify
