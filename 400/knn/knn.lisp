@@ -1,5 +1,21 @@
 (defparameter *dimension* 3)
-(defparameter *k* 5)
+(defparameter *k* 3)
+(defparameter *data-path* "/Users/mattforbes/school/400/knn/data.db")
+
+(defmacro sq (x)
+  (let ((s (gensym)))
+    `(let ((,s ,x))
+       (* ,s ,s))))
+
+(defmacro cmp (a b fn)
+  (let ((af (gensym))
+        (bf (gensym)))
+    `(let ((,af (funcall ,fn ,a))
+           (,bf (funcall ,fn ,b)))
+       (cond ((> ,af ,bf) 'gt)
+             ((< ,af ,bf) 'lt)
+             (t 'eq)))))
+
 
 (defun read-data (path)
   (let ((acc nil))
@@ -22,6 +38,12 @@
   (apply #'+ (loop for i from 0 to (1- *dimension*)
                   collect (sq (- (svref v2 i) (svref v1 i))))))
 
+;; alternative way would to take k items from the list created by
+;; sorting the data using the distance function. Slower as n -> inf.
+(defun k-nearest-sort (pt data)
+  (subseq (sort data #'< :key (compose #'cdr (curry #'dist pt)))
+          0 *k*))
+
 (defun k-nearest (pt data)
   (let ((best-k 
          (sort (mapcar #'(lambda (dpt)
@@ -30,21 +52,21 @@
                        (subseq data 0 *k*))
                #'<
                :key #'cdr)))
-    (print best-k)
     (dolist (dpt (subseq data *k*))
-      (dolist (bkpt best-k)
-        (when (eql -1 (cmp dpt bkpt #'cdr))
-          (
-      best-k))
+      (setf best-k (new-best-k (cons dpt (dist (cdr dpt) pt)) best-k #'cdr)))
+     best-k))
 
-(defmacro cmp (a b fn)
-  (let ((af (gensym))
-        (bf (gensym)))
-    `(let ((,af (funcall ,fn ,a))
-           (,bf (funcall ,fn ,b)))
-       (cond ((> ,af ,bf) 1)
-             ((< ,af ,bf) -1)
-             (t 0)))))
+(defun new-best-k (pt best-k cmp-fn)
+  (let ((check-pt pt))
+    (mapcar 
+     #'(lambda (obj)
+         (if (eql 'lt (cmp check-pt obj cmp-fn))
+             (prog1
+                 check-pt
+               (setf check-pt obj))
+             obj))
+     best-k)))
+        
        
 (defun compose (&rest fns)
   #'(lambda (&rest args)
@@ -56,7 +78,3 @@
   #'(lambda (&rest more-args)
       (apply fn (append args more-args))))
 
-(defmacro sq (x)
-  (let ((s (gensym)))
-    `(let ((,s ,x))
-       (* ,s ,s))))
