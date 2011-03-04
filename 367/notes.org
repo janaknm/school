@@ -501,6 +501,60 @@ Uses IP Packets; Reports errors, control issues.
 ** DHCP
 Dynamic Host Configuration Protocol Kind of like ARP, but gives some
 more information such as default gateway, nameserver, etc.
+* Transport Layer
+Talks directly to the end host (end-to-end). In general, it tries to
+make the network layer seem better. Needs to be more reliable than
+network, we are now handing packets to specific applications.
+** Provided services
+Packet delivery (reliable or not). Reliable virtual circuits. This
+layer has to provide everything to translate unreliable,
+connectionless packets in to a "virtual circuit"
+
+** Another layer of multiplexing
+Hands off the connection to the appropriate application.
+
+** Addressing
+Which application to send a data to. In IP protocol, ports are used.
+** Portmapping
+One widely-known port that runs an application that maps ports to
+services. In this way, connecting clients can
+** Super server
+One "process server" listens on all transport addresses and starts up
+services when they are requested. When a transaction is complete, it
+stops that service. Not used for high-capacity services like HTTP or
+FTP.
+** Error Control / Flow Control
+*** Error Detection
+Detects using similar techniques as the network layer (checksum,
+CRC). While the net layer checksums the header, the network layer is
+in charge of data integrity.
+*** Flow Control
+Concerned with the entire path of the link rather than the one
+neighboring link. Start with a small buffer and expand it until we can
+see how much bandwidth we can use. 
+*** Problems
+Wireless networks that have 10% flow control totally mess up this
+technique (transport layer thinks we have congestion but its really
+just interference). A solution is to have the link layer handle wifi
+retransmission.
+** UDP and TCP
+*** UDP
+End-to-end, connectionless. It is a 'best-effort' message, so if it
+gets there we only know if they reply. It's versatile in who the
+recipients are, (one, many, etc.) Also uses a checksum. Both the
+client and the server need a port to talk on.
+**** Packet Breakdown
+src port, dest port, UDP msg length, UDP checksum, data
+*** TCP
+Connection-oriented, point-to-point. We have complete reliability
+because of layers below. Full duplex connection (two-way
+simultaneously). The interface to using TCP is a "stream" or
+"socket". It is important to only make one connection even when packet
+delivery fails/resends/etc.
+**** Virtual Connections
+Connection uniquely identified by: (TCP, src IP, src Port, dst IP, dst Port).
+**** Reliability
+Reciever ACKs packets, resent if no ACK. 
 * Network Programming
 ** netlib
 Simple interface for client/server communication.
@@ -547,3 +601,31 @@ Converts longs/shorts respectively network endian to host endian.
 Network endian ip to ascii.
 ** Ncat
 port@host:filepath to use it
+
+* Application Layer
+** DNS
+Translating between IP addresses and names. It was originally invented
+with a hierarchy, but most avoid it. Top level domains like .net,
+.com, etc. and country codes .us, .uk, .etc
+*** Name Servers
+A big distributed database of names. Root name servers are the
+starting place. Nameserver(s) for each domain and nameserver(s) for
+sub domains.
+*** Resolving a Name
+For x.y.z.t.d:
+**** 1. Ask root server for domain .d (response: server list)
+**** 2. Ask one of the servers about t.d (response: server list)
+**** 3. Ask ... z.t.d
+**** 4. Ask ... y.z.t.d
+**** 5. Ask for _address of host_ of x on y.z.t.d
+*** Records
+**** name: maps to address (A record)
+**** MX: where to send e-mail
+**** CNAME: aliases
+**** AAAA: IPv6
+** FTP 
+*** Connection
+"control" connection on port 21. Actual files come on new connections
+running on port 20. NAT gave some problems, but now watches for
+outgoing on 21 and then translates appropriately to port 20.
+

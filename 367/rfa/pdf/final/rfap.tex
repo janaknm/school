@@ -59,6 +59,60 @@ filenames have spaces. In hindsight, I should have used that method
 for all the requests except for Open, which is a special case.
 
 \section{Client Documentation}
+I took a much different approach to the client library. Rather than
+blindly forge ahead and code out the whole project, I spent some time
+thinking about how the parts would fit together beforehand. Coupled
+with unit testing, this program was smooth sailing. As far as
+functianality goes, it passed all my unit tests, and Dr. Nelson's test
+scripts. All seems well.
+
+\subsection{Overview}
+As the assignment entails, there are really just four functions that
+need to be provided: open, read, write, and close -- the stand file
+manipulation routines. They are prototyped in a way that they
+seemlessly mask the corresponding system calls and provide drop-in
+network availability.
+
+\subsection{Structures}
+The three structures I built were as follows:
+
+\begin{enumerate}[1)]
+  \item {\bf host:} Hold server information so that connections can be
+    reused. They are uniquely identified by their hostname/port
+    combination. An array of these are stored globally and are checked
+    for existence when a server connection is requested. Multiple
+    files can be opened with just a single connection to an RFA server.
+
+  \item {\bf file\_d:} I'm keeping an array of all the remote file
+    descriptors opened, each represented as a {\bf file\_d}. When a
+    remote file is opened, the first open index in this global array
+    of remote file descriptors is added to 1,000,000 in order to
+    guarantee an invalid local file descriptor. Indexes to this array
+    can be found by simply subtracting 1,000,000 from the file
+    desriptor. {\bf file\_d}s hold a pointer to the corresponding
+    host, so it's easy to just grab the corresponding socket.
+    
+  \item {\bf pathinfo:} Pathnames are specified in the format:
+    [[port@]machine:]path. A {\bf pathinfo} breaks this string in to
+    the associated pieces, making it much easier to decide how to
+    handle the opening of the file. The decision to use a structure
+    for this task was motivated by my less-than-optimal solution in
+    the server.
+
+\end{enumerate}
+
+\subsection{Tests}
+Knowing that small mistakes can completely throw things off
+(especially in C), I decided to incrementally implement each function
+with a ``suite'' of unit tests. Compared to some of the really nice
+unit test frameworks out there, mine are really just quick checks
+through printf. My goal was to represent all possible use cases of
+each function print out the results, which I just compared by hand as
+there weren't too many. In a larger project, I'd definitely want to be
+able to automatically detect if tests were passed/failed rather than
+just inspecting them manually. Developing this way was much more
+stress-free, when I made a change to the program, I could be
+comfortable that nothing broke.
 
 
 \end{document}
