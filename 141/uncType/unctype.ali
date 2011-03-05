@@ -3,21 +3,19 @@ M P W=b
 P SS ZX
 R nnnvnnnnnnnnnnnnnnnnnvvnnnnnvnnnnnnnnnnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
 
-U unctype%b		unctype.adb		9aca9c56 NE SU
+U unctype%b		uncType.adb		b5c9aa0d NE SU
 W ada%s			ada.ads			ada.ali
-W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
+W system.img_real%s	s-imgrea.adb		s-imgrea.ali
 
 D ada.ads		20070406091342 9c7dd3ea
 D a-except.ads		20070606104609 ba3e26e2
 D a-finali.ads		20070606101851 9eaacebd
 D a-filico.ads		20051115140645 9299732a
-D a-flteio.ads		20070406091342 3407344a
 D a-ioexce.ads		20070406091342 be0900a0
 D a-stream.ads		20061031174905 34aca5be
 D a-tags.ads		20071213102130 e10285b3
 D a-textio.ads		20071213102052 bc6e78fe
-D a-tiflio.ads		20060215092843 5d91823c
 D a-unccon.ads		20070406091342 51e09df2
 D interfac.ads		20051209172227 a69cad5c
 D i-cstrea.ads		20070406092312 e1e064a9
@@ -27,6 +25,7 @@ D s-exctab.ads		20070912115821 5c1c61ae
 D s-ficobl.ads		20070814084926 8bb681e5
 D s-finimp.ads		20070606101344 9449f4cb
 D s-finroo.ads		20070814084926 1408f9d1
+D s-imgrea.ads		20071213103004 da88b2ff
 D s-parame.ads		20070814084525 f32e56e9
 D s-secsta.ads		20070912115821 7bae3621
 D s-soflin.ads		20071213103411 2b67bae6
@@ -38,29 +37,20 @@ D s-stratt.ads		20070406092920 b4bf338e
 D s-traent.ads		20070912115821 bd5f2753
 D s-unstyp.ads		20070912115821 c0f9fae5
 D s-wchcon.ads		20071213102052 ab028799
-D unctype.adb		20091005231307 12a3d0e2
+D uncType.adb		20091005230951 09a7d2f3
 X 1 ada.ads
-16K9*Ada 19e8 31|3r6 4r6 30r9 31r9
-X 5 a-flteio.ads
-20K13*Float_Text_IO[10|47] 31|4w10 30r13
-X 9 a-textio.ads
-50K13*Text_IO 482e16 31|3w10 31r13
-75I12*Field{integer}
-168U14*New_Line 31|31r21
-X 10 a-tiflio.ads
-69U14*Put 31|30r27[5|20]
-70f7 Item{float} 31|30r31[5|20]
-71i7 Fore{9|75I12} 31|30r66[5|20]
-72i7 Aft{9|75I12} 31|30r56[5|20]
-73i7 Exp{9|75I12} 31|30r77[5|20]
-X 31 unctype.adb
-6U11*uncType 6b11 34l5 34t12
-8A10 unconstrainedType(float)<integer> 9r44 16r28
-9P10 unconstrainedTypeAccess(8A10) 11r20 13r56 14r23
-11p5 arrayAccess1{9P10} 27m5 29r14 30r39
-13V14 getNumberArray{9P10} 13b14 13>29 23l9 23t23 27r21
-13i29 numItems{integer} 16r49 18r21
-14p9 returnArray{9P10} 16m9 19r13 22r16
-18i13 i{integer} 19r25 19r37
-29i9 i{integer} 30r52
+16K9*Ada 19e8 30|3r6 29r9
+X 8 a-textio.ads
+50K13*Text_IO 482e16 30|3w10 29r13
+265U14*Put_Line 30|29r21
+X 30 uncType.adb
+5U11*uncType 5b11 32l5 32t12
+7A10 unconstrainedType(float)<integer> 8r44 15r28
+8P10 unconstrainedTypeAccess(7A10) 10r20 12r56 13r23
+10p5 arrayAccess1{8P10} 26m5 28r14 29r42
+12V14 getNumberArray{8P10} 12b14 12>29 22l9 22t23 26r21
+12i29 numItems{integer} 15r49 17r21
+13p9 returnArray{8P10} 15m9 18r13 21r16
+17i13 i{integer} 18r25 18r37
+28i9 i{integer} 29r55
 
