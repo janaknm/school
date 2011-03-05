@@ -2,7 +2,7 @@
 
 (defparameter *dimension* 2)
 (defparameter *k* 5)
-(defparameter *data-path* "~/school/400/knn/data.db")
+(defparameter *data-path* ".data.db")
 
 (defmacro cmp (a b fn)
   (let ((af (gensym))
@@ -146,14 +146,15 @@
                         
 (defun to-gnuplot (data &optional filename)
   (let ((grouped (group-data data)))
-    ;; write to temp file
-    (with-open-file (str ".tmp.dat" :direction :output
-                                   :if-exists :supersede)
+    ;; write temp data file
+    (with-open-file (str ".tmp.dat"
+                         :direction :output
+                         :if-exists :supersede)
       (dolist (group grouped)
         (dolist (pt (cdr group))
           (format str "~a ~a~%" (svref pt 0) (svref pt 1)))
         (format str "~%")))
-    ;; plot it  
+    
     (cgn:with-gnuplot ('linux)
       (when filename
         (cgn:format-gnuplot "set terminal png")
@@ -165,8 +166,8 @@
       (cgn:format-gnuplot "set grid")
       (cgn:format-gnuplot "set xtics 0.5")
       (cgn:format-gnuplot "set ytics 0.5")
+      (cgn:format-gnuplot "plot ")
       (let ((str (make-string-output-stream)))
-        (format str "plot ")
         (dotimes (i (length grouped))
           (format 
            str 
@@ -174,8 +175,11 @@
            i i (car (elt grouped i)) (car (elt grouped i)))
           (unless (eql i (1- (length grouped)))
             (format str ", ")))
-        (cgn:format-gnuplot (get-output-stream-string str))))))
-
+        (cgn:format-gnuplot (get-output-stream-string str)))
+      (cgn:print-graphic))))
+  
+      
+      
 (defun group-data (data)
   (let ((grouped nil))
     (dolist (pt data)
