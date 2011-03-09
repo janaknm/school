@@ -1,68 +1,59 @@
 --Matt Forbes
 --Feb 1, 2010
---Generic Queue body
+--Generic Stack body
 
-package body Generic_Queue is
+package body Generic_Stack is
 
     --this is the generic linked list package created in the private part of spec file
     use Element_Linked_list;
 
-    function new_queue return queuePtr is
-	nQueue : queuePtr;
+    function new_stack return stackPtr is
+	nStack : stackPtr;
     begin
-	nQueue := new queue;
-	nQueue.size := 0;
-	nQueue.top := NULL;
-	nQueue.bottom := NULL;
-	return nQueue;
-    end new_queue;
+	nStack := new stack;
+	nStack.size := 0;
+	nStack.top := NULL;
+	return nStack;
+    end new_stack;
 
-    function size(aQueue : queuePtr) return Natural is
+    procedure push(aStack : in StackPtr; Item : in Element_t) is
     begin
-	return aQueue.size;
-    end size;
+	aStack.size := aStack.size+1;
+	aStack.top := insert_before(aStack.top, Item);
+    end push;
 
-    procedure enqueue(aQueue : in queuePtr; Item : in Element_t) is
-    begin
-	aQueue.size := aQueue.size+1;
-	aQueue.bottom := insert_after(aQueue.bottom, Item);
-	if aQueue.top = null then
-	    aQueue.top := aQueue.bottom;
-	end if;
-    end enqueue;
-
-    function dequeue(aQueue : in queuePtr) return Element_t is
+    function pop(aStack : in StackPtr) return Element_t is
 	rVal : Element_t;
     begin
-	if(empty(aQueue)) then
-	    raise Queue_Underflow;
+	if(empty(aStack)) then
+	    raise Stack_Underflow;
 	end if;
-	aQueue.size := aQueue.size - 1;
-	rVal := value(aQueue.top);
-	remove(aQueue.top, aQueue.top);
+	aStack.size := aStack.size - 1;
+	rVal := value(aStack.top);
+	remove(aStack.top, aStack.top);
 	return rVal;
-    end dequeue;
+    end pop;
 
-    function front(aQueue : in queuePtr) return Element_t is
+    function top(aStack : in StackPtr) return Element_t is
     begin
-	if(empty(aQueue)) then
-	    raise Queue_Underflow;
+	if(empty(aStack)) then
+	    raise Stack_Underflow;
 	end if;
-	return value(aQueue.top);
-    end front;
+	return value(aStack.top);
+    end top;
 
-    function empty(aQueue : in queuePtr) return Boolean is
+    function empty(aStack : in StackPtr) return Boolean is
     begin
-	if(aQueue.size < 1) then
+	if(aStack.size < 1) then
 	    return True;
 	end if;
 	return False;
     end empty;
 
-    procedure clear(aQueue : in queuePtr) is
+    procedure clear(aStack : in StackPtr) is
     begin
-	aQueue.size := 0;
-	clear(aQueue.top);
+	aStack.size := 0;
+	clear(aStack.top);
     end clear;
 
-end Generic_Queue;
+end Generic_Stack;

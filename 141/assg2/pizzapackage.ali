@@ -2,7 +2,7 @@ V "GNAT Lib v4.3"
 P SS ZX
 R nnnnnnnnnnnnnnnnnnnnnvvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
 
-U pizzapackage%s	pizzapackage.ads	25265a40 NE PK
+U pizzapackage%s	PizzaPackage.ads	25265a40 NE PK
 W ada%s			ada.ads			ada.ali
 W ada.tags%s		a-tags.adb		a-tags.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
@@ -18,7 +18,7 @@ D a-textio.ads		20071213102052 bc6e78fe
 D a-unccon.ads		20070406091342 51e09df2
 D interfac.ads		20051209172227 a69cad5c
 D i-cstrea.ads		20070406092312 e1e064a9
-D pizzapackage.ads	20091012021808 994822be
+D PizzaPackage.ads	20091012021808 994822be
 D system.ads		20090219101008 28071540
 D s-crtl.ads		20070406092312 ef997abb
 D s-exctab.ads		20070912115821 5c1c61ae
@@ -40,7 +40,7 @@ X 1 ada.ads
 16K9*Ada 19e8 12|7r6
 X 8 a-textio.ads
 50K13*Text_IO 482e16 12|7w10
-X 12 pizzapackage.ads
+X 12 PizzaPackage.ads
 9K9*Pizzapackage 24l5 24e17
 11E10*PizzaShape 11e51 15r17
 11n25*Round{11E10}
