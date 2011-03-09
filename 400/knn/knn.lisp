@@ -166,8 +166,8 @@
       (cgn:format-gnuplot "set grid")
       (cgn:format-gnuplot "set xtics 0.5")
       (cgn:format-gnuplot "set ytics 0.5")
-      (cgn:format-gnuplot "plot ")
       (let ((str (make-string-output-stream)))
+        (format str "plot ")
         (dotimes (i (length grouped))
           (format 
            str 
