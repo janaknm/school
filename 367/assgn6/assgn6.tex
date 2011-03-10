@@ -99,16 +99,52 @@ domain-squatting spam. My estimate is that at least 80\% of the sites
 I might type in from those categories would be a spam page.
 
 \section*{8.1}
-
+WILL YOU WALK A LITTLE FASTER SAID A WHITING TO A SNAIL THERES A
+PORPOISE CLOSE BEHIND US AND HES TREADING ON MY TAIL SEE HOW EAGERLY
+THE LOBSTERS AND THE TURTLES ALL ADVANCE THEY ARE WAITING ON THE
+SHINGLE WILL YOU COME AND JOIN THE DANCE WILL YOU WONT YOU WILL YOU
+WONT YOU ILL YOU JOIN THE DANCE WILL YOU WONT YOU WILL YOU WONT YOU
+WONT YOU JOIN THE DANCE
 
 \section*{8.3}
+a digital computer is a machine that can solve problems for people by
+carrying out instructions given to it x
 
 \section*{8.30}
+If Jim and Mary are on the same VPN, they should be able to send
+direct email to each other without having to encrypt it. This is
+because the email message will never leave the internal network. On
+the other hand, if they use some external service to communicate like
+Skype, they might be accessing a server out on the net. This
+connection would not be secure.
 
 \section*{8.41}
+Based on the way PGP was described here, a PGP-encrypted message is
+designed for only one recipient to be able to open it. Building such a
+message requires the recipients public key, and most be known ahead of
+time. So no, only one person could read the message, sending it to an
+arbitrary IP address wouldn't work at all.
 
-\section*{private key crypto systems (10)}
+\section*{Private Key Crypto Systems}
+A private key system uses symmetric-key algorithms. This just means
+that the encryption method and decryption method use the same
+key. Both the sender and receiver should both know this secret key and
+use it for securing/sending data. The problem with using a
+symmetric-key algorithm is that if an intruder is able to steal the
+key, the system is completely shot.
 
-\section*{explain public key crypto systems (10)}
+\section*{Public Key Crypto Systems}
+As discussed above, securing a private key is huge deal and kind of a
+deal-breaker when it comes to security. All persons needing to encrypt
+or decrypt messages need access to this key, so it gets harder and
+harder to keep it hidden. A public key system bypasses this by using
+two separate keys, one for encrypting and one for decrypting. A
+``public key'' can be given out freely, and the ``private key'' is
+kept safe and given to no one. For this idea to work, a few
+requirements need to be met: It should be completely infeasible to
+produce the private key given any message and public key, and the
+encryption method needs to be too strong to be broken by a plaintext
+attack. It really boils down to a private key being intractable to
+solve in any way given the public key. 
 
 \end{document}
