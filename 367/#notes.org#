@@ -1,0 +1,633 @@
+* Chapter 1
+** Network Hardware
+*** Types of Transmission
+**** Point-to-point
+Single sender, single receiver. The packet may be passed along many
+sources before it reaches its destination. Telephone lines.
+**** Broadcasting
+When the communication channel is shared by all computers on the
+network. packets are received by every computer, and have a field in
+the packet designating the intended receiver. wifi/ethernet fit in
+this category.
+**** Multicasting
+Like broadcasting, but only transmitting to a subset of the machines
+on the network.
+**** Packet
+'short' block of data sent/received by network. Size of the packet is
+hardware-defined.
+*** Types of Networks
+**** Personal Area Network (PAN)
+Networks that are very short-ranged (within reach usually.) Bluetooth
+is a good example, which creates a very simple master-slave network in
+which all peripheral bluetooth devices connect to the master
+(computer, car, etc.)
+**** Wide Area Network (WAN)
+WANs cover large geographic regions (countries even) and work very
+similarly to LANs or MANs, just on a larger scale. In a WAN, there
+will be several hosts (computers running user programs), and the
+communication subnet. The subnet is a collection of transmission lines
+and switches (routers) the move data between the hosts.
+**** Virtual Private Networks (VPN)
+Many individual networks at different site joined together to create
+the effect of one large network that includes all of the users in each
+network
+*** Types of Connections
+**** Connection-Oriented Services
+Sockets and telephones work in this way. You first open a connection,
+use it for some time, and finally close it when you're done. Data
+transmission is done through a type of pipe, where the sender pushes
+data in to the pipe, and the receiver pulls it out.
+**** Connectionless Services
+Rather than having a designated sender/receiver, all messages using
+this type of service have the absolute address of the
+recipient. Messages are routed through connected nodes in the system
+until they reach their destination.
+
+*** Internetwork
+The connection of two or more networks. Internet is the best-known
+internetwork.
+*** Physical Medium
+Peers across different machines will not directly share data. Instead,
+they will pass information to the layer below it until it reaches the
+bottom, the physical medium. Here is where the actual transmission
+occurs.
+*** Statistical Multiplexing
+Networks provide a service to the connected hosts with their available
+resources such as bandwidth. To be efficient, the network must have
+some way to divide the resources in a way that doesn't interfere with
+other hosts. Sharing the resources dynamically is called is
+statistical multiplexing based on demand. 
+** Flow Control
+When fast-sending connections swamp a very slow receiver, flow control
+is used to provide feedback to the origin of the transmission. It is
+like a warning to slow dow
+** Protocol
+Agreement between communicating parties on how communcations should
+proceed. 
+** Protocol Stack
+A list of protocols used by each layer in a certain system, one
+protocol per layer.
+** Peers
+Entities that are communicating using some protocol. When a network is
+comprised of multiple layers, peers would be the software or hardware
+on the same layer that communicate using some protocol.
+** Network Architecture
+Simply the set of layers that comprise a network. A specification
+should include enough information for an implementer to write the
+program/build hardware for each layer so it will follow the specified
+protocol.
+** Service vs. Protocol
+Simply put, a service is a set of primitives (operations) that it
+makes available to the layer above it. It is a definition of the
+operation it is prepared to make on behalf of the layer above.
+
+A protocol is a set of rules that govern the format and meaning of the
+messages/packets that are exchanged between peer entities on a layer.
+
+Entities use protocols to implement services. For this reason
+protocols can change to any degree, as long as the primitives the
+service provides do not change.
+** Types of Services
+*** Datagram Service
+This service is unreliable because there is no acknowledgement that a
+packet was received. Usually there is a high probability that the
+message will be received but no guarantee. 
+*** Acknowledged Datagram
+When an established connection isn't necessary, you can use the
+datagram service but request a "receipt" that reassures the sender
+that message was definitely received.
+*** Request-Reply Service
+A client sends a single message to the server, and it responds with a
+single message response.
+** Open Systems Interconnection (OSI)
+This is a standardized model whos structure is important, but the
+actual protocols are no longer used. It has seven layers which were
+designed to separate well-defined functions while keeping the number
+of layers manageable. 
+*** Physical Layer
+Transmits raw bits over a communication channel. Its purpose is to
+make sure each bit sent as a 0 is received as a 0, the implementation
+is in charge of handling the mechanical/electrical aspect of the
+transportation.
+*** Data Link Layer
+This layer is charged with transforming raw transmission of data in to
+an apparently error-free line. It should hide the error-handling
+implementation from the layer above, and only allow correct packets to
+bubble up.
+
+To accomplish this by having the sender break up the input data in to
+data frames (some arbitrary number of bytes) and transmit these frames
+sequentially. When the service needs to be reliable, the receiver must
+confirm by replying with an acknowledgment frame.
+*** Network Layer
+Controlling the operations of the subnet is the responsibility of the
+network layer. A key issue is determining how packets are routed,
+which path they should take from a source to its destination. Routes
+can be hardcoded in a static table, dynamically calculated for each
+connection, or some medium between. 
+
+Congestion can be caused when there are too many packets in the
+subnet, and the network layer's job is to make sure this doesn't
+happen. In general, the Quality of Service (QoS) is an issue of the
+network layer.
+
+Finally, sending packets between multiple networks can also be
+problematic; the receiving network may use a different protocol, have
+packet length limits, etc. The network layer should handle these
+possible errors and correct them seamlessly.
+*** Transport Layer
+The transport layer communicates directly with the connected
+entity. It should take data from the layer above, break it up (if
+needed), and then send it to the network layer. Furthermore, it should
+make sure that all the data was sent/received correctly in a way that
+shouldn't be noticeable to the layers above it. The communication is
+not impeded by routers imbetween like layers below, it should have a
+direct line to the destination machine.
+*** Session Layer
+A session offers various services like dialog control (as in
+conversation, whos turn it is to talk), token management (don't let
+multiple parties attempt the same critical operation at the same
+time), and synchronization (allowing long transmissions to be picked
+up where they left off in the event of a crash or disconnect).
+*** Presentation Layer
+While other layers are concerned with moving bits around, this layer
+dicates the syntax and semantics of that information. This is
+important for computers that have different data represntations. An
+abstract and standard encoding can be used and interpreted by any peer
+that knows the protocol.
+*** Application Layer
+Here is the final layer that contains protocols that are needed and
+used by actual users. For example the HTTP protocol would be
+applicable, as it is the highest-level protocol used in the stack.
+
+** TCP/IP Model
+*** Application
+*** Transport
+*** Internet
+*** Link
+*** Physical
+* Physical Layer
+Information transmitted by varying some physical property. In books,
+the ink varies; in wires we can vary voltage, current, etc.,
+fiberoptics vary lights.
+** Bandwidth
+Hardware has an affect on different frequencies, and the width of that
+frequency range is called bandwidth. Square waves have a lot of higher
+harmonics, but a small bandwidth removes a lot of harmonics.
+** Noise
+Random variations in a signal that wasn't caused by the source.
+** Baseband
+Signals from 0 to max frequency
+** Passband
+Signals shifted occupy a higher frequency
+
+** Guided Transmission Media
+*** Twisted Pair
+Usually two thin copper wires twisted to make give them similar
+noise. If they were separated, radiation would create different
+amounts of noise in each wire.
+**** Simplex
+One transmitter sends data across the twisted pair to the
+receiver. Essentially just a one way wire.
+**** Half-Duplex
+One twisted pair, where the transmitter/receiver switch roles, so its
+one way at a time, but the direction can change.
+**** Full-Duplex
+Two pairs, concurrent data in both directions.
+*** Coaxial Cable
+Cable TV wires, used in original ethernet.
+*** Power Lines
+Actually possible to transmit data across power lines, high bandwidth
+but high voltage (dangerous).
+*** Fiber Optics
+Long haul transmission (long distance?) Different modes, single/multi
+where it would be one-way or two-way. In single mode, you can send
+100Gbps over 100km. 
+*** Wireless
+Uses the radio spectrum (10**4Hz to 10**16Hz) of frequencies. 
+** Modulation
+A change in signal to encode information (modulation). Extracting
+information from a signal (demodulation). You can do both analog and
+digital modulation. Modulation takes the carrier wave (medium of
+transmission) and bends it to represent the data that needs to be
+sent.
+*** Amplitude Modulation
+Change the amplitude of the wave to match a sine wave (for analog) or
+for bit data (digital).
+*** Frequency Modulation
+Modifying the frequency to be interpreted as a sine wave or bit
+data. For bit data you could have two frequencies, one to represent 0
+and one for 1.
+
+*** Figure 2-43
+** Mobile Phones
+*** 1G Analog Voice
+*** 2G Digital Voice
+GSM, SIM cards. Used both FDM (frequency division) and TDM (time division) for multiple channels
+*** 3G Digital Voice & Data
+Uses CDMA (code division multiple access)
+* Data Link Layer
+** Transmission Errors
+Drop bits, add bits, change bits. This layer should effectively hide
+these from the network layer.
+** Frames
+Chunks that the bitstream is broken down in to. Some arbitrary agreed
+upon size.
+*** Establishing Frames
+**** Character Count
+Breaks the message up in to sequences of bytes, prepending a byte that
+notes the total bytes in the frame (including byte count). An error in
+the byte count throws off the whole frame structure (ie. 5 -> 24).
+**** Start/End Characters
+Uses "byte stuffing". In ASCII, there are special characters DLE (data
+link escape), SOH (start of header), and EOT(end of
+transmission). Each frame has [DLE][SOH] ... [DLE][SOH]. 
+***** Problems
+Binary data can accidentally trigger an end of frame by having a DLE
+bit pattern. To remedy this, "byte stuffing" is used. When
+transmitting binary data, if it sees a DLE bit pattern, it "stuffs" a
+second one next to it. Then when the receiver parses the data, it can
+remove the extras.
+**** Start/End Bit Patterns
+Uses "bit stuffing". Frames start with 0x7E, when it sees 5 '1' bits
+in a row, add a '0'.
+** Types of Service
+*** Unacknowledged, connectionless
+No attempt to detect or correct errors. Can be used effectively over a
+very reliable medium for large data where errors do not matter much.
+*** Acknowledged, connectionless
+Each frame is acknowledged by the receiver. When the receiving data
+link layer reads a layer, it can ask for a retransmit
+*** Connection Service
+Sender, receiver establish a connection. Frames are numbered, and
+transmitted in order.
+** Error Control
+*** Provide sender with feedback
+Positive/negative acknowledgement after receiving a frame.
+*** Frame never reaches a frame
+Sender has a timeout period, if hit hasn't had an acknowledgement at
+the end of the timeout, it will resend the frame. Can result in
+mutliple copies if the receiver was just too slow to respond.
+**** Detection
+Add redundancy to the data.
+***** Parity
+First bit says whether there are even/odd bits in the byte.
+***** Checksums
+-#- Learn for test.
+*** Correction
+Upon detecting an error, it can fix the error on its own without a
+retransmission.
+** Protocols
+*** Simple Protocol (stop and wait)
+Data --> ... <-- ACK
+No ACK back, assumes that it didn't get there. Retransmit.
+*** Sliding Window
+**** Window - buffer
+Fixed size of bytes/packets. Can send all these packets without an
+ACK. Sender retains copies of the packets until receives ACK, will
+resend those that it didn't receive. When the ACKs have been received
+it can discard the packets. "ACK n" specifies that they received ALL
+packets up to packet n.
+
+** Types of Links
+*** Point-to-point
+Typically long distance, single connection from machine to machine.
+*** Broadcast
+Typically local area. 
+
+** CSMA/CD - Collisison Detection (Know this)
+Standard Ethernet Protocol. Carrier Sense Multiple Access. Exponential
+backoff time when collisions are detected.
+** CSMA/CA - Collision Avoidance
+*** RTS / CTS - request/clear to send
+** Ethernet
+*** Frame (in bytes)
+preamble - 8
+dest address - 6
+source address - 6
+type - 2
+data - 0 to 1500 
+pad - 0 to 46
+checksum - 4
+*** Minimum Packet (DATA) Size
+46 bytes to ensure entire network is saturated so even computers at
+maximum distance away (300-500m) can detect errors.
+
+data+pad >= 46
+
+*** Max Packet Size
+1500
+*** Switched Ethernet
+**** Early version (hub)
+Indistinquishable from a single wire. Just as many collisions as
+without.
+**** Migration to switch
+Smarter than a hub, computers can just talk to the switch, and it can
+route that to the correct computer. When connections to the hub are
+duplex (two-way) there are no longer collisions because all computers
+are just talking to the switch.
+
+** Wireless "ethernet" WLAN
+*** Access Point (AP) mode vs Ad Hoc (point to point)
+AP mode is more flexible and ad hoc is not
+*** MAC sublayer protocol (CSMA/CA)
+*** Frame (in bytes)
+frame control 2
+duration 2
+dest 6
+source 6
+address3 6 (usually AP address)
+sequence 2
+data 0-2k
+check sequence 2
+** Broadband Wireless (WiMAX)
+Up to 10x further access than 802.11 wifi.
+** Bluetooth
+*** Transmission
+Time-division duplex on ISM radio bandwidth (2.4Ghz).
+79 separate channels (carrier frequencies) 1Mhz apart.
+Transmission stays on the same frequency until it has completed (but can only 1, 3, or 5
+time slots)
+*** Addresses
+48 bits, the master's address is used to pick a psuedo-random hopping
+standard
+*** Active/Parked slaves
+Only 7 slaves can be active, but up to 256 devices can be "parked" and
+need to be reactivated
+
+** RFID
+radio frequency identification
+** LAN Extension
+*** Why?
+Too many computers, wires too short, appearance of a logical LAN
+across large area
+*** Repeater
+Just connects segments, it's dumb and just retransmits everything it
+receives. Physical Layer
+*** Bridge
+Understands frames, it forwards frames that are not collisions but
+only if it needs to (it knows the recipient is on the other side). It
+keeps track of the hardware addresses, so simultaneous use of both
+segments can be used in parallel. Data Link Layer
+*** Switch
+Like a bridge between LANS. Data Link Layer
+** VLAN (Virtual LAN)
+*** Switch-Based
+Physical connections across multiple switches can be identified as
+part of a "VLAN" so that broadcasts work across them only
+* Network Layer
+** Purpose:
+Get packets from source to destination. Uses hops (machine-to-machine)
+and the data link layer (machine to machine on wire). This layer needs
+to know about the whole network.
+** Store and Forward
+1. receive a packet
+2. find it's destination
+3. send it to the next router that is closer to the destination
+** Goals
+Services should be independent of the routing of packets. Transport
+layer shouldn't have to deal with the network at all.
+** Connectionless Service
+Uses datagrams; no two datagrams are related. 
+*** Packet Switching
+Each switch knows enough about the network to be able to get any
+packet packet closer to its destination.
+*** Failure
+Router failure doesn't affect the packet transmission.
+** Connection-Oriented Service
+*** Virtual Circuit
+Once set up, must be notified by transport layer when to close the
+circuit. Each packet can just use a virtual circuit ID rather than a
+full address. BUT, every switch needs to know about the virtual
+circuit and reserve that slot.
+*** Failuire
+ If a router fails, every single virtual circuit through that router
+dies.
+** Routing
+Used mostly in WANs.
+*** Types of switches
+Interior switches usually don't have computers connected and are just
+used to route packets along. Exterior routers are usually connected to
+a LAN which transports packets to/from its computers.
+*** Default Route
+When a switch doesn't know where to send a packet, it should have a
+backup destination to forward it along
+*** Routing Tables
+Each switch can be assigned an identifier, and the switch "learns"
+what the shortest/fastest route to a certain switch.
+** Congestion Control
+Mostly only cause of lost packets - most hardware is pretty solid, but
+can only handle congestion so well.
+** QoS
+*** Jitter
+Variation in delay. Delay is fine if it's consistent (in certain
+applications: video, audio) If we get a 1ms delay followed by a 1sec
+delay, we can't play video well (without a lot of buffering)
+** Internetworking
+Connecting heterogeneous networks seamlessly to produce a virtual
+network. "Internet" is a nice clean virtual network that envelopes all
+these layer2 connected networks.
+*** IP Addresses
+prefix: network number. suffix: host-ID
+**** Class A
+'0' prefix, followed by 7bit prefix, followed by 24bit suffix.
+0 through 127 (128 nets, 16777216 hosts/net)
+**** Class B
+'10' prefix, followed by 14bit prefix, followed by 16bit suffix.
+128 through 191 (16384 nets, 65536 hosts/net)
+**** Class C
+'110' prefix, followed by 21bit prefix, followed by 8bit suffix.
+192 through 233 (2097152 nets, ...)
+**** Class D
+'1110' multicast address
+
+
+
+*** Class Addressing
+
+** Routers
+Each LAN gets its own "unique" IP address
+*** Mapping hardware address to protocol address
+*** ARP
+Address Resolution Protocol. Broadcast message requesting a hardware
+address for a peer. All listening computers can store the senders
+address. Response is directed, not broadcast. ONLY NEED HWADDR FOR
+LOCAL NETWORKS, just use proto address otherwise.
+** IP Datagrams
+*** Virtual Packets
+Makes packets identical on all technologies, giving a seamless
+interaction between different types of machines. Connectionless
+service, and is a "best-effort deliver" - no guarantees of
+dropped/duplicated/out of order/corrupted packets.
+*** Fragmentation
+Virtual IP packets an be huge (64k) but most data links have much
+smaller MTU (maximum transmission unit). Routers can/have to fragment
+IP packets in to smaller packets. These packets now flow through the
+net as individual packets, only to be reassembled at the final
+destination.
+
+** IPV6
+128bits. 
+*** Extensible Headers
+All headers put in the front of the virtual packet, so that additional
+headers can be created and used (extended..)
+*** IPV6 Datagram
+Just base header, extension headers, and data. No checksum.
+*** Fragmentation
+Routers don't fragment anymore, the sending host is responsible now.
+*** Addressing
+Uses hex; groups of 16bits. 2085:FFFF:0:0 ...
+Double colon denotes all 0 groups between. FF0C::F1 is valid
+*** 6to4 net
+2002:x:y/48   - xy is 32bit ipv4 address
+** UDP and TCP
+Both transport layer protocols that use the network layer to send
+packets. End-to-end protocol.
+*** Multiplexing
+Allows unique process identification using ports numbers
+*** Packets
+TCP headers and data encapsulated by the IP protocol in the network
+layer.
+** NAT (network address translation)
+Allows multiple computers to use one public IP address. To use this we
+need to set up a private IP address space.
+** ICMP (Internet Control Message Protocol)
+Uses IP Packets; Reports errors, control issues.
+*** Ping - echo/echo reply
+*** Source Quench - tell source to shut up
+*** Time Exceeded - when TTL hits zero
+*** Dest. Unreachable - all links to router down
+*** Redirect - Hints to a host that a different route would be faster
+** DHCP
+Dynamic Host Configuration Protocol Kind of like ARP, but gives some
+more information such as default gateway, nameserver, etc.
+* Transport Layer
+Talks directly to the end host (end-to-end). In general, it tries to
+make the network layer seem better. Needs to be more reliable than
+network, we are now handing packets to specific applications.
+** Provided services
+Packet delivery (reliable or not). Reliable virtual circuits. This
+layer has to provide everything to translate unreliable,
+connectionless packets in to a "virtual circuit"
+
+** Another layer of multiplexing
+Hands off the connection to the appropriate application.
+
+** Addressing
+Which application to send a data to. In IP protocol, ports are used.
+** Portmapping
+One widely-known port that runs an application that maps ports to
+services. In this way, connecting clients can
+** Super server
+One "process server" listens on all transport addresses and starts up
+services when they are requested. When a transaction is complete, it
+stops that service. Not used for high-capacity services like HTTP or
+FTP.
+** Error Control / Flow Control
+*** Error Detection
+Detects using similar techniques as the network layer (checksum,
+CRC). While the net layer checksums the header, the network layer is
+in charge of data integrity.
+*** Flow Control
+Concerned with the entire path of the link rather than the one
+neighboring link. Start with a small buffer and expand it until we can
+see how much bandwidth we can use. 
+*** Problems
+Wireless networks that have 10% flow control totally mess up this
+technique (transport layer thinks we have congestion but its really
+just interference). A solution is to have the link layer handle wifi
+retransmission.
+** UDP and TCP
+*** UDP
+End-to-end, connectionless. It is a 'best-effort' message, so if it
+gets there we only know if they reply. It's versatile in who the
+recipients are, (one, many, etc.) Also uses a checksum. Both the
+client and the server need a port to talk on.
+**** Packet Breakdown
+src port, dest port, UDP msg length, UDP checksum, data
+*** TCP
+Connection-oriented, point-to-point. We have complete reliability
+because of layers below. Full duplex connection (two-way
+simultaneously). The interface to using TCP is a "stream" or
+"socket". It is important to only make one connection even when packet
+delivery fails/resends/etc.
+**** Virtual Connections
+Connection uniquely identified by: (TCP, src IP, src Port, dst IP, dst Port).
+**** Reliability
+Reciever ACKs packets, resent if no ACK. 
+* Network Programming
+** netlib
+Simple interface for client/server communication.
+** NET ASCII line
+A series of characters followed by \r\n
+** HTTP Format
+*** Request Line:
+ex: GET path HTTP/1.0
+*** Response Format:
+ex: HTTP/1.0 number message
+    Server: <name>
+    Content-Length: <bytes>
+    Content-Type: <mime-type>
+    
+** Sockets
+*** bind
+Usually on a server, binds a server to an address/port.
+*** listen
+Set queue size.
+*** accept
+Gets or waits for the first connection in the queue. Returns a socket
+of the connected client. Fills in client information in sockaddr if
+given.
+*** connect
+Client version, just connects to a program that is listening on the
+address given.
+*** getpeername
+Given a socket, returns a sockaddr with info about connection.
+*** gethostname
+Gets the current host name (of local machine)
+*** gethostbyname
+Gets ip host information block for some other machine.
+*** gethostbyaddr
+Gets ip host information for some sockaddr. Man page confusing
+(wrong?). The addr needs to be a pointer to in_addr NOT a
+char*. Family is AF_INET.
+*** select
+Sleeps until one of the given sockets is ready to read/write.
+*** htonl, htons
+Converts longs/shorts respectively from host endian to network endian.
+*** ntohl, ntohs
+Converts longs/shorts respectively network endian to host endian.
+*** ntoa
+Network endian ip to ascii.
+** Ncat
+port@host:filepath to use it
+
+* Application Layer
+** DNS
+Translating between IP addresses and names. It was originally invented
+with a hierarchy, but most avoid it. Top level domains like .net,
+.com, etc. and country codes .us, .uk, .etc
+*** Name Servers
+A big distributed database of names. Root name servers are the
+starting place. Nameserver(s) for each domain and nameserver(s) for
+sub domains.
+*** Resolving a Name
+For x.y.z.t.d:
+**** 1. Ask root server for domain .d (response: server list)
+**** 2. Ask one of the servers about t.d (response: server list)
+**** 3. Ask ... z.t.d
+**** 4. Ask ... y.z.t.d
+**** 5. Ask for _address of host_ of x on y.z.t.d
+*** Records
+**** name: maps to address (A record)
+**** MX: where to send e-mail
+**** CNAME: aliases
+**** AAAA: IPv6
+** FTP 
+*** Connection
+"control" connection on port 21. Actual files come on new connections
+running on port 20. NAT gave some problems, but now watches for
+outgoing on 21 and then translates appropriately to port 20.
+
+** Cryptography
+
