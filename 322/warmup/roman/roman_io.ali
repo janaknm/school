@@ -1,0 +1,73 @@
+V "GNAT Lib v2010"
+P SS ZX
+R nnnnnnnnnnnnnnnnnnvnnnvnnnnnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnn
+
+U roman_io%b		roman_io.adb		836214b0 NE OO PK
+W ada%s			ada.ads			ada.ali
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W interfaces%s		interfac.ads		interfac.ali
+
+U roman_io%s		roman_io.ads		92b0955c EE OO PK
+W ada.tags%s		a-tags.adb		a-tags.ali
+W system%s		system.ads		system.ali
+W system.exception_table%s  s-exctab.adb	s-exctab.ali
+W system.standard_library%s  s-stalib.adb	s-stalib.ali
+
+D ada.ads		20100603062030 9c7dd3ea
+D a-except.ads		20100603061925 34786013
+D a-finali.ads		20100603061929 bfd2ca79
+D a-filico.ads		20100603061928 4ff02a40
+D a-ioexce.ads		20100603061931 2504b9d2
+D a-stream.ads		20100603061946 34aca5be
+D a-tags.ads		20100603062003 bfa07446
+D a-textio.ads		20100603062005 7065b2f2
+D a-unccon.ads		20100603062010 51e09df2
+D interfac.ads		20100603062247 a69cad5c
+D i-cstrea.ads		20100603062238 e1e064a9
+D roman_io.ads		20110413191110 92b0955c
+D roman_io.adb		20110413234327 61b7331e
+D system.ads		20100603062759 b0a7514b
+D s-crtl.ads		20100603062405 1dba5d50
+D s-exctab.ads		20100603062408 4b7fd51d
+D s-ficobl.ads		20100603062415 c05c3205
+D s-finimp.ads		20100603062417 90fd9896
+D s-finroo.ads		20100603062418 1408f9d1
+D s-parame.ads		20100603062544 6cdeed25
+D s-secsta.ads		20100603062555 d2c357fb
+D s-soflin.ads		20100603062559 61e5c9e8
+D s-stache.ads		20100603062602 481f9e9d
+D s-stalib.ads		20100603062604 9cbc334a
+D s-stoele.ads		20100603062606 a4d57c26
+D s-stoele.adb		20100603062606 d9d7e80e
+D s-stratt.ads		20100603062608 fef7c1da
+D s-traent.ads		20100603062648 a66ef260
+D s-unstyp.ads		20100603062650 c0f9fae5
+D s-wchcon.ads		20100603062709 30c48dc1
+X 1 ada.ads
+16K9*Ada 19e8 13|7r6 7r23
+X 8 a-textio.ads
+52K13*Text_IO 475e16 13|7w10 7r27
+176V13*End_Of_Line{boolean} 13|31r17
+210U14*Get 13|33r10
+X 12 roman_io.ads
+8K9*Roman_IO 25l5 25e13 13|9b14 89l5 89t13
+13I17*Roman_Numeral{integer} 20r36 23r35 13|51r30 55r14 55r31 56r14 81r29
+17X9*Roman_Numeral_Error 13|21r31 39r34
+20U19*Get 20<24 13|51b14 79l8 79t11
+20i24 Value{13I17} 13|51b19 64m7 65r15 71m13 71r22 73m13 73r22
+23U19*Put 23>24 13|81b14 87l8 87t11
+23i24 Value{13I17} 13|81b19
+X 13 roman_io.adb
+11V13 From_Char{integer} 11b13 11>23 23l8 23t17 64r16 69r18
+11e23 Value{character} 13r12
+25U14 Get_Numeral 25b14 25<26 25<45 47l8 47t19 60r7
+25s26 Value{string} 43m10
+25i45 Length{natural} 29m7 42m10 42r20 43r16
+26e7 Char{character} 33m14 34r20 37r15 43r27
+53a7 Num_Str{string} 60m19 64r26 69r28
+54i7 Length{integer} 60m28 64r34 68r31
+55i7 Last{12|13I17} 65m7 70r21 75m10
+56i7 Next{12|13I17} 69m10 70r13 71r30 73r30 75r18
+68i11 Index{integer} 69r36
+

@@ -1,0 +1,110 @@
+V "GNAT Lib v2010"
+M P W=b
+P SS ZX
+R nnnnnnvvnnnnvnnvvnvnvnvnnnnnnnnnnnnnvnnnnvnnnnvnvnnnnnnvnnnnnnnnnnnnnnv1+nnnnnn
+
+U museum_v1%b		museum_v1.adb		a51c2bbe NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.real_time%s	a-reatim.adb		a-reatim.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W interfaces%s		interfac.ads		interfac.ali
+W system%s		system.ads		system.ali
+W system.concat_2%s	s-conca2.adb		s-conca2.ali
+W system.concat_5%s	s-conca5.adb		s-conca5.ali
+W system.img_enum_new%s	s-imenne.adb		s-imenne.ali
+W system.img_int%s	s-imgint.adb		s-imgint.ali
+W system.parameters%s	s-parame.adb		s-parame.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.task_info%s	s-tasinf.adb		s-tasinf.ali
+W system.tasking%s	s-taskin.adb		s-taskin.ali
+W system.tasking.stages%s  s-tassta.adb		s-tassta.ali
+W turnstile%s		turnstile.adb		turnstile.ali
+
+D ada.ads		20100603062030 9c7dd3ea
+D a-calend.ads		20100603061913 19486c30
+D a-caldel.ads		20100603061913 c565f6eb
+D a-except.ads		20100603061925 34786013
+D a-finali.ads		20100603061929 bfd2ca79
+D a-filico.ads		20100603061928 4ff02a40
+D a-ioexce.ads		20100603061931 2504b9d2
+D a-reatim.ads		20100603061939 7c462ab4
+D a-stream.ads		20100603061946 34aca5be
+D a-tags.ads		20100603062003 bfa07446
+D a-textio.ads		20100603062005 7065b2f2
+D a-unccon.ads		20100603062010 51e09df2
+D interfac.ads		20100603062247 a69cad5c
+D i-c.ads		20100603062234 bc3ef662
+D i-cstrea.ads		20100603062238 e1e064a9
+D museum_v1.adb		20110420180715 c82f7f54
+D system.ads		20100603062759 b0a7514b
+D s-atacco.ads		20100603062341 60789a20
+D s-conca2.ads		20100603062359 3d28f3da
+D s-conca5.ads		20100603062401 e435dfcb
+D s-crtl.ads		20100603062405 1dba5d50
+D s-exctab.ads		20100603062408 4b7fd51d
+D s-ficobl.ads		20100603062415 c05c3205
+D s-finimp.ads		20100603062417 90fd9896
+D s-finroo.ads		20100603062418 1408f9d1
+D s-imenne.ads		20100603062427 ef3ea0ac
+D s-imgint.ads		20100603062430 f77d133c
+D s-oscons.ads		20100604095700 61707d2d
+D s-osinte.ads		20100603062453 a81ff234
+D s-parame.ads		20100603062544 6cdeed25
+D s-secsta.ads		20100603062555 d2c357fb
+D s-soflin.ads		20100603062559 61e5c9e8
+D s-stache.ads		20100603062602 481f9e9d
+D s-stausa.ads		20100603062604 146a8ff1
+D s-stalib.ads		20100603062604 9cbc334a
+D s-stoele.ads		20100603062606 a4d57c26
+D s-stoele.adb		20100603062606 d9d7e80e
+D s-stratt.ads		20100603062608 fef7c1da
+D s-tasinf.ads		20100603062626 0891d67c
+D s-taspri.ads		20100603062631 5459bcd0
+D s-taprop.ads		20100603062620 25a7965c
+D s-taskin.ads		20100603062629 82b6bc5d
+D s-tassta.ads		20100603062634 71d2b71d
+D s-traent.ads		20100603062648 a66ef260
+D s-unstyp.ads		20100603062650 c0f9fae5
+D s-wchcon.ads		20100603062709 30c48dc1
+D turnstile.ads		20110420181049 292e860b
+X 1 ada.ads
+16K9*Ada 19e8 16|2r6 2r26 3r6 3r25
+X 4 a-except.ads
+58K13*Exceptions 373e19 16|2w10 2r30
+80V13*Exception_Name{string} 16|33r23
+102V13*Exception_Message{string} 16|35r23
+X 11 a-textio.ads
+52K13*Text_IO 475e16 16|3w10 3r29
+55P9*File_Type(373R9)
+123V13*Standard_Error{55P9} 16|31r21
+263U14*Put_Line 16|31r10
+267U14*Put_Line 16|48r7 53r10 56r10
+X 16 museum_v1.adb
+5U11*Museum_V1 5b11 63l5 63t14
+7N4 Maximum 52r44 55r42
+8i4 Population{natural} 23m16 23r30 25m16 25r30 49r32 52r30 55r29
+11T14 Entrance_Monitor 11d32 13b14 36l8 36t24 39r17 40r17 41r17 42r17
+11e32 My_Entrance{47|4E9} 18r24 31r57
+14e7 Direction{47|3E9} 18m37 21r15
+30r12 Except{4|71R9} 33r38 35r41
+39t4 North_Door{11T14}
+40t4 South_Door{11T14}
+41t4 East_Door{11T14}
+42t4 West_Door{11T14}
+44b4 Museum_Full{boolean} 52r14 54m10 55r13 57m10
+X 47 turnstile.ads
+1K9*Turnstile 16|1w6 1r25 14r19 18r10 47|9e14
+3E9*Direction_Type 16|14r29 47|3e41
+3n28*Enter{3E9} 16|22r18
+3n35*Leave{3E9} 16|24r18
+4E9*Entrance_Type 16|11r46 31r37 47|4e52
+4n27*North{4E9} 16|39r34
+4n34*South{4E9} 16|40r34
+4n41*East{4E9} 16|41r34
+4n47*West{4E9} 16|42r34
+6U14*Get 16|18r20
+

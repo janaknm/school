@@ -1,0 +1,58 @@
+V "GNAT Lib v2010"
+P ZX
+R nnnnnnvnnnnnnnnnnnnnvvnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnnnnvnnnnvnnnnnnnnnnnnnnnn
+
+U turnstile%b		turnstile.adb		3cb56a29 OO PK
+W ada%s			ada.ads			ada.ali
+W ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+W ada.numerics.float_random%s  a-nuflra.adb	a-nuflra.ali
+
+U turnstile%s		turnstile.ads		292e860b EE NE OO PK
+
+D ada.ads		20100603062030 9c7dd3ea
+D a-calend.ads		20100603061913 19486c30
+D a-caldel.ads		20100603061913 c565f6eb
+D a-except.ads		20100603061925 34786013
+D a-numeri.ads		20100603061938 1cf3e608
+D a-nuflra.ads		20100603061937 a6501b59
+D a-unccon.ads		20100603062010 51e09df2
+D interfac.ads		20100603062247 a69cad5c
+D system.ads		20100603062759 b0a7514b
+D s-exctab.ads		20100603062408 4b7fd51d
+D s-parame.ads		20100603062544 6cdeed25
+D s-rannum.ads		20100603062549 467777e9
+D s-soflin.ads		20100603062559 61e5c9e8
+D s-stache.ads		20100603062602 481f9e9d
+D s-stalib.ads		20100603062604 9cbc334a
+D s-stoele.ads		20100603062606 a4d57c26
+D s-stoele.adb		20100603062606 d9d7e80e
+D s-traent.ads		20100603062648 a66ef260
+D turnstile.ads		20110420181049 292e860b
+D turnstile.adb		20110420182240 b3cbf77b
+X 1 ada.ads
+16K9*Ada 19e8 20|1r6 1r37
+X 5 a-numeri.ads
+16K13*Numerics 32e17 20|1r10 1r41
+X 6 a-nuflra.ads
+44K22*Float_Random 75e30 20|1w19 1r50
+48R9*Generator 20|5r10
+50F12*Uniformly_Distributed{float}
+52V13*Random{50F12}<12|65p13> 20|12r28 14r10
+54U14*Reset<12|94p14> 20|11r7
+X 19 turnstile.ads
+1K9*Turnstile 9l5 9e14 20|3b14 22l5 22t14
+3E9*Direction_Type 3e41 7r34 20|8r34
+3n28*Enter{3E9} 20|15r23
+3n35*Leave{3E9} 20|17r23
+4E9*Entrance_Type 4e52 6r32 20|7r32
+4n27*North{4E9}
+4n34*South{4E9}
+4n41*East{4E9}
+4n47*West{4E9}
+6U14*Get 6>18 7<18 20|7b14 20l8 20t11
+6e18 Entrance{4E9} 20|7b18
+7e18 Direction{3E9} 20|8b18 15m10 17m10
+X 20 turnstile.adb
+5r4 Gen{6|48R9} 11r13 12r35 14r17
+

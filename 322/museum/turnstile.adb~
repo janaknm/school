@@ -1,0 +1,11 @@
+package body Turnstile is
+   
+   procedure Get(Entrace : in Entrance_Type;
+                 Direction : out Direction_Type) is
+   begin
+      
+      null;
+      
+   end Get;
+   
+end Turnstile;

@@ -1,0 +1,6 @@
+package Turnstile is
+
+   type Direction_Type is (North, South, East, West);
+   type Entrance_Type is (North, South, East, West);
+   
+end Turnstile;
