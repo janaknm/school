@@ -7,18 +7,21 @@
 --  "mailboxes"
 
 -- standard includes
-with Ada.Text_IO, Ada.Strings.Unbounded
-  
-use Ada.Text_IO, Ada.Strings.Unbounded;
+with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+with Ada.Command_Line; use Ada.Command_Line;
 
 -- local includes
-with Bounded_Queue; use Bounded_Queue;
 with Mail_Help; use Mail_Help;
 
 procedure As1 is
 
-    task type Client_Task(Messages_To_send : Positive;
-                          Max_Messages : positive);
+    Number_Of_Clients : Positive := Integer'Value(Argument(1));
+    Messages_To_Send : Positive := Integer'Value(Argument(2));
+
+    Manager : Client_Manager(Number_Of_Clients, Messages_To_Send * Number_Of_clients);
+
+    task type Client_Task;
     
     task body Client_Task is
         ID : Natural;
@@ -29,15 +32,15 @@ procedure As1 is
         My_Messages : Natural;
     begin
 
-        Client_Registry.Register(Name, ID, Mailbox);
+        Manager.Register(Name, ID, Mailbox);
         
         for I in 1..Messages_To_Send loop
-            delay Duration(Random_Manager.Random(1.0));
+            delay Duration(Random(1.0));
             Message_String := Message_Manager.Random_Message;
-            Destination := Client_Registrar.Random_Mailbox;
+            Destination := Manager.Random_Mailbox(ID);
             Message := (Name => Name, 
                         Message => Message_String);
-            Mailbox.Put(Message);
+            Destination.Put(Message);
             My_Messages := Mailbox.Num_Messages;
             if My_Messages > 0 then
                 Mailbox.Get(Message);
@@ -49,10 +52,18 @@ procedure As1 is
             Mailbox.Get(Message);
             -- do something cool
         end loop;
+
+        Manager.UnRegister(Id);
         
     end Client_Task;
     
-        
+    type Client_Array is array(Positive range <>) of Client_Task;
+
+    Clients : Client_Array(1..Number_Of_clients);
+    
+begin
+    
+    null;
     
 end As1;
 
