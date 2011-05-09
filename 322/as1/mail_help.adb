@@ -2,6 +2,15 @@ with Ada.Text_IO; use Ada.Text_IO;
 
 package body Mail_Help is
 
+    procedure ROpen_Or_Create(File : in out File_Type; 
+                              File_Name : in String)
+    is
+    begin
+        Open(File, Out_File, File_Name);
+    exception
+        when Name_Error => Create(File, Out_File, File_Name);
+    end ROpen_Or_Create;
+
     procedure Read_String_Array(Str_Array : out Str_Array_Ptr;
                                 Count : out Natural;
                                 Filename : in string)
@@ -50,56 +59,70 @@ package body Mail_Help is
         return Random(Gen) * Max;
     end Random;
 
-    function Int(Max : Natural) return Natural is
+    function Random_Int(Max : Natural) return Natural is
         Float_Max : Float := Random(Float(Max));
     begin
         return Natural(Float_Max);
-    end Int;
+    end Random_Int;
         
     
-    protected body Mailbox_Type is
-
-        procedure Put(Message : in Message_Type) is
+    protected body Post_Office_Type is
+        procedure Put(Id : in Mailbox_Id; Message : in Message_Type) is
         begin
-            Message_Queue.Enqueue(Messages, Message);
-            Message_Count := Message_Count + 1;
-        exception
-            when others => raise Mailbox_Full;
+            if not Initialized then
+                Initialize;
+            end if;
+            Message_Queue.Enqueue(Mailboxes(Id).Messages, Message);
+            Mailboxes(Id).Message_Count := Mailboxes(Id).Message_Count + 1;
         end Put;
 
-        procedure Get(Message : out Message_Type) is
+        procedure Get(ID : in Mailbox_Id; Message : out Message_Type) is
         begin
-            Message_Queue.Dequeue(Messages, Message);
-            Message_Count := Message_Count - 1;
-        exception
-           when others => raise Mailbox_Empty;
+            if not Initialized then
+                Initialize;
+            end if;
+            Message_Queue.Dequeue(Mailboxes(ID).Messages, message);
+            Mailboxes(Id).Message_Count := Mailboxes(Id).Message_Count - 1;
         end Get;
 
-        function Num_Messages return Natural is
+        procedure Num_Messages(Id: in Mailbox_Id; Num : out Natural) is
         begin
-            return Message_Count;
+            if not Initialized then
+                Initialize;
+            end if;
+            Num := Mailboxes(Id).Message_Count;
         end Num_Messages;
 
-    end Mailbox_Type;
-
+        procedure Initialize is
+        begin
+            for I in 1..Max_Mailboxes loop
+                Mailboxes(I) := new Mailbox_Type(Max_Messages);
+            end loop;
+            Initialized := True;
+        end Initialize;
+        
+    end Post_Office_Type;
+            
+    
     protected body Message_Manager is
         
-        function Random_Message return Unbounded_String is
+        procedure Random_Message(Message_String : out Unbounded_String) is
             Index : Positive;
         begin
             if not Initialized then
                 Initialize;
             end if;
 
-            Index := 1 + Random_Manager.Int(Num_Messages);
-            return Message_Array(Index);
-            
+            Index := 1 + Random_Int(Num_Messages - 1);
+            Message_String := Message_Array(Index);
+
         end Random_Message;
 
         procedure Initialize is
         begin
-           Read_String_Array(Message_Array, Messages_Filename);
-           Initialized := True; 
+           Read_String_Array(Message_Array, Num_Messages, Messages_Filename);
+           Initialized := True;
+
         end Initialize;
 
     end Message_Manager;
@@ -108,9 +131,8 @@ package body Mail_Help is
     
     protected body Name_Manager is
 
-        function Next_Name return Unbounded_String 
+        procedure Next_Name(Name : out Unbounded_String) 
         is
-            Name : Unbounded_String;
         begin
             
             if not Initialized then
@@ -133,15 +155,13 @@ package body Mail_Help is
             
             Current_Index := Current_Index + 1;
             
-            return Name;
-            
         end Next_Name;
 
         
         procedure Initialize 
         is
         begin
-            Read_String_Array(Names, Names_Filename);
+            Read_String_Array(Names, Num_Names, Names_Filename);
             Initialized := True;
         end Initialize;
 
@@ -152,7 +172,7 @@ package body Mail_Help is
 
             for I in 1..Num_Names-1 loop
                 
-                Swap_Index := I + Random_Manager.Int(Num_Names - I);
+                Swap_Index := I + Random_Int(Num_Names - I);
                 
             end loop;
             
@@ -180,7 +200,7 @@ package body Mail_Help is
             return Index;
         end Next_Index;
             
-        function Random_Mailbox(My_ID : in Natural) return Mailbox_Ptr is
+        function Random_Mailbox(My_ID : in Mailbox_Id) return Mailbox_Id is
             Index : Positive;
         begin
             
@@ -188,38 +208,42 @@ package body Mail_Help is
             --  not fight ada and build another data structure
             
             -- get an available index
+
+            if Registered_Clients < 2 then
+                Put_Line("Oh no! can't send it anywhere");
+                return -1;
+            end if;
+            
             loop
-                Index := 1 + Random_Manager.Int(Registered_Clients);
+                Index := 1 + Random_Int(Max_Clients - 1);
                 exit when Clients(Index).Id /= My_ID and Clients(Index).Available;
             end loop;
 
-            return Clients(Index).Mailbox_Ptr;
+            return Clients(Index).Id;
             
         end Random_Mailbox;
 
         procedure Register(Name : out Unbounded_String;
-                           Id : out Natural;
-                           Mailbox : out Mailbox_Ptr)
+                           Id : out Mailbox_Id)
         is
             Index : Positive := Next_Index;
         begin
             Registered_Clients := 1 + Registered_Clients;
             
             Id := Index;
-            Mailbox := new Mailbox_Type(Max_Messages);
-            Name := Name_Manager.Next_Name;
-            
+            Name_Manager.Next_Name(Name);
+
             Clients(Index).Available := True;
             Clients(Index).Name := Name;
             Clients(Index).Id := Id;
-            Clients(Index).Mailbox := Mailbox;
             
         end Register;
 
-        procedure UnRegister(Id : in Natural)
+        procedure UnRegister(Id : in Mailbox_Id)
         is
         begin
             Registered_Clients := Registered_Clients - 1;
+            Put_Line("available clients: " & Integer'Image(Registered_Clients));
             Clients(Id).Available := False;
         end UnRegister;
             

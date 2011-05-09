@@ -1,3 +1,4 @@
+with Ada.Text_Io; use Ada.Text_IO;
 with Ada.Strings.Unbounded, Ada.Numerics.Float_Random;
 use Ada.Strings.Unbounded, Ada.Numerics.Float_Random;
 
@@ -10,48 +11,47 @@ package Mail_Help is
 
     Mailbox_Empty, Mailbox_Full : exception;
 
-    
     type Str_Array_Type is array(Positive range <>) of Unbounded_String;
     type Str_Array_Ptr is access Str_Array_Type;
 
+    procedure ROpen_Or_Create(File : in out File_Type; 
+                              File_Name : in String);
+    
     procedure Read_String_Array(Str_Array : out Str_Array_Ptr;
                                 Count : out Natural;
                                 Filename : string);
     
     type Message_Type is
        record
-           Name : Unbounded_String;
-           Message : Unbounded_String;
+           Name : Unbounded_String := To_Unbounded_String("null");
+           Message : Unbounded_String := To_Unbounded_String("null");
        end record;
-    
+
     package Message_Queue is new Bounded_Queue(Message_Type);
-    
 
-    type Mailbox_Type;
+    type Mailbox_Type(Max_Messages : Positive) is limited private; 
     type Mailbox_Ptr is access Mailbox_Type;
-
     
-    -- Protected mailbox type
-    protected type Mailbox_Type(Max_Messages : Positive) is
+    type Mailbox_Array is array(Positive range <>) of Mailbox_Ptr;
+    subtype Mailbox_Id is Integer range -1..Integer'Last;
+    
+    protected type Post_Office_Type(Max_Mailboxes : Positive;
+                                    Max_Messages : Positive) is
+        procedure Put(Id : in Mailbox_Id; Message : in Message_Type);
+        procedure Get(Id : in Mailbox_Id; Message : out Message_Type);
+        procedure Num_Messages(Id : in Mailbox_Id; Num : out Natural);
         
-        procedure Put(Message : in Message_Type);
-        procedure Get(Message : out Message_Type);
-        function Num_Messages return Natural;
-
     private
+        procedure Initialize;
         
-        
-        Message_Count : Natural := 0;
-        Messages : Message_Queue.Queue_Type(Max_Messages);
-        
-    end Mailbox_Type;
-
+        Initialized : Boolean := False;
+        Mailboxes : Mailbox_Array(1..Max_Mailboxes);
+    end Post_Office_Type;
     
 
     type Client_Element is
            record
-               Mailbox : Mailbox_Ptr;
-               Id : Natural;
+               Id : Mailbox_Id;
                Name : Unbounded_String;
                Available : Boolean := False;
            end record;
@@ -61,25 +61,24 @@ package Mail_Help is
                                   Max_messages : Positive) is
         
         function Num_Clients return Natural;
-        function Random_Mailbox(My_ID : in Natural) return Mailbox_Ptr;
+        function Random_Mailbox(My_ID : in Mailbox_Id) return Mailbox_Id;
         procedure Register(Name : out Unbounded_String; 
-                           ID : out Natural;
-                           Mailbox : out Mailbox_Ptr);
-        procedure UnRegister(Id : in Natural);
+                           ID : out Mailbox_Id);
+        procedure UnRegister(Id : in Mailbox_Id);
         
     private
         
         function Next_Index return Positive;
         
         Clients : Client_Array(1..Max_Clients);
-        Registered_Clients : Positive := 0;
+        Registered_Clients : Natural := 0;
         
     end Client_Manager;
 
 
     
     protected Message_Manager is
-        function Random_Message return Unbounded_String;
+        procedure Random_Message(Message_String :out Unbounded_String);
     private
         procedure Initialize;
         
@@ -91,7 +90,7 @@ package Mail_Help is
 
 
     protected Name_Manager is
-        function Next_Name return Unbounded_String;
+        procedure Next_Name(Name : out Unbounded_String);
     private
         procedure Initialize;
         procedure Randomize;
@@ -106,9 +105,15 @@ package Mail_Help is
 
     
     function Random(Max : Float) return Float;
-    function Int(Max : Natural) return Natural;
+    function Random_Int(Max : Natural) return Natural;
     
 private
-
     
+    type Mailbox_Type(Max_Messages : Positive) is
+       record
+           Messages : Message_Queue.Queue_Type(Max_Messages);
+           Message_Count : Natural := 0;
+       end record;    
+    
+
 end Mail_Help;

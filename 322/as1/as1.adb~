@@ -1,8 +1,0 @@
--- Matt Forbes
--- May 2011
--- CS322 - WWU
-
--- Usage: as1 <clients> <messages>. Spawn <clients> tasks to send
---  <messages> number of messages to each other by transport in
---  "mailboxes"
-

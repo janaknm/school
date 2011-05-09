@@ -1,9 +1,9 @@
 V "GNAT Lib v4.6"
 M P W=b
 P SS ZX
-R nnnnnnnnnvnnnnnnnnvnnvnvvvnvnvnnnvvnnnnvnvnnvnnnnvnvnnnnnnvnnnnnnnnnnnnnnv1+nnnv1+nn
+R nnnnnnnnnvnnnnnnnnvvnvnvvvnvnvnnnvvnnnnvnvnnvnnnnvnvnnnnnnvnnnnnnnnnnnnnnv1+nnnv1+nn
 
-U as1%b			as1.adb			66176ceb NE OO SU
+U as1%b			as1.adb			4814e798 NE OO SU
 W ada%s			ada.ads			ada.ali
 W ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
 W ada.command_line%s	a-comlin.adb		a-comlin.ali
@@ -15,6 +15,9 @@ W ada.tags%s		a-tags.adb		a-tags.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
 W mail_help%s		mail_help.adb		mail_help.ali
 W system%s		system.ads		system.ali
+W system.concat_2%s	s-conca2.adb		s-conca2.ali
+W system.concat_3%s	s-conca3.adb		s-conca3.ali
+W system.concat_4%s	s-conca4.adb		s-conca4.ali
 W system.finalization_implementation%s  s-finimp.adb  s-finimp.ali
 W system.finalization_root%s  s-finroo.adb	s-finroo.ali
 W system.img_int%s	s-imgint.adb		s-imgint.ali
@@ -48,14 +51,17 @@ D a-strunb.ads		20101008130255 fe8d9a91
 D a-tags.ads		20101021101406 c7695348
 D a-textio.ads		20091028140912 386df5d4
 D a-unccon.ads		20070406091342 f9eb8f06
-D as1.adb		20110507065134 ca21c16f
+D as1.adb		20110509052250 b7c652e9
 D bounded_queue.ads	20110426030229 09dd82f3
 D interfac.ads		20090409150019 f77d8799
 D i-c.ads		20101007125900 809c38c4
 D i-cstrea.ads		20100622165701 1bd72c32
-D mail_help.ads		20110507065029 8a7a0864
+D mail_help.ads		20110509051720 d5ef0a58
 D system.ads		20090410155748 2d1a1afa
 D s-atacco.ads		20090409150019 1dc856ad
+D s-conca2.ads		20090420091404 fbd0f2fc
+D s-conca3.ads		20090420091404 762a026a
+D s-conca4.ads		20090420091404 025fe3be
 D s-crtl.ads		20100617122610 ac77b159
 D s-exctab.ads		20090417131547 66e51330
 D s-ficobl.ads		20100909103250 443b9d66
@@ -86,47 +92,61 @@ D s-unstyp.ads		20090409150019 6ae15c76
 D s-valint.ads		20090409150019 48a52a3f
 D s-wchcon.ads		20090417130712 bfeb2e3d
 X 1 ada.ads
-16K9*Ada 19e8 21|10r6 10r23 11r6 11r33 12r6 12r28
+16K9*Ada 19e8 21|10r6 10r23 11r6 11r33 12r6 12r28 13r6 13r26
 X 6 a-comlin.ads
 38K13*Command_Line 139e21 21|12w10 12r32
-48V13*Argument{string} 21|19s51 20s50
+48V13*Argument{string} 21|21s51 22s50
+X 7 a-except.ads
+55K13*Exceptions 370e19 21|13w10 13r30
+77V13*Exception_Name{string} 21|82s37
 X 15 a-string.ads
 16K13*Strings 35e16 21|11r10 11r37
 X 17 a-strunb.ads
 39K21*Unbounded 437e26 21|11w18 11r45
-42R9*Unbounded_String 404e14 21|29r16 30r26
+42R9*Unbounded_String 404e14 21|31r16 32r26 36r21
+63V13*To_String{string} 21|44s31 61s42 62s37 71s38 72s33 79s29
+74U14*Append 21|43s9
 X 19 a-textio.ads
 49K13*Text_IO 472e16 21|10w10 10r27
+52P9*File_Type(370R9) 21|35r16
+99U14*Close 21|78s9
+260U14*Put_Line 21|61s17 71s13
+264U14*Put_Line 21|55s17 79s9 82s28
 X 21 as1.adb
-17U11*As1 17b11 68l5 68t8
-19i5 Number_Of_Clients{positive} 22r30 22r68 62r31
-20i5 Messages_To_Send{positive} 22r49 37r21
-22w5 Manager{26|60W20} 35r9 40r28 56r9
-24T15 Client_Task 26b15 58l9 58t20 60r54
-27i9 ID{natural} 35m32 40r51 56r28
-28p9 Mailbox{26|31P10} 35m36 44r28 46r17 51r15 52r13
-28p18 Destination{26|31P10} 40m13 43r13
-29r9 Name{17|42R9} 35m26 41r33
-30r9 Message_String{17|42R9} 39m13 42r36
-31r9 Message{26|21R10} 41m13 43r29 46m29 52m25
-32i9 My_Messages{natural} 44m13 45r16
-37i13 I{integer}
-60A10 Client_Array(24T15)<integer> 62r15
-62a5 Clients{60A10}
+19U11*As1 19b11 94l5 94t8
+21i5 Number_Of_Clients{positive} 24r30 24r68 25r36 25r55 88r31
+22i5 Messages_To_Send{positive} 24r49 25r75 46r21
+24w5 Manager{26|60W20} 39r9 50r28 76r9
+25w5 Post_Office{26|38W20} 54r17 58r13 60r17 63r17 68r9 70r13 73r13
+27T15 Client_Task 29b15 84l9 84t20 86r54
+30i9 Id{26|36I13} 39m32 50r51 55r40 58r38 60r33 63r42 68r34 70r29 73r38 76r28
+30i13 Destination{26|36I13} 50m13 52r16 54r33 55r96
+31r9 Name{17|42R9} 39m26 42r22 53r29
+32r9 Message_String{17|42R9} 49m44 53r35
+33r9 Message{26|24R10} 53m17 54r46 60m37 61r52 62r47 70m33 71r48 72r43
+34i9 Num_Messages{natural} 58m42 59r16 63m46 68m38 69r15 73m42
+35p9 File{19|52P9} 44m25 61r26 71r22 78m15
+36r9 File_Name{17|42R9} 42m9 43m16 44r41 79r39
+46i13 I{integer}
+82r14 E{7|68R9} 82r52
+86A10 Client_Array(27T15)<integer> 88r15
+88a5 Clients{86A10}
 X 26 mail_help.ads
-6K9*Mail_Help 21|15w6 15r21 26|114e14
-21R10*Message_Type 21|31r19 26|25e18
-23r12*Name{17|42R9} 21|41m25
-24r12*Message{17|42R9} 21|42m25
-31P10*Mailbox_Ptr(30W10) 21|28r32
-37U19 Put 21|43s25
-38U19 Get 21|46s25 52s21
-39V18 Num_Messages{natural} 21|44s36 51s23
-60W20*Client_Manager 21|22r15 26|77e23
-64V18 Random_Mailbox{31P10} 21|40s36
-65U19 Register 21|35s17
-68U19 UnRegister 21|56s17
-81w15*Message_Manager 21|39r31
-82V18 Random_Message{17|42R9} 21|39s47
-108V14*Random{float} 21|38s28
+7K9*Mail_Help 21|17w6 17r21 26|119e14
+17U15*ROpen_Or_Create 21|44s9
+24R10*Message_Type 21|33r19 26|28e18
+26r12*Name{17|42R9} 21|61r60 71r56
+27r12*Message{17|42R9} 21|62r55 72r51
+36I13*Mailbox_Id{integer} 21|30r27
+38W20*Post_Office_Type 21|25r19 26|49e25
+40U19 Put 21|54s29
+41U19 Get 21|60s29 70s25
+42U19 Num_Messages 21|58s25 63s29 68s21 73s25
+60W20*Client_Manager 21|24r15 26|76e23
+64V18 Random_Mailbox{36I13} 21|50s36
+65U19 Register 21|39s17
+67U19 UnRegister 21|76s17
+80w15*Message_Manager 21|49r13
+81U19 Random_Message 21|49s29
+107V14*Random{float} 21|47s28
 
