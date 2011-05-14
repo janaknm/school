@@ -39,7 +39,7 @@ private
 	type Queue_Type (Max_size : positive) is record
 		Count : natural := 0;			 	-- number of items in the queue
 		Front : Positive := 1;				-- index of first item
-		Rear  : Positive := Max_Size;		-- index of the last item 
+		Rear  : Positive := 1;		-- index of the last item 
 		Items : Queue_Array(1 .. Max_Size);	-- element array
 	end record;
     

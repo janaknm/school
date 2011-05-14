@@ -1,5 +1,6 @@
 * DONE register for moodle: password is 21736
-* TODO Wed, Apr 27       - Midterm Exam
+* DONE Wed, Apr 27       - Midterm Exam
+* TODO Mon, May 9        - Assignment 1
 * TODO Mon, Jun 6 (10am) - Final Exam
 
 
@@ -226,6 +227,15 @@ as possible and only work with the shared data.
 *** Calls to other protected operations (deadlock warning)
 *** Creation of tasks
 *** Calls to subprograms that could possible block (any I/O)
+** Requeueing
+
+* Rendezvous (direct/synchronized interaction)
+** Values of in and in out parameters passed from client to server
+** Client blocked
+** Server executes rendezvous code (if any)
+** Values of out and in out paramters passed from server to client
+** Client and server continue independently, concurrently
+
 * Concurrency Patterns
 ** Producer-Consumer Problem
 *** Definition

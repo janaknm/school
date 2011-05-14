@@ -1,0 +1,12 @@
+-module(module_name)
+-export([function_with_2_args/2, fun/1, fun/2, fun/3])
+
+// reference to a function in a module: module_name:fun(a, b)
+
+// alternate clauses of a function definition are separated by semicolons
+factorial(1) -> 1;
+factorial(N) -> N * factorial(N-1).
+
+// built-in function lists:map(F, L)  takes function F and list L
+map(F, []) -> []
+map(F, [H|T]) -> [F(H) | map(F, T)

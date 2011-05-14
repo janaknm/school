@@ -1,0 +1,1 @@
+plot '.tmp.dat' every :::0::0 using 1:2 title '3' with points lw 0.2 lc 3 pt 6, '.tmp.dat' every :::1::1 using 1:2 title '1' with points lw 0.2 lc 1 pt 6, '.tmp.dat' every :::2::2 using 1:2 title '2' with points lw 0.2 lc 2 pt 6, '.tmp.dat' every :::3::3 using 1:2 title '4' with points lw 0.2 lc 4 pt 6

@@ -1,0 +1,102 @@
+V "GNAT Lib v2010"
+M P W=b
+A -gnat05
+P SS ZX
+R nnnvnnvnnnnnnnnnnnnnvvnnnnvnvnvvnvnnvnvnnvnnvnvnvnnnnnnvnnnnnnnnnnnnnnv1+nnnv1+nn
+
+U main%b		main.adb		bccdee86 NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+W ada.numerics.float_random%s  a-nuflra.adb	a-nuflra.ali
+W ada.real_time%s	a-reatim.adb		a-reatim.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W resource_alloc_v1%s	resource_alloc_v1.adb	resource_alloc_v1.ali
+W system%s		system.ads		system.ali
+W system.finalization_implementation%s  s-finimp.adb  s-finimp.ali
+W system.finalization_root%s  s-finroo.adb	s-finroo.ali
+W system.img_int%s	s-imgint.adb		s-imgint.ali
+W system.parameters%s	s-parame.adb		s-parame.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.standard_library%s  s-stalib.adb	s-stalib.ali
+W system.task_info%s	s-tasinf.adb		s-tasinf.ali
+W system.tasking%s	s-taskin.adb		s-taskin.ali
+W system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
+W system.tasking.protected_objects.operations%s  s-tpobop.adb  s-tpobop.ali
+W system.tasking.stages%s  s-tassta.adb		s-tassta.ali
+
+D ada.ads		20100603062030 9c7dd3ea
+D a-calend.ads		20100603061913 19486c30
+D a-caldel.ads		20100603061913 c565f6eb
+D a-except.ads		20100603061925 34786013
+D a-finali.ads		20100603061929 bfd2ca79
+D a-filico.ads		20100603061928 4ff02a40
+D a-numeri.ads		20100603061938 1cf3e608
+D a-nuflra.ads		20100603061937 a6501b59
+D a-reatim.ads		20100603061939 7c462ab4
+D a-stream.ads		20100603061946 34aca5be
+D a-tags.ads		20100603062003 bfa07446
+D a-unccon.ads		20100603062010 51e09df2
+D interfac.ads		20100603062247 a69cad5c
+D i-c.ads		20100603062234 bc3ef662
+D main.adb		20110429184444 701e244b
+D resource_alloc_v1.ads	20110429184331 6a83d194
+D system.ads		20100603062759 b0a7514b
+D s-atacco.ads		20100603062341 60789a20
+D s-exctab.ads		20100603062408 4b7fd51d
+D s-finimp.ads		20100603062417 90fd9896
+D s-finroo.ads		20100603062418 1408f9d1
+D s-imgint.ads		20100603062430 f77d133c
+D s-oscons.ads		20100604095700 61707d2d
+D s-osinte.ads		20100603062453 a81ff234
+D s-parame.ads		20100603062544 6cdeed25
+D s-rannum.ads		20100603062549 467777e9
+D s-secsta.ads		20100603062555 d2c357fb
+D s-soflin.ads		20100603062559 61e5c9e8
+D s-stache.ads		20100603062602 481f9e9d
+D s-stausa.ads		20100603062604 146a8ff1
+D s-stalib.ads		20100603062604 9cbc334a
+D s-stoele.ads		20100603062606 a4d57c26
+D s-stoele.adb		20100603062606 d9d7e80e
+D s-stratt.ads		20100603062608 fef7c1da
+D s-tasinf.ads		20100603062626 0891d67c
+D s-taspri.ads		20100603062631 5459bcd0
+D s-taprop.ads		20100603062620 25a7965c
+D s-taskin.ads		20100603062629 82b6bc5d
+D s-taprob.ads		20100603062616 5e00115c
+D s-tpoben.ads		20100603062638 18aadfe3
+D s-tpobop.ads		20100603062638 ccd38b83
+D s-tassta.ads		20100603062634 71d2b71d
+D s-traent.ads		20100603062648 a66ef260
+D s-unstyp.ads		20100603062650 c0f9fae5
+X 1 ada.ads
+16K9*Ada 19e8 15|2r6 2r37
+X 7 a-numeri.ads
+16K13*Numerics 32e17 15|2r10 2r41
+X 8 a-nuflra.ads
+44K22*Float_Random 75e30 15|2w19 2r50
+48R9*Generator 15|10r13
+50F12*Uniformly_Distributed{float}
+52V13*Random{50F12}<26|65p13> 15|19r17
+54U14*Reset<26|94p14> 15|17r13
+X 15 main.adb
+4U11*Main 4b11 53l5 53t9
+6w14 Random_Manager 13b19 21l8 21t22 33r26
+7V16 Get{float} 14b16 20l11 20t14 33r41
+9b7 Initialized{boolean} 16r17
+10r7 Gen{8|48R9} 17r19 19r24
+23w4 Resources{16|3W19} 31r10 35r10
+25T14 Client 25d21 27b14 38l8 38t14 40r30 49r25
+25i21 Reqd{positive} 31r25 35r28
+29i11 I{integer}
+40P9 Client_Ptr(25T14) 41r51
+41A9 Client_Arr(40P9)<integer> 43r14
+43a4 Clients{41A9} 49m7
+47i8 I{integer} 49r15 49r32
+X 16 resource_alloc_v1.ads
+1K9*Resource_Alloc_V1 15|1w6 23r16 16|15e22
+3W19*Manager 15|23r34 16|13e15
+5Y13 Take 15|31r20
+7U17 Replace 15|35r20
+
