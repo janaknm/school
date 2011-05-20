@@ -1,6 +1,7 @@
 * DONE register for moodle: password is 21736
 * DONE Wed, Apr 27       - Midterm Exam
-* TODO Mon, May 9        - Assignment 1
+* DONE Mon, May 9        - Assignment 1
+* TODO Mon, May 23       - Assignment 2
 * TODO Mon, Jun 6 (10am) - Final Exam
 
 
@@ -267,3 +268,12 @@ count) and continue.
 Block tasks until a set number of them have arrived
 (synchronization). When they have caught up, release them.
 
+* Erlang Concurrecy
+** Processes 
+*** All within erlang, so creation/destruction is fast
+*** Spawned with function spawn(fun)
+*** Own PID is found with self()
+** Message passing
+*** PID ! "message" 
+sends a message to PID
+*** Should send own PID in message

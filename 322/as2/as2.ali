@@ -1,0 +1,69 @@
+V "GNAT Lib v2010"
+M P W=b
+P SS ZX
+R nnnnnnnnnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U as2%b			as2.adb			6285c18b NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.command_line%s	a-comlin.adb		a-comlin.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.val_int%s	s-valint.adb		s-valint.ali
+W vat_stuff%s		vat_stuff.adb		vat_stuff.ali
+
+D ada.ads		20100603062030 9c7dd3ea
+D a-comlin.ads		20100603061919 6b7df106
+D a-except.ads		20100603061925 34786013
+D a-finali.ads		20100603061929 bfd2ca79
+D a-filico.ads		20100603061928 4ff02a40
+D a-ioexce.ads		20100603061931 2504b9d2
+D a-reatim.ads		20100603061939 7c462ab4
+D a-stream.ads		20100603061946 34aca5be
+D a-tags.ads		20100603062003 bfa07446
+D a-textio.ads		20100603062005 7065b2f2
+D a-unccon.ads		20100603062010 51e09df2
+D as2.adb		20110514234513 947a297b
+D interfac.ads		20100603062247 a69cad5c
+D i-c.ads		20100603062234 bc3ef662
+D i-cstrea.ads		20100603062238 e1e064a9
+D system.ads		20100603062759 b0a7514b
+D s-atacco.ads		20100603062341 60789a20
+D s-crtl.ads		20100603062405 1dba5d50
+D s-exctab.ads		20100603062408 4b7fd51d
+D s-ficobl.ads		20100603062415 c05c3205
+D s-finimp.ads		20100603062417 90fd9896
+D s-finroo.ads		20100603062418 1408f9d1
+D s-oscons.ads		20100604095700 61707d2d
+D s-osinte.ads		20100603062453 a81ff234
+D s-parame.ads		20100603062544 6cdeed25
+D s-secsta.ads		20100603062555 d2c357fb
+D s-soflin.ads		20100603062559 61e5c9e8
+D s-stache.ads		20100603062602 481f9e9d
+D s-stausa.ads		20100603062604 146a8ff1
+D s-stalib.ads		20100603062604 9cbc334a
+D s-stoele.ads		20100603062606 a4d57c26
+D s-stoele.adb		20100603062606 d9d7e80e
+D s-stratt.ads		20100603062608 fef7c1da
+D s-tasinf.ads		20100603062626 0891d67c
+D s-taspri.ads		20100603062631 5459bcd0
+D s-taprop.ads		20100603062620 25a7965c
+D s-taskin.ads		20100603062629 82b6bc5d
+D s-tassta.ads		20100603062634 71d2b71d
+D s-traent.ads		20100603062648 a66ef260
+D s-unstyp.ads		20100603062650 c0f9fae5
+D s-valint.ads		20100603062655 d23209d2
+D s-wchcon.ads		20100603062709 30c48dc1
+D vat_stuff.ads		20110514224944 ede7ab04
+X 1 ada.ads
+16K9*Ada 19e8 12|1r6 1r23 2r6 2r28
+X 2 a-comlin.ads
+41K13*Command_Line 142e21 12|2w10 2r32
+51V13*Argument{string} 12|7r56
+X 10 a-textio.ads
+52K13*Text_IO 475e16 12|1w10 1r27
+X 12 as2.adb
+5U11*As2 5b11 13l5 13t8
+7I12 Vat_Range{natural}
+X 43 vat_stuff.ads
+1K9*vat_stuff 12|3w6 3r21 43|42e14
+

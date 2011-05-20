@@ -1,0 +1,2 @@
+-module(area_server1).
+-export([loop/0])

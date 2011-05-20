@@ -74,8 +74,8 @@ D s-tassta.ads		20100603062634 71d2b71d
 D s-traent.ads		20100603062648 a66ef260
 D s-unstyp.ads		20100603062650 c0f9fae5
 D s-wchcon.ads		20100603062709 30c48dc1
-D vat_stuff.ads		20110512025447 ede7ab04
-D vat_stuff.adb		20110512154858 4db58c68
+D vat_stuff.ads		20110514224944 ede7ab04
+D vat_stuff.adb		20110514223951 4db58c68
 X 1 ada.ads
 16K9*Ada 19e8 49|1r6 2r6 4r6 5r6
 X 8 a-numeri.ads
