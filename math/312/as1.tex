@@ -1,0 +1,64 @@
+\documentclass[fleqn,a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+
+\pagestyle{empty} \setlength{\parindent}{0mm}
+\addtolength{\topmargin}{-0.5in} \setlength{\textheight}{9in}
+\addtolength{\textwidth}{1in} \addtolength{\oddsidemargin}{-0.5in}
+
+\begin{document}
+
+Matt Forbes\\
+Math 312 Assignment 1\\
+May 13, 2011\\
+
+\section{Problem 1}
+
+
+\section{Problem 2}
+\section{Problem 3}
+
+{\bf Goal:} Prove $\forall a \in \mathbb{R} \ s.t. \  -1 < a < 1, \forall n \in \mathbb{N}:$ 
+$|a|^n \le \dfrac{|a|}{n(1-|a|)+|a|}.$
+
+\subsection{Lemma $\forall x \in \mathbb{R}, n \in \mathbb{N}: \; 0 \le x \le 1 \Rightarrow x^n \le 1$}
+Proof by induction:\\
+
+Let $x \in \mathbb{R}$ be such that $0 \le x \le 1$. \\
+Define $P(n) : x^n \le 1$. \\
+
+
+Basis: $P(1) = x^1 \le 1$, which is trivially true.\\
+
+
+Inductive Hypothesis (I.H.): let $k \in \mathbb{N}$ be arbitrary; Assume $P(k)$ is true.\\
+$x^k \le 1$ by I.H. \\
+$xx^k \le x$ by OM. \\
+$x^{k+1} \le x$ by def. of powers. \\
+$x^{k+1} \le 1$ by transitiviy. \\
+$P(k+1)$ is true, thus $P(k) \Rightarrow P(k+1)$.\\
+
+$\forall x \in \mathbb{R}, n \in \mathbb{N}, 0 \le x \le 1 \Rightarrow x^n \le 1$.
+
+\subsection{Lemma $ \forall x \in \mathbb{R} \ s.t. \  0 \le x \le 1: \; x \le \dfrac{1}{x}$ }
+Let $x \in \mathbb{R}$ be such that $0 \le x \le 1$. \\
+$x \le 1$, so $\dfrac{1}{x} \ge 1$ by 312 Notes 2.2.2(g). \\
+By transitivity, $x \le \dfrac{1}{x}$.
+
+\newpage
+
+\subsection{Proof}
+Let $n \in \mathbb{N}, a \in \mathbb{R}$ s.t. $-1 < a < 1$ \\
+Set $b = -1 + |a|$. \\
+$0 < |a| < 1$ so $-1 < b < 0$. \\
+By Bernouilli's inequality, $(1+b)^{n+1} \ge 1 + b(n+1)$. \\
+Substituting $b = -1 + |a|$: $(1 + -1 + |a|)^{n+1} \ge 1 + (-1+|a|)(n+1)$.\\
+$|a|^{n+1} \ge 1 - n(1-|a|) -1 + |a|$. \\
+
+\section{Problem 4}
+\section{Problem 5}
+\section{Problem 6}
+
+
+\end{document}

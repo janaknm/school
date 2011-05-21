@@ -52,7 +52,6 @@ procedure As1 is
             if Destination > 0 then
                 Message := (Name, Message_String);
                 Post_Office.Put(Destination, Message);
-                Put_Line(Integer'Image(Id) & " sending message...destination " & Integer'Image(Destination));
             end if;
                 
             Post_Office.Num_Messages(Id, Num_Messages);

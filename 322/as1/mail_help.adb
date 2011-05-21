@@ -210,7 +210,6 @@ package body Mail_Help is
             -- get an available index
 
             if Registered_Clients < 2 then
-                Put_Line("Oh no! can't send it anywhere");
                 return -1;
             end if;
             
@@ -243,7 +242,6 @@ package body Mail_Help is
         is
         begin
             Registered_Clients := Registered_Clients - 1;
-            Put_Line("available clients: " & Integer'Image(Registered_Clients));
             Clients(Id).Available := False;
         end UnRegister;
             

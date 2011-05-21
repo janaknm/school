@@ -1,14 +1,15 @@
-V "GNAT Lib v2010"
+V "GNAT Lib v4.6"
 P SS ZX
-R nnnnnnvvnnnnnnnvnnvnvvvnnvnnvnnnnvnnvnnvnvnnnnnnvnnnnnnvnnnnvnnnnnv8nv11nnnnnv1+nn
+R nnnnnnnnnvvnnnnnnnvnnvnvvvnnvnnvnnnnvnnvnnvnvnnnnnnvnnnnnnvnnnnvnnnnnv8nv12nnnnnv1+nn
 
-U vat_stuff%b		vat_stuff.adb		76678ec7 OO PK IL
+U vat_stuff%b		vat_stuff.adb		163a903d OO PK IL
 W ada%s			ada.ads			ada.ali
 W ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
 W ada.exceptions%s	a-except.adb		a-except.ali
 W ada.numerics%s	a-numeri.ads		a-numeri.ali
 W ada.numerics.float_random%s  a-nuflra.adb	a-nuflra.ali
 W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.task_identification%s  a-taside.adb	a-taside.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
 W system%s		system.ads		system.ali
 W system.exception_table%s  s-exctab.adb	s-exctab.ali
@@ -19,7 +20,7 @@ W system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
 W system.tasking.rendezvous%s  s-tasren.adb	s-tasren.ali
 W system.tasking.stages%s  s-tassta.adb		s-tassta.ali
 
-U vat_stuff%s		vat_stuff.ads		ede7ab04 EE NE OO PK IL
+U vat_stuff%s		vat_stuff.ads		d7584d11 EE NE OO PK IL
 W ada.real_time%s	a-reatim.adb		a-reatim.ali
 W system%s		system.ads		system.ali
 W system.parameters%s	s-parame.adb		s-parame.ali
@@ -27,129 +28,147 @@ W system.task_info%s	s-tasinf.adb		s-tasinf.ali
 W system.tasking%s	s-taskin.adb		s-taskin.ali
 W system.tasking.stages%s  s-tassta.adb		s-tassta.ali
 
-D ada.ads		20100603062030 9c7dd3ea
-D a-calend.ads		20100603061913 19486c30
-D a-caldel.ads		20100603061913 c565f6eb
-D a-except.ads		20100603061925 34786013
-D a-finali.ads		20100603061929 bfd2ca79
-D a-filico.ads		20100603061928 4ff02a40
-D a-ioexce.ads		20100603061931 2504b9d2
-D a-numeri.ads		20100603061938 1cf3e608
-D a-nuflra.ads		20100603061937 a6501b59
-D a-reatim.ads		20100603061939 7c462ab4
-D a-stream.ads		20100603061946 34aca5be
-D a-tags.ads		20100603062003 bfa07446
-D a-textio.ads		20100603062005 7065b2f2
-D a-unccon.ads		20100603062010 51e09df2
-D interfac.ads		20100603062247 a69cad5c
-D i-c.ads		20100603062234 bc3ef662
-D i-cstrea.ads		20100603062238 e1e064a9
-D system.ads		20100603062759 b0a7514b
-D s-atacco.ads		20100603062341 60789a20
-D s-crtl.ads		20100603062405 1dba5d50
-D s-exctab.ads		20100603062408 4b7fd51d
-D s-ficobl.ads		20100603062415 c05c3205
-D s-finimp.ads		20100603062417 90fd9896
-D s-finroo.ads		20100603062418 1408f9d1
-D s-oscons.ads		20100604095700 61707d2d
-D s-osinte.ads		20100603062453 a81ff234
-D s-parame.ads		20100603062544 6cdeed25
-D s-rannum.ads		20100603062549 467777e9
-D s-secsta.ads		20100603062555 d2c357fb
-D s-soflin.ads		20100603062559 61e5c9e8
-D s-stache.ads		20100603062602 481f9e9d
-D s-stausa.ads		20100603062604 146a8ff1
-D s-stalib.ads		20100603062604 9cbc334a
-D s-stoele.ads		20100603062606 a4d57c26
-D s-stoele.adb		20100603062606 d9d7e80e
-D s-stratt.ads		20100603062608 fef7c1da
-D s-tasinf.ads		20100603062626 0891d67c
-D s-taspri.ads		20100603062631 5459bcd0
-D s-taprop.ads		20100603062620 25a7965c
-D s-taskin.ads		20100603062629 82b6bc5d
-D s-taprob.ads		20100603062616 5e00115c
-D s-tpoben.ads		20100603062638 18aadfe3
-D s-tasren.ads		20100603062633 5bda31d2
-D s-tassta.ads		20100603062634 71d2b71d
-D s-traent.ads		20100603062648 a66ef260
-D s-unstyp.ads		20100603062650 c0f9fae5
-D s-wchcon.ads		20100603062709 30c48dc1
-D vat_stuff.ads		20110514224944 ede7ab04
-D vat_stuff.adb		20110514223951 4db58c68
+D ada.ads		20070406091342 3ffc8e18
+D a-calend.ads		20090409150019 343c83dd
+D a-caldel.ads		20090409150019 9f20b83d
+D a-except.ads		20090727140100 0c711ac9
+D a-finali.ads		20090409150019 e5e85fa4
+D a-filico.ads		20090409150019 872dc219
+D a-ioexce.ads		20091130110856 8b9de6cd
+D a-numeri.ads		20080324174807 bb51c45a
+D a-nuflra.ads		20100622172941 49c50e0b
+D a-reatim.ads		20090409150019 63f07669
+D a-stream.ads		20090409150019 2ca4ee37
+D a-tags.ads		20101021101406 c7695348
+D a-taside.ads		20090409150019 a4888134
+D a-textio.ads		20091028140912 386df5d4
+D a-unccon.ads		20070406091342 f9eb8f06
+D interfac.ads		20090409150019 f77d8799
+D i-c.ads		20101007125900 809c38c4
+D i-cstrea.ads		20100622165701 1bd72c32
+D system.ads		20090410155748 2d1a1afa
+D s-atacco.ads		20090409150019 1dc856ad
+D s-crtl.ads		20100617122610 ac77b159
+D s-exctab.ads		20090417131547 66e51330
+D s-ficobl.ads		20100909103250 443b9d66
+D s-finimp.ads		20090409150019 46853fe8
+D s-finroo.ads		20090409150019 dbb860c9
+D s-linux.ads		20090730092306 47911ab1
+D s-multip.ads		20101011073009 38ac9f73
+D s-osinte.ads		20101127183452 6e2d2e09
+D s-parame.ads		20091130110856 9c5d83fa
+D s-rannum.ads		20100623054052 5eb33f0a
+D s-secsta.ads		20090707124243 eea35a36
+D s-soflin.ads		20090729085153 9414c974
+D s-stache.ads		20090417130712 596fc1b4
+D s-stausa.ads		20101018101807 bba781f7
+D s-stalib.ads		20101021102512 c4241c00
+D s-stoele.ads		20090417130712 facd7d98
+D s-stoele.adb		20100617152355 afc5dc80
+D s-stratt.ads		20100909123135 aedef97e
+D s-tasinf.ads		20090409150019 21316953
+D s-taspri.ads		20080408071349 af44aca8
+D s-taprop.ads		20090409150019 07f79e46
+D s-taskin.ads		20101021101406 b2eaee08
+D s-taprob.ads		20090409150019 502249e3
+D s-tpoben.ads		20090409150019 e8374469
+D s-tasren.ads		20090409150019 86fa7427
+D s-tassta.ads		20101018103456 e88ef99e
+D s-traent.ads		20090417130712 5221ee41
+D s-unstyp.ads		20090409150019 6ae15c76
+D s-wchcon.ads		20090417130712 bfeb2e3d
+D vat_stuff.ads		20110520214141 d7584d11
+D vat_stuff.adb		20110520214115 1442a7c7
 X 1 ada.ads
-16K9*Ada 19e8 49|1r6 2r6 4r6 5r6
+16K9*Ada 19e8 51|1r6 2r6 4r6 5r6 7r6 8r6
 X 8 a-numeri.ads
-16K13*Numerics 32e17 49|1r10 2r10
+16K13*Numerics 32e17 51|1r10 2r10
 X 9 a-nuflra.ads
-44K22*Float_Random 75e30 49|1w19 2r19
-48R9*Generator 49|65r23
-50F12*Uniformly_Distributed{float}
-52V13*Random{50F12}<28|65p13> 49|75r94 77r69 79r75 123r65 128r59 133r62 160r107
-. 161r104 163r107 167r89 168r107 169r104 173r89 177r104 178r89 179r107 182r40
-54U14*Reset<28|94p14> 49|73r17
-X 13 a-textio.ads
-52K13*Text_IO 475e16 49|4w10 5r10
-267U14*Put_Line 49|187r38 188r38 189r38
-X 48 vat_stuff.ads
-1K9*vat_stuff 42l5 42e14 49|7b14 193l5 193t14
-4O14*temperature_type 9r29 10r29 37r58 49|54r39 68r34 74r51 75r71 121r75
-. 122r56 160r78 163r78 168r78 179r78
-5O14*depth_type 12r30 13r30 38r58 49|55r39 69r34 76r52 77r52 126r63 127r50
-. 167r66 173r66 178r66
-6O14*salinity_type 15r33 16r33 39r58 49|56r39 70r34 78r55 79r55 131r69 132r53
-. 161r78 169r78 177r78
-9o9*max_temp{4O14} 49|68r54 140r50
-10o9*min_temp{4O14} 49|68r65 74r40 141r50
-12o9*max_depth{5O14} 49|69r54 150r44
-13o9*min_depth{5O14} 49|69r66 76r40 154r44
-15o9*max_salinity{6O14} 49|70r54 145r47
-16o9*min_salinity{6O14} 49|70r69 78r40 146r47
-18T19*vat 40l13 40e16 49|52b19 191l13 191t16
-21Y23 heat_on 49|84b40
-22Y23 heat_off 49|87b40
-25Y23 water_on 49|90b40
-26Y23 water_off 49|95b40
-29Y23 drain_open 49|100b40
-30Y23 drain_closed 49|103b40
-33Y23 brine_on 49|106b40
-34Y23 brine_off 49|111b40
-37Y23 get_temperature 37<40 49|121b40 124l37 124t52
-37o40 temperature{4O14} 49|122m41
-38Y23 get_depth 38<40 49|126b40 129l37 129t46
-38o40 depth{5O14} 49|127m41
-39Y23 get_salinity 39<40 49|131b40 134l37 134t49
-39o40 salinity{6O14} 49|132m41
-X 49 vat_stuff.adb
-10E14 valve_state 10e43 18r25
-10n30 open{10E14} 24r34 34r40
-10n36 closed{10E14} 18r40 29r34 39r40
-12W24 valve 19l13 19e18 21b24 41l13 41t18 44r23
-13U27 on 22b27 25l21 25t23
-14U27 off 27b27 30l21 30t24
-15V26 is_on{boolean} 32b26 35l21 35t26 96r48 112r48
-16V26 is_off{boolean} 37b26 40l21 40t27 91r48 91r71 107r48 107r71
-18e17 state{10E14} 24r25 29r25 34r32 39r32
-43w9 water_valve{12W24} 91r36 96r36 107r59
-44w9 brine_valve{12W24} 91r59 107r36 112r36
-47X9 batch_ruined 142r39 147r39 187r22
-48X9 vat_exploded 155r39 189r22
-49X9 vat_overflow 151r39 188r22
-54o17 current_temperature{48|4O14} 74m17 122r79 140r28 141r28 160m33 160r56
-. 163m33 163r56 168m33 168r56 179m33 179r56
-55o17 current_depth{48|5O14} 76m17 127r67 150r28 154r28 167m33 167r50 173m33
-. 173r50 178m33 178r50
-56o17 current_salinity{48|6O14} 78m17 132r73 145r28 146r28 161m33 161r56
-. 169m33 169r56 177m33 177r56
-59b17 heat_is_on{boolean} 85m33 88m33 154r63 159r28
-60b17 water_is_flowing{boolean} 92m41 97m41 166r28
-61b17 drain_is_open{boolean} 101m33 104m33 172r28
-62b17 brine_is_flowing{boolean} 108m41 113m41 176r28
-65r17 gen{9|48R9} 73r23 75r101 77r76 79r82 123r72 128r66 133r69 160r114 161r111
-. 163r114 167r96 168r114 169r111 173r96 177r111 178r96 179r114 182r47
-68o17 temp_range{48|4O14} 74r75 75r109 123r93
-69o17 depth_range{48|5O14} 76r70 77r84 128r87
-70o17 salinity_range{48|6O14} 78r76 79r90 133r90
-121o57 temperature{48|4O14}
-126o51 depth{48|5O14}
-131o54 salinity{48|6O14}
+41K22*Float_Random 72e30 51|1w19 2r19
+45R9*Generator 51|73r23
+47F12*Uniformly_Distributed{float}
+49V13*Random{47F12}<30|62p13> 51|83s36 85s30 87s33 131s66 136s54 141s60 148s66
+. 150s54 152s60 179s108 180s105 182s108 186s90 187s108 188s105 192s90 196s104
+. 197s90 198s108 201s40
+51U14*Reset<30|91p14> 51|81s17
+X 13 a-taside.ads
+39K13*Task_Identification 72e28 51|7w10 8r10
+43P9*Task_Id(42|891R9) 51|22r25
+46p4*Null_Task_Id{43P9} 51|22r36 38r37
+48V13*"="{boolean} 51|44s45 49s45
+53V13*Current_Task{43P9} 51|30s37 44s32 49s32
+X 14 a-textio.ads
+49K13*Text_IO 472e16 51|4w10 5r10
+264U14*Put_Line 51|206s29 207s29 208s29
+X 42 s-taskin.ads
+891R9*Ada_Task_Control_Block
+X 50 vat_stuff.ads
+1K9*vat_stuff 45l5 45e14 51|10b14 212l5 212t14
+4O14*temperature_type 9r29 10r29 37r58 40r58 51|64r39 76r43 82r51 83r13 129r75
+. 130r56 144r72 147r36 179r78 182r78 187r78 198r78
+5O14*depth_type 12r30 13r30 38r58 41r50 51|65r39 77r43 84r52 85r13 134r63
+. 135r50 145r56 149r50 186r66 192r66 197r66
+6O14*salinity_type 15r33 16r33 39r58 42r50 51|66r39 78r43 86r55 87r13 139r69
+. 140r53 146r56 151r53 180r78 188r78 196r78
+9o9*max_temp{4O14} 51|76r63 159r50
+10o9*min_temp{4O14} 51|76r74 82r40 160r37
+12o9*max_depth{5O14} 51|77r63 169r44
+13o9*min_depth{5O14} 51|77r75 84r40 173r44
+15o9*max_salinity{6O14} 51|78r63 164r47
+16o9*min_salinity{6O14} 51|78r78 86r40 165r34
+18T19*vat 43l13 43e16 51|62b19 210l13 210t16
+21Y23 heat_on 51|92b40
+22Y23 heat_off 51|95b40
+25Y23 water_on 51|98b40
+26Y23 water_off 51|103b40
+29Y23 drain_open 51|108b40
+30Y23 drain_closed 51|111b40
+33Y23 brine_on 51|114b40
+34Y23 brine_off 51|119b40
+37Y23 get_temperature 37<40 51|129b40 132l37 132t52
+37o40 temperature{4O14} 51|130m41
+38Y23 get_depth 38<40 51|134b40 137l37 137t46
+38o40 depth{5O14} 51|135m41
+39Y23 get_salinity 39<40 51|139b40 142l37 142t49
+39o40 salinity{6O14} 51|140m41
+40Y23 get_readings 40<40 41<32 42<32 51|144b40 153l33 153t45
+40o40 temperature{4O14} 51|147m21
+41o32 depth{5O14} 51|149m41
+42o32 salinity{6O14} 51|151m41
+X 51 vat_stuff.adb
+13E14 valve_state 13e43 21r25
+13n30 open{13E14} 29r38 36r32 44r69
+13n36 closed{13E14} 21r40 28r32 37r38 49r69
+15W24 valve 23l13 23e18 25b24 51l13 51t18 54r23
+16U27 on 26b27 32l21 32t23 100s53 116s53
+17U27 off 34b27 40l21 40t24 105s53 121s53
+18V26 is_on{boolean} 42b26 45l21 45t26 104s48 120s48 185s40 195s40
+19V26 is_off{boolean} 47b26 50l21 50t27 99s48 99s71 115s48 115s71
+21e17 state{13E14} 28r24 29r29 36r24 37r29 44r61 49r61
+22p17 user{13|43P9} 30r29 38r29 44r47 49r48
+53w9 water_valve{15W24} 99r36 100r41 104r36 105r41 115r59 185r28
+54w9 brine_valve{15W24} 99r59 115r36 116r41 120r36 121r41 195r28
+57X9 batch_ruined 161r39 166r39 206r13
+58X9 vat_exploded 174r39 208r13
+59X9 vat_overflow 170r39 207r13
+64o17 current_temperature{50|4O14} 82m17 130r79 147r59 159r28 160r15 179m33
+. 179r56 182m33 182r56 187m33 187r56 198m33 198r56
+65o17 current_depth{50|5O14} 84m17 135r67 149r67 169r28 173r28 186m33 186r50
+. 192m33 192r50 197m33 197r50
+66o17 current_salinity{50|6O14} 86m17 140r73 151r73 164r28 165r15 180m33
+. 180r56 188m33 188r56 196m33 196r56
+69b17 heat_is_on{boolean} 93m33 96m33 173r63 178r28
+70b17 drain_is_open{boolean} 109m33 112m33 191r28
+73r17 gen{9|45R9} 81r23 83r43 85r37 87r40 131r73 136r61 141r67 148r73 150r61
+. 152r67 179r115 180r112 182r115 186r97 187r115 188r112 192r97 196r111 197r97
+. 198r115 201r47
+76o17 temp_range{50|4O14} 82r75 83r51 131r94 148r94
+77o17 depth_range{50|5O14} 84r70 85r45 136r82 150r82
+78o17 salinity_range{50|6O14} 86r76 87r48 141r88 152r88
+129o57 temperature{50|4O14}
+134o51 depth{50|5O14}
+139o54 salinity{50|6O14}
+144o54 temperature{50|4O14}
+145o38 depth{50|5O14}
+146o38 salinity{50|6O14}
 

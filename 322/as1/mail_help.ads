@@ -27,8 +27,6 @@ package Mail_Help is
            Message : Unbounded_String := To_Unbounded_String("null");
        end record;
 
-    package Message_Queue is new Bounded_Queue(Message_Type);
-
     type Mailbox_Type(Max_Messages : Positive) is limited private; 
     type Mailbox_Ptr is access Mailbox_Type;
     
@@ -108,6 +106,7 @@ package Mail_Help is
     function Random_Int(Max : Natural) return Natural;
     
 private
+    package Message_Queue is new Bounded_Queue(Message_Type);
     
     type Mailbox_Type(Max_Messages : Positive) is
        record
