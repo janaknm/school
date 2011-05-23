@@ -8,7 +8,7 @@ procedure As2 is
     
     Min_Tick : constant Float := 0.09;
     Max_Tick : constant Float := 0.13;
-    Hose_Tick : constant Duration := 0.15;
+    Hose_Tick : constant Duration := 0.2;
 
     Low_Temp : constant Temperature_Type := Min_Temp + (0.3)*(Max_Temp - Min_Temp);
     High_Temp : constant Temperature_Type := Min_Temp + (0.7)*(Max_Temp - Min_Temp);
@@ -273,7 +273,7 @@ procedure As2 is
             end if;
 
             -- DONT TURN ON HEAT IF DEPTH TOO LOW
-            if Depth < Min_Depth then
+            if Depth < Min_Depth + (0.15)*(Max_Depth - Min_Depth) then
               Need_Heat := False;
             end if;
 
@@ -290,12 +290,12 @@ procedure As2 is
             if Salinity > High_Salinity then
                 Need_Hose := True;
                 Htype := Water;
-            elsif Salinity < Low_Salinity then
-                Need_Hose := True;
-                Htype := Brine;
             elsif Depth < Low_Depth then
                 Need_Hose := True;
                 Htype := Water;
+            elsif Salinity < Low_Salinity then
+                Need_Hose := True;
+                Htype := Brine;
             else
                 Need_Hose := False;
             end if;
