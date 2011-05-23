@@ -55,6 +55,7 @@ package body vat_stuff is
 
 	-- exceptions raised by the vat
 	batch_ruined,
+    Batch_Salinity,
 	vat_exploded,
 	vat_overflow : exception;
 
@@ -163,7 +164,7 @@ package body vat_stuff is
 
 			if current_salinity > max_salinity or else
               current_salinity < min_salinity then
-				raise batch_ruined;
+				raise batch_salinity;
 			end if;
 
 			if current_depth > max_depth then
@@ -206,6 +207,7 @@ package body vat_stuff is
        when batch_ruined => Put_line("Batch ruined");
        when vat_overflow => Put_line("Vat overflow");
        when vat_exploded => Put_line("Vat_exploded");
+       when Batch_Salinity => Put_Line("Batch Salinity");
            
 	end vat;
 

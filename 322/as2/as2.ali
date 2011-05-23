@@ -1,9 +1,9 @@
 V "GNAT Lib v4.6"
 M P AB W=b
 P SS ZX
-R nnnvnnnnnvvnnnnnnnvnnvnvvvvvvvnvnnnnnnnvnvvnvnnvnvnvnnnnnnvnnnnnnnnnnv1nv1nv1+nnnnnn
+R vnnvnnnnnvvnnnnnnnvnnvnvvvvvvvnvnvvnvnnvnvvnvnnvnvnvnnnnnnvnnnnnnnnv2nnnv1nv1+nnnv1+nn
 
-U as2%b			as2.adb			41450462 NE OO SU
+U as2%b			as2.adb			4fda04c7 NE OO SU
 W ada%s			ada.ads			ada.ali
 W ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
 W ada.command_line%s	a-comlin.adb		a-comlin.ali
@@ -14,16 +14,21 @@ W ada.real_time%s	a-reatim.adb		a-reatim.ali
 W ada.tags%s		a-tags.adb		a-tags.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
 W system%s		system.ads		system.ali
+W system.concat_2%s	s-conca2.adb		s-conca2.ali
 W system.concat_8%s	s-conca8.adb		s-conca8.ali
-W system.exception_table%s  s-exctab.adb	s-exctab.ali
+W system.finalization_implementation%s  s-finimp.adb  s-finimp.ali
+W system.finalization_root%s  s-finroo.adb	s-finroo.ali
 W system.img_int%s	s-imgint.adb		s-imgint.ali
+W system.img_lld%s	s-imglld.adb		s-imglld.ali
 W system.img_real%s	s-imgrea.adb		s-imgrea.ali
 W system.parameters%s	s-parame.adb		s-parame.ali
 W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
 W system.soft_links%s	s-soflin.adb		s-soflin.ali
-W system.standard_library%s  s-stalib.adb	s-stalib.ali
 W system.task_info%s	s-tasinf.adb		s-tasinf.ali
 W system.tasking%s	s-taskin.adb		s-taskin.ali
+W system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
+W system.tasking.protected_objects.entries%s  s-tpoben.adb  s-tpoben.ali
+W system.tasking.protected_objects.operations%s  s-tpobop.adb  s-tpobop.ali
 W system.tasking.rendezvous%s  s-tasren.adb	s-tasren.ali
 W system.tasking.stages%s  s-tassta.adb		s-tassta.ali
 W system.val_int%s	s-valint.adb		s-valint.ali
@@ -44,12 +49,13 @@ D a-stream.ads		20090409150019 2ca4ee37
 D a-tags.ads		20101021101406 c7695348
 D a-textio.ads		20091028140912 386df5d4
 D a-unccon.ads		20070406091342 f9eb8f06
-D as2.adb		20110521004427 07197809
+D as2.adb		20110523045416 6a760ec5
 D interfac.ads		20090409150019 f77d8799
 D i-c.ads		20101007125900 809c38c4
 D i-cstrea.ads		20100622165701 1bd72c32
 D system.ads		20090410155748 2d1a1afa
 D s-atacco.ads		20090409150019 1dc856ad
+D s-conca2.ads		20090420091404 fbd0f2fc
 D s-conca8.ads		20090420091404 ea110f26
 D s-crtl.ads		20100617122610 ac77b159
 D s-exctab.ads		20090417131547 66e51330
@@ -57,6 +63,7 @@ D s-ficobl.ads		20100909103250 443b9d66
 D s-finimp.ads		20090409150019 46853fe8
 D s-finroo.ads		20090409150019 dbb860c9
 D s-imgint.ads		20090409150019 02dbe0c2
+D s-imglld.ads		20090409150019 f3220969
 D s-imgrea.ads		20090409150019 c7a851e2
 D s-linux.ads		20090730092306 47911ab1
 D s-multip.ads		20101011073009 38ac9f73
@@ -77,6 +84,7 @@ D s-taprop.ads		20090409150019 07f79e46
 D s-taskin.ads		20101021101406 b2eaee08
 D s-taprob.ads		20090409150019 502249e3
 D s-tpoben.ads		20090409150019 e8374469
+D s-tpobop.ads		20090409150019 5f548bb3
 D s-tasren.ads		20090409150019 86fa7427
 D s-tassta.ads		20101018103456 e88ef99e
 D s-traent.ads		20090417130712 5221ee41
@@ -85,118 +93,134 @@ D s-valint.ads		20090409150019 48a52a3f
 D s-wchcon.ads		20090417130712 bfeb2e3d
 D vat_stuff.ads		20110520214141 d7584d11
 X 1 ada.ads
-16K9*Ada 19e8 16|1r6 1r23 2r6 2r28 3r6 3r38
+16K9*Ada 19e8 16|1r6 1r23 2r6 2r28 3r6 3r38 4r6 4r25
 X 4 a-comlin.ads
 38K13*Command_Line 139e21 16|2w10 2r32
-48V13*Argument{string} 16|31s57
+48V13*Argument{string} 16|30s57
 X 9 a-numeri.ads
 16K13*Numerics 32e17 16|3r10 3r42
 X 10 a-nuflra.ads
 41K22*Float_Random 72e30 16|3w19 3r51
-45R9*Generator 16|21r11
+45R9*Generator 16|22r11
 47F12*Uniformly_Distributed{float}
-49V13*Random{47F12}<34|62p13> 16|182s32
-51U14*Reset<34|91p14> 16|292s5
+49V13*Random{47F12}<36|62p13> 16|237s32
+51U14*Reset<36|91p14> 16|358s5
+X 11 a-reatim.ads
+39K13*Real_Time 139e18 16|4w10 4r29
+41O9*Time 16|354r18
+46O9*Time_Span
+53V13*Clock{41O9} 16|360s19 375s56
+58V13*"-"{46O9} 16|375s62
+80V13*To_Duration{duration} 16|375s44
 X 14 a-textio.ads
 49K13*Text_IO 472e16 16|1w10 1r27
-167U14*New_Line 16|135s13
-264U14*Put_Line 16|58s9 196s17 304s8
+167U14*New_Line 16|185s13 374s5 376s5
+264U14*Put_Line 16|118s9 375s5
 X 16 as2.adb
-6U11*As2 6b11 307l5 307t8
-8f5 Min_Tick{float} 182r21 182r56
-9f5 Max_Tick{float} 182r45
-10o5 Hose_Tick{duration} 110r23 114r23
-12o5 Low_Temp{55|4O14} 210r23
-13o5 High_Temp{55|4O14} 212r26
-15o5 Low_Depth{55|5O14} 201r24
-16o5 High_Depth{55|5O14} 204r27
-18o5 Low_Salinity{55|6O14} 239r30
-19o5 High_Salinity{55|6O14} 217r27 236r27
-21r5 Gen{10|45R9} 182r39 292r11
-23X5 You_Lose 197r23 303r9
-25P10 Vat_Access(55|18T19) 36r39 41r37 47r43 52r39 147r18 166r38
-31I13 Vat_Range{natural} 46r33 47r29 48r31 94r22 132r22 295r14
-32E10 Hose_Type 32e37 78r36 84r20 88r41 96r49 161r17
-32n24 Water{32E10} 108r27 238r26
-32n31 Brine{32E10} 241r26
-36U15 Print_Status 36>28 36>51 52b15 62l9 62t21 133s17
-36p28 A_Vat{25P10} 52b28 57r9
-36s51 Prefix{string} 52b51 58r18
-40T15 Vat_Handler 42l9 42e20 46r47 146b15 287l9 287t20
-41Y15 Assign_Vat 41>26 41>49 166b16 169l13 169t23 297s21
-41p26 A_Vat{25P10} 167r23
-41i49 Id{positive} 168r22
-46A10 Handler_Array(40T15)<integer> 68r16
-47A10 Vat_Array(25P10)<integer> 71r12
-48A10 Death_Clock(float)<integer>
-53o9 Temp{55|4O14} 57m28 59r55
-54o9 Depth{55|5O14} 57m34 60r50
-55o9 Salinity{55|6O14} 57m41 61r56
-68a5 Handlers{46A10} 297r9
-71a5 Vats{47A10} 109r17 111r17 113r17 115r17 133r30 296m9 297r32
-77t10 Hose_Handler 81b15 120l9 120t21 280r17
-78Y15 Need_Hose 78>25 78>47 78>65 88b20 92l17 92t26 96b28 102l25 102t34 280s30
-78e25 Htype{32E10} 91r29 100r41
-78i47 Id{positive} 90r27 99r39
-78f65 Time_Till_Dead{float} 89r29 97r28 98r41
-82f9 Min_Time{float} 89m17 97r45 98m29
-83i9 Min_Id{positive} 90m17 99m29 109r22 111r22 113r22 115r22
-84e9 Min_Type{32E10} 91m17 100m29 108r16
-88e30 Htype{32E10}
-88i52 Id{positive}
-88f70 Time_Till_Dead{float}
-94i17 I{31I13}
-96e38 Htype{32E10}
-96i60 Id{positive}
-96f78 Time_Till_Dead{float}
-123t10 Vat_Status 127b15 139l9 139t19 300r5
-124Y15 start 130b16 300s16
-128b9 Stopping{boolean}
-132i17 I{31I13} 133r35 133r53
-147p9 My_Vat{25P10} 167m13 172r9 173r9 174r9 175r9 178r9 186r13 202r17 205r17
-. 227r17 230r17
-148i9 My_Id{positive} 168m13 280r47
-149f9 Tick{float} 182m13 183r28 250r61 251r64 252r73
-151o9 Temp{55|4O14} 186m33 191r16 192r16 210r16 212r19 250r33 255r56 257r56
-151o15 Last_Temp{55|4O14} 178m29 250r47
-152o9 Depth{55|5O14} 186m39 189r17 190r16 201r16 204r19 222r16 251r34 261r46
-. 263r46
-152o16 Last_Depth{55|5O14} 178m40 251r49
-153o9 Salinity{55|6O14} 186m46 193r16 194r16 217r16 236r16 239r19 252r37
-. 271r49 273r49
-153o19 Last_Salinity{55|6O14} 178m52 252r55
-154f9 Dtemp{float} 250m17 254r20 255r64 257r64
-154f16 Ddepth{float} 251m17 260r20 261r55 263r55
-154f24 Dsalinity{float} 252m17 270r20 271r61 273r61
-156b9 Heat_On{boolean} 189r44 212r40 217r50 226r34 228m17 229r37 231m17
-157b9 Drain_Open{boolean} 201r43 203m17 204r51 206m17
-158b9 Need_Heat{boolean} 211m17 213m17 218m17 223m15 226r16 229r23
-159b9 Need_Hose{boolean} 237m17 240m17 243m17 247r16
-161e9 Htype{32E10} 238m17 241m17 280r40
-163f9 Time_Till_Dead{float} 255m21 257m21 266r26 267m21 276r26 277m21 280r54
-163f25 tmp{float} 261m21 263m21 266r20 267r39 271m21 273m21 276r20 277r39
-166p27 A_Vat{25P10}
-166i50 Id{positive}
-295i9 I{31I13} 296r14 297r18 297r37 297r41
-X 55 vat_stuff.ads
-1K9*vat_stuff 16|4w6 4r21 55|45e14
-4O14*temperature_type 16|12r25 13r26 53r16 59r32 151r27
-5O14*depth_type 16|15r26 16r27 54r17 60r33 152r29
-6O14*salinity_type 16|18r29 19r30 55r20 61r36 153r35
-9o9*max_temp{4O14} 16|12r63 13r64 191r23 257r45
-10o9*min_temp{4O14} 16|12r45 12r74 13r46 13r75 192r23 255r45
-12o9*max_depth{5O14} 16|15r59 16r60 190r24 263r34
-13o9*min_depth{5O14} 16|15r40 15r71 16r41 16r72 189r25 222r24 261r34
-15o9*max_salinity{6O14} 16|18r68 19r69 193r27 273r34
-16o9*min_salinity{6O14} 16|18r46 18r83 19r47 19r84 194r27 271r34
-18T19*vat 16|25r31 296r24 55|43e16
-21Y23 heat_on 16|227s24
-22Y23 heat_off 16|174s16 230s24
-25Y23 water_on 16|109s30
-26Y23 water_off 16|111s30 172s16
-29Y23 drain_open 16|205s24
-30Y23 drain_closed 16|175s16 202s24
-33Y23 brine_on 16|113s30
-34Y23 brine_off 16|115s30 173s16
-40Y23 get_readings 16|57s15 178s16 186s20
+7U11*As2 7b11 380l5 380t8
+9f5 Min_Tick{float} 237r21 237r56
+10f5 Max_Tick{float} 237r45
+11o5 Hose_Tick{duration} 155r27 159r27
+13o5 Low_Temp{58|4O14} 264r23
+14o5 High_Temp{58|4O14} 266r26
+16o5 Low_Depth{58|5O14} 255r24 296r27
+17o5 High_Depth{58|5O14} 258r27
+19o5 Low_Salinity{58|6O14} 293r30
+20o5 High_Salinity{58|6O14} 271r27 290r27
+22r5 Gen{10|45R9} 237r39 358r11
+24P10 Vat_Access(58|18T19) 35r39 102r37 108r43 112r39 202r18 221r38
+30I13 Vat_Range{natural} 107r33 108r29 182r22 363r14
+31E10 Hose_Type 31e37 48r35 49r32 51r20 76r35 87r32 141r20 216r17
+31n24 Water{31E10} 153r31 292r26 298r26
+31n31 Brine{31E10} 295r26
+35U15 Print_Status 35>28 35>51 112b15 122l9 122t21 183s17
+35p28 A_Vat{24P10} 112b28 117r9
+35s51 Prefix{string} 112b51 118r18
+39w15 Game_Over 58b20 73l9 73t18 146r20 164r24 190r20 251r17 337r24 346r20
+. 371r5
+40Y15 Wait 59b15 62l13 62t17 371s15
+41U19 Stop 64b19 67l13 67t17 251s27
+42V18 Playing{boolean} 69b18 72t12 146s30 164s34 190s30 337s34 346s30
+44b9 Is_Playing{boolean} 59r29 66r13 71r20
+47w15 Hose 75b20 95l9 95t13 151r17 340r17
+48Y15 Request 48>24 48>46 48>64 76b15 85l13 85t20 340s22
+48e24 Htype{31E10} 82r29
+48i46 Id{positive} 81r27
+48f64 Time_Till_Dead{float} 79r16 80r29
+49Y15 Next 49<20 49<43 77r13 87b15 94l13 94t17 151s22
+49e20 Htype{31E10} 90r13
+49i43 Id{positive} 91r13
+51e9 Min_Type{31E10} 82r17 90r22
+52i9 Min_Id{positive} 81r17 91r19
+53f9 Min_Time{float} 79r33 80r17 92r13
+54b9 Have_Request{boolean} 83r17 88r13 93r13
+76e24 Htype{31E10}
+76i46 Id{positive}
+76f64 Time_Till_Dead{float}
+87e20 Htype{31E10}
+87i43 Id{positive}
+101T15 Vat_Handler 103l9 103e20 107r47 201b15 351l9 351t20
+102Y15 Assign_Vat 102>26 102>49 221b16 224l13 224t23 365s21
+102p26 A_Vat{24P10} 222r23
+102i49 Id{positive} 223r22
+107A10 Handler_Array(101T15)<integer> 128r16
+108A10 Vat_Array(24P10)<integer> 131r12
+113o9 Temp{58|4O14} 117m28 119r55
+114o9 Depth{58|5O14} 117m34 120r50
+115o9 Salinity{58|6O14} 117m41 121r56
+128a5 Handlers{107A10} 365r9
+131a5 Vats{108A10} 154r21 156r21 158r21 160r21 183r30 364m9 365r32
+138t10 Hose_Handler 140b15 171l9 171t21
+141e9 Min_Type{31E10} 151m27 153r20
+142i9 Min_Id{positive} 151m37 154r26 156r26 158r26 160r26
+174t10 Vat_Status 178b15 194l9 194t19 368r5
+175Y15 start 180b16 368s16
+182i17 I{30I13} 183r35 183r53
+202p9 My_Vat{24P10} 222m13 227r9 228r9 229r9 230r9 233r9 241r13 256r17 259r17
+. 281r17 284r17
+203i9 My_Id{positive} 223m13 340r37
+204f9 Tick{float} 237m13 238r28 307r61 308r64 309r73
+206o9 Temp{58|4O14} 241m33 246r16 247r16 264r16 266r19 307r33 312r56 314r56
+206o15 Last_Temp{58|4O14} 233m29 307r47
+207o9 Depth{58|5O14} 241m39 244r17 245r16 255r16 258r19 276r16 296r19 308r34
+. 318r46 320r46
+207o16 Last_Depth{58|5O14} 233m40 308r49
+208o9 Salinity{58|6O14} 241m46 248r16 249r16 271r16 290r16 293r19 309r37
+. 328r49 330r49
+208o19 Last_Salinity{58|6O14} 233m52 309r55
+209f9 Dtemp{float} 307m17 311r20 312r64 314r64
+209f16 Ddepth{float} 308m17 317r20 318r55 320r55
+209f24 Dsalinity{float} 309m17 327r20 328r61 330r61
+211b9 Heat_On{boolean} 244r44 266r40 271r50 280r34 282m17 283r37 285m17
+212b9 Drain_Open{boolean} 255r43 257m17 258r51 260m17
+213b9 Need_Heat{boolean} 265m17 267m17 272m17 277m15 280r16 283r23
+214b9 Need_Hose{boolean} 291m17 294m17 297m17 300m17 304r16
+216e9 Htype{31E10} 292m17 295m17 298m17 340r30
+218f9 Time_Till_Dead{float} 312m21 314m21 323r26 324m21 333r26 334m21 340r44
+218f25 tmp{float} 318m21 320m21 323r20 324r39 328m21 330m21 333r20 334r39
+221p27 A_Vat{24P10}
+221i50 Id{positive}
+354o5 Start_Time{11|41O9} 360m5 375r64
+363i9 I{30I13} 364r14 365r18 365r37 365r41
+X 58 vat_stuff.ads
+1K9*vat_stuff 16|5w6 5r21 58|45e14
+4O14*temperature_type 16|13r25 14r26 113r16 119r32 206r27
+5O14*depth_type 16|16r26 17r27 114r17 120r33 207r29
+6O14*salinity_type 16|19r29 20r30 115r20 121r36 208r35
+9o9*max_temp{4O14} 16|13r63 14r64 246r23 314r45
+10o9*min_temp{4O14} 16|13r45 13r74 14r46 14r75 247r23 312r45
+12o9*max_depth{5O14} 16|16r59 17r60 245r24 320r34
+13o9*min_depth{5O14} 16|16r40 16r71 17r41 17r72 244r25 276r24 318r34
+15o9*max_salinity{6O14} 16|19r68 20r69 248r27 330r34
+16o9*min_salinity{6O14} 16|19r46 19r83 20r47 20r84 249r27 328r34
+18T19*vat 16|24r31 364r24 58|43e16
+21Y23 heat_on 16|281s24
+22Y23 heat_off 16|229s16 284s24
+25Y23 water_on 16|154s34
+26Y23 water_off 16|156s34 227s16
+29Y23 drain_open 16|259s24
+30Y23 drain_closed 16|230s16 256s24
+33Y23 brine_on 16|158s34
+34Y23 brine_off 16|160s34 228s16
+40Y23 get_readings 16|117s15 233s16 241s20
 

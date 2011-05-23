@@ -1,39 +1,100 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Command_Line; use Ada.Command_Line;
 with Ada.Numerics.Float_Random; use  Ada.Numerics.Float_Random;
+with Ada.Real_Time; use Ada.Real_Time;
 with Vat_Stuff; use Vat_Stuff;
 
 procedure As2 is 
     
-    Min_Tick : constant Float := 0.1;
-    Max_Tick : constant Float := 0.2;
-    Hose_Tick : constant Duration := 0.1;
+    Min_Tick : constant Float := 0.09;
+    Max_Tick : constant Float := 0.13;
+    Hose_Tick : constant Duration := 0.15;
 
-    Low_Temp : constant Temperature_Type := Min_Temp + (0.2)*(Max_Temp - Min_Temp);
+    Low_Temp : constant Temperature_Type := Min_Temp + (0.3)*(Max_Temp - Min_Temp);
     High_Temp : constant Temperature_Type := Min_Temp + (0.7)*(Max_Temp - Min_Temp);
 
     Low_Depth : constant Depth_Type := Min_Depth + (0.4)*(Max_Depth - Min_Depth);
     High_Depth : constant Depth_Type := Min_Depth + (0.7)*(Max_Depth - Min_Depth);
 
-    Low_Salinity : constant Salinity_Type := Min_Salinity + (0.2)*(Max_Salinity - Min_Salinity);
-    High_Salinity : constant Salinity_Type := Min_Salinity + (0.7)*(Max_Salinity - Min_Salinity);
+    Low_Salinity : constant Salinity_Type := Min_Salinity + (0.3)*(Max_Salinity - Min_Salinity);
+    High_Salinity : constant Salinity_Type := Min_Salinity + (0.4)*(Max_Salinity - Min_Salinity);
 
     Gen : Generator;
 
-    You_Lose : exception;
-    
     type Vat_Access is access Vat;
     
     ----
-    -- subtypes / ranges / enums
+    -- some types
     
     -- number of vats we're working on
     subtype Vat_Range is Natural range 1..Integer'Value(Argument(1));
     type Hose_Type is (Water, Brine);
-    
+
     ----
     -- local operation declarations
     procedure Print_Status(A_Vat : in Vat_Access; Prefix : in String);
+    
+    ----
+    -- protected objects
+    protected Game_Over is
+        entry Wait;
+        procedure Stop;
+        function Playing return Boolean;
+    private
+        Is_Playing : Boolean := True;
+    end Game_Over;
+    
+    protected Hose is 
+        entry Request (Htype : in Hose_Type; Id : in Positive; Time_Till_Dead : in Float);
+        entry Next(Htype : out Hose_Type; Id : out Positive);
+    private
+        Min_Type : Hose_Type;
+        Min_Id : Positive;
+        Min_Time : Float := Float'Last;
+        Have_Request : Boolean := False;
+    end Hose;
+    
+    
+    protected body Game_Over is
+        entry Wait when not Is_Playing is
+        begin
+            null;
+        end Wait;
+
+        procedure Stop is
+        begin
+            Is_Playing := False;
+        end Stop;
+
+        function Playing return Boolean is 
+        begin 
+            return Is_Playing;
+        end;
+    end Game_Over;
+
+    protected body Hose is
+        entry Request (Htype : in Hose_Type; Id : in Positive; Time_Till_Dead : in Float)
+       when Next'Count = 0 is 
+        begin
+            if Time_Till_Dead < Min_Time then
+                Min_Time := Time_Till_Dead;
+                Min_Id := Id;
+                Min_Type := Htype;
+                Have_Request := true;
+            end if;
+        end Request;
+        
+        entry Next(Htype : out Hose_Type; Id : out Positive)
+       when Have_Request is
+        begin
+            Htype := Min_Type;
+            Id := Min_Id;
+            Min_Time := Float'Last;
+            Have_Request := False;
+        end Next;
+    end Hose;
+           
+    
     
     ----
     -- task type specifications
@@ -45,8 +106,7 @@ procedure As2 is
     -- array types
     type Handler_Array is array(Vat_Range) of Vat_Handler;
     type Vat_Array is array(Vat_Range) of Vat_Access;
-    type Death_Clock is array(Vat_Range) of Float;
-
+    
     ----
     -- local function definitions
     procedure Print_Status(A_Vat : in Vat_Access; Prefix : in String) is
@@ -60,7 +120,7 @@ procedure As2 is
                    " Depth: " & Depth_Type'Image(Depth) &
                    " Salinity: " & Salinity_Type'Image(Salinity));
     end Print_Status;
-    
+
     ----
     -- Create Tasks!
     
@@ -70,52 +130,43 @@ procedure As2 is
     -- create the vats
     Vats : Vat_Array;
 
+    
     ----
     -- singleton tasks
     
     -- coordinate the hose between vats
-    task Hose_Handler is
-        entry Need_Hose(Htype : in Hose_Type; Id : in Positive; Time_Till_Dead : in Float);
-    end Hose_Handler;
-    
+    task Hose_Handler;
+        
     task body Hose_Handler is
-        Min_Time : Float;
-        Min_Id : Positive;
         Min_Type : Hose_Type;
+        Min_Id : Positive;
     begin
         loop
-            -- wait for a request
-            accept Need_Hose(Htype : in Hose_Type; Id : in Positive; Time_Till_Dead : in Float) do
-                Min_Time := Time_Till_Dead;
-                Min_Id := Id;
-                Min_Type := Htype;
-            end Need_Hose;
 
-            for I in Vat_Range loop
-                select
-                    accept Need_Hose(Htype : in Hose_Type; Id : in Positive; Time_Till_Dead : in Float) do
-                        if Time_Till_Dead < Min_Time then
-                            Min_Time := Time_Till_Dead;
-                            Min_Id := Id;
-                            Min_Type := Htype;
-                        end if;
-                    end Need_Hose;
-                else
-                    null;
-                end select;
-            end loop;
-
-            if Min_Type = Water then
-                Vats(Min_Id).Water_On;
-                delay Hose_Tick;
-                Vats(Min_Id).Water_Off;
-            else
-                Vats(Min_Id).Brine_On;
-                delay Hose_Tick;
-                Vats(Min_Id).Brine_Off;
+            if not Game_Over.Playing then
+                exit;
             end if;
-            
-            
+
+            select
+                Hose.Next(Min_Type, Min_Id);
+
+                if Min_Type = Water then
+                    Vats(Min_Id).Water_On;
+                    delay Hose_Tick;
+                    Vats(Min_Id).Water_Off;
+                else
+                    Vats(Min_Id).Brine_On;
+                    delay Hose_Tick;
+                    Vats(Min_Id).Brine_Off;
+                end if;
+
+                -- check if we're quitting
+                if not Game_Over.Playing then
+                    exit;
+                end if;
+            or
+                delay 0.1;
+            end select;
         end loop;
     end Hose_Handler;
 
@@ -125,7 +176,6 @@ procedure As2 is
     end Vat_Status;
     
     task body Vat_Status is
-        Stopping : Boolean := False;
     begin
         accept Start;
         loop
@@ -134,7 +184,12 @@ procedure As2 is
             end loop;
             New_Line;
 
-            delay 2.0;
+            delay 3.0;
+
+            -- check if we're quitting
+            if not Game_Over.Playing then
+                exit;
+            end if;
         end loop;
     end Vat_Status;
     
@@ -193,8 +248,7 @@ procedure As2 is
               (Salinity > Max_Salinity) or
               (Salinity < Min_Salinity)
             then
-                Put_Line("you lose");
-                raise You_Lose;
+                Game_Over.Stop;
             end if;
 
             -- open drain if too full, close if in acceptable range
@@ -239,15 +293,18 @@ procedure As2 is
             elsif Salinity < Low_Salinity then
                 Need_Hose := True;
                 Htype := Brine;
+            elsif Depth < Low_Depth then
+                Need_Hose := True;
+                Htype := Water;
             else
                 Need_Hose := False;
             end if;
             
             -- calculate how soon we will die w/o hose
             if Need_hose then
-                
+
                 -- get differentials
-                Dtemp := (Float(Temp) - Float(Last_Temp)) / tick;
+                Dtemp := (Float(Temp) - Float(Last_Temp)) / Tick;
                 Ddepth := (Float(Depth) - Float(Last_Depth)) / Tick;
                 Dsalinity := (Float(Salinity) - Float(Last_Salinity)) / Tick;
 
@@ -277,20 +334,31 @@ procedure As2 is
                     Time_Till_Dead := Tmp;
                 end if;
 
-                Hose_Handler.Need_Hose(Htype, My_Id, Time_Till_Dead);
+                if not Game_Over.Playing then
+                    exit;
+                end if;                
+                Hose.Request(Htype, My_Id, Time_Till_Dead);
                     
 
             end if;
-                
+
+            --check if we're quitting
+            if not Game_Over.Playing then
+                exit;
+            end if;
             
         end loop;
     end Vat_Handler;
 
+
+    Start_Time : Time;
     
 begin
 
     Reset(Gen);
 
+    Start_Time := Clock;
+    
     -- create and assign vats to the helpers
     for I in Vat_Range loop
         Vats(I) := new Vat;
@@ -298,10 +366,15 @@ begin
     end loop;
 
     Vat_Status.Start;
+
+    -- wait for game over
+    Game_Over.Wait;
+
     
-exception
-   when You_Lose => 
-       Put_Line("You Lost!");
-       delay 5.0;
+    New_Line;
+    Put_Line("Survived " & Duration'Image( To_Duration(Clock - Start_Time) ));
+    New_Line;
+               
+    
     
 end As2;
