@@ -1,9 +1,10 @@
-V "GNAT Lib v4.6"
-M P AB W=b
+V "GNAT Lib v2010"
+M P W=b
+A -gnat05
 P SS ZX
-R vnnvnnnnnvvnnnnnnnvnnvnvvvvvvvnvnvvnvnnvnvvnvnnvnvnvnnnnnnvnnnnnnnnv2nnnv1nv1+nnnv1+nn
+R vnnvnnvvnnnnnnnvnnvnvvvvnvvnvnvvnvnnvnvvnvnnvnvnvnnnnnnvnnnnnnnnv2nnnv1nv1+nnnv1+nn
 
-U as2%b			as2.adb			f1a12a01 NE OO SU
+U as2%b			as2.adb			70d0a515 NE OO SU
 W ada%s			ada.ads			ada.ali
 W ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
 W ada.command_line%s	a-comlin.adb		a-comlin.ali
@@ -34,120 +35,120 @@ W system.tasking.stages%s  s-tassta.adb		s-tassta.ali
 W system.val_int%s	s-valint.adb		s-valint.ali
 W vat_stuff%s		vat_stuff.adb		vat_stuff.ali
 
-D ada.ads		20070406091342 3ffc8e18
-D a-calend.ads		20090409150019 343c83dd
-D a-caldel.ads		20090409150019 9f20b83d
-D a-comlin.ads		20100623092347 e0accaa5
-D a-except.ads		20090727140100 0c711ac9
-D a-finali.ads		20090409150019 e5e85fa4
-D a-filico.ads		20090409150019 872dc219
-D a-ioexce.ads		20091130110856 8b9de6cd
-D a-numeri.ads		20080324174807 bb51c45a
-D a-nuflra.ads		20100622172941 49c50e0b
-D a-reatim.ads		20090409150019 63f07669
-D a-stream.ads		20090409150019 2ca4ee37
-D a-tags.ads		20101021101406 c7695348
-D a-textio.ads		20091028140912 386df5d4
-D a-unccon.ads		20070406091342 f9eb8f06
-D as2.adb		20110523050222 d40d2003
-D interfac.ads		20090409150019 f77d8799
-D i-c.ads		20101007125900 809c38c4
-D i-cstrea.ads		20100622165701 1bd72c32
-D system.ads		20090410155748 2d1a1afa
-D s-atacco.ads		20090409150019 1dc856ad
-D s-conca2.ads		20090420091404 fbd0f2fc
-D s-conca8.ads		20090420091404 ea110f26
-D s-crtl.ads		20100617122610 ac77b159
-D s-exctab.ads		20090417131547 66e51330
-D s-ficobl.ads		20100909103250 443b9d66
-D s-finimp.ads		20090409150019 46853fe8
-D s-finroo.ads		20090409150019 dbb860c9
-D s-imgint.ads		20090409150019 02dbe0c2
-D s-imglld.ads		20090409150019 f3220969
-D s-imgrea.ads		20090409150019 c7a851e2
-D s-linux.ads		20090730092306 47911ab1
-D s-multip.ads		20101011073009 38ac9f73
-D s-osinte.ads		20101127183452 6e2d2e09
-D s-parame.ads		20091130110856 9c5d83fa
-D s-rannum.ads		20100623054052 5eb33f0a
-D s-secsta.ads		20090707124243 eea35a36
-D s-soflin.ads		20090729085153 9414c974
-D s-stache.ads		20090417130712 596fc1b4
-D s-stausa.ads		20101018101807 bba781f7
-D s-stalib.ads		20101021102512 c4241c00
-D s-stoele.ads		20090417130712 facd7d98
-D s-stoele.adb		20100617152355 afc5dc80
-D s-stratt.ads		20100909123135 aedef97e
-D s-tasinf.ads		20090409150019 21316953
-D s-taspri.ads		20080408071349 af44aca8
-D s-taprop.ads		20090409150019 07f79e46
-D s-taskin.ads		20101021101406 b2eaee08
-D s-taprob.ads		20090409150019 502249e3
-D s-tpoben.ads		20090409150019 e8374469
-D s-tpobop.ads		20090409150019 5f548bb3
-D s-tasren.ads		20090409150019 86fa7427
-D s-tassta.ads		20101018103456 e88ef99e
-D s-traent.ads		20090417130712 5221ee41
-D s-unstyp.ads		20090409150019 6ae15c76
-D s-valint.ads		20090409150019 48a52a3f
-D s-wchcon.ads		20090417130712 bfeb2e3d
-D vat_stuff.ads		20110520214141 d7584d11
+D ada.ads		20100603062030 9c7dd3ea
+D a-calend.ads		20100603061913 19486c30
+D a-caldel.ads		20100603061913 c565f6eb
+D a-comlin.ads		20100603061919 6b7df106
+D a-except.ads		20100603061925 34786013
+D a-finali.ads		20100603061929 bfd2ca79
+D a-filico.ads		20100603061928 4ff02a40
+D a-ioexce.ads		20100603061931 2504b9d2
+D a-numeri.ads		20100603061938 1cf3e608
+D a-nuflra.ads		20100603061937 a6501b59
+D a-reatim.ads		20100603061939 7c462ab4
+D a-stream.ads		20100603061946 34aca5be
+D a-tags.ads		20100603062003 bfa07446
+D a-textio.ads		20100603062005 7065b2f2
+D a-unccon.ads		20100603062010 51e09df2
+D as2.adb		20110525181031 998f8952
+D interfac.ads		20100603062247 a69cad5c
+D i-c.ads		20100603062234 bc3ef662
+D i-cstrea.ads		20100603062238 e1e064a9
+D system.ads		20100603062759 b0a7514b
+D s-atacco.ads		20100603062341 60789a20
+D s-conca2.ads		20100603062359 3d28f3da
+D s-conca8.ads		20100603062403 97d858ac
+D s-crtl.ads		20100603062405 1dba5d50
+D s-exctab.ads		20100603062408 4b7fd51d
+D s-ficobl.ads		20100603062415 c05c3205
+D s-finimp.ads		20100603062417 90fd9896
+D s-finroo.ads		20100603062418 1408f9d1
+D s-imgint.ads		20100603062430 f77d133c
+D s-imglld.ads		20100603062431 adc4e967
+D s-imgrea.ads		20100603062434 da88b2ff
+D s-oscons.ads		20100604095700 61707d2d
+D s-osinte.ads		20100603062453 a81ff234
+D s-parame.ads		20100603062544 6cdeed25
+D s-rannum.ads		20100603062549 467777e9
+D s-secsta.ads		20100603062555 d2c357fb
+D s-soflin.ads		20100603062559 61e5c9e8
+D s-stache.ads		20100603062602 481f9e9d
+D s-stausa.ads		20100603062604 146a8ff1
+D s-stalib.ads		20100603062604 9cbc334a
+D s-stoele.ads		20100603062606 a4d57c26
+D s-stoele.adb		20100603062606 d9d7e80e
+D s-stratt.ads		20100603062608 fef7c1da
+D s-tasinf.ads		20100603062626 0891d67c
+D s-taspri.ads		20100603062631 5459bcd0
+D s-taprop.ads		20100603062620 25a7965c
+D s-taskin.ads		20100603062629 82b6bc5d
+D s-taprob.ads		20100603062616 5e00115c
+D s-tpoben.ads		20100603062638 18aadfe3
+D s-tpobop.ads		20100603062638 ccd38b83
+D s-tasren.ads		20100603062633 5bda31d2
+D s-tassta.ads		20100603062634 71d2b71d
+D s-traent.ads		20100603062648 a66ef260
+D s-unstyp.ads		20100603062650 c0f9fae5
+D s-valint.ads		20100603062655 d23209d2
+D s-wchcon.ads		20100603062709 30c48dc1
+D vat_stuff.ads		20110523052133 28515e5e
 X 1 ada.ads
 16K9*Ada 19e8 16|1r6 1r23 2r6 2r28 3r6 3r38 4r6 4r25
 X 4 a-comlin.ads
-38K13*Command_Line 139e21 16|2w10 2r32
-48V13*Argument{string} 16|30s57
+41K13*Command_Line 142e21 16|2w10 2r32
+44V13*Argument_Count{natural} 16|368r8
+51V13*Argument{string} 16|30r57
 X 9 a-numeri.ads
 16K13*Numerics 32e17 16|3r10 3r42
 X 10 a-nuflra.ads
-41K22*Float_Random 72e30 16|3w19 3r51
-45R9*Generator 16|22r11
-47F12*Uniformly_Distributed{float}
-49V13*Random{47F12}<36|62p13> 16|237s32
-51U14*Reset<36|91p14> 16|358s5
+44K22*Float_Random 75e30 16|3w19 3r51
+48R9*Generator 16|22r11
+50F12*Uniformly_Distributed{float}
+52V13*Random{50F12}<35|65p13> 16|237r32
+54U14*Reset<35|94p14> 16|358r5
 X 11 a-reatim.ads
-39K13*Real_Time 139e18 16|4w10 4r29
-41O9*Time 16|354r18
-46O9*Time_Span
-53V13*Clock{41O9} 16|360s19 375s56
-58V13*"-"{46O9} 16|375s62
-80V13*To_Duration{duration} 16|375s44
+42K13*Real_Time 142e18 16|4w10 4r29
+44O9*Time 16|354r18
+49O9*Time_Span
+56V13*Clock{44O9} 16|360r19 377r56
+61V13*"-"{49O9} 16|377r62
+83V13*To_Duration{duration} 16|377r44
 X 14 a-textio.ads
-49K13*Text_IO 472e16 16|1w10 1r27
-167U14*New_Line 16|185s13 374s5 376s5
-264U14*Put_Line 16|118s9 375s5
+52K13*Text_IO 475e16 16|1w10 1r27
+170U14*New_Line 16|185r13 376r5 378r5
+267U14*Put_Line 16|118r9 377r5
 X 16 as2.adb
-7U11*As2 7b11 380l5 380t8
+7U11*As2 7b11 382l5 382t8
 9f5 Min_Tick{float} 237r21 237r56
 10f5 Max_Tick{float} 237r45
 11o5 Hose_Tick{duration} 155r27 159r27
-13o5 Low_Temp{58|4O14} 264r23
-14o5 High_Temp{58|4O14} 266r26
-16o5 Low_Depth{58|5O14} 255r24 293r27
-17o5 High_Depth{58|5O14} 258r27
-19o5 Low_Salinity{58|6O14} 296r30
-20o5 High_Salinity{58|6O14} 271r27 290r27
-22r5 Gen{10|45R9} 237r39 358r11
-24P10 Vat_Access(58|18T19) 35r39 102r37 108r43 112r39 202r18 221r38
+13o5 Low_Temp{57|4O14} 264r23
+14o5 High_Temp{57|4O14} 266r26
+16o5 Low_Depth{57|5O14} 255r24 293r27
+17o5 High_Depth{57|5O14} 258r27
+19o5 Low_Salinity{57|6O14} 296r30
+20o5 High_Salinity{57|6O14} 271r27 290r27
+22r5 Gen{10|48R9} 237r39 358r11
+24P10 Vat_Access(57|18T19) 35r39 102r37 108r43 112r39 202r18 221r38
 30I13 Vat_Range{natural} 107r33 108r29 182r22 363r14
 31E10 Hose_Type 31e37 48r35 49r32 51r20 76r35 87r32 141r20 216r17
 31n24 Water{31E10} 153r31 292r26 295r26
 31n31 Brine{31E10} 298r26
-35U15 Print_Status 35>28 35>51 112b15 122l9 122t21 183s17
+35U15 Print_Status 35>28 35>51 112b15 122l9 122t21 183r17
 35p28 A_Vat{24P10} 112b28 117r9
 35s51 Prefix{string} 112b51 118r18
 39w15 Game_Over 58b20 73l9 73t18 146r20 164r24 190r20 251r17 337r24 346r20
-. 371r5
-40Y15 Wait 59b15 62l13 62t17 371s15
-41U19 Stop 64b19 67l13 67t17 251s27
-42V18 Playing{boolean} 69b18 72t12 146s30 164s34 190s30 337s34 346s30
+. 373r5
+40Y15 Wait 59b15 62l13 62t17 373r15
+41U19 Stop 64b19 67l13 67t17 251r27
+42V18 Playing{boolean} 69b18 72t12 146r30 164r34 190r30 337r34 346r30
 44b9 Is_Playing{boolean} 59r29 66r13 71r20
 47w15 Hose 75b20 95l9 95t13 151r17 340r17
-48Y15 Request 48>24 48>46 48>64 76b15 85l13 85t20 340s22
+48Y15 Request 48>24 48>46 48>64 76b15 85l13 85t20 340r22
 48e24 Htype{31E10} 82r29
 48i46 Id{positive} 81r27
 48f64 Time_Till_Dead{float} 79r16 80r29
-49Y15 Next 49<20 49<43 77r13 87b15 94l13 94t17 151s22
+49Y15 Next 49<20 49<43 77r13 87b15 94l13 94t17 151r22
 49e20 Htype{31E10} 90r13
 49i43 Id{positive} 91r13
 51e9 Min_Type{31E10} 82r17 90r22
@@ -160,34 +161,34 @@ X 16 as2.adb
 87e20 Htype{31E10}
 87i43 Id{positive}
 101T15 Vat_Handler 103l9 103e20 107r47 201b15 351l9 351t20
-102Y15 Assign_Vat 102>26 102>49 221b16 224l13 224t23 365s21
+102Y15 Assign_Vat 102>26 102>49 221b16 224l13 224t23 365r21
 102p26 A_Vat{24P10} 222r23
 102i49 Id{positive} 223r22
 107A10 Handler_Array(101T15)<integer> 128r16
 108A10 Vat_Array(24P10)<integer> 131r12
-113o9 Temp{58|4O14} 117m28 119r55
-114o9 Depth{58|5O14} 117m34 120r50
-115o9 Salinity{58|6O14} 117m41 121r56
+113o9 Temp{57|4O14} 117m28 119r55
+114o9 Depth{57|5O14} 117m34 120r50
+115o9 Salinity{57|6O14} 117m41 121r56
 128a5 Handlers{107A10} 365r9
 131a5 Vats{108A10} 154r21 156r21 158r21 160r21 183r30 364m9 365r32
 138t10 Hose_Handler 140b15 171l9 171t21
 141e9 Min_Type{31E10} 151m27 153r20
 142i9 Min_Id{positive} 151m37 154r26 156r26 158r26 160r26
-174t10 Vat_Status 178b15 194l9 194t19 368r5
-175Y15 start 180b16 368s16
+174t10 Vat_Status 178b15 194l9 194t19 369r9
+175Y15 start 180b16 369r20
 182i17 I{30I13} 183r35 183r53
 202p9 My_Vat{24P10} 222m13 227r9 228r9 229r9 230r9 233r9 241r13 256r17 259r17
 . 281r17 284r17
 203i9 My_Id{positive} 223m13 340r37
 204f9 Tick{float} 237m13 238r28 307r61 308r64 309r73
-206o9 Temp{58|4O14} 241m33 246r16 247r16 264r16 266r19 307r33 312r56 314r56
-206o15 Last_Temp{58|4O14} 233m29 307r47
-207o9 Depth{58|5O14} 241m39 244r17 245r16 255r16 258r19 276r16 293r19 308r34
+206o9 Temp{57|4O14} 241m33 246r16 247r16 264r16 266r19 307r33 312r56 314r56
+206o15 Last_Temp{57|4O14} 233m29 307r47
+207o9 Depth{57|5O14} 241m39 244r17 245r16 255r16 258r19 276r16 293r19 308r34
 . 318r46 320r46
-207o16 Last_Depth{58|5O14} 233m40 308r49
-208o9 Salinity{58|6O14} 241m46 248r16 249r16 271r16 290r16 296r19 309r37
+207o16 Last_Depth{57|5O14} 233m40 308r49
+208o9 Salinity{57|6O14} 241m46 248r16 249r16 271r16 290r16 296r19 309r37
 . 328r49 330r49
-208o19 Last_Salinity{58|6O14} 233m52 309r55
+208o19 Last_Salinity{57|6O14} 233m52 309r55
 209f9 Dtemp{float} 307m17 311r20 312r64 314r64
 209f16 Ddepth{float} 308m17 317r20 318r55 320r55
 209f24 Dsalinity{float} 309m17 327r20 328r61 330r61
@@ -200,10 +201,10 @@ X 16 as2.adb
 218f25 tmp{float} 318m21 320m21 323r20 324r39 328m21 330m21 333r20 334r39
 221p27 A_Vat{24P10}
 221i50 Id{positive}
-354o5 Start_Time{11|41O9} 360m5 375r64
+354o5 Start_Time{11|44O9} 360m5 377r64
 363i9 I{30I13} 364r14 365r18 365r37 365r41
-X 58 vat_stuff.ads
-1K9*vat_stuff 16|5w6 5r21 58|45e14
+X 57 vat_stuff.ads
+1K9*vat_stuff 16|5w6 5r21 57|45e14
 4O14*temperature_type 16|13r25 14r26 113r16 119r32 206r27
 5O14*depth_type 16|16r26 17r27 114r17 120r33 207r29
 6O14*salinity_type 16|19r29 20r30 115r20 121r36 208r35
@@ -213,14 +214,14 @@ X 58 vat_stuff.ads
 13o9*min_depth{5O14} 16|16r40 16r71 17r41 17r72 244r25 276r24 276r56 318r34
 15o9*max_salinity{6O14} 16|19r68 20r69 248r27 330r34
 16o9*min_salinity{6O14} 16|19r46 19r83 20r47 20r84 249r27 328r34
-18T19*vat 16|24r31 364r24 58|43e16
-21Y23 heat_on 16|281s24
-22Y23 heat_off 16|229s16 284s24
-25Y23 water_on 16|154s34
-26Y23 water_off 16|156s34 227s16
-29Y23 drain_open 16|259s24
-30Y23 drain_closed 16|230s16 256s24
-33Y23 brine_on 16|158s34
-34Y23 brine_off 16|160s34 228s16
-40Y23 get_readings 16|117s15 233s16 241s20
+18T19*vat 16|24r31 364r24 57|43e16
+21Y23 heat_on 16|281r24
+22Y23 heat_off 16|229r16 284r24
+25Y23 water_on 16|154r34
+26Y23 water_off 16|156r34 227r16
+29Y23 drain_open 16|259r24
+30Y23 drain_closed 16|230r16 256r24
+33Y23 brine_on 16|158r34
+34Y23 brine_off 16|160r34 228r16
+40Y23 get_readings 16|117r15 233r16 241r20
 

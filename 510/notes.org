@@ -1,0 +1,50 @@
+Formal Automata
+
+* Course Overview
+** Key Question
+What are tho fundamental capacities and limitations of computers
+(speed, memory, computational model)?
+** Computability Theory
+Which problems are solvable, and which are not?
+*** Requires a precise definition of a computer
+** Complexity Theory
+Is a problem easy or hard? e.g. sorting is easy, scheduling is hard. 
+*** Big-O
+*** Requires a precise definition of a computer
+** Automata Theory
+This is the 'model of computation.' Required to study computability
+and complexity theories.
+*** Purpose of this class is to define this
+*** It is a mathematical model for computing machine
+*** Automaton = abstract computing device (abstract away machine architecture)
+* Strings and Languages
+(text pg 42-47)
+** Alphabet
+Set of characters {a, b, c}
+** String
+Juxtaposition of characters from an Alphabet aabc
+*** Empty String
+Capital Lambda, in notes represented by []
+*** Concatenation
+Simply juxtaposition of strings aab + bc = aabbc
+*** Power
+s^0 = []
+s^1 = s 
+s^2 = ss
+** Language
+Set of strings within over some Alphabet
+*** Language over Alphabet
+A language over alphabet A is the set of all strings over A
+*** Product of Languages
+LM = {st | st \in L and t \in M}
+**** Associative but not commutative
+*** Powers of Languages
+L^0 = {[]}
+L^1 = L 
+L^2 = LL
+*** Closure of a Language
+L* = union({L^n | n \in {0, 1, 2, ...})
+**** Positive Closure of a Language
+L+ = union({L^n | n \in N})
+
+

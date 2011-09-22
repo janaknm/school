@@ -8,7 +8,7 @@ procedure As2 is
     
     Min_Tick : constant Float := 0.09;
     Max_Tick : constant Float := 0.13;
-    Hose_Tick : constant Duration := 0.2;
+    Hose_Tick : constant Duration := 0.1;
 
     Low_Temp : constant Temperature_Type := Min_Temp + (0.3)*(Max_Temp - Min_Temp);
     High_Temp : constant Temperature_Type := Min_Temp + (0.7)*(Max_Temp - Min_Temp);
@@ -365,7 +365,9 @@ begin
         Handlers(I).Assign_Vat(Vats(I), I);
     end loop;
 
-    Vat_Status.Start;
+    if Argument_Count = 1 then
+        Vat_Status.Start;
+    end if;
 
     -- wait for game over
     Game_Over.Wait;

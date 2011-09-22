@@ -277,3 +277,210 @@ Block tasks until a set number of them have arrived
 *** PID ! "message" 
 sends a message to PID
 *** Should send own PID in message
+* Erlang gen_server
+** callback module (ie. my_bank)
+** interface functions
+*** called by the client
+ie. new_account, balance, withdraw, deposit, etc.
+** callback routines
+ these control the server behavior. 
+*** init/1
+initialize state
+*** handle_call/3
+*** handle_cast/3
+send message to server, no result returned
+*** handle_info/3
+send a "spontaneous" message to the server
+*** terminate
+*** code_change
+hot swap of functionality
+* ETS (Erlang Term Store)
+Store massive amount of data with a very efficient interface
+** types of storage
+*** data is keyed
+*** sets (unique keys: overwrites existing)
+*** ordered set (unique keys, sorted on key)
+*** bag (non-unique keys, must have unique value for each duplicate key)
+*** duplicate bag (no real restrictions)
+** usage
+*** creation: ets:new(Name, [opt]) -> TableId
+*** insertion: ets:insert(TableName, X) -> true
+*** search: ets:lookup(TableName, Key) -> list of tuples matching Key
+*** delete: ets:delete(TableId)
+* Erlang Parallel Programming
+multicore CPUs. 
+** should make lots of processes to keep the CPUs busy
+** how to tell erlang to use parallel processing
+*** erl -smp +S N
+N is number of schedulers (run-time environment)
+* Final
+** Flynn's Taxonomy
+Classification of computer architectures
+*** SISD - Single Instruction stream Single Data stream
+Wasn't designed for parallelism, uses the fetch-decode-execute cycle,
+which.
+*** SIMD -
+Executes a single instruction on a lot of data simultaneously, think
+vector operations. It does this by using a separate processor/core for
+each piece of data.
+*** MISD - 
+Sends the same instruction to multiple processing units, which
+interface with just one set of data.
+*** MIMD -
+Common architecture for super computers, networked parallel computers,
+multi-core processors. Sharing data between processing units is the
+trickier part, since each has its own data stream.
+**** Sharing Data
+Processing units usually have private memory only it can access. When
+needing to communicate between themselves, there might be a shared
+memory bus, which all have access to. Otherwise they employ some sort
+of message passing.
+** Deadlock, other definitions
+*** Deadlock
+When 2+ processes are blocked and will never continue because they're
+waiting for a resource that will never be available.
+**** Conditions for deadlock (all necessary conditions)
+Mutual Exclusion
+Hold and wait
+No preemption (ability to force processes to give up resources)
+Circular wait (processes waiting for each other to finish using a resource)
+*** Pre/Post Protocol
+Pre: negotiations for obtaining a resource
+-- critical section --
+Post: replacing a resource
+*** Synchonization
+When processes depend on each other to continue
+** Ada task lifecycle
+*** Creation
+Happens in two ways: elaboration of a declaration (in the declarative
+region) OR dynamically created using an access type.
+*** Activation
+First the task's lacal variables are allocated on the task's run-time
+stack, and the task's declarative section is elaborated. In this
+stage, child tasks can be created and any arbitrary code executed,
+that's what separates this section from the executable stage.
+*** Executable
+Once in the executable stage, there are three possible states that the
+task will bounce around in. 
+**** Ready State
+NOT executing any instructions at this point. In this state, the task
+is waiting for the scheduler to allocate some execution time for it:
+this is the only thing keeping the task from executing instructions.
+**** Running
+Currently executing instructions. If the scheduler is allowed to
+preempt tasks, it could bump this one down to the ready state to allow the higher
+priority task to grab some CPU time.
+**** Blocked
+The task is waiting for some resource to become available. Could also
+be in a delay statement. Once the delay is over or it was able to take
+the resource, it moves on to the ready state.
+*** Completed
+Reaches this point for one of two reasons: either the task simply
+reached the end of the task body, or an exception was raised in the
+task.
+*** Terminated
+Either an exception was thrown in the CREATION stage of the task, or
+the task is on the completed stage and all its dependent tasks are
+terminated.
+** Ada master/child tasks
+*** Creation of child tasks
+Static tasks (in declarative part) block the parent (in the activation
+stage), while dynamic tasks (created in the parent body) block their
+parent in their parent's executable stage.
+*** Direct Masters
+The direct master of any child task is a block structure. This block
+structure could be either be a created block scope, a
+procedure/function declarative block, or a task body declarative block. 
+**** Static Masters
+Statically declared tasks are simply direct children of the block in
+which they were declared.
+**** Dynamic Masters
+The direct master of a dynamically created task is NOT the block in
+which it is created, but the block in which the task access type was
+DECLARED.
+*** Indirect Masters
+If block B is a direct master of some task T, and block B is a
+procedure body or block statement, then the task which executes B is
+an indirect master of task T.
+** Ada exceptions in tasks
+When an exception is thrown in a task, but not handled appropriately,
+the entire task just dies quietly, no message is sent to the run-time
+system, and nothing is aborted except for the task itself.
+** #10: Describe semaphores and show how they can be implemented in ada
+A semaphore is a way to control a resource, or multiple resources in a
+way which avoids race conditions. The semaphore keeps track of the
+number of resources available, and when a thread asks for a resource,
+the semaphore will give them one if there are any, otherwise it will
+have to wait until one is available.
+
+Ada implementation:
+
+num_resources : constant positive := 10;
+
+type resource is private;
+type resource_array is array(positive range <>) of resource;
+
+protected Semaphore is
+    entry take (r : out resource);
+    procedure replace(r : int resource);
+private
+    available : natural := num_resources;
+    resources : resource_array(num_resources);
+end Semaphore;
+
+protected body Semaphore is
+    entry take (r : out resource)
+      when count > 0 is
+    begin
+        r := resources(count);
+        count := count - 1;
+    end take;
+
+    procedure replace(r : in resource) is
+    begin
+       count := count + 1;
+       resources(count) := r;
+    end replace;
+end Semaphore;
+** Ada requeue
+The idea of Ada's requeue is that sometimes a call to an entry call
+can not be serviced based on the parameters it is called with. An
+entry cannot use the parameters passed to it in the barrier, so the
+only choice is to continue with the call. Inside the call, we can test
+the parameters however we want, and if we can't service the call, we
+can requeue the caller to another (or the same) task, so it can wait
+until it's requirements are met.
+** Resource allocation problem
+*** syntax error (entry problem)
+*** Entries cannot use parameters in their barriers
+To fix this problem, the entry can requeue the caller if requirements
+to continue are not met.
+** Generic Servers (genserver)
+So the generic server framework requires a *callback* module which
+provides the application-specific functions: initializing state,
+handling a request, etc.
+** Middleware
+Middleware sits between a distributed application and the OS, giving
+an abstract view of OS internal functionality without being specific.
+*** Services
+**** Naming 
+Providing identification for certain services, so that clients can
+find and connect to them.
+**** Binding
+Creating a persistent connection to a service so multiple requests can
+be made without multiple reconnects.
+**** Transport
+Abstracting away the means of communication to a distributed service.
+**** Application Protocal
+Defining a way of forming messages that will be understood in client
+to server communication.
+**** Marshalling
+Serializing data in to a universally understood fashion so that it can
+be shipped across a transportation line, and then recontstructed on
+the other end in a way that the receiver can understand and is
+consistent with the original data.
+**** Actvation and Execution
+Registration of services provided by the server and resource
+allocation that will be done on the server.
+** Distributed Erlang/Ada
+
