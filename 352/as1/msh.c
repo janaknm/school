@@ -93,14 +93,18 @@ void processline (char *line)
 }
 
 
-char **arg_parse (char *line)
+/* parses a line read from shell into individual args. */
+   char **arg_parse (char *line)
 { 
-    char **args, *c, **arg_it;
-    int n_args=1, reading;
+    char   *c, 
+           **args, 
+           **arg_it;
+    int    n_args = 0, 
+           reading;
 
     /* determine number of args */
     c = line;
-    reading = 1;
+    reading = 0;;
     do
     {
         if (reading && *c == ' ') {
@@ -118,8 +122,8 @@ char **arg_parse (char *line)
 
     /* partition args and store positions of first characters */
     arg_it = args;
-    c = *(arg_it++) = line;
-    reading = 1;
+    c  = line;
+    reading = 0;;
     do
     {
         if (reading && *c == ' ') {
