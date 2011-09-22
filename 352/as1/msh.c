@@ -32,6 +32,10 @@ main (void)
     char   buffer [LINELEN];
     int    len;
 
+#if DEBUG
+    char   **arg_it;
+#endif
+    
     while (1) {
 
         /* prompt and get line */
@@ -47,8 +51,13 @@ main (void)
 	/* Run it ... */
 	processline (buffer);
 
-    arg_parse(buffer);
-
+        /* testing argparse */
+#if DEBUG
+        arg_it = arg_parse(buffer);
+        while ( *arg_it != (char *)0 ) 
+            printf("%s\n", *(arg_it++));
+#endif
+        
     }
 
     if (!feof(stdin))
@@ -86,11 +95,12 @@ void processline (char *line)
 
 char **arg_parse (char *line)
 { 
-    char *args, *c;
-    int n_args, reading;
-    
+    char **args, *c, **arg_it;
+    int n_args=1, reading;
+
+    /* determine number of args */
     c = line;
-    reading = (*c != ' ');
+    reading = 1;
     do
     {
         if (reading && *c == ' ') {
@@ -99,9 +109,30 @@ char **arg_parse (char *line)
         } else if (!reading && *c != ' ') {
             reading = 1;
         }
-    } while ( c++ != 0 );
-        
-    printf("%d\n", n_args);
+    } while ( *(++c) );
 
-    return (char **)0;
+    /* create array for args */
+    args = (char **)malloc(n_args * sizeof(char *) + 1);
+    if (!args)
+        perror("malloc");
+
+    /* partition args and store positions of first characters */
+    arg_it = args;
+    c = *(arg_it++) = line;
+    reading = 1;
+    do
+    {
+        if (reading && *c == ' ') {
+            *c = 0;
+            reading = 0;
+        } else if (!reading && *c != ' ') {
+            reading = 1;
+            *(arg_it++) = c;
+        }
+    } while ( *(++c) );
+
+    /* add null pointer to end of array */
+    *arg_it = (char *)0;
+    
+    return args;
 }
