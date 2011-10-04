@@ -43,13 +43,13 @@ void bin_aecho(int argc, char **argv) {
 
     /* write args to stdout (fd=1) */
     for(i = 1; i < argc; i++) {
-        tmp_len = strlen(argv[i]) + 1 + ((i != 1) ? 1 : 0);
+        tmp_len = strlen(argv[i]) + 1;
 
         /* write arg to string */
-        snprintf(buf, tmp_len, "%s%s", (i != 1) ? " " : "",  argv[i]);
+        snprintf(buf, tmp_len + 1, "%s ", argv[i]);
         
         /* write to fd */
-        if (write(1, buf, tmp_len) < 0) 
+        if (write(1, buf, tmp_len + ((i==1) ? 0 : 1)) < 0) 
             perror("write");
     }
 
