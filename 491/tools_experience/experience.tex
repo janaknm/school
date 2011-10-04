@@ -1,0 +1,94 @@
+\documentclass[12pt]{article}
+
+\title{Requirements Specification Tool Experienc}			
+\author{Matt Forbes}		
+\date{September 28, 2011}					
+
+\begin{document}
+\maketitle						
+
+\setcounter{tocdepth}{2}
+\pagenumbering{roman} 
+\tableofcontents 
+\newpage 
+\pagenumbering{arabic}
+
+\section{Rmtoo}
+
+\subsection{Steps Taken to Evaluate Software}
+\begin{enumerate}
+\item Download and install rmtoo archive.
+\item Read included Readme.txt and Install.txt.
+\item Moved project folder to install directory.
+\item Perused the example requirements document/source for rmtoo using
+  rmtoo.
+\item Copied the project skeleton/template to working directory, and
+  added some requirement files. These are simply text files in a very
+  simple format.
+\item Added a dependent ``topic'' for which requirements can be added.
+\item Compiled the project which created an html directory (with a
+  fully navigating html site), a clean formatted pdf, and two graphs
+  showing dependencies.
+\end{enumerate}
+
+\subsection{Initial Thoughts}
+Even after reading the included Readme and man files, I wasn't
+entirely sure how rmtoo worked. It was made very clear what rmtoo was
+capable of, but not necessarily how to go about it. Reading the
+example project and makefile solidified my understanding of the
+format, which is actually quite simple.
+
+\subsection{Document Generation Process}
+Requirements are contained in .req files, which are in a simple
+key/value form. Within this file, all the properties and dependencies
+of the requirement are listed, such as Name, Description, Priority,
+Effort, etc. Topics are specified in .tic files which simple describe
+the topic and give it a name to be referred by in the requirements.
+
+Once requirements and topics have been created the provided Makefile
+is run, and bingo! All documents are created and ready to view.
+
+\subsection{Analysis}
+It is too early in the quarter to tell if this is the right fit for
+the job, but as far as simply creating, managing, and linking
+requirements, rmtoo does a fine job. 
+
+\section{Axiom}
+
+\subsection{Thoughts}
+Axiom appears to have some nice features, but I did not think they
+warranted a complicated client/server setup. In order to use Axiom, I
+would have had to download and install the server software to my
+personal server, download and install the client on a Windows machine
+somewhere, and finally start testing. A huge problem with this
+software is that it is Windows only, and I do all my work on *nix and 
+OS X.
+
+\section{Dia}  
+
+\subsection{Steps Taken to Evaluate Software}
+\begin{enumerate}
+\item Download and install the dia package.
+\item Play around with charts
+\end{enumerate}
+
+\subsection{Analysis}
+There really isn't a lot of mystery to this application, it really
+just does do diagrams. It is not a ``programming'' diagram tool, which
+is okay as we are doing a specification, not an implementation. More
+than likely there are many hidden features, but on the surface Dia is
+very simple and easy to use.
+
+\section{Conclusions}
+\begin{enumerate}
+\item RMtoo is my first choice for requirements management. It is
+  simple, text-based, and does not try to do too much.
+\item Dia is a good choice for diagram editing, maybe another student
+  will find a more suitable, requirements-oriented application.
+\item I highly discourage the use of Axiom as well as any other
+  Windows-specific applications. 
+\end{enumerate}
+
+\end{document}
+
+

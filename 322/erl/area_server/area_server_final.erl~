@@ -1,3 +1,0 @@
--module(area_server_final).
--export([start/0, area/2])
-

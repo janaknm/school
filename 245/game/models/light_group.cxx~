@@ -1,9 +1,0 @@
-#include "light_group.h"
-#include "../gui.h"
-
-void light_group::illuminate() {
-  for(int i=_topx; i <= _topx + _w; i++) {
-    for(int j=_topy; j <= _topy + _h; j++) {
-      _owner->get_piece(i, j)->visible = true;
-    }
-}

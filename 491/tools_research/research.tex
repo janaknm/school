@@ -1,0 +1,117 @@
+\documentclass[12pt]{article}
+
+\title{Requirements Specification Tool Research}			
+\author{Matt Forbes}		
+\date{September 26, 2011}					
+
+\begin{document}
+\maketitle						
+
+\setcounter{tocdepth}{2}
+\pagenumbering{roman} \tableofcontents \newpage \pagenumbering{arabic}
+
+\section{Rmtoo}
+
+http://www.flonatel.de/index.php?id=9
+  
+\subsection{Description}
+Rmtoo is a text-based command line requirements specification
+tool. Rather than being all-inclusive tool-set, it tries to streamline
+the process of creating requirements and categorizing them. 
+
+\subsection{Features}
+\begin{enumerate}
+\item Plain-text file formats allow for easy version control
+  integration.
+\item Provides a unique way to categorize requirements (``topics'')
+\item Supports SCRUM development process
+\item Command line access can be much more accessible to programmers.
+\end{enumerate}
+
+\subsection{Drawbacks}
+\begin{enumerate}
+\item No GUI, so there is most likely more of a learning curve than
+  other products.
+\item Does not include UML or other diagramming tools, project would
+  need to be supplemented with an external tool.
+\end{enumerate}
+
+\subsection{Thoughts}
+I'm personally very comfortable with command line tools, and would
+prefer on over a large, slow, bloated GUI. Less time should be spent
+tinkering with the requirements specification tool, but rather focus
+on quality content.
+
+\subsection{External Documents}
+\begin{enumerate}
+\item Introduction/Readme: \\
+  http://voxel.dl.sourceforge.net/project/rmtoo/v19/rmtooIntroductionV9.pdf
+\item Example of generated document: \\
+  http://voxel.dl.sourceforge.net/project/rmtoo/v19/requirements.pdf
+\end{enumerate}
+
+
+\section{Axiom}
+
+http://www.iconcur-software.com/solutions.html
+
+\subsection{Description}
+Axiom is a client-server type requirements and use case management
+tool. An Axiom server can be hosted on either Windows or Linux, but
+the client can only be run on Windows. Axiom is a completely GUI-based
+program that both manages requirements, and formats a specification.
+
+\subsection{Features}
+\begin{enumerate}
+\item Users create ``artifacts'' which can be requirements, use cases,
+  test cases, or any sort of document needed for the project.
+\item Artifacts can be automatically generated based on filters and
+  existing requirements.
+\item Linking and categorizing of artifacts.
+\item Summary and graphical views.
+\end{enumerate}
+
+
+\subsection{Drawbacks}
+Seems to be a large hassle to set up properly, the team would need a
+server to host the Axiom server software that allows all members to
+access it. May have too many features and complications that clutter
+real progress on a smaller-scale project.
+
+\subsection{Thoughts}
+I would personally rather use a slimmer application since our projects
+shouldn't get so large that they are unwieldly. Rmtoo would be a
+better choice in my opinion, but this would be fine.
+
+\newpage
+
+\section{Dia}
+
+http://projects.gnome.org/dia/
+
+\subsection{Description}
+From the Dia website: ``It can be used to draw many different kinds of
+diagrams. It currently has special objects to help draw entity
+relationship diagrams, UML diagrams, flowcharts, network diagrams, and
+many other diagrams. It is also possible to add support for new shapes
+by writing simple XML files, using a subset of SVG to draw the
+shape.''
+
+\subsection{Features}
+\begin{enumerate}
+\item Create many types of diagrams, most importantly UML.
+\item Very easy to use and extend.
+\end{enumerate}
+
+\subsection{External Documents}
+\begin{enumerate}
+\item Example diagrams: \\
+  http://projects.gnome.org/dia/exempl.html
+\end{enumerate}
+
+\subsection{Thoughts}
+I have used Dia in the past for UML and object-oriented class design,
+and liked the simplicity. While it may not have as many features as
+other diagramming tools, it makes up for it with its ease of use.
+
+\end{document}
