@@ -2,4 +2,5 @@
 int arg_parse(char *line, char ***argvp);
 
 /* builtin commands */
-void (*get_builtin(char *name))(char **argv);
+int try_builtin(int argc, char **argv);
+    

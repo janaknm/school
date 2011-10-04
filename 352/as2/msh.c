@@ -64,7 +64,11 @@ void processline (char *line)
 
     /* when no arguments, do nothing */
     if (argc == 0)
-        return
+        return;
+
+    /* try calling a builtin, return if successful */
+    if (try_builtin(argc, argv)) 
+        return;
     
     /* Start a new process to do the job. */
     cpid = fork();

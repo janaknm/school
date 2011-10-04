@@ -67,6 +67,7 @@ int arg_parse(char *line, char ***argvp)
         }
         
         /* null terminate argument */
+        ptr++;
         *(c++) = 0;
         
     }
