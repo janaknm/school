@@ -1,8 +1,6 @@
 /* CS 352 -- Mini Shell!  
  *
- *   Sept 21, 2000,  Phil Nelson
- *   Modified April 8, 2001 
- *   Modified January 6, 2003
+ *   Matt Forbes - Assignment 1 - 9/23/11
  *
  */
 
@@ -14,6 +12,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+#include "proto.h"
 
 /* Constants */ 
 
@@ -21,13 +20,11 @@
 
 /* Prototypes */
 
-char **arg_parse (char *line));
 void processline (char *line);
 
 /* Shell main */
 
-int
-main (void)
+int main (void)
 {
     char   buffer [LINELEN];
     int    len;
@@ -37,7 +34,7 @@ main (void)
         /* prompt and get line */
 	fprintf (stderr, "%% ");
 	if (fgets (buffer, LINELEN, stdin) != buffer)
-	  break;
+            break;
 
         /* Get rid of \n at end of buffer. */
 	len = strlen(buffer);
@@ -46,8 +43,6 @@ main (void)
 
 	/* Run it ... */
 	processline (buffer);
-
-    arg_parse(buffer);
 
     }
 
@@ -61,47 +56,35 @@ main (void)
 void processline (char *line)
 {
     pid_t  cpid;
-    int    status;
+    int    status,
+           argc;
+    char   **argv;
+
+    argc = arg_parse(line, &argv);
+
+    /* when no arguments, do nothing */
+    if (argc == 0)
+        return
     
     /* Start a new process to do the job. */
     cpid = fork();
     if (cpid < 0) {
-      perror ("fork");
-      return;
+        perror ("fork");
+        return;
     }
     
     /* Check for who we are! */
     if (cpid == 0) {
-      /* We are the child! */
-      execlp (line, line, (char *)0);
-      perror ("exec");
-      exit (127);
+        /* We are the child! */
+        execvp(argv[0], argv);
+        perror ("exec");
+        exit (127);
     }
+
+    /* free argv when parent */
+    free(argv);
     
     /* Have the parent wait for child to complete */
     if (wait (&status) < 0)
-      perror ("wait");
-}
-
-
-char **arg_parse (char *line)) 
-{ 
-    char *args, *c;
-    int n_args, reading;
-    
-    c = line;
-    reading = (*c != ' ');
-    do
-    {
-        if (reading && *c == ' ') {
-            reading = 0;
-            n_args++;
-        } else if (!reading && *c != ' ') {
-            reading = 1;
-        }
-    } while ( c++ != 0 );
-        
-    printf("%d\n", n_args);
-
-    return (char **)0;
+        perror ("wait");
 }

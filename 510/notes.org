@@ -48,3 +48,35 @@ L* = union({L^n | n \in {0, 1, 2, ...})
 L+ = union({L^n | n \in N})
 
 
+* Regular Languages
+** Inductive Definition (alphabet A)
+{} and {[]} are regular Languages
+{a} is a regular language for all a \in A
+If M and N are regular languages, then M \union N, MN, and M* are regular languages
+* Regular Expression
+** Inductive Definition (alphabet A)
+{} and [] are regular Expressions
+a is a regular expression for a \in A
+if R and S are regular expressions, then so are:
+  (R), R+S, R.S, and R*
+** Precedence
+ * (do it first), ., + (do it last)
+** Example
+A = {a, b}
+{}, [], a, b, ab, a+b, etc.
+** REs represent RLs 
+L(R) denotes the regular language corresponding to RE R
+L({}) = {}
+L([]) = {[]}
+L(a) = {a} for all a \in A 
+L(R+S) = L(R) \union L(S)
+L(RS) = L(R)L(S)
+L(R*) = L(R)*
+*** Example
+RE ab + a* represents the following regular Language
+L(ab + a*) = L(ab) \union L(a*)
+           = L(a)L(b) \union L(a)*
+           = {a}{b} \union {a}*
+           = {ab} \union {[], a, aa, aaa, ... a^n, ...}
+           = {ab, [], a, aa, aaa, ... a^n, ...}
+
