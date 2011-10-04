@@ -22,8 +22,11 @@ void bin_aecho(int argc, char **argv) {
     char *buf;
         
 
-    if (argc > 1 && strncmp("-n", argv[0], 2) == 0) {
+    if (argc > 1 && strncmp("-n", argv[1], 2) == 0) {
         print_nl = 0;
+        /* don't print the -n */
+        argv++;
+        argc--;
     }
     
     /* calculate max buffer size */
