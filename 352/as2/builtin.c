@@ -46,16 +46,22 @@ void bin_aecho(int argc, char **argv) {
         tmp_len = strlen(argv[i]) + 1;
 
         /* write arg to string */
-        snprintf(buf, tmp_len + 1, "%s ", argv[i]);
+        printf("%s", argv[i]);
+        if (i != 1) printf(" ");
         
         /* write to fd */
+        /*
         if (write(1, buf, tmp_len + ((i==1) ? 0 : 1)) < 0) 
             perror("write");
+        */
     }
 
     if (print_nl) {
+        printf("\n");
+        /*
         if (write(1, "\n", 1) < 0) 
             perror("write");
+        */
     }
         
 }
