@@ -11,17 +11,14 @@ struct builtin {
 
 void bin_exit(int argc, char **argv) {
     int code = (argc == 1) ? 0 : atoi(argv[1]);
+    printf("incoming: %s, code: %d\n", argv[1], code);
     exit(code);
 }
 
 void bin_aecho(int argc, char **argv) {
     int print_nl = 1,
-        len = 0,
         i = 0;
     
-    char *buf;
-        
-
     if (argc > 1 && strncmp("-n", argv[1], 2) == 0) {
         print_nl = 0;
         /* don't print the -n */
