@@ -18,6 +18,10 @@ int arg_parse(char *line, char ***argvp)
         while (*ptr && *ptr == ' ') 
             ptr++;
 
+        /* handle possible trailing spaces */
+        if (!*ptr)
+            break;
+        
         /* arg starts here */
         argc++;
         
