@@ -31,12 +31,12 @@ Round-trip delay time for GEO satellites is about 270ms, for MEO satellits
 it's 35-85ms, and for LEO it's just 1-7ms.
 \section*{2.14}
 A call from the north pole to the south has to cover the distance of
-exactly half the circumference of Earth. Assuming the radius is 6371km
-and a perfect circle, half the circumference is $2\pi6371 =
-40030km$. It would take light $\dfrac{40030}{1000000} = 0.04s$ =
-40ms. There is about 270ms of latency for the trip up to the
+exactly half the circumference of Earth. Assuming the radius is
+$6371km + 750km = 7031km$ and a perfect circle, half the circumference
+is $\pi7031 = 22088km$. It would take light $\dfrac{22088}{1000000} =
+0.022s$ = 22ms. There is about 4ms of latency for the trip up to the
 satellites and back down, and require six switches between satellites,
 which is another 60 microseconds = 0.06ms. So the total latency of a
-call would be $40 + 270 + 0.06 = 310.06ms$.
+call would be $22 + 4 + 0.06 = 26.06ms$.
 
 \end{document}

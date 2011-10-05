@@ -1,0 +1,43 @@
+Script started on Wed 05 Oct 2011 12:12:46 PM PDT
+[4mCF405-10[24m:[1m~/school/352/as2[0m% ls
+arg_parse.c  builtin.c	msh  msh.c  pdf  proto.h  run.txt
+[4mCF405-10[24m:[1m~/school/352/as2[0m% rm ./msh
+[4mCF405-10[24m:[1m~/school/352/as2[0m% gcc -Wall -o msh *.c
+[4mCF405-10[24m:[1m~/school/352/as2[0m% ./msh
+% "ls"
+arg_parse.c  builtin.c	msh  msh.c  pdf  proto.h  run.txt
+%   "ls" -"a""l"
+total 27
+drwxr-xr-x 3 forbesm2 students     9 2011-10-05 12:12 .
+drwxr-xr-x 4 forbesm2 students     5 2011-10-04 14:04 ..
+-rw-r--r-- 1 forbesm2 students  1885 2011-10-04 17:13 arg_parse.c
+-rw-r--r-- 1 forbesm2 students  1316 2011-10-04 17:09 builtin.c
+-rwxr-xr-x 1 forbesm2 students 13697 2011-10-05 12:12 msh
+-rw-r--r-- 1 forbesm2 students  1619 2011-10-04 17:04 msh.c
+drwxr-xr-x 2 forbesm2 students     7 2011-10-05 12:10 pdf
+-rw-r--r-- 1 forbesm2 students   135 2011-10-04 15:36 proto.h
+-rw-r--r-- 1 forbesm2 students     0 2011-10-05 12:12 run.txt
+% mo"re" pro   "pro"to.h
+/* argugment parsing */
+int arg_parse(char *line, char ***argvp);
+
+/* builtin commands */
+int try_builtin(int argc, char **argv);
+    
+% aecho now test aecho
+now test aecho
+% aecho "arg' 1" and "arg3 is here"
+arg1 and arg3 is here
+% aecho " -n "no new line followed by emy pty input (blank line)"
+no new line followed by empty input (blank line)% 
+% 
+% aecho "previos us tow  wo inputs were blank line" s s"
+previous two inputs were blank lines
+% test e      aecho "now test exit"
+now test exit
+% exit 2
+[4mCF405-10[24m:[1m~/school/352/as2[0m% echo $status
+2
+[4mCF405-10[24m:[1m~/school/352/as2[0m% ^Dexit
+
+Script done on Wed 05 Oct 2011 12:16:04 PM PDT
