@@ -11,7 +11,6 @@ struct builtin {
 
 void bin_exit(int argc, char **argv) {
     int code = (argc == 1) ? 0 : atoi(argv[1]);
-    printf("incoming: %s, code: %d\n", argv[1], code);
     exit(code);
 }
 
