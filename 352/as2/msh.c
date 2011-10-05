@@ -49,7 +49,6 @@ int main (void)
     if (!feof(stdin))
         perror ("read");
 
-    printf("exiting 0");
     return 0;		/* Also known as exit (0); */
 }
 
