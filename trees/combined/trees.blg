@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d (TeX Live 2010)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: trees.aux
+The style file: plainnat.bst
+Database file #1: references.bib
+Warning--to sort, need author or key in website:leafShape01
+Warning--there's a number but no volume in sunLeaf01
+Warning--there's a number but no volume in sigmoid01
+Warning--there's a number but no volume in sunLight02
+Warning--there's a number but no volume in massdensity01
+Warning--there's a number but no volume in sigmoid02
+You've used 15 entries,
+            2773 wiz_defined-function locations,
+            688 strings with 7079 characters,
+and the built_in function-call counts, 5459 in all, are:
+= -- 456
+> -- 273
+< -- 11
++ -- 96
+- -- 81
+* -- 403
+:= -- 836
+add.period$ -- 42
+call.type$ -- 15
+change.case$ -- 66
+chr.to.int$ -- 15
+cite$ -- 37
+duplicate$ -- 273
+empty$ -- 511
+format.name$ -- 105
+if$ -- 1149
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 13
+newline$ -- 80
+num.names$ -- 56
+pop$ -- 175
+preamble$ -- 1
+purify$ -- 57
+quote$ -- 0
+skip$ -- 211
+stack$ -- 0
+substring$ -- 88
+swap$ -- 19
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 145
+warning$ -- 6
+while$ -- 47
+width$ -- 0
+write$ -- 190
+(There were 6 warnings)

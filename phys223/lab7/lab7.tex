@@ -1,0 +1,205 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage[margin=1in,lmargin=0.5in,rmargin=0.5in]{geometry}
+\usepackage{indentfirst}
+\usepackage{units}
+
+% This allows for multiple columns in one page.
+\usepackage{multicol}
+
+\def \TITLE {Lab 7: Refraction\\ Phys223 - Thursday (Ellis Roe)}
+
+\newcommand{\scalegraphics}[1]{%
+    \settowidth{\imgwidth}{\includegraphics{#1}}%
+    \setlength{\imgwidth}{\minof{\imgwidth}{\columnwidth}}%
+    \includegraphics[width=\imgwidth,keepaspectratio]{#1}%
+}
+
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyfoot{}
+
+\fancyhead[CO,CE]{Matt Forbes - Lab 7}
+\fancyfoot[CO,CE]{Lab 7 - Refraction}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+\lhead{}
+\rhead{\thepage}
+
+\begin{document}
+
+\onecolumn
+\title{\TITLE}
+\author{Matt Forbes and Stuart(Partner)}
+\maketitle
+
+\twocolumn
+\section*{Purpose}
+In this week's lab, we observe the behavior of light traveling between
+mediums which have a different ``index of refraction.'' This index of
+refraction is a relation of how fast light can travel through a given
+medium. We first measure the effects of refraction by comparing the
+angles of incidence and refraction. Then we are able to produce total
+internal reflection, and determine the critical angle for which this
+phenomenon occurs. Next, we use Snell's law to find the index of
+refraction for both water and oil. And finally, we calculate the focal
+length of a concave lens in two ways, one of which is the lens makers
+formula.
+
+\section*{Procedure}
+\subsubsection*{Exercise I: Prism}
+We shine white light through a prism (in our case, rhombus) in such a
+way that the refracted light has been separated in to individual
+colors. Noting that light with a larger frequency has a larger index
+of refraction for a given material, we are able to predict and verify
+which color will refract the most.
+
+\subsubsection*{Exercise I: Slab}
+Using the same rhombus, but using two parallel surfaces this time, we
+calculate angle of incidence and refraction of an incident light
+ray. Making multiple measurements for different angles of incidence,
+we are able to calculate the index of refraction of the acrylic
+rhombus by averaging Snell's law.
+
+\subsubsection*{Exercise II: Total Internal Reflection}
+In this exercise, we experimentally find the critical angle of the
+rhombus by finding the angle of incidence which results in only
+reflection at the surface; that is, no light passes through the
+incident surface on the rhombus. Using Snell's law, we can determine
+the theoretical critical angle by setting $\theta_2$ to 90$^{\circ}$
+and solving for $\theta_1$.
+
+\subsubsection*{Exercise III: Application}
+Here we measure the index of refraction of two substances contained in
+prisms. To do this, we shine a laser pointer through the prism,
+marking it's entrance and exit location. Then we find the angle
+between the incident ray and the refracted ray. With this angle, we
+can calculate the index of refraction using a given formula.
+
+\subsubsection*{Exercise IV: The Lens Makers Formula}
+We shine five parallel rays at a double concave lens, and determine
+the focal length by finding the distance from the intersection of the
+reflected rays and the lens itself. Then, knowing the radius of
+curvature of the lens, we use the Lens Makers formula to find a second
+value for focal length. 
+
+\section*{Data/Analysis}
+\subsubsection*{Exercise I: Prism}
+Observing the refracted rays from the prism, we see the following
+colors: blue, green, yellow, orange, and red. Using Snell's law, we
+see that:
+\[\theta_\mathrm{r} \approx \sin \theta_\mathrm{r} = \frac{n_1\sin\theta_\mathrm{i}}{n_2}\]    
+
+Here, $n_2$ is 1, air, and $n_1$ is the index of refraction of the
+prism. We know that $n_2$ is proportional to the frequency of light,
+and since blue light has the largest frequency, we'd expect it to have
+the most refraction. This is what we see.
+
+Shining the colored rays through the rhombus, we see that the
+refracted rays intersect, and thus are not parallel. Justification of
+this can be seen from Snell's law.
+
+\subsubsection*{Exercise II: Slab}
+For the following three angles of incidence, we measure the angle of
+refraction and thus index of refraction. 
+
+\begin{center}
+  \begin{tabular}{|l|l|l|}
+    \hline
+    $\theta_i$ & $\theta_r$ & $n_2$ \\
+    \hline
+    18.0 $\pm$ 1 & 10.5 $\pm$ 1 & 1.69 \\
+    40.5 $\pm$ 1 & 26.5 $\pm$ 1 & 1.46 \\
+    26.0 $\pm$ 1 & 17.5 $\pm$ 1 & 1.45 \\
+    \hline
+  \end{tabular}
+\end{center}
+
+When we average the index of refraction for each of these
+measurements, we get $\bar{n} = 1.53$. Compared to the actual value of
+1.5, we say this is a pretty good method.
+
+\subsubsection*{Exercise II: Total Internal Reflection}
+Using the angular part of the rhombus, we determined the minimum angle
+so that total internal reflection is achieved. Then, measuring the
+entrance and exit of the ray, we can measure the incident and
+reflected angle. Our measurements give: 
+
+\begin{center}
+  \begin{tabular}{l l l}
+    $\theta_c$ &= & 44$^{\circ} \pm$ 4$^{\circ}$ \\
+    $\theta_r$ &= & 40$^{\circ} \pm$ 4$^{\circ}$ \\
+  \end{tabular}
+\end{center}
+
+
+We would expect these two angles to be equal to each other, because
+this is just simple reflection as in mirrors. We can calculate the
+theoretical critical angle using Snell's law as follows:
+
+\[\theta_c = \sin^{-1}\left(\frac{2}{3}\right) = 41.8^{\circ}\]
+
+The percent difference in the experimental and theoretical values for
+the critical angle is 5\%. 
+
+We observe the brightness of the internally reflected ray increase as
+the incident angle is increased past the critical angle. We know that
+the critical angle is inversely proportional to the index of
+refraction. n will be smaller for violet light, thus the critical
+angle will be greater.
+
+\subsubsection*{Exercise III: Application}
+In this exercise, we need te measure the angle, $\delta$, which is how
+much the refracted ray deviates from the incident angle in the
+prism. Using this angle and a provided geometric formula, we can
+determine the index of refraction for the substance:
+
+\begin{center}
+  \begin{equation*}
+    n = \dfrac{\sin\left[\frac{1}{2}(\theta + \delta)\right]}{\sin\left[\frac{1}{2}(\theta)\right]}
+  \end{equation*}
+\end{center}
+
+For water, we measure $\delta = 22.5^{\circ} \pm 1^{\circ}$ using the
+procedure described above. Simply plugging in $\delta$ in to the
+formula, we find that $n = 1.39$ which is quite close to the known
+value of 1.33.
+
+For the oil substance, we similarly measure $\delta = 38^{\circ} \pm
+1^{\circ}$ and find $n = 1.51$.
+
+\subsubsection*{Exercise IV: The Lens Makers Formula}
+First we measure the radius of convergence for the double concave lens
+as 13.6 cm and focal length of 6.8 cm using the technique from lab
+6. Using $R_1 = R_2 = -6.8cm$ and $n = 1.5$ for the lens, we calculate
+the focal length with the Lens Makers formula:
+
+\[ \frac{1}{f} = (n-1)\left(\frac{1}{R_1}+\frac{1}{R_2}\right) \]
+
+\noindent Solving for $f$ and plugging in our measurements:
+
+\begin{align*}
+  f &= \dfrac{1}{(n-1)\left(\frac{1}{R_1} + \frac{1}{R_2}\right)}\\
+  &= \dfrac{1}{(\frac{1}{2})\left(\frac{2}{-6.8}\right)} \\
+  &= -6.8 \mathrm{cm}
+\end{align*}
+
+So the focal length of a concave lens is negative, as we found using
+the Lens Makers formula. The thickness of the lens could possibly
+change the radius of curvature, and thus the focal length.
+
+\section*{Conclusion}
+We thoroughly investigated properties of light traveling between
+mediums and how different materials can change the angle for which
+light refracts. Throughout, we find Snell's law to be a very useful
+tool in predicting how light will react to an interface between two
+mediums. Also, we determine the conditions for refraction, the minimum
+angle called the critical angle. Finally, we find a new way to
+determine focal length using the index of refraction and radius of
+curvature of a lens.
+
+\end{document}

@@ -1,0 +1,169 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage[margin=1in,lmargin=0.5in,rmargin=0.5in]{geometry}
+\usepackage{indentfirst}
+\usepackage{units}
+
+% This allows for multiple columns in one page.
+\usepackage{multicol}
+
+\def \TITLE {Lab 5: Interference and Diffraction\\ Phys223 - Thursday (Ellis Roe)}
+
+\newcommand{\scalegraphics}[1]{%
+    \settowidth{\imgwidth}{\includegraphics{#1}}%
+    \setlength{\imgwidth}{\minof{\imgwidth}{\columnwidth}}%
+    \includegraphics[width=\imgwidth,keepaspectratio]{#1}%
+}
+
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyfoot{}
+
+\fancyhead[CO,CE]{Matt Forbes - Lab 5}
+\fancyfoot[CO,CE]{Lab 5 - Interference and Diffraction}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+\lhead{}
+\rhead{\thepage}
+
+\begin{document}
+
+\onecolumn
+\title{\TITLE}
+\author{Matt Forbes and Stuart(Partner)}
+\maketitle
+
+\twocolumn
+\section*{Purpose}
+In this lab, we investigate interference and diffraction in both
+double and single slit experiments. We also look at diffraction on CDs
+and DVDs to observe the track spacing in the data storage. One of the
+main relationships noted in this lab is how the quantities of slit
+separation and slit width affect the resulting interference
+pattern. We expect that increasing the slit width increases the number
+of ``groupings'' of interference extrema. Increasing the slit
+separation will decrease the distance between each interference
+extrema in a group.
+
+\section*{Procedure}
+First, we did a simulated double slit experiment where we used two
+identical sinusoidal waves printed on transparent material to
+represent light rays from our simulated source. We pinned them 10cm
+apart which represented the slit separation. Next we drew a line
+perpendicular to the waves 50 cm away from where they were
+pinned. This line represents the screen where we can capture the
+intensity of the interfering light waves. Lining up the two waves
+along the screen, we were able to determine locations of maximum and
+minimum inteference (destructive and constructive) and compare them to
+the predicted values.
+
+Next, we performed an actual double slit experiment using a 633 nm
+laser and slit disk with various slit dimensions. We shine the laser
+through several types of double slits and can observe the result on
+the screen. Here we see the relationship between slit separation/width
+and fringe spacing/grouping. 
+
+Afterwards, we direct the laser beam on a CD to observe the
+diffraction pattern on the screen. Using the known wavelength of the
+laser and the distance between the CD and screen, we can determine the
+track spacing on the CD. We then repeat the experiment with a DVD, and
+see that the diffraction pattern is much too large to measure, as it
+reaches the ceiling.
+
+Finally, we investigate the diffraction from a single slit
+apparatus. Using a similar setup as the double slit, we shine a laser
+through single slits of various dimensions. Using measurements of the
+minimum on the diffraction pattern, we compare our results with the
+expected values from theory.
+
+Further, we determine the thickness of human hair by measuring the
+diffraction pattern created when shining a coherent beam (our laser)
+at a single human hair. Using similar calculations as the single slit
+experiment, we can find the width of this hair.
+
+\section*{Data}
+
+\subsection*{Simulated Double Slit}
+For some unknown reason (verified by Ellis), our constructive and
+destructive interference locations were not symmetric about the center
+point on the screen. This may have been an error in the setup of the
+two pinned waves, improperly drawn lines (not completely
+perpendicular), or a combination of the two. In any case, here is a
+table showing our results:
+
+\begin{center}
+  \begin{tabular}{|l|l|l|}
+    \hline
+    y & Interference Type & $\lambda$ \\
+    \hline
+    11 $\pm$ 0.25 cm & Constructive & 2.1 cm\\
+    4.5 $\pm$ 0.25 cm & Destructive & 0.6 cm\\
+    0 cm & Constructive & -\\
+    -6.75 $\pm$ 0.25 cm & Destructive & 2.6 cm\\
+    -12 $\pm$ 0.25 cm & Constructive & 2.3 cm\\
+    \hline
+  \end{tabular}
+\end{center}
+
+In the above table, we calculated $\lambda$ using the following
+formulas derived from equations outlined in the lab text:
+
+\begin{center}
+  \begin{equation*}
+    \lambda_{\mathrm{max}} = \frac{d}{m} \sin \left( \tan^{-1} \left( \frac{y_{\mathrm{bright}}}{L} \right) \right)
+  \end{equation*}
+\end{center}
+
+\begin{center}
+  \begin{equation*}
+    \lambda_{\mathrm{min}} = \frac{d}{m+\frac{1}{2}} \sin \left( \tan^{-1} \left( \frac{y_{\mathrm{dark}}}{L} \right) \right)
+  \end{equation*}
+\end{center}
+
+\subsection*{Double Slit}
+For the double slit experiments, we tried three different dimensions
+of slit widths and slit separations. For each combination, we wrote a
+description of the interference pattern.
+
+\begin{center}
+  \begin{tabular}{|l|l|l|}
+    \hline
+    Width & Separation & Description \\
+    \hline
+    0.04 mm & 0.25 mm & Spacing between maxima were \\ & &small but visible. \\
+    0.04 mm & 0.5 mm & Same general pattern as with \\ & &0.25 mm separation, but space\\ & &between individual maxima was\\ & &imossible to measure \\
+    0.08 mm & 0.25 mm & Same spacing between maxima \\ & &as with 0.04 mm width slits,\\ & &but there were many more\\ & &groupings of maxima in\\ & &this pattern. \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection*{
+
+\section*{Analysis}
+In the simulated double slit experiment we saw a larger scale, visual
+representation of the interference occuring. It was quite obvious how
+two waves hitting the screen in the same position could have varying
+amounts of interference, and that maxima and minima were easy to spot.
+
+Actually performing the double slit experiment with the laser was
+instructive as we were able to see the impact that changing the two
+slit parameters (slit width and slit separation) had on the resulting
+interference pattern. Also experimenting with a CD was neat, as they
+were always a mystery.
+
+Finally, the single slit experiment showed pure diffraction and how
+the intensities change at different locations on the screen. Also the
+slit size had a very large impact on the separation of the intensity
+maxima and minima.
+
+\section*{Conclusion}
+This lab gave the double slit experiment a tangible explanation and
+clearly showed how and why light interference happens. Not only did we
+see diffraction/intereference patterns through slits, but we also saw
+a little bit about how digital storage works (CDs and DVDs). 
+
+\end{document}

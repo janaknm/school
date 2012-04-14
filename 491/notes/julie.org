@@ -1,0 +1,12 @@
+* In day-to-day work, what are some cases where you interface or check against degree requirements?
+  
+* What are you doing by hand?
+* Where do students usually go wrong when planning their graduation schedules by hand?
+  ** science/math/upper division
+* What happens when you submit a degree evaluation? (Another check by someone else? Automated version you don't have access to? etc.)
+* What format would a students transcript be in if this were to be automated?
+* Any insight to potential pitfalls when trying to automate this?
+** Transfer students. 
+** Degree requirements not being maintained, updated, current.
+
+   

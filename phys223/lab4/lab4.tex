@@ -1,0 +1,245 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage[margin=1in,lmargin=0.5in,rmargin=0.5in]{geometry}
+\usepackage{indentfirst}
+\usepackage{units}
+
+% This allows for multiple columns in one page.
+\usepackage{multicol}
+
+\def \TITLE {Lab 4: Sound Waves - Phys223 - Thursday (Ellis Roe)}
+
+\newcommand{\scalegraphics}[1]{%
+    \settowidth{\imgwidth}{\includegraphics{#1}}%
+    \setlength{\imgwidth}{\minof{\imgwidth}{\columnwidth}}%
+    \includegraphics[width=\imgwidth,keepaspectratio]{#1}%
+}
+
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyfoot{}
+
+\fancyhead[CO,CE]{Matt Forbes - Lab 4}
+\fancyfoot[CO,CE]{Lab 4 - Sound Waves}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+\lhead{}
+\rhead{\thepage}
+
+\begin{document}
+
+\onecolumn
+\title{\TITLE}
+\author{Matt Forbes, Stuart (partner)}
+\maketitle
+
+\twocolumn
+\section*{Purpose}
+The end goal of each of the exercises in this week's lab was to obtain
+an estimate for the speed of sound. Exercise one used an adjustable
+tube (changing height of water level) to obtain the resonance
+measurements and thus the wavelength of sound. Using the wavelength,
+we can find the speed of sound through air. In the second exercise, we
+made direct measuremnts of sound using a microphone and an
+oscilloscope.
+
+\section*{Procedure}
+Exercise one was split in to two parts. First of which was to measure
+resonance distances of the speed of sound in a tube of water. We start
+with a speaker above the tube generating a wave with constant
+frequency. We slowly lower the water level until we here a noticeable
+change in the intensity of sound (also noting a spike on the
+oscilloscope). We take a measurement of this location and adjust for
+spacing between the speaker. Repeating this, we obtain the first few
+resonance distances for the tube. Using these values, we can obtain an
+average wavelength, and since we know the freqency, the speed of
+sound.
+
+In the second part of exercise one, we use the Data Studio software to
+measure the FFT of the resulting sound wave after hitting a hollow
+plastic tube in front of a microphone. Noting the harmonic frequencies
+on the FFT, we can find the resonance locations. We find the speed of
+sound in the same way as part one.
+
+Exercise two is broken in to three methods. Each approaches the
+calculation of the speed of sound in a different way. Method one uses
+the basic chop setting on the oscilloscope to view both input channels
+at the same time. We adjust the speaker distance slowly to measure one
+full wavelength. Since the frequency is set beforehand, we can
+calculate the speed of sound using this wavelength.
+
+Method two uses the x-y setting on the oscilloscope to produce a
+Lissajous figure. By adjusting the speaker distance we can change the
+shape of the figure, and if we measure the distance between two
+identical figures, we get the wavelength. We calculate the speed of
+sound in the same way as method 1.
+
+Finally, method 3 directly measures the time a sound pulse takes to
+travel a known distance. At this point we hook up a pulse generator to
+the oscillator and measure the time difference between pulses on the
+screen. We start with the speaker at some fixed point, noting the x
+offset, then shift the microphone as far away as possible. Using the
+oscilloscope, we measure the time difference between these two
+points. Dividing distance by time gives us the velocity.
+
+\section*{Data}
+
+In exercise one, we measure the resonant frequencies experimentally,
+but also calculate them theoretically. We list both values here and
+show the difference between them. We label $L^P$ the
+predicted length and $L^M$ as the measured length. Using
+$L^P$ we calculate the wavelength, $\lambda$.
+
+\begin{center}
+  \begin{tabular}{|l|l|l|l|}
+    \hline
+    $L^P$ (cm) & $L^M$ (cm) & $\lambda$ (cm) \\
+    \hline
+    8.5 & 8.7 $\pm$ 0.1 & 34.8 \\
+    25.5 & 25.7 $\pm$ 0.1 & 34.27 \\
+    42.5 & 42.8 $\pm$ 0.1 & 34.24 \\
+    59.5 & 60.5 $\pm$ 0.1 & 34.57 \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Here we calculate $\bar{\lambda}$ as the average $\lambda$ in the
+table above:
+
+\begin{center}
+  \begin{equation*}
+    \bar{\lambda} = \dfrac{\lambda_1^M + \lambda_2^M + \lambda_3^M + \lambda_4^M}{4} = 34.47 \mathrm{cm}
+  \end{equation*}
+\end{center}
+
+Using the equation $v = \bar{\lambda}f$ we calculate the speed of
+sound using frequency of 1000 Hz:
+
+\begin{center}
+  \begin{equation*}
+    v_{\mathrm{sound}} = \bar{\lambda} f 
+    = (34.7\mathrm{cm})(1000 \mathrm{Hz}) 
+    = 344.7 \left(\frac{\mathrm{m}}{\mathrm{s}}\right)
+  \end{equation*}
+\end{center}
+
+For part two, we obtained the following frequencies for the first
+three harmonics: 351 Hz, 718 Hz, and 1006 Hz. Each measurement has an
+error factor of $\pm$ 1 Hz. We call the length $L_0$ which is equal to
+46.25cm. Below are the calculations used to determine the speed of
+sound using each harmonic frequency:
+
+\begin{equation*}
+  2L_0 = \lambda_1 = 92.5 \mathrm{cm} 
+\end{equation*}
+\begin{equation*}
+  \begin{split}
+    v_{\mathrm{sound}} &= \lambda_1 f_1 \\
+    &= (\unit[92.5]{cm})(\unit[351]{Hz}) \\
+    &= \unitfrac[324]{m}{s}
+  \end{split}
+\end{equation*}
+
+\begin{equation*}
+  L_0 = \lambda_2 = \unit[46.25]{cm}
+\end{equation*}
+\begin{equation*}
+  \begin{split}
+    v_{\mathrm{sound}} &= \lambda_2 f_2 \\
+    &= (\unit[46.25]{cm})(\unit[718]{Hz}) \\
+    &= \unitfrac[332]{m}{s}
+  \end{split}
+\end{equation*}
+
+\begin{equation*}
+  \nicefrac{2L_0}{3} = \lambda_3 = \unit[30.8]{cm}
+\end{equation*}
+\begin{equation*}
+  \begin{split}
+    v_{\mathrm{sound}} &= \lambda_3 f_3 \\
+    &= (\unit[30.8]{cm})(\unit[1006]{Hz}) \\
+    &= \unitfrac[310]{m}{s}
+  \end{split}
+\end{equation*}
+
+For exercise two, part one we have the have frequency set to
+$\unit[3500]{Hz}$ and we obtain the following measurements for the
+wavelength:
+
+\begin{center}
+  \begin{tabular}{|l|l|l|}
+    \hline
+    $x_1$ & $x_2$ & $\lambda$ \\
+    \hline
+    \unit[55]{cm} & \unit[45]{cm} & \unit[10]{cm} \\
+    \unit[45]{cm} & \unit[35]{cm} & \unit[10]{cm} \\
+    \unit[35]{cm} & \unit[25]{cm} & \unit[10]{cm} \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Since each $\lambda_i$ is equal to \unit[10]{cm} we can just use
+$\bar{\lambda}$ = \unit[10]{cm}, which gives $v_{\mathrm{sound}} =
+\bar{\lambda}f = $ \unitfrac[350]{m}{s}.
+
+In the second part of exercise two, we did nearly the same thing, but
+instead of matching up the phase, we matched the shape of the
+Lissajous figure. Here are the distances for which the figure was the
+same, which gives us wavelength:
+
+\begin{center}
+  \begin{tabular}{|l|l|l|}
+    \hline
+    $x_1$ & $x_2$ & $\lambda$ \\
+    \hline
+    \unit[55]{cm} & \unit[45]{cm} & \unit[10]{cm} \\
+    \unit[40]{cm} & \unit[30]{cm} & \unit[10]{cm} \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Which again gives us $v_{\mathrm{sound}} = \bar{\lambda}f = $
+\unitfrac[350]{m}{s}. Finally, in the last part of exercise two, we
+are measuring the time difference in sound pulses. Here we display the
+offset and time at the two locations which allows us to find $\Delta$x
+and $\Delta$t, and thus $v_{\mathrm{sound}} = \nicefrac{\Delta
+  \mathrm{x}}{\Delta \mathrm{t}}$.
+
+\begin{center}
+  \begin{tabular}{|l|l|l|l|l|l|l|}
+    \hline
+    $x_1$ & $x_2$ & $t_1$ & $t_2$  & $v_{\mathrm{sound}}$ \\
+    \hline
+    \unit[58]{cm} & \unit[5]{cm} & \unit[0.2]{ms} & \unit[1.6]{ms} & \unitfrac[378.5]{m}{s} \\
+    \unit[58]{cm} & \unit[50.5]{cm} & \unit[0.2]{ms} & \unit[0.4]{ms} & \unitfrac[375]{m}{s} \\
+    \hline
+  \end{tabular}
+\end{center}
+  
+\section*{Analysis}
+We calculated the speed of sound many different ways in this lab, some
+being much more accurate than others. Exercise one seemed to produce
+the most accurate results as it was a combination of many different
+resonance lengths. In part two of exercise one, though, not only were
+all the estimates for the speed of sound very wrong, but they weren't
+even consistently wrong. I would at least partially blame this on the
+excess noise in the room we were recording. It was hard to find a
+graph of the FFT in Data Studio that did not include a lot of
+noise. In a perfectly quiet room, this may not have been a problem. 
+
+In exercise two, we also had quite different results between
+subexercises. In addition, all three values were off by quite a bit
+from the true value of the speed of sound.
+
+\section*{Conclusion}
+Determining the speed of sound is not an easy task, and different
+methods return very different results. My preferred method would be
+similar to exercise one, where we can fine tune the value across
+multiple harmonics..
+
+
+\end{document}

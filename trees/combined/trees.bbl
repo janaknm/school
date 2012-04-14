@@ -1,0 +1,89 @@
+\begin{thebibliography}{15}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[web(2009)]{website:leafShape01}
+Leaf shapes and strategies, February 2009.
+\newblock URL \url{http://www.psu.edu/dept/nkbiology/naturetrail/leaves.htm}.
+
+\bibitem[Davidson(2012)]{website:chloroplast01}
+Wichael~W. Davidson.
+\newblock Molecular expressions: Images from the microscope, February 2012.
+\newblock URL
+  \url{http://micro.magnet.fsu.edu/cells/chloroplasts/chloroplasts.html}.
+
+\bibitem[ÈERMÁK(1998)]{sunLeaf01}
+JAN ÈERMÁK.
+\newblock Leaf distribution in large trees and stands of the floodplain forest
+  in southern moravia.
+\newblock \emph{Tree Physiology}, \penalty0 (3):\penalty0 727--737, 1998.
+
+\bibitem[Hall and Roe(1999)]{plantAbsrb01}
+D.~O. Hall and K.~K. Roe.
+\newblock \emph{Photosynthesis}.
+\newblock Cambridge University, Cambridge, UK, 1999.
+
+\bibitem[Hofmeyer et~al.(2010)Hofmeyer, Seymour, and Kenefic]{sigmoid01}
+Philip~V. Hofmeyer, Robert~S. Seymour, and Laura~S. Kenefic.
+\newblock Production ecology of thuja occidentalis.
+\newblock \emph{Canadian Journal of Forest Research}, \penalty0 (40):\penalty0
+  1155--1164, 2010.
+
+\bibitem[JOC/EFR/BS(1997)]{foliumshape01}
+JOC/EFR/BS, January 1997.
+\newblock URL \url{http://www.gap-system.org/~history/Curves/Folium.html}.
+
+\bibitem[Jones(2010)]{website:sunLight01}
+Dr. Michael Pidwirny \&~Scott Jones, April 2010.
+\newblock URL \url{http://www.physicalgeography.net/fundamentals/6i.html}.
+
+\bibitem[Kopp and Lean(2011)]{sunLight02}
+Greg Kopp and Judith~L. Lean.
+\newblock A new, lower value of total solar irradiance: Evidence and climate
+  significance.
+\newblock \emph{Geophysical Research Letters}, \penalty0 (38):\penalty0 7,
+  2011.
+
+\bibitem[Kvasnica et~al.(2004)Kvasnica, Grieder, and Baoti\'{c}]{mpt}
+M.~Kvasnica, P.~Grieder, and M.~Baoti\'{c}.
+\newblock {Multi-Parametric Toolbox (MPT)}, 2004.
+\newblock URL \url{http://control.ee.ethz.ch/~mpt/}.
+
+\bibitem[Lam(2009)]{invsample01}
+Patrick Lam.
+\newblock Sampling methods, 2009.
+\newblock URL
+  \url{http://www.people.fas.harvard.edu/~plam/teaching/methods/sampling/sampling.pdf}.
+
+\bibitem[Nadkarni(2008)]{treeEstimate01}
+Nalini Nadkarni.
+\newblock \emph{Between Earth and Sky: Our intimate Connections to Trees}.
+\newblock Berkley: University of California, Berkley, California, 2008.
+
+\bibitem[Roderick and Cochrane(2002)]{massdensity01}
+Michael~L. Roderick and Michelle~J. Cochrane.
+\newblock On the conservative nature of the leaf mass -- area relationship.
+\newblock \emph{Annals of Botany}, \penalty0 (537):\penalty0 5, 2002.
+
+\bibitem[Schneider and Sagan(2005)]{treeSymm01}
+Eric~D. Schneider and Dorion Sagan.
+\newblock \emph{Into the Cool: Energy Flow. Themodynamics and Life}.
+\newblock University of Chicago, Chicago, IL, 2005.
+
+\bibitem[Setiyono et~al.(2008)Setiyono, Weiss, Specht, Cassman, and
+  Dobermann]{sigmoid02}
+T.~D. Setiyono, A.~Weiss, J.~E. Specht, K.~G. Cassman, and A.~Dobermann.
+\newblock Leaf area index simulation in soybean grown under near-optimal
+  conditions.
+\newblock \emph{Field Crops Research}, \penalty0 (129):\penalty0 1, 2008.
+
+\bibitem[Stine and Geyer(1987)]{sunPower01}
+William~B. Stine and Michael Geyer.
+\newblock \emph{Power From The Sun: principles of high temperature solar
+  thermal technology}.
+\newblock U.S. Government, Washington, DC, 1987.
+
+\end{thebibliography}

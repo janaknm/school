@@ -1,0 +1,138 @@
+
+
+Western Washington University
+
+
+
+Name: Forbes, Matthew R ID: W00858156 Previous ID:
+
+
+ 
+ 
+                                                                                                                                       
+Subj Crse  CRN   Course Title                   Cdt Grd Qpts  Gmod Gr Date  Rpt Attr
+---- ----- ----- ------------------------------ --- --- ----- ---- -------- --- ----
+200840   Cls: FR   Coll: 00   Res: R   Fac Actn: Good Standing    
+         Site:     Prg1: IN            Prg2:                     Mjr: NCIN
+A/HI 220   42533 Visual Cult Anc Greece/Rome    3   B     9.0   L  12/15/08      HUM                 
+ENG  100   40900 Intro to College Writing       5   U     0.0   S  12/16/08                          
+MATH 124   40590 Calculus & Analytic Geometry I 5   B-   13.5   L  12/15/08      QSR                 
+PE   139   40372 Beginning Racquetball          1   S     0.0   S  12/11/08                          
+Quarter:  Credits:    9.0     Qpts:    22.50     GPA:  2.81
+                                                                                
+200910   Cls: FR   Coll: 00   Res: R   Fac Actn: Good Standing    
+         Site:     Prg1: IN            Prg2:                     Mjr: NCIN
+ENG  101   10060 Writing and Critical Inquiry   5   B    15.0   L  03/24/09      ACOM                
+HIST 111   13794 Prehistory To 476              4   B    12.0   L  03/23/09      HUM                 
+LING 201   10109 Intro to Linguistics Science   5   A-   18.5   L  03/24/09      SSC                 
+Quarter:  Credits:   14.0     Qpts:    45.50     GPA:  3.25
+                                                                                
+200920   Cls: SO   Coll: 00   Res: R   Fac Actn: Good Standing    
+         Site:     Prg1: IN            Prg2:                     Mjr: NCIN
+CSCI 102   21008 Computr-Mediatd Commun w/lab   3   A    12.0   L  06/16/09      BCOM                
+MIS  314   21033 Fundmntls of Web Dev/Mgmt      4   A-   14.8   L  06/15/09                          
+PHIL 102   21135 Introduction to Logic          3   A    12.0   L  06/12/09      QSR                 
+PHYS 104   22603 Physics Applications           4   B+   13.2   L  06/10/09      LSCI                
+Quarter:  Credits:   14.0     Qpts:    52.00     GPA:  3.71
+                                                                                
+200930   Cls: SO   Coll: 00   Res: R   Fac Actn: Good Standing    
+         Site:     Prg1: IN            Prg2:                     Mjr: NCIN
+CSCI 202   31247 Dynamic Web Pages              4   A    16.0   L  08/20/09                          
+MATH 125   30205 Calculus & Anlytic Geometry II 5   A    20.0   L  08/24/09                          
+Quarter:  Credits:    9.0     Qpts:    36.00     GPA:  4
+                                                                                
+200940   Cls: SO   Coll: 00   Res: R   Fac Actn: Good Standing    
+         Site:     Prg1: IN            Prg2:                     Mjr: NCIN
+CSCI 141   40886 Computer Programming I W/Lab   4   A    16.0   L  12/10/09      QSR                 
+MATH 224   40561 Multivariable Calc & Geomtry I 5   B-   13.5   L  12/15/09                          
+PHYS 121   43813 Physics with Calculus I        5   A-   18.5   L  12/14/09      LSCI                
+Quarter:  Credits:   14.0     Qpts:    48.00     GPA:  3.42
+                                                                                
+201010   Cls: JR   Coll: 00   Res: R   Fac Actn: Good Standing    
+         Site:     Prg1: IN            Prg2:                     Mjr: NCIN
+CSCI 145   10126 Comp Prog & Linear Data Stuct  4   A    16.0   L  03/23/10      QSR                 
+CSCI 227   11436 Computer Organization I        4   A    16.0   L  03/23/10                          
+PHYS 122   13469 Physics with Calculus II       5   A-   18.5   L  03/22/10      LSCI                
+Quarter:  Credits:   13.0     Qpts:    50.50     GPA:  3.88
+                                                                                
+201020   Cls: JR   Coll: 00   Res: R   Fac Actn: Good Standing   Honor Roll
+         Site:     Prg1: IN            Prg2:                     Mjr: NCIN
+CSCI 211   22023 Dscret Strct/Func Prgm I w/lab 4   A    16.0   L  06/11/10                          
+CSCI 241   20979 Data Structures                4   A    16.0   L  06/15/10                          
+CSCI 347   22699 Computer Organization II       3   A    12.0   L  06/11/10                          
+MATH 209   20031 Discrete Mathematics           4   A    16.0   L  06/08/10                          
+Quarter:  Credits:   15.0     Qpts:    60.00     GPA:  4
+                                                                                
+201030   Cls: JR   Coll: 00   Res: R   Fac Actn: Good Standing    
+         Site:     Prg1: IN            Prg2:                     Mjr: NCIN
+MATH 204   30178 Elementary Linear Algebra      4   A    16.0   L  08/19/10                          
+MATH 225   30443 Multivrble Calc & Geomtry II   4   A    16.0   L  08/09/10                          
+Quarter:  Credits:    8.0     Qpts:    32.00     GPA:  4
+                                                                                
+201040   Cls: SR   Coll: ST   Res: R   Fac Actn: Good Standing    
+         Site:     Prg1: BS-ST         Prg2:                     Mjr: NC01
+CSCI 245   42262 OO Programming C++             4   A    16.0   L  12/14/10                          
+CSCI 305   41682 Analysis of Algorithms I       3   A    12.0   L  12/10/10                          
+M/CS 335   41761 Linear Optimization            4   A-   14.8   L  12/08/10                          
+MATH 304   40952 Linear Algebra                 4   B    12.0   L  12/09/10                          
+Quarter:  Credits:   15.0     Qpts:    54.80     GPA:  3.65
+                                                                                
+201110   Cls: SR   Coll: ST   Res: R   Fac Actn: Good Standing    
+         Site:     Prg1: BS-ST         Prg2:                     Mjr: NC01
+CSCI 367   10707 Computer Networks I            3   A    12.0   L  03/22/11                          
+CSCI 400   13672 Selected Topics of AI          4   A    16.0   L  03/22/11                          
+M/CS 435   11426 Nonlinear Optimization         4   A-   14.8   L  03/16/11                          
+Quarter:  Credits:   11.0     Qpts:    42.80     GPA:  3.89
+                                                                                
+201120   Cls: SR   Coll: ST   Res: R   Fac Actn: Good Standing    
+         Site:     Prg1: BS-ST         Prg2:                     Mjr: NC01
+CSCI 322   21736 Principles of Concurrent Prog  3   A    12.0   L  06/10/11                          
+MATH 312   20037 Proofs in Elementary Analysis  4   B    12.0   L  06/08/11                          
+PHYS 123   22433 Electricity and Magnetism      5   A    20.0   L  06/10/11      LSCI                
+Quarter:  Credits:   12.0     Qpts:    44.00     GPA:  3.66
+                                                                                
+201130   Cls: SR   Coll: ST   Res: R   Fac Actn: Good Standing    
+         Site:     Prg1: BS-ST         Prg2:                     Mjr: NC01
+MATH 226   30159 Limits & Infinite Series       4   A    16.0   L  08/22/11                          
+Quarter:  Credits:    4.0     Qpts:    16.00     GPA:  4
+                                                                                
+201140   Cls: SR   Coll: ST   Res: R   Fac Actn: Good Standing   Honor Roll
+         Site:     Prg1: BS-ST         Prg2:                     Mjr: NC01
+CSCI 352   42017 Unix Software Development      3   A    12.0   L  12/14/11                          
+CSCI 491   41804 Software Project Analysis      3   A    12.0   L  12/13/11      WP2                 
+CSCI 510   40996 Automata & Formal Lang Theory  4   A    16.0   L  12/13/11                          
+MATH 341   40620 Probability/Statistical Infrnc 4   A    16.0   L  12/12/11                          
+Quarter:  Credits:   14.0     Qpts:    56.00     GPA:  4
+                                                                                
+ 
+In Progress: 201210 Curr Cls: SR Sub--Coll ST Res R Majr: Computer Science 
+CSCI 492   11651 Software Project Design        3     Status: RW   L  11/16/11     WP2                 
+MATH 412   10603 Mathematical Modeling Comp     1     Status: RW   L  01/04/12                         
+MATH 438   12970 Intro to Complex Variables     4     Status: RW   L  11/16/11                         
+PHYS 223   12243 Waves and Optics               3     Status: RW   L  11/16/11                         
+PHYS 224   10577 Modern Physics I               3     Status: RW   L  11/17/11                         
+PHYS 233   12260 Waves & Optics Laboratory      1     Status: RW   L  11/16/11                         
+                                                                                
+                            Academic Summary To Date
+1. AP/CEEB Tests/College Credit   ( )     Credits: 5      Degree:  
+2. Green River Cmty College       (2)     Credits: 22     Degree:  
+                                                                                
+                Total      Transfer       -----------Western---------------
+                Crdts       Crdts         Crdts    Hours      Qpnts     GPA
+Undergraduate   179.000     27.000       152.00   151.000    560.100    3.70
+                                                                                
+ 
+Current Site:      
+ 
+                                                                                
+                 Primary Curriculum                            Secondary Curriculum                         
+                 ------------------                            --------------------                         
+ 
+Catalog term: 201040                                           Catalog term:  
+201210 Mjr 1: NC01 Computer Science                                                                            
+201210 Mjr 2: NB01 Mathematics                                                                                 
+201210 Mnr 1:                                                                                                  
+201210 Mnr 2:                                                                                                  
+201210 Program: BS-ST BS-Sciences & Technology                                                                 
+
+

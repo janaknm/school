@@ -1,0 +1,7 @@
+* Architecture
+** big-endian
+   bytes stored left to right
+* Assembly
+** load
+   load from to
+   (putting the argument  in []'s "dereferences" by one indirection

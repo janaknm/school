@@ -1,0 +1,130 @@
+\documentclass[10pt]{article}
+
+\usepackage{enumerate}
+\usepackage{amsfonts}
+
+\usepackage[margin=1.5in,lmargin=1in,rmargin=1in]{geometry}
+
+\begin{document}
+
+\title{CS460 - Assignment 1}
+\author{Matt Forbes}
+\maketitle
+\newpage
+
+\section{Question 1.1}
+Three main purposes of an OS:
+\begin{enumerate}
+\item Run programs
+\item Interface with hardware
+\item Store data and manage resources
+\end{enumerate}
+
+\section{Question 1.2}
+Main differences between mainframes and PCs:
+\begin{enumerate}
+\item Ease of use vs. resource utilization
+\item PC's should be responsize to the user
+\item Mainframes should be efficient computation machines
+\end{enumerate}
+
+\section{Question 1.3}
+Steps to run a program on dedicated machine:
+\begin{enumerate}
+\item Load bootstrap program from ROM
+\item Initialize the system registers
+\item Load the program in to memory
+\item Run the program
+\end{enumerate}
+
+\section{Question 1.7}
+Distinguishing kernel mode from user mode allows the use of privileged
+instructions to be run in a controlled manner and not maliciously by a
+user. Certain locations in memory could be controlled this way so that
+ordinary users cannot mess with it.
+
+\section{Question 1.8}
+Should be privileged: a, c, e, f, g
+
+\section{Question 1.13}
+\begin{enumerate}[a)]
+\item Two security problems:
+  \begin{enumerate}[1]
+  \item One user could possibly interfere with another user's processes
+  \item One user could intercept device data and learn personal
+    information about \\other users (credit cards, etc.)
+  \end{enumerate}
+\item Probably, it might cause the system to be less accessible due to
+  security measures, though.
+\end{enumerate}
+
+\section{Question 1.17}
+Symmetric processors all perform the same tasks within the OS, there
+is no master-slave hierarchy. In asymmetric processing, one processor
+is the master and delegates tasks to its slave processors. \\
+
+\noindent Advantages:
+\begin{enumerate}
+\item Allows programs to be processed in parallel, which can result in
+  massive speed-ups.
+\item Makes it easier to run multiple programs concurrently with less
+  context-switching.
+\item Provides a way to increase computation power without optimizing
+  processors themselves, but simply adding more to the system.
+\end{enumerate}
+
+\noindent Disadvantage: Programming easily parallelizable software can be a real
+challenge and in some cases unintuitive.
+
+\section{Question 1.23}
+\begin{enumerate}[a)]
+\item CPU interfaces with the device by: setting up buffers, pointers,
+  and counters for the I/O device.
+\item CPU knows when the operations are complete when the device
+  driver generates an interrupt upon completion.
+\item This process could interfere with user programs if said program
+  also needs to utilize a busy device. It might seem as though the
+  device is slow or broken if it can not be accessed how it normally
+  would.
+\end{enumerate}
+
+\section{Question 1.30}
+Definitions of types of operating systems:
+\begin{enumerate}[a)]
+\item Batch: Rather than a single user the computer at a time,
+  multiple people queue programs to run and the OS does them each at a
+  time. 
+  
+\item Interactive: Provides direct communication between the user and
+  the system (i.e. using input devices such as a mouse and keyboard).
+  
+\item Time sharing: The CPU executes multiple jobs by switching among
+  them, fast enough that it should be undetectable to the user.
+  
+\item Real time: A system is considered real time when there are
+  certain time constraints that it must abide by. Known tasks must be
+  consistently finished by an exact amount of time with no exceptions.
+  
+\item Network: Network operating systems provide features such as file
+  sharing or communication across a network.
+  
+\item Parallel: Allows programs being run to be computed on multiple
+  CPUs concurrently. 
+  
+\item Distributed: Collection of physically separate, possibly
+  heterogenous, computer systems that are networked to provide the
+  users with access to the various resources the system maintains.
+  
+\item Clustered: When multiple systems are somehow connected together
+  to jointly provide computational power. Generally, the systems are
+  connected together on a LAN for communication.
+  
+\item Handheld: Operating systems designed for use on devices small
+  enough to be held in a hand. Usually an embedded system specifically
+  designed to facilitate ease of use on a small screen with limited
+  input capability.
+  
+\end{enumerate}
+
+
+\end{document}

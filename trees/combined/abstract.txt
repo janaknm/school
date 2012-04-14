@@ -1,0 +1,3 @@
+
+    We present a model for estimating leaf mass and leaf mass distributions for a given tree.  Certain more explicit formulations of the question such as which type a tree or which type of environment contain more or less leaf mass content are essentially trivial to answer and are briefly addressed.  We focus on the sun distribution of energy on the surface of the tree for a given day as the heart of our model.  We argue that the leaf mass distribution is strongly correlated
+    Expansions of our model can be used to predict the energy absorbed by photosynthesis across the globe.

@@ -1,0 +1,685 @@
+Script started on Mon Apr  2 12:28:47 2012
+bash-3.2$ ls -l
+total 856
+-rw-r--r--@ 1 mattforbes  staff  131076 Mar 26 14:44 DISK
+-rw-r--r--@ 1 mattforbes  staff    3977 Mar 26 14:44 Echo.s
+-rw-r--r--@ 1 mattforbes  staff    2812 Mar 26 14:44 Hello.s
+-rw-r--r--@ 1 mattforbes  staff      63 Mar 26 14:44 HelloWorld.h
+-rw-r--r--@ 1 mattforbes  staff     391 Mar 29 14:12 HelloWorld.k
+-rw-r--r--@ 1 mattforbes  staff   31719 Mar 26 14:44 Runtime.s
+-rw-r--r--@ 1 mattforbes  staff    2681 Mar 26 14:44 System.h
+-rw-r--r--@ 1 mattforbes  staff   11472 Mar 26 14:44 System.k
+-rw-r--r--@ 1 mattforbes  staff  113991 Apr  2 12:06 a1files.tgz
+-rw-r--r--  1 mattforbes  staff      43 Apr  2 12:28 as1.script
+-rw-r--r--@ 1 mattforbes  staff   23245 Mar 30 08:38 asgn1.odt
+-rw-r--r--@ 1 mattforbes  staff   87770 Mar 30 08:38 asgn1.pdf
+-rw-r--r--@ 1 mattforbes  staff     788 Mar 28 15:20 makefile
+bash-3.2$ asm Hello.s
+bash-3.2$ lddd Hello.o -o Hello
+bash-3.2$ blitz -g Hello
+Beginning execution...
+Hello, world!
+
+****  A 'debug' instruction was encountered  *****
+Done!  The next instruction to execute will be:
+000080: A1FFFFB8       jmp     0xFFFFB8		! targetAddr = main
+
+Entering machine-level debugger...
+======================================================
+=====                                            =====
+=====         The BLITZ Machine Emulator         =====
+=====                                            =====
+=====  Copyright 2001-2007, Harry H. Porter III  =====
+=====                                            =====
+======================================================
+
+Enter a command at the prompt.  Type 'quit' to exit or 'help' for
+info about commands.
+> go
+Beginning execution...
+Hello, world!
+
+****  A 'debug' instruction was encountered  *****
+Done!  The next instruction to execute will be:
+000080: A1FFFFB8       jmp     0xFFFFB8		! targetAddr = main
+> q ex  quit
+Number of Disk Reads    = 0
+Number of Disk Writes   = 0
+Instructions Executed   = 3419
+Time Spent Sleeping     = 0
+    Total Elapsed Time  = 3419
+bash-3.2$ asm Echo.s
+bash-3.2$ lddd Echo.s[Ko -o Echo
+bash-3.2$ blitz Echo
+======================================================
+=====                                            =====
+=====         The BLITZ Machine Emulator         =====
+=====                                            =====
+=====  Copyright 2001-2007, Harry H. Porter III  =====
+=====                                            =====
+======================================================
+
+Enter a command at the prompt.  Type 'quit' to exit or 'help' for
+info about commands.
+> g
+Beginning execution...
+hello
+hello
+world
+world
+seems to
+seems to
+be working
+be working
+q
+q
+****  A 'debug' instruction was encountered  *****
+Done!  The next instruction to execute will be:
+                   cont:
+0000A4: A1FFFFAC       jmp     0xFFFFAC		! targetAddr = loop
+> q
+Number of Disk Reads    = 0
+Number of Disk Writes   = 0
+Instructions Executed   = 178765230
+Time Spent Sleeping     = 0
+    Total Elapsed Time  = 178765230
+bash-3.2$ kpl -unsafe-system[K[K[K[K[K[K[K System
+System.c:0: *****  LEXICAL ERROR: File could not be opened for reading
+
+**********  1 error detected!  **********
+bash-3.2$ mv System.c [K[K[K[K[K[K[K[K[K[K[K[Kls
+DISK		Echo.s		Hello.s		Runtime.s	a1files.tgz	asgn1.pdf
+Echo		Hello		HelloWorld.h	System.h	as1.script	makefile
+Echo.o		Hello.o		HelloWorld.k	System.k	asgn1.odt
+bash-3.2$ mv Systet[Km.k Syset[K[Ktem.c
+bash-3.2$ mv System.k System.c[C[C[C[C[C[C[C[C[C[Cls[Kkpl -unsafe System
+bash-3.2$ asm System.s
+bash-3.2$ kpl HelloWorld
+HelloWorld.c:0: *****  LEXICAL ERROR: File could not be opened for reading
+
+**********  1 error detected!  **********
+bash-3.2$ mv h[KHelloWorld.
+HelloWorld.h  HelloWorld.k  
+bash-3.2$ mv HelloWorld.k HelloWorld.c
+bash-3.2$ mv HelloWorld.k HelloWorld.c[C[C[C[C[C[C[C[C[C[C[14Pkpl HelloWorld
+bash-3.2$ asm HelloWorld.s
+bash-3.2$ asm Runtime[Ke.s
+bash-3.2$ lddd Runtime.o System.o Holl[K[K[KelloWorld.o -o HelloWorld
+bash-3.2$ blitz -g HelloWorld
+Beginning execution...
+====================  KPL PROGRAM STARTING  ====================
+Hello, world...
+
+====================  KPL PROGRAM TERMINATION  ====================
+
+****  A 'debug' instruction was encountered  *****
+Done!  The next instruction to execute will be:
+000D98: C0100000       sethi   0x0000,r1	! 0x00000DA8 = 3496 (noGoMessage)
+
+Entering machine-level debugger...
+======================================================
+=====                                            =====
+=====         The BLITZ Machine Emulator         =====
+=====                                            =====
+=====  Copyright 2001-2007, Harry H. Porter III  =====
+=====                                            =====
+======================================================
+
+Enter a command at the prompt.  Type 'quit' to exit or 'help' for
+info about commands.
+> g
+Beginning execution...
+
+The KPL program has terminated; you may not continue!
+
+****  A 'debug' instruction was encountered  *****
+Done!  The next instruction to execute will be:
+000D98: C0100000       sethi   0x0000,r1	! 0x00000DA8 = 3496 (noGoMessage)
+> q
+Number of Disk Reads    = 0
+Number of Disk Writes   = 0
+Instructions Executed   = 1296
+Time Spent Sleeping     = 0
+    Total Elapsed Time  = 1296
+bash-3.2$ vim HelloWorld.
+HelloWorld.c  HelloWorld.h  HelloWorld.o  HelloWorld.s  
+bash-3.2$ vim HelloWorld.c
+7[?47h[?1h=[1;29r[m[H[2J[29;1H"HelloWorld.c" "HelloWorld.c" 24L, 391C[>c[1;1Hcode Hello
+
+  -- This is the "hello world" program, for use in Project 1.
+
+  function main ()[6;6H print ("Hello, world...\n")[7;6H --foo (10)
+    endFunction
+
+  function foo (x: int)[11;6H bar (x+1)
+    endFunction
+
+  function bar (a: int)
+    var b: int[16;6H b = a + 1[17;6H print ("The value of b is ")[18;6H printInt (b)[19;6H nl ()[20;6H debug[21;6H bar (b)
+    endFunction
+
+endCode
+[1m[34m~                                                                                                 [26;1H~                                                                                                 [27;1H~                                                                                                 [28;1H~                                                                                                 [1;1H
+
+
+
+
+
+[m      --[29;1H[1m-- INSERT --[m[29;13H[K[7;9H-foo (10)[7;16H[K[7;8H foo (10)[7;15H[K[7;7H[29;1H[K[7;6H[29;1H:wq"HelloWorld.c" "HelloWorld.c" 24L, 389C written
+[?1l>[2J[?47l8bash-3.2$ make
+make: *** No rule to make target `System.k', needed by `System.s'.  Stop.
+bash-3.2$ vim Makefile[K[K[K[K[K[K[K[Kmakefile 
+7[?47h[?1h=[1;29r[m[H[2J[29;1H"makefile" "makefile" 42L, 788C[>c[1;1H#
+# Type 'make' with this 'makefile' file to build the example BLITZ programs.
+# It will execute the following commands as needed, based on files'
+# most-recent-update times.
+#
+
+all: Echo Hello HelloWorld
+
+Echo.o: Echo.s[10;8H asm Echo.s
+
+Echo: Echo.o[13;8H lddd Echo.o -o Echo
+
+Hello.o: Hello.s[16;8H asm Hello.s
+
+Hello: Hello.o[19;8H lddd Hello.o -o Hello
+
+Runtime.o: Runtime.s[22;8H asm Runtime.s
+
+System.s: System.h System.k[25;8H kpl System -unsafe
+
+System.o: System.s[28;8H asm System.s[1;1H
+
+
+
+
+
+
+
+[10;8H
+
+[13;8H
+
+[16;8H
+
+[19;8H
+
+[22;8H
+
+[25;8H
+
+[28;8H[1;28r[28;1H
+[1;29r[29;1H[K[28;1H[1;28r[28;1H
+[1;29r[28;1HHelloWorld.s: HelloWorld.h HelloWorld.k System.h[1;28r[28;1H
+[1;29r[28;8H kpl HelloWorld[28;8H[1;28r[28;1H
+[1;29r[28;1H[1;28r[28;1H
+[1;29r[28;1HHelloWorld.o: HelloWorld.s[1;28r[28;1H
+[1;29r[28;8H asm HelloWorld.s[28;8H[1;28r[28;1H
+[1;29r[28;1H[1;28r[28;1H
+[1;29r[28;1HHelloWorld: Runtime.o System.o HelloWorld.o[27;1H[26;8H[25;1H[24;1H[23;8H[22;1HHelloWorld.s: HelloWorld.h HelloWorld.k[29;1H[1m-- INSERT --[22;40H[m. System.h[22;48H[K[22;39H.c System.h[22;40H[29;1H[K[22;39H[21;1H[20;20H[19;18H[18;1H[17;26H[16;27H[29;1H[1m-- INSERT --[16;28H[mki[16;28H[K[16;28H[16;27H[K[16;27H.c[29;1H[K[16;27H[17;26H
+[19;18H[20;20H
+[22;27H[23;22H
+[25;26H[26;24H
+[28;27H[1;28r[28;1H
+[1;29r[28;8H lddd Runtime.o System.o HelloWorld.o -o HelloWorld[28;27H[1;28r[28;1H
+[1;29r[28;1H[1;28r[28;1H
+[1;29r[28;1Hclean:[1;28r[28;1H
+[1;29r[28;8H rm -f Echo.o Echo[1;28r[28;1H
+[1;29r[28;8H rm -f Hello.o Hello[1;28r[28;1H
+[1;29r[28;8H rm -f Runtime.o System.s System.o HelloWorld.o HelloWorld.s HelloWorld[28;27H[27;27H[26;25H[25;6H[24;1H[23;27H[22;27H[21;1H[20;24H[19;26H[18;1H[17;22H[16;27H[15;1H[14;20H[13;18H[12;1H[11;26H[10;27H[9;1H[8;21H[7;20H[6;1H[5;27H[4;14H[3;1H[2;19H[1;16H[1;28r[1;1H[L[1;29r[1;1H[1;28r[1;1H[L[1;29r[1;8H lddd Echo.o -o Echo[1;28r[1;1H[L[1;29r[1;1HEcho: Echo.o[1;28r[1;1H[L[1;29r[1;1H[1;28r[1;1H[L[1;29r[1;8H asm Echo.s[1;28r[1;1H[L[1;29r[1;1HEcho.o: Echo.s[1;28r[1;1H[L[1;29r[1;1H[1;28r[1;1H[L[1;29r[1;1Hall: Echo Hello HelloWorld[1;28r[1;1H[L[1;29r[1;1H[1;28r[1;1H[L[1;29r[1;1H#[1;28r[1;1H[L[1;29r[1;1H# most-recent-update times.[1;28r[1;1H[L[1;29r[1;1H# It will execute the following commands as needed, based on files'[1;27H[1;28r[1;1H[L[1;29r[1;1H# Type 'make' with this 'makefile' file to build the example BLITZ programs.[1;27H[1;28r[1;1H[L[1;29r[1;1H#[29;1H/s/[29;2H[K[29;2H [1;1H[29;1H[1m-- INSERT --[m[1;1H[K[1;1H[29;1H[K[1;1H[29;1H1 change; before #3  2 seconds ago[1;1H#
+
+
+
+
+
+
+
+[10;8H
+
+[13;8H
+
+[16;8H
+
+[19;8H
+
+[22;8H
+
+[25;8H
+
+[28;8H[1;28r[28;1H
+[1;29r[29;1H[K[28;1H[1;28r[28;1H
+[1;29r[28;1HHelloWorld.s: HelloWorld.h HelloWorld.c System.h[1;28r[28;1H
+[1;29r[28;8H kpl HelloWorld[28;8H[1;28r[28;1H
+[1;29r[28;1H[1;28r[28;1H
+[1;29r[28;1HHelloWorld.o: HelloWorld.s[1;28r[28;1H
+[1;29r[28;8H asm HelloWorld.s[28;8H[1;28r[28;1H
+[1;29r[28;1H[1;28r[28;1H
+[1;29r[28;1HHelloWorld: Runtime.o System.o HelloWorld.o[1;28r[28;1H
+[1;29r[28;8H lddd Runtime.o System.o HelloWorld.o -o HelloWorld[28;8H[1;28r[28;1H
+[1;29r[28;1H[1;28r[28;1H
+[1;29r[28;1Hclean:[1;28r[28;1H
+[1;29r[28;8H rm -f Echo.o Echo[28;8H[1;28r[28;1H
+[1;29r[28;8H rm -f Hello.o Hello[28;8H[1;28r[28;1H
+[1;29r[28;8H rm -f Runtime.o System.s System.o HelloWorld.o HelloWorld.s HelloWorld[28;8H
+:wq"makefile" "makefile" 42L, 788C written
+[?1l>[2J[?47l8bash-3.2$ make
+kpl HelloWorld
+asm HelloWorld.s
+lddd Runtime.o System.o HelloWorld.o -o HelloWorld
+bash-3.2$ blitz -g HelloWorld
+Beginning execution...
+====================  KPL PROGRAM STARTING  ====================
+Hello, world...
+The value of b is 12
+
+****  A 'debug' instruction was encountered  *****
+Done!  The next instruction to execute will be:
+0028A4: 8B1EFFF0       load    [r14+0xFFF0],r1	! decimal: -16
+
+Entering machine-level debugger...
+======================================================
+=====                                            =====
+=====         The BLITZ Machine Emulator         =====
+=====                                            =====
+=====  Copyright 2001-2007, Harry H. Porter III  =====
+=====                                            =====
+======================================================
+
+Enter a command at the prompt.  Type 'quit' to exit or 'help' for
+info about commands.
+> g
+Beginning execution...
+The value of b is 13
+
+****  A 'debug' instruction was encountered  *****
+Done!  The next instruction to execute will be:
+0028A4: 8B1EFFF0       load    [r14+0xFFF0],r1	! decimal: -16
+> g
+Beginning execution...
+The value of b is 14
+
+****  A 'debug' instruction was encountered  *****
+Done!  The next instruction to execute will be:
+0028A4: 8B1EFFF0       load    [r14+0xFFF0],r1	! decimal: -16
+> g
+Beginning execution...
+The value of b is 15
+
+****  A 'debug' instruction was encountered  *****
+Done!  The next instruction to execute will be:
+0028A4: 8B1EFFF0       load    [r14+0xFFF0],r1	! decimal: -16
+> st
+   Function/Method            Frame Addr   Execution at...
+   ========================   ==========   =====================
+   bar                         00FFFE74    HelloWorld.c, line 20
+   bar                         00FFFE90    HelloWorld.c, line 21
+   bar                         00FFFEAC    HelloWorld.c, line 21
+   bar                         00FFFEC8    HelloWorld.c, line 21
+   foo                         00FFFEE0    HelloWorld.c, line 11
+   main                        00FFFEF8    HelloWorld.c, line 7
+Bottom of activation frame stack!
+> go
+Beginning execution...
+The value of b is 16
+
+****  A 'debug' instruction was encountered  *****
+Done!  The next instruction to execute will be:
+0028A4: 8B1EFFF0       load    [r14+0xFFF0],r1	! decimal: -16
+> st
+   Function/Method            Frame Addr   Execution at...
+   ========================   ==========   =====================
+   bar                         00FFFE58    HelloWorld.c, line 20
+   bar                         00FFFE74    HelloWorld.c, line 21
+   bar                         00FFFE90    HelloWorld.c, line 21
+   bar                         00FFFEAC    HelloWorld.c, line 21
+   bar                         00FFFEC8    HelloWorld.c, line 21
+   foo                         00FFFEE0    HelloWorld.c, line 11
+   main                        00FFFEF8    HelloWorld.c, line 7
+Bottom of activation frame stack!
+> fr
+=====  Frame number 0 (where StackTop = 0)  =====
+Function Name:    bar
+Filename:         HelloWorld.c
+Execution now at: line 20
+Frame Addr:       00FFFE58
+frameSize:        12
+totalParmSize:    4
+                         ==========
+   sp--> -20   00FFFE44:  00000010
+         -16   00FFFE48:  00000010
+         -12   00FFFE4C:  0000906C
+R.D.ptr:  -8   00FFFE50:  000028D0
+    r13:  -4   00FFFE54:  00000015
+     fp:   0   00FFFE58:  00FFFE74
+RetAddr:   4   00FFFE5C:  000028B8
+                         ==========
+   Args:   8   00FFFE60:  0000000F
+
+PARAMETERS AND LOCAL VARIABLES WITHIN THIS FRAME:
+=================================================
+  a: int
+           8   00FFFE60:  0000000F    value = 15
+  _temp_15
+         -12   00FFFE4C:  0000906C
+  b: int
+         -16   00FFFE48:  00000010    value = 16
+=================================================
+> up
+Already at top of stack!
+=====  Frame number 0 (where StackTop = 0)  =====
+Function Name:    bar
+Filename:         HelloWorld.c
+Execution now at: line 20
+Frame Addr:       00FFFE58
+frameSize:        12
+totalParmSize:    4
+                         ==========
+   sp--> -20   00FFFE44:  00000010
+         -16   00FFFE48:  00000010
+         -12   00FFFE4C:  0000906C
+R.D.ptr:  -8   00FFFE50:  000028D0
+    r13:  -4   00FFFE54:  00000015
+     fp:   0   00FFFE58:  00FFFE74
+RetAddr:   4   00FFFE5C:  000028B8
+                         ==========
+   Args:   8   00FFFE60:  0000000F
+
+PARAMETERS AND LOCAL VARIABLES WITHIN THIS FRAME:
+=================================================
+  a: int
+           8   00FFFE60:  0000000F    value = 15
+  _temp_15
+         -12   00FFFE4C:  0000906C
+  b: int
+         -16   00FFFE48:  00000010    value = 16
+=================================================
+> down
+=====  Frame number 1 (where StackTop = 0)  =====
+Function Name:    bar
+Filename:         HelloWorld.c
+Execution now at: line 21
+Frame Addr:       00FFFE74
+frameSize:        12
+totalParmSize:    4
+                         ==========
+         -20   00FFFE60:  0000000F
+         -16   00FFFE64:  0000000F
+         -12   00FFFE68:  0000906C
+R.D.ptr:  -8   00FFFE6C:  000028D0
+    r13:  -4   00FFFE70:  00000015
+     fp:   0   00FFFE74:  00FFFE90
+RetAddr:   4   00FFFE78:  000028B8
+                         ==========
+   Args:   8   00FFFE7C:  0000000E
+
+PARAMETERS AND LOCAL VARIABLES WITHIN THIS FRAME:
+=================================================
+  a: int
+           8   00FFFE7C:  0000000E    value = 14
+  _temp_15
+         -12   00FFFE68:  0000906C
+  b: int
+         -16   00FFFE64:  0000000F    value = 15
+=================================================
+> down
+=====  Frame number 2 (where StackTop = 0)  =====
+Function Name:    bar
+Filename:         HelloWorld.c
+Execution now at: line 21
+Frame Addr:       00FFFE90
+frameSize:        12
+totalParmSize:    4
+                         ==========
+         -20   00FFFE7C:  0000000E
+         -16   00FFFE80:  0000000E
+         -12   00FFFE84:  0000906C
+R.D.ptr:  -8   00FFFE88:  000028D0
+    r13:  -4   00FFFE8C:  00000015
+     fp:   0   00FFFE90:  00FFFEAC
+RetAddr:   4   00FFFE94:  000028B8
+                         ==========
+   Args:   8   00FFFE98:  0000000D
+
+PARAMETERS AND LOCAL VARIABLES WITHIN THIS FRAME:
+=================================================
+  a: int
+           8   00FFFE98:  0000000D    value = 13
+  _temp_15
+         -12   00FFFE84:  0000906C
+  b: int
+         -16   00FFFE80:  0000000E    value = 14
+=================================================
+> down
+=====  Frame number 3 (where StackTop = 0)  =====
+Function Name:    bar
+Filename:         HelloWorld.c
+Execution now at: line 21
+Frame Addr:       00FFFEAC
+frameSize:        12
+totalParmSize:    4
+                         ==========
+         -20   00FFFE98:  0000000D
+         -16   00FFFE9C:  0000000D
+         -12   00FFFEA0:  0000906C
+R.D.ptr:  -8   00FFFEA4:  000028D0
+    r13:  -4   00FFFEA8:  00000015
+     fp:   0   00FFFEAC:  00FFFEC8
+RetAddr:   4   00FFFEB0:  000028B8
+                         ==========
+   Args:   8   00FFFEB4:  0000000C
+
+PARAMETERS AND LOCAL VARIABLES WITHIN THIS FRAME:
+=================================================
+  a: int
+           8   00FFFEB4:  0000000C    value = 12
+  _temp_15
+         -12   00FFFEA0:  0000906C
+  b: int
+         -16   00FFFE9C:  0000000D    value = 13
+=================================================
+> t
+About to execute FUNCTION CALL                     in bar (HelloWorld.c, line 21)  time = 953
+> t
+About to execute FUNCTION ENTRY                    in bar (HelloWorld.c, line 14)  time = 972
+> t
+About to execute ASSIGN statement                  in bar (HelloWorld.c, line 16)  time = 974
+> t
+About to execute FUNCTION CALL (external function) in bar (HelloWorld.c, line 17)  time = 986
+> t
+The value of b is 17About to execute FUNCTION CALL                     in bar (HelloWorld.c, line 19)  time = 1003
+> i
+============================
+Memory size = 0x01000000     ( decimal: 16777216    )
+Page size   = 0x00002000     ( decimal: 8192        )
+.text Segment
+    addr    = 0x00000000     ( decimal: 0           )
+    size    = 0x00004000     ( decimal: 16384       )
+.data Segment
+    addr    = 0x00004000     ( decimal: 16384       )
+    size    = 0x00006000     ( decimal: 24576       )
+.bss Segment
+    addr    = 0x0000A000     ( decimal: 40960       )
+    size    = 0x00000000     ( decimal: 0           )
+=====  USER REGISTERS  =====
+  r0  = 0x00000000     ( decimal: 0 )
+  r1  = 0x00000000     ( decimal: 0 )
+  r2  = 0x00000000     ( decimal: 0 )
+  r3  = 0x00000000     ( decimal: 0 )
+  r4  = 0x00000000     ( decimal: 0 )
+  r5  = 0x00000000     ( decimal: 0 )
+  r6  = 0x00000000     ( decimal: 0 )
+  r7  = 0x00000000     ( decimal: 0 )
+  r8  = 0x00000000     ( decimal: 0 )
+  r9  = 0x00000000     ( decimal: 0 )
+  r10 = 0x00000000     ( decimal: 0 )
+  r11 = 0x00000000     ( decimal: 0 )
+  r12 = 0x00000000     ( decimal: 0 )
+  r13 = 0x00000000     ( decimal: 0 )
+  r14 = 0x00000000     ( decimal: 0 )
+  r15 = 0x00000000     ( decimal: 0 )
+=====  SYSTEM REGISTERS  =====
+  r0  = 0x00000000     ( decimal: 0 )
+  r1  = 0x00000001     ( decimal: 1           )
+  r2  = 0x00000011     ( decimal: 17          )
+  r3  = 0x00000012     ( decimal: 18          )
+  r4  = 0x8CC97375     ( decimal: -1932954763 )
+  r5  = 0x00000000     ( decimal: 0 )
+  r6  = 0x00000000     ( decimal: 0 )
+  r7  = 0x00000000     ( decimal: 0 )
+  r8  = 0x00000000     ( decimal: 0 )
+  r9  = 0x00000000     ( decimal: 0 )
+  r10 = 0x00004341     ( decimal: 17217       )
+  r11 = 0x00000000     ( decimal: 0 )
+  r12 = 0x00000000     ( decimal: 0 )
+  r13 = 0x00000013     ( decimal: 19          )
+  r14 = 0x00FFFE3C     ( decimal: 16776764    )
+  r15 = 0x00FFFE28     ( decimal: 16776744    )
+=====  FLOATING-POINT REGISTERS  =====
+  f0  = 0x00000000 00000000   ( value = 0 )
+  f1  = 0x00000000 00000000   ( value = 0 )
+  f2  = 0x00000000 00000000   ( value = 0 )
+  f3  = 0x00000000 00000000   ( value = 0 )
+  f4  = 0x00000000 00000000   ( value = 0 )
+  f5  = 0x00000000 00000000   ( value = 0 )
+  f6  = 0x00000000 00000000   ( value = 0 )
+  f7  = 0x00000000 00000000   ( value = 0 )
+  f8  = 0x00000000 00000000   ( value = 0 )
+  f9  = 0x00000000 00000000   ( value = 0 )
+  f10 = 0x00000000 00000000   ( value = 0 )
+  f11 = 0x00000000 00000000   ( value = 0 )
+  f12 = 0x00000000 00000000   ( value = 0 )
+  f13 = 0x00000000 00000000   ( value = 0 )
+  f14 = 0x00000000 00000000   ( value = 0 )
+  f15 = 0x00000000 00000000   ( value = 0 )
+======================================
+  PC   = 0x00002894     ( decimal: 10388       )
+  PTBR = 0x00000000     ( decimal: 0 )
+  PTLR = 0x00000000     ( decimal: 0 )
+                        ---- ----  ---- ----  ---- ----  --IS PZVN
+  SR   = 0x00000010  =  0000 0000  0000 0000  0000 0000  0001 0000
+           I = 0   Interrupts Disabled
+           S = 1   System Mode
+           P = 0   Paging Disabled
+           Z = 0   Not Zero
+           V = 0   No Overflow
+           N = 0   Not Negative
+==============================
+  Pending Interrupts                = 0x00000002
+    TIMER_INTERRUPT
+  System Trap Number                = 0x00000000
+  Page Invalid Offending Address    = 0x00000000
+  Page Readonly Offending Address   = 0x00000000
+  Time of next timer event          = 5005
+  Time of next disk event           = 2147483647
+  Time of next serial in event      = 30039
+  Time of next serial out event     = 2147483647
+    Current Time                    = 1003
+    Time of next event              = 5005
+    Time Spent Sleeping             = 0
+      Instructions Executed         = 1003
+  Number of Disk Reads              = 0
+  Number of Disk Writes             = 0
+==============================
+The next instruction to execute will be:
+002894: A0FFE9B0       call    0xFFE9B0		! targetAddr = _P_System_nl
+About to execute FUNCTION CALL                     in bar (HelloWorld.c, line 19)  time = 1003
+> h
+===========================================================================
+This program accepts commands typed into the terminal.  Each command
+should be typed without any arguments; the commands will prompt for
+arguments when needed.  Case is not significant.  Some abbreviations
+are allowed, as shown.  Typing control-C will halt execution.
+
+The available commands are:
+
+  quit    - Terminate this program
+  q         
+  help    - Produce this display
+  h         
+  info    - Display the current state of the machine
+  i         
+  dumpMem - Display the contents of memory
+  dm        
+  setmem  - Used to alter memory contents
+  fmem    - Display floating point values from memory
+  go      - Begin or resume BLITZ instruction execution
+  g         
+  step    - Single step; execute one machine-level instruction
+  s         
+  t       - Single step; execute one KPL statement
+  u       - Execute continuously until next KPL call, send, or return statement
+  stepn   - Execute N machine-level instructions
+  r       - Display all the integer registers
+  r1      - Change the value of register r1
+   ...       
+  r15     - Change the value of register r15
+  float   - Display all the floating-point registers
+  f         
+  f0      - Change the value of floating-point register f0
+   ...       
+  f15     - Change the value of floating-point register f15
+  dis     - Disassemble several instructions
+  d       - Disassemble several instructions from the current location
+  hex     - Convert a user-entered hex number into decimal and ascii
+  dec     - Convert a user-entered decimal number into hex and ascii
+  ascii   - Convert a user-entered ascii char into hex and decimal
+  setI    - Set the I bit in the Status Register
+  setS    - Set the S bit in the Status Register
+  setP    - Set the P bit in the Status Register
+  setZ    - Set the Z bit in the Status Register
+  setV    - Set the V bit in the Status Register
+  setN    - Set the N bit in the Status Register
+  clearI  - Clear the I bit in the Status Register
+  clearS  - Clear the S bit in the Status Register
+  clearP  - Clear the P bit in the Status Register
+  clearZ  - Clear the Z bit in the Status Register
+  clearV  - Clear the V bit in the Status Register
+  clearN  - Clear the N bit in the Status Register
+  setPC   - Set the Program Counter (PC)
+  setPTBR - Set the Page Table Base Register (PTBR)
+  setPTLR - Set the Page Table Length Register (PTLR)
+  pt      - Display the Page Table
+  trans   - Perform page table translation on a single address
+  cancel  - Cancel all pending interrupts
+  labels  - Display the label table
+  find    - Find a label by name
+  find2   - Find a label by value
+  add     - Add a new label, inserting it into the indexes
+  reset   - Reset the machine state and re-read the a.out file
+  io      - Display the state of the I/O devices
+  read    - Read a word from memory-mapped I/O region
+  write   - Write a word to memory-mapped I/O region
+  raw     - Switch serial input to raw mode
+  cooked  - Switch serial input to cooked mode
+  input   - Enter input characters for future serial I/O input
+  format  - Create and format a BLITZ disk file
+  sim     - Display the current simulation constants
+  stack   - Display the KPL calling stack
+  st        
+  frame   - Display the current activation frame
+  fr        
+  up      - Move up in the activation frame stack
+  down    - Move down in the activation frame stack
+
+===========================================================================
+> reset
+Resetting all CPU registers and re-reading file "HelloWorld"...
+> go
+Beginning execution...
+====================  KPL PROGRAM STARTING  ====================
+Hello, world...
+The value of b is 12
+
+****  A 'debug' instruction was encountered  *****
+Done!  The next instruction to execute will be:
+0028A4: 8B1EFFF0       load    [r14+0xFFF0],r1	! decimal: -16
+> q
+Number of Disk Reads    = 0
+Number of Disk Writes   = 0
+Instructions Executed   = 609
+Time Spent Sleeping     = 0
+    Total Elapsed Time  = 609
+bash-3.2$ exit
+
+Script done on Mon Apr  2 12:40:57 2012

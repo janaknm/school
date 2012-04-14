@@ -47,7 +47,6 @@ L* = union({L^n | n \in {0, 1, 2, ...})
 **** Positive Closure of a Language
 L+ = union({L^n | n \in N})
 
-
 * Regular Languages
 ** Inductive Definition (alphabet A)
 {} and {[]} are regular Languages
@@ -79,4 +78,21 @@ L(ab + a*) = L(ab) \union L(a*)
            = {a}{b} \union {a}*
            = {ab} \union {[], a, aa, aaa, ... a^n, ...}
            = {ab, [], a, aa, aaa, ... a^n, ...}
+* Finite State Transducers (FST)
+FSTs are identical to FSAs except that either when entering a state or
+transitioning across states, something is "output."
+** Types of FSTs
+*** Moore FST
+Output is depends only on the state. When entering a state, some
+action/output occurs.
+*** Meely FST
+Output depends on both the state and the input. The action/output
+occurs upon transition rather than entry. In this case, there are less
+nodes, but may be more edges (?)
 
+           
+
+
+           
+
+           

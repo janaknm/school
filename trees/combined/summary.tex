@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage[margin=1in,lmargin=1in,rmargin=1in]{geometry}
+
+\def \TITLE {Tree Leaf Allometry}
+
+%Math comp id: 13762
+\def \GROUPID {13762}
+
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyfoot{}
+
+\fancyhead[CO,CE]{\TITLE}
+\fancyfoot[CO,CE]{Mathematical Contest in Modeling}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+\lhead{\GROUPID}
+\rhead{Summary}
+
+\begin{document}
+
+
+Topics of global warming, solar energy, and academia can be further
+explored by investigating the quantification of the leaf mass of trees
+and its relation to energy absorption and efficiency. We present a
+model which showcases these properties in a theoretical manner.  Using
+convex, continuous, differentiable curves in $\mathbb{R}^3$, we model
+trees as 3-dimensional surfaces produced by rotating said curves about
+the z-axis. In our model, trees grow in the positive z direction and
+lie directly underneath the path of the Sun. At midday, the Sun will
+be precisely above the center of the tree.
+
+We frequently use the term ``leaf density'' to denote the number of
+leaves per unit volume. It is important to distinguish this from
+``leaf mass density'' which is the usual mass per unit volume. It is
+our assumption that the maximum leaf density for a given height,
+$z_0$, is directly proportional to the daily energy observed along the
+tree's profile at the same height $z_0$. We claim that knowing the
+coefficient of proportionality, $\alpha$, of these two quantities and
+$\gamma$, the leaf mass density, we can estimate the total leaf mass
+of a given tree.
+
+In the process of determining leaf mass, we provide an expression for
+leaf density, which we call $\rho$. Based on this $\rho$, we define a
+probability density for leaf stem locations as a function of distance
+from the tree's trunk. We compare the relative efficiency of leaf
+shapes by running a probabilistic simulation which plots leaves on a
+branch according to the aforementioned distribution.
+
+Our results include a symbolic expression for leaf mass with respect
+to the tree's profile. Further, we show that leaves with natural,
+leaf-like (folium) shapes perform much better than non-traditional
+leaf shapes such as squares and circles. It is interesting to note
+that circles and squares are conventionally optimal shapes (such as in
+coverage and packing problems), but are suboptimal in the case of
+leaves. Performance was based on the percentage of overlapping leaf
+surface area across a branch.
+
+We provide many theoretical relationships between model variables
+which are strengthened by experimental data produced by others. We
+developed relationships rather than specific calculations, providing a
+more conceptual solution to the problem.
+
+
+
+\end{document}

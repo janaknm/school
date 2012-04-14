@@ -1,0 +1,208 @@
+\documentclass[10pt,twocolumn]{article}
+\usepackage[pdftex]{graphicx}
+\usepackage{subfig}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{calc}
+\usepackage{lipsum}
+
+\newlength{\imgwidth}
+
+\newcommand\scalegraphics[1]{%   
+    \settowidth{\imgwidth}{\includegraphics{#1}}%
+    \setlength{\imgwidth}{\minof{\imgwidth}{\columnwidth}}%
+    \includegraphics[width=\imgwidth,keepaspectratio]{#1}%
+}
+
+\pagestyle{empty} \setlength{\parindent}{0mm}
+\addtolength{\topmargin}{-0.5in} \setlength{\textheight}{9in}
+\addtolength{\textwidth}{1in} \addtolength{\oddsidemargin}{-0.5in}
+
+\begin{document}
+
+\section{Model}
+
+We model a tree by taking some function $x = l(z)$ and rotating it
+about the $z$ axis. The resulting three-dimensional surface is the
+profile of some tree $L$. We require $l(z)$ to be both convex and
+continuous for $z_0 \le z \le z_1$ where $z_0$ and $z_1$ are the lower
+and upper bounds for the tree. \\
+
+\begin{figure}[h!]
+  \caption{$l(z)=\sqrt{1-(\frac{z}{2})^2}$}
+  \centering
+  \scalegraphics{img/lz.png}
+  \label{fig:l(z)}
+\end{figure}
+
+For example, we take $l(z) = \sqrt{1-(\frac{z}{2})^2}$, rotate it around
+the z axis giving a surface which represents the profile of a tree
+(see {\bf figures~\ref{fig:l(z)} and~\ref{fig:L}}). Describing tree
+profiles in this fashion is not only convenient, but fairly
+representative of trees in nature [CITATION ABOUT TREE SYMMETRY]. \\
+
+\begin{figure}[h!]
+  \centering
+  \scalegraphics{img/L.png}
+  \caption{Surface $L$}
+  \label{fig:L}
+\end{figure}
+
+Having a model of trees in $\mathbb{R}^3$, we now wish to represent
+incoming sunlight in relation to our tree $L$. To simplify this
+relationship, we assume the Sun's path coincides with $y=0$; in other
+words, the Sun travels directly over the tree along the $x$ axis. We
+choose the x-y plane as being parallel to the Earth's surface, and let
+$\theta_t$ denote the angle rays from the Sun make with the positive
+$x$ axis at time $t$. Letting $t$ range from $0$ to $1$ we have
+$\theta_t = \theta_{min} + t(\theta_{max} - \theta_{min})$ where
+$\theta_{min}$ and $\theta_{max}$ are the minimum and maximum angles
+for which Sun rays will reach $L$ respectively. \\
+
+We let $\vec{T_z}$ denote the tangent vector at a point \\ $P$ =
+($l(z)$, 0, $z$) on $L$. The intensity vector $\vec{I_\theta}$
+represents a Sun ray that makes an angle $\theta$ with the x-y
+plane. $|\vec{I_\theta}| = 1367$ for all $\theta$ [CITATION FOR SUN
+  INTENSITY]. {\bf Figure~\ref{fig:vectors}} shows the previously defined
+vectors and angles.
+
+\begin{figure}[h!]
+  \centering
+  \caption{Angles and vectors on $l(z)$}
+  \scalegraphics{img/vectors.png}
+  \label{fig:vectors}
+\end{figure}
+
+\subsection{Finding Energy at a Point}
+We now wish to determine the total energy a point receives over one
+period (a full day). First, we examine the instantaneous intensity at
+point $P$ = ($l(z)$, 0, $z$) using [CITATION FOR EQN]:
+\begin{center}
+  \begin{equation}\label{eqn:intbasic}
+    |I_z| = |I_\theta| \  cos\phi
+  \end{equation}
+\end{center}
+
+Here, $\phi$ is the angle between $\vec{I_\theta}^{\perp}$ and
+$\vec{T_z}$, notice this is just the projection of $\vec{I_\theta}$ on
+to $\vec{T_z}$. Solving for $\phi$ using the definition of the dot
+product yields:
+
+\begin{center}
+  \begin{gather}
+    \phi = cos^{-1} \left(\dfrac{\vec{I_0}^{\perp} \cdot \vec{T_z}}{|\vec{I_0}^{\perp}| |\vec{T_z}|}\right) \\
+    I(z,\theta) = |I_\theta|\left(\dfrac{-sin\theta \  l'(z) + cos\theta}{\sqrt{1+(l'(z))^2}}\right)\label{eqn:intpoint}
+  \end{gather}
+\end{center}
+
+Equation~\eqref{eqn:intpoint} defines the instantaneous intensity at a
+point ($l(z)$, 0, $z$) for a given $\theta$. Having an expression for
+intensity allows us to determine the total energy a point receives
+over the course of one full day. To calculate total energy, we must
+integrate intensity over a full period, $0 \le t \le 1$ [CITATION].
+
+\begin{center}
+  \begin{equation}
+    E(z) = \int_0^1 I(z,\theta_t) dt
+  \end{equation}
+\end{center}
+
+Continuing with our hypothetical tree with profile $l(z) =
+\sqrt{1-(\frac{z}{2})^2}$, we graph the energy observed per day for
+each z for which our tree is defined ($-3 \le z \le 3$). This graph
+({\bf figure~\ref{fig:energy}}) shows exactly what you might expect:
+very small energy at the base of the tree, fairly average energy in
+the middle, and very high energy near the top.
+
+\begin{figure}[h!]
+  \centering
+  \scalegraphics{img/energy.png}
+  \caption{Energy over a full day with respect to z}
+  \label{fig:energy}
+\end{figure}
+
+\subsection{Estimating Leaf Mass}
+Our approach to estimating the leaf mass requires knowledge of the
+leaf density, $\rho$, as a function of height and lateral distance
+from the trunk. It is our assumption that the tree is fully
+symmetrical about the $z$ axis, thus we can simply work in the
+[[slice]] $y=0$. \\
+
+We believe that the leaf density is logistic with respect to x, the
+lateral distance from the trunk. For small x near the trunk, there
+will be few leaves, but approaching the boundary of the tree profile,
+the leaf density much grow very rapidly. Not only is this an intuitive
+model, but is mentioned in [CITATION??]. We suppose that the leaf
+density function is of the approximate form ({\bf
+  figure~\ref{fig:rho}}) with $\rho_0(z)$ being the maximum leaf
+density for a given height.:
+
+\begin{center}
+  \begin{equation}
+    \rho(z,x) = \dfrac{\rho_0(z)}{1+e^{-6(\frac{2x}{l(z)}-1)}} \label{eqn:rho}
+  \end{equation}
+\end{center}
+
+\begin{figure}[h!]
+  \centering
+  \scalegraphics{img/rho.png}
+  \caption{Shape of $\rho(z,x)$ for fixed $z$}
+  \label{fig:rho}
+\end{figure}
+
+Integrating equation~\eqref{eqn:rho} across all values of z and then
+doing around the $z$ axis with $\theta$ going from 0 to $2\pi$, we
+find the leaf mass with the following expression:
+
+\begin{center}
+  \begin{equation}
+    \begin{split}
+      m &= \int_0^{2\pi} \int_0^{h} \int_0^{l(z)} \rho(z,x) \ dx dz d\theta \\
+      &= 2\pi \int_0^{h} \left(\int_0^{l(z)} \dfrac{\rho_0(z)}{1+e^{-6(\frac{2x}{l(z)}-1)}} dx\right) dz \\
+      &= 2\pi \int_0^{h} \rho_0(z) \left[ \frac{l(z)}{12} log\left( e^{\frac{12x}{l(z)}} + e^6 \right) \right]_0^{l(z)} dz
+    \end{split}
+  \end{equation}
+\end{center}
+
+We have now defined a leaf mass function which depends on the
+parameters:
+
+\begin{enumerate}
+\item $l(z)$ The profile function of a tree.
+\item $\rho_0(z)$ The maximum leaf density at a height $z$.
+\item $h$ The height of the tree.
+\end{enumerate}
+
+\subsection{Relationship Between Maximum Leaf Density and Energy}
+It has been found experimentally that in some cases the maximum leaf
+density for a given height z is directly proportional to the daily
+energy observed at that point [CITATION MOTHAFUCKA]. Using notation
+described in this paper, we are claiming that $\rho_0(z) \propto
+E(z)$. \\
+
+Using this relationship, we can now rewrite our expression for the
+leaf mass of a tree substituting $\alpha E(z) = \rho_0(z)$:
+
+\begin{minipage}[l]{\textwidth}
+  \begin{center}
+    \begin{equation*}
+      \begin{split}
+        m &= 2\pi\alpha \int_0^{h}
+        E(z) \left[ \frac{l(z)}{12} log\left( e^{\frac{12x}{l(z)}} + e^6 \right) \right]_0^{l(z)} dz \\ 
+        &= 2\pi\alpha \int_0^{h}
+        \left[\int_0^1 I(z,\theta_t)dt\right]
+        \left[ \frac{l(z)}{12} log\left( e^{\frac{12x}{l(z)}} + e^6 \right) \right]_0^{l(z)} dz \\
+        &= 2\pi\alpha |I_\theta| \int_0^{h}
+        \left[\int_0^1 \dfrac{-sin\theta \  l'(z) + cos\theta}{\sqrt{1+(l'(z))^2}} dt\right]  
+        \left[ \frac{l(z)}{12} log\left( e^{\frac{12x}{l(z)}} + e^6 \right) \right]_0^{l(z)} dz
+      \end{split}
+    \end{equation}
+  \end{center}
+\end{minipage}
+
+\lipsum
+
+
+
+
+\end{document}
