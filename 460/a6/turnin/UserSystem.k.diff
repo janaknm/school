@@ -1,0 +1,41 @@
+--- ../a5/UserSystem.k	2012-03-26 14:44:30.000000000 -0700
++++ UserSystem.k	2012-05-17 22:38:39.000000000 -0700
+@@ -192,20 +192,38 @@
+     function Sys_Close (fileDesc: int)
+       --
+       -- This function is passed the fileDescriptor of a file, which is
+       -- assumed to be open.  It closes the file, which includes writing
+       -- out any data buffered by the kernel.
+       --
+         var ignore: int
+         ignore = DoSyscall (SYSCALL_CLOSE, fileDesc, 0, 0, 0)
+       endFunction
+ 
++-----------------------------  Sys_GetPID  ---------------------------------
++
++    function Sys_GetPID () returns int
++      --
++      -- Returns the PID of the currently running process
++      --
++        return DoSyscall (SYSCALL_GETPID, 0, 0, 0, 0)
++      endFunction
++
++-----------------------------  Sys_GetPPID  ---------------------------------
++
++    function Sys_GetPPID () returns int
++      --
++      -- Returns the PID of the currently running process's parent
++      --
++        return DoSyscall (SYSCALL_GETPPID, 0, 0, 0, 0)
++      endFunction
++
+ -----------------------------  StrEqual  ---------------------------------
+ 
+   function StrEqual (s1, s2: String) returns bool
+       --
+       -- Return TRUE if the strings have the same size and contain
+       -- the same characters
+       --
+       var i: int
+       if s1 arraySize != s2 arraySize
+         return false

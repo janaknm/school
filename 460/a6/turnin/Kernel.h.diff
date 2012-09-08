@@ -1,0 +1,101 @@
+--- ../a5/Kernel.h	2012-05-09 20:57:07.000000000 -0700
++++ Kernel.h	2012-05-17 22:29:21.000000000 -0700
+@@ -6,23 +6,22 @@
+ 
+     SYSTEM_STACK_SIZE = 1000       -- in words
+     STACK_SENTINEL = 0x24242424    -- in ASCII, this is "$$$$"
+ 
+     -- The kernel code will load into the first megabyte of physical memory.  This
+     -- should be more than enough.  We will use the second megabyte for page frames.
+     -- Thus, the frame region is 128 page frames of 8K each.
+ 
+     PAGE_SIZE = 8192                                  -- in hex: 0x0000 2000
+     PHYSICAL_ADDRESS_OF_FIRST_PAGE_FRAME = 1048576    -- in hex: 0x0010 0000
+-    --NUMBER_OF_PHYSICAL_PAGE_FRAMES = 512              -- in hex: 0x0000 0200
+-    NUMBER_OF_PHYSICAL_PAGE_FRAMES = 100               -- for testing only
+-
++    NUMBER_OF_PHYSICAL_PAGE_FRAMES = 512              -- in hex: 0x0000 0200
++    
+     MAX_NUMBER_OF_PROCESSES = 10
+     MAX_STRING_SIZE = 20
+     MAX_PAGES_PER_VIRT_SPACE = 20
+     MAX_FILES_PER_PROCESS = 10
+     MAX_NUMBER_OF_FILE_CONTROL_BLOCKS = 10
+     MAX_NUMBER_OF_OPEN_FILES = 10
+     USER_STACK_SIZE_IN_PAGES = 1
+     NUMBER_OF_ENVIRONMENT_PAGES = 0
+ 
+     SERIAL_GET_BUFFER_SIZE = 10
+@@ -38,21 +37,23 @@
+        SYSCALL_SHUTDOWN,
+        SYSCALL_YIELD,
+        SYSCALL_FORK,
+        SYSCALL_JOIN,
+        SYSCALL_EXEC,
+        SYSCALL_CREATE,
+        SYSCALL_OPEN,
+        SYSCALL_READ,
+        SYSCALL_WRITE,
+        SYSCALL_SEEK,
+-       SYSCALL_CLOSE
++       SYSCALL_CLOSE,
++       SYSCALL_GETPID,
++       SYSCALL_GETPPID					 
+   enum
+     ACTIVE, ZOMBIE, FREE     -- Status of a ProcessControlBlock
+ 
+   var
+     readyList: List [Thread]
+     currentThread: ptr to Thread
+     mainThread: Thread
+     idleThread: Thread
+     threadsToBeDestroyed:  List [Thread]
+     currentInterruptStatus: int
+@@ -87,20 +88,22 @@
+     Handle_Sys_Exec (filename: ptr to array of char) returns int
+     Handle_Sys_Join (processID: int) returns int
+     Handle_Sys_Exit (returnStatus: int)
+     Handle_Sys_Create (filename: String) returns int
+     Handle_Sys_Open (filename: String) returns int
+     Handle_Sys_Read (fileDesc: int, buffer: ptr to char, sizeInBytes: int) returns int
+     Handle_Sys_Write (fileDesc: int, buffer: ptr to char, sizeInBytes: int) returns int
+     Handle_Sys_Seek (fileDesc: int, newCurrentPos: int) returns int
+     Handle_Sys_Close (fileDesc: int)
+     Handle_Sys_Shutdown ()
++    Handle_Sys_GetPID () returns int
++    Handle_Sys_GetPPID () returns int
+ 
+     InitializeScheduler ()
+     Run (nextThread: ptr to Thread)
+     PrintReadyList ()
+     ThreadStartMain ()
+     ThreadFinish ()
+     FatalError_ThreadVersion (errorMessage: ptr to array of char)
+     SetInterruptsTo (newStatus: int) returns int
+     ProcessFinish (exitStatus: int)
+     InitFirstProcess ()
+@@ -238,22 +241,22 @@
+       aProcessBecameFree: Condition           --     apply to the "freeList"
+       freeList: List [ProcessControlBlock]
+       aProcessDied: Condition                 -- Signalled for new ZOMBIEs
+       nextPid: int
+     methods
+       Init ()
+       Print ()
+       PrintShort ()
+       GetANewProcess () returns ptr to ProcessControlBlock
+       FreeProcess (p: ptr to ProcessControlBlock)
+-      --TurnIntoZombie (p: ptr to ProcessControlBlock)
+-      --WaitForZombie (proc: ptr to ProcessControlBlock) returns int
++      TurnIntoZombie (pcb: ptr to ProcessControlBlock)
++      WaitForZombie (pcb: ptr to ProcessControlBlock) returns int
+   endClass
+ 
+   -----------------------------  FrameManager  ---------------------------------
+   --
+   --  There is only one instance of this class.
+   --
+   class FrameManager
+     superclass Object
+     fields
+       framesInUse: BitMap

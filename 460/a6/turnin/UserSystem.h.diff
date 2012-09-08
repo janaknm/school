@@ -1,0 +1,47 @@
+--- ../a5/UserSystem.h	2012-03-26 14:44:30.000000000 -0700
++++ UserSystem.h	2012-05-17 23:03:44.000000000 -0700
+@@ -6,39 +6,43 @@
+        SYSCALL_SHUTDOWN,
+        SYSCALL_YIELD,
+        SYSCALL_FORK,
+        SYSCALL_JOIN,
+        SYSCALL_EXEC,
+        SYSCALL_CREATE,
+        SYSCALL_OPEN,
+        SYSCALL_READ,
+        SYSCALL_WRITE,
+        SYSCALL_SEEK,
+-       SYSCALL_CLOSE
++       SYSCALL_CLOSE,
++       SYSCALL_GETPID,
++       SYSCALL_GETPPID					 
+ 
+   --
+   -- The following routines comprise the syscall interface to the kernel.  They
+   -- are wrapper functions, which do nothing more than a syscall to the kernel.
+   --
+   functions
+     Sys_Exit (returnStatus: int)
+     Sys_Shutdown ()
+     Sys_Yield ()
+     Sys_Fork () returns int
+     Sys_Join (processID: int) returns int
+     Sys_Exec (filename: String) returns int
+     Sys_Create (filename: String) returns int
+     Sys_Open (filename: String) returns int
+     Sys_Read (fileDesc: int, buffer: ptr to char, sizeInBytes: int) returns int
+     Sys_Write (fileDesc: int, buffer: ptr to char, sizeInBytes: int) returns int
+     Sys_Seek (fileDesc: int, newCurrentPos: int) returns int
+     Sys_Close (fileDesc: int)
++    Sys_GetPID () returns int
++    Sys_GetPPID () returns int
+  
+   --
+   -- The following routines are implemented in UserRuntime.s:
+   --
+   functions
+     external DoSyscall (funCode, arg1, arg2, arg3, arg4: int) returns int
+     external TerminateWithError ()
+  
+   --
+   -- The following routines print data directly and immediately to the output.

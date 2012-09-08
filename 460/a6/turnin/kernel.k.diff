@@ -1,0 +1,427 @@
+--- ../a5/Kernel.k	2012-05-10 11:24:37.000000000 -0700
++++ Kernel.k	2012-05-17 22:51:14.000000000 -0700
+@@ -912,35 +912,97 @@
+       method GetANewProcess () returns ptr to ProcessControlBlock
+         --
+         -- This method returns a new ProcessControlBlock; it will wait
+         -- until one is available.
+         --
+         var pcb: ptr to ProcessControlBlock
+ 	  processManagerLock.Lock ()
+ 	  while freeList.IsEmpty ()
+ 	    aProcessBecameFree.Wait (& processManagerLock)
+ 	  endWhile
++	  nextPid = nextPid + 1
+ 	  pcb = freeList.Remove ()
+ 	  pcb.pid = nextPid
+ 	  pcb.status = ACTIVE
+-	  nextPid = nextPid + 1
+ 	  processManagerLock.Unlock ()
+           return pcb
+         endMethod
+ 
++      ----------  ProcessManager . TurnIntoZombie  ----------
++      method TurnIntoZombie (pcb: ptr to ProcessControlBlock)
++        var i: int
++	    proc: ptr to ProcessControlBlock
++	    parent: ptr to ProcessControlBlock
++
++	  processManagerLock.Lock ()
++
++	  -- find processes zombie children and vanquish them
++	  for i = 0 to MAX_NUMBER_OF_PROCESSES-1
++            proc = & processTable[i]
++	    
++	    -- check relationship
++	    if proc.parentsPid == pcb.pid
++	      -- proc = child of pcb
++	    
++	      -- vanquish if zombie
++	      if proc.status == ZOMBIE
++	        proc.status = FREE
++		freeList.AddToEnd (proc)
++		aProcessBecameFree.Signal (& processManagerLock)
++              endIf
++
++	    elseIf pcb.parentsPid == proc.pid
++	      -- proc = parent of pcb
++	      
++	      parent = proc
++	    endIf
++	      
++	  endFor
++
++	  if parent == null || parent.status != ACTIVE
++	    -- parent not running, just free the process
++	    pcb.status = FREE
++	    freeList.AddToEnd (pcb)
++	  else
++	    -- parent is still running => must turn pcb in to zombie
++	    pcb.status = ZOMBIE
++	    aProcessDied.Broadcast (& processManagerLock)
++	  endIf
++	  
++	  processManagerLock.Unlock ()
++        endMethod
++      
++      ----------  ProcessManager . WaitForZombie  ----------
++      method WaitForZombie (pcb: ptr to ProcessControlBlock) returns int
++        var exitStatus: int
++          processManagerLock.Lock ()
++
++	  while pcb.status != ZOMBIE
++	    aProcessDied.Wait (& processManagerLock)
++	  endWhile
++
++	  exitStatus = pcb.exitStatus
++	  pcb.status = FREE
++	  freeList.AddToEnd (pcb)
++	  
++	  processManagerLock.Unlock ()
++          return exitStatus
++        endMethod
++	
+       ----------  ProcessManager . FreeProcess  ----------
+ 
+       method FreeProcess (p: ptr to ProcessControlBlock)
+         --
+         -- This method is passed a ptr to a Process;  It moves it
+         -- to the FREE list.
+         --
++	  FatalError ("Do not use.")
+           processManagerLock.Lock ()
+ 	  p.status = FREE
+ 	  freeList.AddToEnd (p)
+ 	  aProcessBecameFree.Signal (& processManagerLock)
+ 	  processManagerLock.Unlock ()
+         endMethod
+ 
+ 
+     endBehavior
+ 
+@@ -955,21 +1017,42 @@
+     endFunction
+ 
+ -----------------------------  ProcessFinish  --------------------------
+ 
+   function ProcessFinish (exitStatus: int)
+     --
+     -- This routine is called when a process is to be terminated.  It will
+     -- free the resources held by this process and will terminate the
+     -- current thread.
+     --
+-      FatalError ("ProcessFinish is not implemented")
++    var oldIntStat: int
++        pcb: ptr to ProcessControlBlock
++	
++      pcb = currentThread.myProcess
++      pcb.exitStatus = exitStatus
++      
++      oldIntStat = SetInterruptsTo (DISABLED)
++
++      -- "disconnect" thread and process
++      currentThread.myProcess = null
++      currentThread.isUserThread = false
++      pcb.myThread = null
++
++      oldIntStat = SetInterruptsTo (oldIntStat)
++
++      -- TODO: close open files...
++      
++      frameManager.ReturnAllFrames (& pcb.addrSpace)
++      processManager.TurnIntoZombie (pcb)
++
++      ThreadFinish ()
++      
+     endFunction
+ 
+ -----------------------------  FrameManager  ---------------------------------
+ 
+   behavior FrameManager
+ 
+       ----------  FrameManager . Init  ----------
+ 
+       method Init ()
+         --
+@@ -1586,20 +1669,26 @@
+ 
+   function ErrorInUserProcess (errorMessage: String)
+     --
+     -- This routine is called when an error has occurred in a user-level
+     -- process.  It prints the error message and terminates the process.
+     --
+       print ("\n**********  ")
+       print (errorMessage)
+       print ("  **********\n\n")
+ 
++      print ("Offending process: \"")
++      print (currentThread.name)
++      print ("\" (PID ")
++      printInt (currentThread.myProcess.pid)
++      print (")\n\n")
++
+       -- Print some information about the offending process...
+       if currentThread.myProcess
+         currentThread.myProcess.Print ()
+       else
+         print ("  ERROR: currentThread.myProcess is null\n\n")
+       endIf
+       currentThread.Print ()
+ 
+       -- Uncomment the following for even more information...
+       -- threadManager.Print ()
+@@ -1653,76 +1742,146 @@
+         case SYSCALL_WRITE:
+           return Handle_Sys_Write (arg1, arg2 asPtrTo char, arg3)
+         case SYSCALL_SEEK:
+           return Handle_Sys_Seek (arg1, arg2)
+         case SYSCALL_CLOSE:
+           Handle_Sys_Close (arg1)
+           return 0
+         case SYSCALL_SHUTDOWN:
+           Handle_Sys_Shutdown ()
+           return 0
++	case SYSCALL_GETPID:
++	  return Handle_Sys_GetPID ()
++	case SYSCALL_GETPPID:
++	  return Handle_Sys_GetPPID ()
+         default:
+           print ("Syscall code = ")
+           printInt (syscallCodeNum)
+           nl ()
+           FatalError ("Unknown syscall code from user thread")
+       endSwitch
+       return 0
+     endFunction
+ 
+ -----------------------------  Handle_Sys_Exit  ---------------------------------
+ 
+   function Handle_Sys_Exit (returnStatus: int)
+       --
+       -- Exits process
+       --
+-        print ("Handle_Sys_Exit invoked!\n")
+-        printIntVar ("returnStatus", returnStatus)
++      ProcessFinish (returnStatus)
+     endFunction
+ 
+ -----------------------------  Handle_Sys_Shutdown  ---------------------------------
+ 
+   function Handle_Sys_Shutdown ()
+     --
+     -- Shut down system
+     --
+       FatalError ("Syscall 'Shutdown' was invoked by a user thread")
+     endFunction
+ 
+ -----------------------------  Handle_Sys_Yield  ---------------------------------
+ 
+   function Handle_Sys_Yield ()
+       -- 
+-      -- ...
++      -- Simply forces the current thread to yield
+       --
+-        print ("Handle_Sys_Yield invoked!\n")
++        currentThread.Yield ()
+     endFunction
+ 
+ -----------------------------  Handle_Sys_Fork  ---------------------------------
+ 
+   function Handle_Sys_Fork () returns int
+-    -- 
+-    -- ...
+-    --
+-      print ("Handle_Sys_Fork invoked!\n")
+-      return 1000
+-    endFunction
++    var th: ptr to Thread
++        pcb: ptr to ProcessControlBlock
++	curPT: ptr to AddrSpace
++	oldIntStat: int
++	oldUserPC: int
++	i, nframes: int
++    
++      oldIntStat = SetInterruptsTo (DISABLED) 
++    
++      th = threadManager.GetANewThread ()
++      th.Init (currentThread.name)
++
++      pcb = processManager.GetANewProcess ()
++      
++      th.myProcess = pcb
++      pcb.myThread = th
++      pcb.parentsPid = currentThread.myProcess.pid
++      
++      SaveUserRegs (& th.userRegs[0])
++
++      th.stackTop = & (th.systemStack[SYSTEM_STACK_SIZE-1])
++
++      -- Don’t forget to copy the fileDescriptor array here...
++
++      curPT = & currentThread.myProcess.addrSpace
++      nframes = curPT.numberOfPages
++      frameManager.GetNewFrames (& pcb.addrSpace, nframes)
++      
++      for i = 0 to nframes-1
++        MemoryCopy (pcb.addrSpace.ExtractFrameAddr (i),
++	            curPT.ExtractFrameAddr (i),
++		    PAGE_SIZE)
++        if curPT.IsWritable (i)
++	  pcb.addrSpace.SetWritable (i)
++	else
++	  pcb.addrSpace.ClearWritable (i)
++	endIf
++      endFor
++
++      oldUserPC = GetOldUserPCFromSystemStack ()
++      
++      th.Fork (ResumeChildAfterFork, oldUserPC)
++      
++      return pcb.pid
++  endFunction
++
++  function ResumeChildAfterFork (oldUserPC: int)
++   --
++   -- Thread function for a newly forked thread
++   --
++   var oldIntStat: int
++       initSystemStackTop: int
++
++     oldIntStat = SetInterruptsTo (DISABLED)
++     initSystemStackTop = (& currentThread.systemStack[SYSTEM_STACK_SIZE-1]) asInteger
++
++     RestoreUserRegs (& currentThread.userRegs[0])
++
++     currentThread.myProcess.addrSpace.SetToThisPageTable ()
++     currentThread.isUserThread = true
++     BecomeUserThread (currentThread.userRegs[14],
++                       oldUserPC,
++		       initSystemStackTop)
++		       
++   endFunction
+ 
+ -----------------------------  Handle_Sys_Join  ---------------------------------
+ 
+   function Handle_Sys_Join (processID: int) returns int
+     --
+-    -- ...
++    -- Waits on a processes child to finish
+     --
+-      print ("Handle_Sys_Join invoked!\n")
+-      printIntVar ("processID", processID)
+-      return 2000
++    var i: int
++        valid: bool
++        proc: ptr to ProcessControlBlock
++      for i = 0 to MAX_NUMBER_OF_PROCESSES-1
++        proc = & processManager.processTable[i]
++	valid = proc.status != FREE
++	if valid && proc.pid == processID && proc.parentsPid == currentThread.myProcess.pid
++	  return processManager.WaitForZombie (proc)
++	endIf
++      endFor
++      return -1
+     endFunction
+ 
+ -----------------------------  Handle_Sys_Exec  ---------------------------------
+ 
+   function Handle_Sys_Exec (filename: ptr to array of char) returns int
+     --
+     -- Loads a new executable in to current process's memory and runs
+     --
+     var newAddrSpace: AddrSpace
+         strBuffer: array [MAX_STRING_SIZE] of char
+@@ -1762,20 +1921,21 @@
+       currentThread.myProcess.addrSpace = newAddrSpace
+ 
+       -- calculate stack addresses (user is logical)
+       initUserStackTop = newAddrSpace.numberOfPages * PAGE_SIZE
+       initSystemStackTop = (&currentThread.systemStack[SYSTEM_STACK_SIZE-1]) asInteger
+ 
+       -- become a user thread (this should never return)
+       oldStatus = SetInterruptsTo(DISABLED)
+       newAddrSpace.SetToThisPageTable ()
+       currentThread.isUserThread = true
++      currentThread.name = & strBuffer
+       BecomeUserThread (initUserStackTop, initPC, initSystemStackTop)
+ 
+       -- something went wrong
+       return -1
+     endFunction
+ 
+ -----------------------------  Handle_Sys_Create  ---------------------------------
+ 
+   function Handle_Sys_Create (filename: ptr to array of char) returns int
+     -- 
+@@ -1876,20 +2036,32 @@
+ 
+   function Handle_Sys_Close (fileDesc: int)
+     --
+     -- ...
+     --
+       print ("Handle_Sys_Close invoked!\n")
+       printIntVar ("fileDesc", fileDesc)
+       
+     endFunction
+ 
++-----------------------------  Handle_Sys_GetPID  ---------------------------------
++
++  function Handle_Sys_GetPID () returns int
++      return currentThread.myProcess.pid
++    endFunction
++
++-----------------------------  Handle_Sys_GetPPID  ---------------------------------
++
++  function Handle_Sys_GetPPID () returns int
++      return currentThread.myProcess.parentsPid
++    endFunction
++
+ -----------------------------  DiskDriver  ---------------------------------
+ 
+   const
+     DISK_STATUS_BUSY                               = 0x00000000
+     DISK_STATUS_OPERATION_COMPLETED_OK             = 0x00000001
+     DISK_STATUS_OPERATION_COMPLETED_WITH_ERROR_1   = 0x00000002
+     DISK_STATUS_OPERATION_COMPLETED_WITH_ERROR_2   = 0x00000003
+     DISK_STATUS_OPERATION_COMPLETED_WITH_ERROR_3   = 0x00000004
+     DISK_STATUS_OPERATION_COMPLETED_WITH_ERROR_4   = 0x00000005
+     DISK_STATUS_OPERATION_COMPLETED_WITH_ERROR_5   = 0x00000006
+@@ -2764,34 +2936,35 @@
+     --
+     -- Thread function for InitFirstProcess
+     --
+     var pcb: ptr to ProcessControlBlock
+         file: ptr to OpenFile
+ 	initPC, oldStatus: int 
+ 	initUserStackTop, initSystemStackTop: int
+ 	
+       -- get a process control block  
+       pcb = processManager.GetANewProcess ()
+-      pcb.Init ()
++      -- not sure if needed!
++      -- pcb.Init ()
+ 
+       -- associate the thread with pcb
+       pcb.myThread = currentThread
+       currentThread.myProcess = pcb
+ 
+       -- load executable in to memory
+-      file = fileManager.Open ("TestProgram1")
++      file = fileManager.Open ("MyProgram")
+       initPC = file.LoadExecutable (& pcb.addrSpace)
+       fileManager.Close (file)
+ 
+       -- calculate stack addresses (user is logical)
+       initUserStackTop = pcb.addrSpace.numberOfPages * PAGE_SIZE
+-      initSystemStackTop = (&currentThread.systemStack[SYSTEM_STACK_SIZE-1]) asInteger
++      initSystemStackTop = (& currentThread.systemStack[SYSTEM_STACK_SIZE-1]) asInteger
+ 
+       -- become a user thread (this should never return)
+       oldStatus = SetInterruptsTo(DISABLED)
+       pcb.addrSpace.SetToThisPageTable ()
+       currentThread.isUserThread = true
+       BecomeUserThread (initUserStackTop, initPC, initSystemStackTop)
+ 
+       -- something went wrong in BecomeUserThread
+       FatalError ("Could not become user thread")
+       
